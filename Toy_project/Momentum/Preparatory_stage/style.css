@@ -1,0 +1,13 @@
+body {
+    background-color: beige;
+}
+
+h1 {
+    color: cornflowerblue;
+    transition: color .5s ease-in-out;
+}
+
+/* active class 생성 - js에 전달해서 광범위한 적용*/
+.clicked{  
+    color: tomato;
+}
