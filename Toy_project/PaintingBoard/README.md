@@ -103,6 +103,11 @@ canvas
 
 ## Javascript
 
+1) Document.getElementById()
+- 주어진 문자열과 일치하는 id 속성을 가진 요소를 찾고, 이를 나타내는 Element 객체를 반환. 
+(id는 문서내에서 유일해야 하므로 특성 요소를 빠르게 찾을 때 유용)
+(id가 없는 요소에 접근하기 위해서는 Document.qeurySelector()를 이용)
+  
 
 
 
