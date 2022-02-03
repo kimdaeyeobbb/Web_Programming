@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang = "ko">
+    <head>
+        <meta charset = "UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-">
+        <link rel="stylesheet" href="ex0.css"/>
+        <title>Momentum App</title>
+    </head>
+    <body>
+        <!-- input 유효성 검사를 위해서는 input 태그가 form 태그 내부에 존재해야 함-->    
+        <!-- input을 form안에 넣었을 떄 엔터를 누를 때마다 form이 자동적으로 submit 됨-->
+        <!-- form이 submit 될 때마다 페이지는 새로고침 됨 (default 값)-->   
+        <!-- 브라우저는 엔터를 누를 때 새로고침을 하고 form을 submit 함 -->
+        
+        
+        <form id="login-form">    
+            <input 
+                reqeuired 
+                maxlength="15" 
+                type="text" 
+                placeholder="What is your name ?"
+            />
+            <input type="submit" value="Log In"/>
+        </form>
+
+        <h1 id="greeting" class="hidden"></h1>
+        
+
+        <!-- 링크의 기본동작 : 클릭 시 다른 페이지로 이동 -->
+        <!--
+        <a href="https://www.naver.com/">Go to Naver</a>
+        -->
+        <script src="ex0.js"></script>
+    </body>
+</html>
