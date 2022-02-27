@@ -1,0 +1,17 @@
+video,
+.result {
+  width: 640px;
+  height: 360px;
+}
+
+.box{
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+.heading1 {
+  text-align: center;
+}
+*/
