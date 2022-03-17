@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FE EXERCISE2</title>
+    <style>
+        /* 선택자를 이용해서 어디서 어떤 효과를 적용할 것인지에 대한 타겟팅을 명확히 해야 함 */
+
+        /* 클래스는 .을 사용*/
+        .js1 {
+            font-weight: bold;
+            color: red;
+        }
+
+        /* id값은 #을 사용 */
+        #first {
+            color: lightblue;
+        }
+
+        /* #과.을 붙이지 않았으므로 이 웹페이지 내 모든 span 태그에 적용 */
+        span {
+            color: bisque;
+        }
+    </style>
+</head>
+
+<body>
+    <h1><a href="index.html">WEB</a></h1>
+    <h2 style="background-color:coral; color:powderblue">Javascript</h2>
+
+    <!-- onclick: 클릭에 대한 이벤트-->
+    <!-- 버튼 클릭시 스타일 속성을 동적으로 열고자 함 -> js에게 body 태그 선택하게 만듦-->
+    <input type="button" value="night" onclick="
+    document.querySelector('body').style.backgroundColor = 'black';
+    document.querySelector('body').style.color='white';
+    ">
+
+    <input type="button" value="day" onclick="
+    document.querySelector('body').style.backgroundColor = 'white';
+    document.querySelector('body').style.color='black';
+    ">
+
+    <!-- getElementById: DOM방식. id를 통해 특정 값을 가진 element 반환 -->
+    <!-- querySelector: css element 선택자로 요소를 선택 -->
+    <input id="night_day" type="button" value="night" onclick="
+        if(document.getElementById('night_day').value === 'night'){
+            document.querySelector('body').style.backgroundColor = 'black';
+            document.querySelector('body').style.color = 'white';
+            document.querySelector('#night_day').value = 'day';
+        } else {
+            document.querySelector('body').style.backgroundColor = 'white';
+            document.querySelector('body').style.color = 'black';
+            document.querySelector('#night_day').value = 'night';
+        }
+    
+    ">
+
+    <ol>
+        <li><a href="1.html">HTML</a></li>
+        <li><a href="2.html">CSS</a></li>
+        <li><a href="3.html">Javascript</a></li>
+    </ol>
+
+    <p>
+        <!-- div : 어떠한 의미도, 기능도 없다. css나 js를 통해서 정보를 제어하고 싶을 때 감싸주는 역할을 하는 무색무취의 태그 -->
+    <div>Javascript 1번입니다</div>
+
+    <!-- class: 어떤 것을 그룹화. id: 어떤 한가지 대상을 식별화 -->
+    <span style="font-weight:bold;">Javascript 2번입니다</span>
+    <span id="first" class="js1">Javascript 3번입니다.</span>
+    <span class="js1">Javascript 4번입니다.</span>
+
+    </p>
+
+    <!-- &lt; => less than. 꺾쇠(<)에 해당 됨. <를 그대로 쓰면 태그로 인식해버림 -->
+    <h3>1==='1' & 1&lt;2</h3>
+    <script>
+        document.write(1 === '1')
+    </script>
+
+    <!-- this: 내부의 것을 가리키도록 지칭. this를 통해 인덱스 태그 참조 가능 -->
+    <input type="button" value="night" onclick="
+    const target = document.querySelector('body')
+    if(this.value === 'night'){
+        target.style.backgroundColor = 'black';
+        target.style.color = 'white';
+        this.value = 'day';
+    } else {
+        target.style.backgroundColor = 'white';
+        target.style.color = 'black';
+        this.value = 'night';
+    }
+
+    ">
+</body>
+
+</html>
