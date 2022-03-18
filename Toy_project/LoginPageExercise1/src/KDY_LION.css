@@ -1,0 +1,303 @@
+/* 태그가 기본적으로 margin,padding을 가짐. 브라우저마다 margin,padding이 다름 */
+/* 브라우저호환을 위한 작업. 태그가 갖는 고유의 margin,padding을 0으로 만들어서 디자인은 용이하게 만듦 */
+* {
+  /* margin: 바깥쪽 여백 */
+  margin: 0;
+
+  /* padding: 안쪽 여백*/
+  padding: 0;
+}
+
+/* web fonts */
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  /* Gmarket Sans M 폰트 적용*/
+  font-family: "GmarketSansMedium";
+
+  font-size: 13px;
+  color: #717171;
+}
+
+/* Layout CSS */
+
+/* div의 내부의 contents는 100%임 
+그러나 height는 컨텐츠의 양만큼 존재함
+
+우리는 높이를 브라우저에 가득 채울것이므로 container를 height:100%로 따로 설정 해주어야 함
+*/
+.container {
+  /* 불필요한 작업 */
+  /* container는 div니까 inline 요소가 아닌 block 요소이다 */
+  /* block 요소의 기본적인 width값은 100%이다. */
+  /* 
+  width: 100%;
+*/
+
+  /*높이를 브라우저에 가득 채우기 위해 container의 height를 100%로 설정 */
+  height: 100%;
+  background-color: #4d4d4d;
+}
+
+/* 전체 로그인 박스*/
+.login {
+  padding-top: 9px;
+
+  /* 처음에는 div가 잘 안보이므로 선을 그려놓고 작업할것 */
+  border: 2px solid #4e4e4e;
+
+  border-radius: 12px;
+
+  /* Center Layout */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  /* 왼쪽 상단 모서리 기준 너비50%, 높이50%만큼 뺴주어야 함 */
+  /* 이를 통해 브라우저 사이즈가 커지든, 작아지든 수직 중앙을 유지함 */
+  transform: translate(-50%, -50%);
+}
+
+.login h1 {
+  font-weight: normal;
+  color: black;
+  /* text-align: center를 통해 인라인 요소가 중앙 배치 됨 */
+  /* 밴드 로고가 block요소라면 중앙으로 가지 않음 */
+  text-align: center;
+
+  /* 로그인 아래에 임의의 선을 만들어서 체킹 */
+  border-bottom: 2px solid #dbdbdb;
+
+  background-color: #ffffff;
+  padding: 17px 0 22px 0;
+}
+
+/*
+.header img {
+  img: 인라인 요소. => text-aling:center의 적용을 받아서 중앙으로 옴 
+  & display: block;을 통해 인라인요소를 블럭요소로 바꿈
+  
+  display: block;
+  margin: auto;
+}
+*/
+
+/* 헤더 영역내 전체 창 닫기 표시 */
+/*
+input.img-button {
+  background: url("../images/close.png") no-repeat;
+  border: none;
+  width: 32px;
+
+  cursor: pointer;
+}
+*/
+
+h2 {
+  color: black;
+  text-align: center;
+
+  /* 기본적으로 들어간 볼드체특성 빼줌 */
+  font-weight: normal;
+  padding: 32px 0 28px 0;
+}
+
+.login-type {
+  text-align: center;
+  padding: 0 28px 0 28px;
+}
+
+p {
+  padding-bottom: 23px;
+  text-align: left;
+}
+
+/* 로그인 상태 유지체크박스 중앙 배치 */
+p img {
+  vertical-align: middle;
+  padding-right: 9px;
+}
+
+/* Button CSS */
+
+a.btn {
+  /* a태그: 인라인 요소 => 인라인 요소는 항상 폭이 허용하는 범위 내에서 붙어서 나옴 => 떨어 뜨리기 위해 block 요소로 변경 */
+  display: block;
+
+  /* 밑줄 제거 */
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #afafaf;
+  border: 1px solid #1e76eb;
+
+  /* 부모인 login-type에서 이미 text-align:center 설정했으므로 불필요한 과정 */
+  text-align: center;
+
+  /* 모서리를 둥글게 */
+  border-radius: 3px;
+
+  font-size: 16px;
+
+  /* 높이 조절 1) height와 line-height를 동일하게 설정 2) padding 설정 (정교한 디자인x일시) */
+  height: 56px;
+  line-height: 56px;
+
+  /* 투명도 => 투명도 설정을 통해 마우스를 올리면 변화 감지 */
+  opacity: 0.8;
+
+  /* 버튼 사이의 간격*/
+  margin-bottom: 10px;
+
+  /* 가상클래스를 부모-자식 관계로 맺어주기 위한 과정 */
+  position: relative;
+}
+
+/* btn이름을 가진 a태그에 마우스가 올라가는 경우 */
+a.btn:hover {
+  /* 마우스가 올라가면 진해지게 만듦 */
+  opacity: 1;
+}
+
+a.btn1 {
+  background-color: #2f80ed;
+  color: #ffffff;
+}
+
+a.btn2 {
+  background-color: #ffffff;
+}
+
+a.btn3 {
+  background-color: #ffffff;
+}
+
+/* 추가 로그인 */
+
+a.btn4 {
+  border-width: 2px;
+  border-color: #a0a0a0;
+}
+
+a.btn5 {
+  border-width: 2px;
+  border-color: #63b5e4;
+}
+
+a.btn6 {
+  border-width: 2px;
+  border-color: #45c155;
+}
+
+a.btn7 {
+  border-width: 2px;
+  border-color: #f6dc8b;
+}
+
+/* 로고 삽입 */
+
+a.btn4::before {
+  content: url(../images/icon_google.png);
+  position: absolute;
+
+  /* 부모요소인 a태그 바깥으로 벗어나지 않게 만듦*/
+  left: 10px;
+  top: 10px;
+}
+
+a.btn5::before {
+  content: url(../images/icon_facebook.png);
+  position: absolute;
+
+  /* 부모요소인 a태그 바깥으로 벗어나지 않게 만듦*/
+  left: 10px;
+  top: 10px;
+}
+
+a.btn6::before {
+  content: url(../images/icon_naver.png);
+  position: absolute;
+
+  /* 부모요소인 a태그 바깥으로 벗어나지 않게 만듦*/
+  left: 10px;
+  top: 10px;
+}
+
+a.btn7::before {
+  content: url(../images/icon_kakao.png);
+  position: absolute;
+
+  /* 부모요소인 a태그 바깥으로 벗어나지 않게 만듦*/
+  left: 10px;
+  top: 10px;
+}
+
+/* '또는' 부분 */
+span.or-txt {
+  /* span은 인라인 요소이므로 display:block까지 해줘야 100% 적용됨*/
+
+  display: block;
+
+  /* margin 상 우 하 좌 */
+  margin: 37px 0 24px 0;
+
+  /* 선을 아래로 내려서 '또는' 옆에 위치시키기*/
+  position: relative;
+}
+
+/* '또는' 부분의 자식 요소. before는 왼쪽 기준*/
+span.or-txt:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 0;
+  background-color: #c6c6c6;
+  width: 44%;
+  height: 2px;
+}
+
+/* '또는' 부분의 자식 요소. after는 오른쪽 기준*/
+span.or-txt:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 0;
+  background-color: #c6c6c6;
+  width: 44%;
+  height: 2px;
+}
+
+.login-type div a {
+  text-decoration: none;
+}
+
+.login-type div ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.login-type div ul li {
+  padding: 0 18px;
+  position: relative;
+}
+
+.login-type div ul li ~ li:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  height: 14px;
+  width: 1px;
+  background: #717171;
+}
+
+.login-type div ul li a {
+  font-size: 14px;
+  color: #717171;
+}
