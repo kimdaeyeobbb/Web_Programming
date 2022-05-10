@@ -107,7 +107,7 @@ a태그 사용 style background-image로 로고 부여
 </div> 
 ```
 
-ul li 태그로 정렬하고, form & input 태그 사용
+input 태그 사용
 
 <BR>
   
