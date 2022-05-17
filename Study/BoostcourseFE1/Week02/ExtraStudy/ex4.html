@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- label: form 요소명과 form 요소를 명시적으로 연결 -->
+    <label for="name">이름</label>: <input type="text" id="name"><br>
+    <label for="nickname">별명</label>: <input type="text" id="nickname"><br>
+    <label for="address">주소</label>: <input type="text" id="address"><br>
+
+    <!--fieldset: 여러 개의 폼 요소를 그룹화하여 구조적으로 생성 -->
+    <form action="">
+        <h1>Form 관련 요소</h1>
+        <fieldset>
+            <legend>기본 정보</legend>
+            <label for="userid">아이디 : </label> <input type="text" placeholder="영문으로만 써주세요" id="userid"><br>
+            <label for="userpw">비밀번호 : </label> <input type="password" id="userpw"><br>
+            성별 : <label for="male">남자</label> <input type="radio" name="gender" id="male" checked>, <label
+                for="female">여자</label> <input type="radio" name="gender" id="female"><br>
+        </fieldset>
+        <fieldset>
+            <legend>부가 정보</legend>
+            취미 : 영화 감상 <input type="checkbox" name="hobby" checked>, 음악 감상 <input type="checkbox" name="hobby">, 독서
+            <input type="checkbox" name="hobby"><br>
+            프로필 사진 업로드 : <input type="file"><br>
+            사는 지역 : <select>
+                <option>서울</option>
+                <option>경기</option>
+                <option>강원</option>
+                <option selected>제주</option>
+            </select><br>
+            자기소개 : <textarea cols="30" rows="5" placeholder="자기소개는 짧게 해주세요."></textarea><br>
+            <button type="submit">전송</button>
+            <button type="reset">취소</button>
+        </fieldset>
+    </form>
+</body>
+
+</html>

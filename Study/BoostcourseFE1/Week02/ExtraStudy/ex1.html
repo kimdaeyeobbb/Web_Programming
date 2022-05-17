@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./ex1.css">
+</head>
+
+<body>
+    <ul>
+        <li>콩나물</li>
+        <li>파</li>
+        <li>국 간장</li>
+    </ul>
+
+    <ol>
+        <li>냄비에 국물용 멸치를 넣고 한소끔 끓여 멸치 육수를 7컵(1,400ml) 만든다.</li>
+        <li>콩나물을 넣고 뚜껑을 덮어 콩나물이 익을 때까지 끓인다.</li>
+        <li>뚜껑을 열고 대파, 마늘, 고춧가루를 넣고 끓인다.</li>
+    </ol>
+
+    <!-- 
+        dl: 용어와 그에 대한 정의를 표현할 때 사용
+        dt: 용어를 나타내는 태그
+        dd: 용어에 대한 정의 또는 설명을 나타내는 태그
+    -->
+    <dl>
+        <dt>리플리 증후군</dt>
+        <dd>허구의 세계를 진실이라 믿고 거짓된 말과 행동을 상습적으로 반복하는 반사회적 성격장애를 뜻하는 용어</dd>
+        <dt>피그말리온 효과</dt>
+        <dd>타인의 기대나 관심으로 인하여 능률이 오르거나 결과가 좋아지는 현상</dd>
+        <dt>언더독 효과</dt>
+        <dd>사람들이 약자라고 믿는 주체를 응원하게 되는 현상</dd>
+    </dl>
+
+
+    <table>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+        </tr>
+    </table>
+
+    <!-- 
+        caption: 표의제목을 나타내는태그
+        thead: 제목 행을 그룹화하는 태그
+        tfoot: 바닥 행을 그룹화하는 태그
+        tbody: 본문 행을 그룹화하는 태그
+    -->
+
+    <table>
+        <caption>Monthly Savings</caption>
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Savings</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>January</td>
+                <td>$100</td>
+            </tr>
+            <tr>
+                <td>Feburary</td>
+                <td>$80</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Sun</td>
+                <td>$180</td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    <!-- 복잡한 표 생성 -->
+    <table>
+        <caption>Specification values</caption>
+        <thead>
+            <tr>
+                <th rowspan="2">Grade.</th> <!-- 행이 2개 -->
+                <th rowspan="2">Point.</th> <!-- 행이 2개 -->
+                <th colspan="2">Strength.</th> <!-- 열이 2개 -->
+                <th rowspan="2">Percent.</th> <!-- 행이 2개 -->
+            </tr>
+            <tr>
+                <th>kg/mm</th>
+                <th>lb/in</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Hard</td>
+                <td>0.45</td>
+                <td>56.2</td>
+                <td>80,000</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>Medium</td>
+                <td>0.45</td>
+                <td>49.2</td>
+                <td>70,000</td>
+                <td>25</td>
+            </tr>
+
+            <!-- input 태그 -->
+            <input type="text" placeholder="ooooooo">
+            <input type="password">
+            <input type="radio" name="gender">남자
+            <input type="radio" name="gender">여자
+            <input type="checkbox" name="hobby">등산
+            <input type="checkbox" name="hobby">독서
+            <input type="checkbox" name="hobby">운동
+
+            <input type="file">
+
+
+</body>
+
+</html>
