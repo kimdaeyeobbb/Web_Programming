@@ -1,0 +1,55 @@
+th,
+td {
+  border: 1px solid;
+  text-align: center;
+  padding: 5px 20px;
+}
+
+.greenC {
+  color: #00a278;
+}
+
+.redC {
+  color: #ff6442;
+}
+
+.greenCrc {
+  background-color: #00a278;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 3px 5px;
+}
+
+.lgtGreenCrc {
+  background-color: #5cce71;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 3px 5px;
+}
+
+.yellowCrc {
+  background-color: orange;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 3px 5px;
+}
+
+.redCrc {
+  background-color: #ff6442;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 3px 5px;
+}
+
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:visited {
+  color: red;
+  text-decoration: none;
+}
+a:hover {
+  color: blue;
+  text-decoration: underline;
+}
