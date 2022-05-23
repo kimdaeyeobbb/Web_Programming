@@ -307,7 +307,7 @@ Q3. 브라우저는 어떤 요소에 적용된 CSS 스타일이 상충할 땐 �
 ### 과제 완료 후
 ![image](https://user-images.githubusercontent.com/68424403/169806839-11738a14-d956-40c0-a606-b3f771db3d45.png)
 
-### question.html
+### 과제 완료 전 question.html
 ```html
 <!DOCTYPE html>
 
@@ -343,6 +343,95 @@ Q3. 브라우저는 어떤 요소에 적용된 CSS 스타일이 상충할 땐 �
 </body>
 </html>
 ```
+
+
+### [과제 완료 후 question.html](https://github.com/kimdaeyeobbb/Web_Programming/blob/main/Study/BoostcourseFE1/Week03/Mission/question4.html)
+```html
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>가상 클래스 스타일 바꾸기</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+        /*여기에 스타일을 추가합니다.*/
+        /* id값은 유일해야한다는 점을 이용하기 위해 id+가상 클래스 사용
+        & 구체성을 높여주는 효과 & 시각적으로 무엇에 적용시키는지 정확히 알 수 있게 됨
+        */
+        /* :active -> 사용자 입력으로 활성화된 요소에 적용 */
+        #name:active {
+            background-color: red;
+        }
+
+        /* :focus -> 현재 입력 초점을 가진 요소에 적용 */
+        #name:focus {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" method="post">
+        <input type="text" id="name" name="name"><label for="name">이름</label><br><br>
+
+        <input max="10" min="1" type="number" name="age" id="age"><label for="age">나이</label><br><br>
+
+        <fieldset>
+            <legend>좋아하는 색</legend>
+
+            <!-- 체크 박스 - 기본적으로 체크 되어있으므로 checked 추가 -->
+            <input id="blue" name="fav-color" type="checkbox" value="blue" checked="checked"><label
+                for="blue">파란색</label>
+            <input id="red" name="fav-color" type="checkbox" value="red" checked="checked"><label for="red">붉은색</label>
+            <input id="green" name="fav-color" type="checkbox" value="green" checked="checked"><label
+                for="green">녹색</label>
+        </fieldset>
+        <br>
+
+        <!-- '제출' 대신 요구조건에 맞게 submit으로 제출버튼 내용 수정 -->
+        <input type="submit" value="submit">
+
+    </form>
+</body>
+
+</html>
+```
+- 요구사항
+1. input 요소가 사용자 입력으로 활성화 된 경우, 배경색을 붉은색으로 변경
+- style 태그에 #name:active 추가
+id값은 유일해야한다는 점을 이용하기 위해 id="name"+가상 클래스 사용<br>
+(구체성을 높여주는 효과 & 시각적으로 무엇에 적용시키는지 정확히 알 수 있게 됨)<br>
+- :active 
+사용자 입력으로 활성화된 요소에 적용 
+
+
+<br>
+
+
+2. input 요소가 입력 초점을 가진 경우, 배경색을 붉은색(red)으로 변경
+- style 태그에 #name:focus 추가
+id값은 유일해야한다는 점을 이용하기 위해 id="name"+가상 클래스 사용<br>
+(구체성을 높여주는 효과 & 시각적으로 무엇에 적용시키는지 정확히 알 수 있게 됨)<br>
+- :focus
+현재 입력 초점을 가진 요소에 적용
+
+<br>
+
+
+3. 좋아하는 색 3가지 기본 체크 표시
+- 기본적으로 체크 되어있으므로 checked="checked" 추가 
+
+4. '제출' 대신 요구조건에 맞게 submit으로 제출버튼 내용 수정
+```html
+<input type="submit" value="submit">
+```
+으로 수정
+
+
+
+<br><br><br>
 
 
 
