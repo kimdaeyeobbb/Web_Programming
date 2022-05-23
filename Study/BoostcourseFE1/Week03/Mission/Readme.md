@@ -213,7 +213,7 @@ Q3. 브라우저는 어떤 요소에 적용된 CSS 스타일이 상충할 땐 �
 ### 과제 완료 후
 ![image](https://user-images.githubusercontent.com/68424403/169806608-e1120bf1-b4ea-4cb0-bae9-bd242b4cbad3.png)
 
-### question.html
+### 과제 완료 전 question.html
 ```html
 <!DOCTYPE html>
 
@@ -239,7 +239,57 @@ Q3. 브라우저는 어떤 요소에 적용된 CSS 스타일이 상충할 땐 �
 </html>
 ```
 
+<br>
+
+### [과제 완료 후 question.html](https://github.com/kimdaeyeobbb/Web_Programming/blob/main/Study/BoostcourseFE1/Week03/Mission/question3.html)
+```html
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+    <title>구체성 이해하기</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+        body {
+            background-color: black;
+            font-family: monospace;
+            color: green;
+        }
+
+        /*여기에 스타일을 추가합니다.*/
+        /* 요소를 분홍색으로 만들어주는 CSS클래스 생성 */
+        .pink-text {
+            background-color: black;
+            font-family: monospace;
+            color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- css내 클래스 추가하여 해당 효과 적용 -->
+    <h1 class="pink-text">Hello World!</h1>
+</body>
+
+</html>
+```
+#### 특이사항
+- 브라우저는 어떤 요소에 적용된 CSS 스타일이 상충할 때 스타일에 구체성을 부여하고 판단하여 우선적으로 적용할 것을 선택
+- 구체성: 선택자를 얼마나 명시적으로(구체적으로) 선언했느냐를 수치화한 것<br>
+(구체성의 값이 클수록 우선으로 적용 됨)<br>
+(값을 비교할 때 좌측에 존재하는 값부터 비교하며, 좌측 부분의 숫자가 클수록 높은 구체성 가짐)<br>
+
+- .pink-text는 구체성이 0,0,1,0으로 계산됨
+(0,0,1,0 : 선택자에 있는 모든 class 속성값, 기타 속성, 가상 클래스)
+
+- h1 요소에 1에서 만든 클래스를 추가하여 요소가 분홍색이 될것이라 예측
+=> 실제로 적용됨을 확인하였음
+
 <br><br><br>
+
+
 
 
 # 미션 4
