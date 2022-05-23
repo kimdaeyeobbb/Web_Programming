@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+    <title>여러 요소에 스타일 적용하기</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+        /*여기에 스타일을 추가합니다.*/
+
+        .red-text {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!--문제에 맞게 요소를 수정합니다.-->
+    <h2 class="red-text">고양이 사진첩</h2>
+    <main>
+
+        <!-- inline 스타일 방식으로 해당 요소에 직접 스타일 속성을 이용해서 규칙을 선언 -->
+        <p class="red-text"><a href="#">여기</a>를 클릭하면 더 많은 고양이 사진을 볼 수 있습니다.</p>
+
+        <a href="#"><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg"
+                alt="바닥에 등을 대고 누워있는 주황색 고양이"></a>
+
+        <div>
+            <p>고양이가 좋아하는 것:</p>
+            <ul>
+                <li>캣닙</li>
+                <li>레이저 포인터</li>
+                <li>라자냐</li>
+            </ul>
+            <p>고양이가 싫어하는 것 TOP3:</p>
+            <ol>
+                <li>막 대하는 것</li>
+                <li>천둥</li>
+                <li>다른 고양이</li>
+            </ol>
+        </div>
+
+        <form action="https://freecatphotoapp.com/submit-cat-photo">
+            <label><input type="radio" name="indoor-outdoor" checked> 집 고양이</label>
+            <label><input type="radio" name="indoor-outdoor"> 야생 고양이</label><br>
+            <label><input type="checkbox" name="personality" checked> 사랑스러운 성격</label>
+            <label><input type="checkbox" name="personality"> 느긋한 성격</label>
+            <label><input type="checkbox" name="personality"> 에너지 넘치는 성격</label><br>
+            <input type="text" placeholder="내 고양이 사진 URL 주소" required>
+            <button type="submit">올리기</button>
+        </form>
+    </main>
+</body>
+
+
+</html>
