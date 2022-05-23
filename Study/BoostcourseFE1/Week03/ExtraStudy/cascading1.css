@@ -1,0 +1,43 @@
+/* 구체성에 따라 color: silver 적용 */
+
+/* p#bright{color:silver;} -> p{color:silver;} 수정시
+선언순서에 따라 color:red;가 적용됨*/
+
+p#bright {
+  color: silver;
+}
+p {
+  color: red;
+}
+
+/* 비교 실험 */
+.wrap2 {
+  color: orange !important;
+}
+
+.wrap2 div {
+  color: red;
+}
+.box {
+  color: green !important;
+}
+.wrap .box {
+  color: blue;
+}
+
+/* 비교 실험2 */
+.box2 {
+  color: red !important;
+}
+.index > .in_item {
+  color: pink;
+}
+div ul.in_item {
+  color: orange;
+}
+.in_item.in1 {
+  color: skyblue;
+}
+p + ul.index {
+  color: yellow;
+}

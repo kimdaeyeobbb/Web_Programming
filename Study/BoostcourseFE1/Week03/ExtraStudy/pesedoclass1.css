@@ -1,0 +1,41 @@
+li:first-child {
+  color: red;
+} /* 가상클래스- 첫번째 자식 요소 선택*/
+li:last-child {
+  color: blue;
+} /* 가상클래스- 마지막 자식 요소 선택*/
+
+/* 앵커요소 & 가상클래스*/
+a:link {
+  color: orange;
+} /* :link - 하이퍼 링크이면서 미방문한 앵커 */
+a:visited {
+  color: gray;
+} /* :visited - 이미 방문한 하이퍼링크 */
+
+/* 사용자 동작과 관련된 가상 클래스 */
+a:focus {
+  background-color: yellow;
+} /* 현재 입력 초점을 가진 요소에 적용 */
+
+a:hover {
+  font-weight: bold;
+} /* :hover - 마우스 포인터가 있는 요소(마우스를 올렸을 때)에 적용 */
+
+a:active {
+  color: red;
+} /* a:active - 사용자 입력으로 활성화된 요소 */
+
+/* 가상 요소 - HTML 코드에 존재하지 않는 구조 요소에 스타일 부여 */
+p::before {
+  content: "###";
+} /* :before - 가장 앞에 요소를 삽입 */
+p::after {
+  content: "!!!";
+} /* :after - 가장 뒤에 요소를 삽입 */
+p::first-line {
+  ㅋ
+} /* 요소의 첫 번째 줄에 있는 텍스트 */
+p::first-letter {
+  ㅎㅎㅎ
+} /* 블록 레벨 요소의 첫 번째 문자 */
