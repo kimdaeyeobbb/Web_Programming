@@ -464,7 +464,7 @@ id값은 유일해야한다는 점을 이용하기 위해 id="name"+가상 클�
 ![image](https://user-images.githubusercontent.com/68424403/169807152-7a49cbaf-b5d2-421c-b3f9-056673f4c0bc.png)
 
 
-### question.html
+### 과제 완료 전 question.html
 ```html
 <!DOCTYPE html>
 
@@ -530,4 +530,171 @@ id값은 유일해야한다는 점을 이용하기 위해 id="name"+가상 클�
 
 </body>
 </html>
+```
+
+<br>
+
+### [과제 완료 후 question.html](https://github.com/kimdaeyeobbb/Web_Programming/blob/main/Study/BoostcourseFE1/Week03/Mission/qeustion5.html)
+```html
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>CSS 이해하기 종합</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 24px;
+        }
+
+        aside p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        aside {
+            background: lightgray;
+            border: 2px solid;
+            padding: 16px;
+        }
+
+
+        /*여기에 스타일을 추가합니다.*/
+
+        /* 1-1. 메인 글 내에 링크색 blue & 밑줄 제거*/
+
+        /* p태그 내 a태그에 정확하게 속성 변경될 수 있도록 부모-자식 관계 명시 */
+        article p a {
+            /* 링크 색상 blue로 변경*/
+            color: blue;
+
+            /* 커서가 해당 링크 위에 올라갈 경우 a 태그 내 밑줄 제거 */
+            text-decoration: none;
+
+        }
+
+        /* 1-2. 커서가 해당 링크 위에 올라갔을 때 밑줄 생성*/
+        /* p태그 내 a태그에 정확하게 속성 변경될 수 있도록 부모-자식 관계 명시 */
+        article p a:hover {
+            /* :hover - 커서가 링크 위에 올라갔을 때 */
+            /* text-decoration:underline - 밑줄 생성 */
+            text-decoration: underline;
+        }
+
+        /* 2-1. aside 요소 안에 있는 링크색은 black & 밑줄 존재*/
+        /* aside태그 내 a태그에 정확하게 속성 변경사항이 적용되도록 부모-자식 관계 명시 */
+        article aside a {
+            /* 링크 색상 black으로 변경 */
+            color: black;
+
+            /* text-decoration: underline - 밑줄 생성 */
+            text-decoration: underline;
+        }
+
+
+
+        /* 2-2. 커서가 해당 링크 위에 올라가면 밑줄이 사라짐 */
+        /* aside태그 내 a태그에 정확하게 속성 변경사항이 적용되도록 부모-자식 관계 명시 */
+        article aside a:hover {
+
+            /* 커서가 해당 링크 위에 올라갈 경우 a 태그 내 밑줄 제거 */
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <h2>세계 지구의 날 - 대한민국 청와대</h2>
+        <p>
+            오늘은 지구의 날입니다.
+            세계 시민들이 뜻을 모아 정한 날로, 52년 전 미국의 대규모 원유 유출 사고를 계기로 시작되었습니다.
+            <a href="">세계적인 비영리단체 ‘Earth Day’</a>가 정한 올해 지구의 날 주제는 ‘지구에 투자하자’입니다.
+            우리는 저녁 8시, 10분의 소등으로 함께할 것입니다.
+            어둠 속에서 잠시 우리의 특별한 행성, 지구를 생각해보았으면 합니다.
+        </p>
+        <p>
+            지금 인류는 지구 위기의 심각성을 느끼며 지구 생명체의 한 구성원으로서 탄소중립을 실천하고 있습니다.
+            우리나라 역시 세계에서 14번째로 탄소중립을 법제화했고, 2030년 국가 온실가스 감축목표도 40%로 상향하며 우리의 강력한 탄소중립 실현 의지를 국제사회에 알렸습니다.
+            쉽지 않은 일이지만 지금처럼 국민과 산업계, 정부가 힘을 합한다면 우리가 앞장서 새로운 시대를 열어갈 수 있을 것입니다.
+        </p>
+        <p>
+            우리 국민들은 세계 어느 나라보다 탄소중립 의지가 높고, 강한 실천력이 있습니다.
+            에너지 절약과 분리배출, 플라스틱 줄이기에도 성숙한 시민의식을 보여주고 있습니다.
+            불편함을 보람으로 바꿔내 주신 국민들의 참여와 노력만큼 탄소중립 정책이 다음 정부에서도 성공적으로 추진되길 바랍니다.
+        </p>
+        <p>
+            우리의 지구사랑, 아직 늦지 않았습니다.
+            저도 오늘 금강송 한 그루를 지구에 투자하겠습니다.
+        </p>
+
+        <aside>
+            대한민국 청와대는 <strong>공식 홈페이지, 트위터, 페이스북</strong>을 통해 문재인 대통령의 말과 글을 공유합니다. <a href="">이곳</a>을 클릭하면 공식 홈페이지로
+            이동합니다.
+        </aside>
+    </article>
+
+</body>
+
+</html>
+```
+
+<br><br>
+
+- 수행사항
+
+
+1-1. 메인 글 내에 링크색 blue로 변경 & 밑줄 제거
+
+```css
+/* a태그에 정확하게 속성 변경될 수 있도록 부모-자식 관계 명시 */
+article p a {
+
+    /* 링크 색상 blue로 변경*/
+    color: blue;
+
+    /* a태그 밑줄 제거*/
+    text-decoration: none;
+}
+```
+
+
+1-2. 커서가 해당 링크 위에 올라갔을 때 밑줄 생성
+
+```css
+/* a태그에 정확하게 속성 변경될 수 있도록 부모-자식 관계 명시 */
+article p a:hover {
+    /* :hover - 커서가 링크 위에 올라갔을 때 */
+    /* text-decoration:underline - 밑줄 생성 */
+    text-decoration: underline;
+}
+```
+
+2-1. aside 요소 안에 있는 링크 색은 black 이어야 하고, 밑줄이 있어야 함
+```css
+/* aside태그 내 a태그에 정확하게 속성 변경사항이 적용되도록 부모-자식 관계 명시 */
+article aside a {
+    /* 링크 색상 black으로 변경 */
+    color: black;
+
+    /* text-decoration: underline - 밑줄 생성 */
+    text-decoration: underline;
+}
+```
+
+
+2-2. 커서가 해당 링크 위에 올라가면 밑줄이 사라짐
+```css
+/* aside태그 내 a태그에 정확하게 속성 변경사항이 적용되도록 부모-자식 관계 명시 */
+article aside a:hover {
+
+    /* 커서가 해당 링크 위에 올라갈 경우 a 태그 내 밑줄 제거 */
+    text-decoration: none;
+}
 ```
