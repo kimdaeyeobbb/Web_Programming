@@ -1,289 +1,211 @@
 # 미션 1 
-## Q1. 3주 차에 배워본 다양한 태그들을 정리해봅시다.
-빈 칸을 채워주세요. 빈 칸에 들어갈 수 있는 키워드는 다음과 같습니다.
+## Q1. 4주 차에 배운 단위, 배경, 박스 모델 관련 개념 정리해봅시다.
+### 빈 칸을 채워 봐주세요. 빈 칸에 들어갈 수 있는 키워드는 다음과 같습니다.
 
 ```HTML
-attribute,class, id, important, property, Style Sheets, 꾸며주는, 뒤 , 
-부모 요소, 부모 요소, 상속, 자식 요소, 제일 우측, 조상 요소, 조합자
+ 16, auto,  background-color, background-image, background-repeat, background-position, background-attachment,
+ border 영역, content 영역,  containing block,  content 영역,  margin 영역,  MDN Web Docs, rem,  RGB(또는 RBGA), 
+padding 영역, px,  W3C, 가로, 마진 병합(margin collapse), 상대 길이, 시계 방향, 절대 길이
 ```
 
 <br>
 
 ```html
-1. 프론트엔드 개발자가 되려먼 HTML, CSS, JavaScript를 잘 다룰줄 알아야 합니다. 
-웹 페이지를 사람에 비유해보자면, 마크업 언어인 HTML은 몸의 구조(뼈, 근육)를 담당하고 
-CSS(Cascading _Style Sheets_의 약자)는 옷과 신발과 같이 외적으로 _꾸며주는_ 역할을 한다고 생각하면 이해하기 쉽습니다.
+1. CSS의 속성은 그 종류가 매우 다양하고 지속적으로 업데이트되는데, 
+이런 변화에 대응하려면 CSS 속성을 정의하는 __________에서 제공하는 공식 사이트인 
+https://www.w3.org나 모질라 재단의 __________를 참고하는 게 좋습니다.
 
 
-2. HTML에도 속성이 있고, CSS에도 속성이 있는데 둘은 같지 않습니다. 
-HTML의 속성은 영어로 _attribute_이고, CSS의 속성은 _property_입니다. 
-둘 다 한국어로 번역할 때 '속성'이라고 하므로 잘 구분하셔야 합니다.
-
-3. 요소에 구애받지 않고 스타일 규칙을 적용할 때는 __class__ 선택자와 ___id__선택자를 활용할 수 있습니다.
 
 
-4.선택자 중에는 문서의 구조를 이용하여 요소를 선택하는 선택자도 있습니다. 
-문맥이나 요소의 구조를 기반으로 하여 선택자를 조합하는 것을 __조합자__ 또는 '결정자' 라고 부릅니다.
+2. CSS 속성 단위는 크게 __________와 __________ 단위로 구분됩니다. 
+절대 길이에서 __________, 상대 길이에서  __________은 가장 많이 쓰이는 단위입니다.
 
 
-5. __부모 요소__는 그 요소를 포함하는 가장 가까운 상위 요소로, 그 요소의 _부모 요소_는 단 하나뿐입니다. 
-_자식 요소_는 부모 요소와 반대라고 생각하면 되며, 여러 개일 수도 있습니다. 
-한편, _조상 요소_는 그 요소를 포함하는 모든 요소로, 부모 요소를 포함하여 여러 개일 수도 있습니다.
 
 
-6. 선택자에 요소가 많이 나열되어 있더라도 실제 선택되는 요소는 _제일 우측_에 있는 요소라는점에 주의해야 합니다.
+3. 폰트에 색상을 적용할 때 사용하는 속성은 color 속성입니다. 
+color 속성의 값은 다양한 방식으로 적용할 수 있는데, 컬러 키워드, ____________진법, ____________ 방식이 있습니다.
 
 
-7. _important_ 키워드는 별도의 구체성 값은 없지만, 모든 구체성을 무시하고 우선권을 갖습니다.
 
 
-8. CSS에서 _상속_은 우리가 기본적으로 알고 있는 부모가 가진 특성을 자식이 물려받는 개념과 같습니다. 
-어떤 스타일 규칙이 특정 요소뿐만 아니라 그 자손 요소까지 적용되는 것을 말합니다.
+4. 요소의 배경에 관련된 속성을 지정할 땐 background 속성을 사용합니다. 
+우리가 강의를 통해 배운 background 속성은 __________, __________, __________, __________, __________입니다.
 
 
-9. cascading은 스타일 규칙들이 어떠한 기준으로 요소에 적용되는지를 정한 규칙으로 
-중요도(!important)와 출처, 구체성, 선언 순서라는 세 가지 규칙으로 구성됩니다. 
-선언 순서 규칙에 따르면 _뒤_에 선언된 규칙이 우선적용됩니다.
+
+
+5. "박스 모델에 대해 설명해보세요."라는 질문은 프론트엔드 개발자 면접 단골 질문 중 하나입니다. 
+박스 모델은 크게 4가지 영역, __________, __________, __________, __________으로 이루어져 있습니다.
+
+
+
+
+6. padding 속성은 축약해서 지정할 수 있는데, 이때 위쪽을 기준으로 __________으로 속성값을 지정합니다.
+
+
+
+
+7. margin 속성의 값을 __________로 설정하면 브라우저가 자동으로 margin을 계산해 주는데, 
+개발자는 이 값을 주로 수평(가로축) 중앙 정렬할 때 사용합니다(주의할 점은 요소에 width 값이 있어야 합니다).
+
+
+
+
+8. __________은 인접한 두 개 이상의 수직 방향 박스의 마진이 하나로 합쳐지는 것을 의미하는데, 
+이 개념을 활용하면 첫 번째와 두 번째 컴포넌트의 조합이 다양한 경우 여백을 다르게 사용할 수 있습니다.
+
+
+
+
+9. 패딩값을 상대 길이 단위인 %를 사용해 지정하면 상위 요소(containing element)의 __________ 길이를 기준으로 그 값이 계산됩니다.
+이 방식은 padding-top, padding-bottom에도 적용됩니다.
+
+
+
+
+10. width와 height 속성은 박스 모델에서 __________의 너비와 높이를 지정할 때 사용합니다.
+
+
+
+
+11. height 속성을 %를 사용해서 지정할 땐 __________을 기준으로 그 값이 결정됩니다.
 
 
 ```
 
 
+
+
 <br><br><br>
+
+
 
 
 
 # 미션 2
-## Q2. 여러 요소에 스타일을 적용해 봅시다. 
-만족시켜야 할 요구사항은 다음과 같습니다. (아래 입력된 question.html을 수정)
-- h2 요소에 red-text 클래스를 추가합니다.
-- h2 요소가 붉은색이 되도록 스타일을 수정합니다.
-- 첫 번째 p 요소가 붉은색이 되도록 합니다.
-- 두 번째, 세 번째 p 요소는 붉은색이 되면 안됩니다.
+## Q2. 4주 차에 배운 폰트, 텍스트 관련 개념을 정리해봅시다. 
+### 빈칸을 채워 봐주세요. 빈칸에 들어갈 수 있는 키워드는 다음과 같습니다.
 
-### 과제 완료 전
-![image](https://user-images.githubusercontent.com/68424403/169806158-5630b89c-e279-43ce-85b0-f2d4dc475cf1.png)
-
-### 과제 완료 후
-![image](https://user-images.githubusercontent.com/68424403/169806215-0f494c1e-2ba8-469d-aa9b-b9f898228609.png)
-
-###  과제 완료 전 question.html
 ```html
-<!DOCTYPE html>
-
-<html lang="ko">
-
-<head>
-    <title>여러 요소에 스타일 적용하기</title>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <style>
-        /*여기에 스타일을 추가합니다.*/
-    </style>
-</head>
-
-<body>
-<!--문제에 맞게 요소를 수정합니다.-->
-<h2>고양이 사진첩</h2>
-<main>
-    <p><a href="#">여기</a>를 클릭하면 더 많은 고양이 사진을 볼 수 있습니다.</p>
-
-    <a href="#"><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg"
-                     alt="바닥에 등을 대고 누워있는 주황색 고양이"></a>
-
-    <div>
-        <p>고양이가 좋아하는 것:</p>
-        <ul>
-            <li>캣닙</li>
-            <li>레이저 포인터</li>
-            <li>라자냐</li>
-        </ul>
-        <p>고양이가 싫어하는 것 TOP3:</p>
-        <ol>
-            <li>막 대하는 것</li>
-            <li>천둥</li>
-            <li>다른 고양이</li>
-        </ol>
-    </div>
-
-    <form action="https://freecatphotoapp.com/submit-cat-photo">
-        <label><input type="radio" name="indoor-outdoor" checked> 집 고양이</label>
-        <label><input type="radio" name="indoor-outdoor"> 야생 고양이</label><br>
-        <label><input type="checkbox" name="personality" checked> 사랑스러운 성격</label>
-        <label><input type="checkbox" name="personality"> 느긋한 성격</label>
-        <label><input type="checkbox" name="personality"> 에너지 넘치는 성격</label><br>
-        <input type="text" placeholder="내 고양이 사진 URL 주소" required>
-        <button type="submit">올리기</button>
-    </form>
-</main>
-</body>
-
-
-</html>
+1.2, @font-face, em, font-family, font-size, font-size, font-style, font-weight,  margin의 auto 값,
+ generic-family, text-align: center;, text-indent, text-decoration, letter-spacing, 
+vertical-align, word-break, word-spacing,  word-wrap,  white-space, 단위, 블록 레벨 요소, 웹 폰트, 
 ```
+
+<br>
+
+```html
+1. 모든 폰트는 __________박스를 가지고 있는데, __________은 폰트의 전체 높이를 의미합니다.
+
+
+
+
+2. font-family 속성을 지정할 땐 __________를 함께 지정해줘서 family-name으로 지정한 글꼴을 사용할 수 없을 경우를 대비해야 합니다.
+
+
+
+
+3. em 박스, 상·하단의 여백을 합친 높이를 지정해주는 속성인 line-height의 기본값은 normal인데, 
+브라우저에 따라 다르지만 보통 __________정도로 할당되어 있습니다.
+
+
+
+
+4. line-height는 계산된 값이 아닌 숫자 값을 상속하기 때문에 숫자 값을 사용하면 
+부모 엘리먼트에서 계산된 값 대신 비율을 그대로 상속받을 수 있으므로, 가능하면 __________가 없는 값을 사용하는 것이 좋습니다.
+
+
+
+
+5. 폰트의 크기는 __________ 속성으로, 굵기는 __________ 속성으로, 스타일은 __________ 속성으로 지정합니다.
+
+
+
+
+6. 다양한 글꼴 속성을 한 번에 선언할 수 있도록 해주는 font 속성을 사용할 때, __________와 __________는 반드시 선언해줘야 합니다.
+
+
+
+
+7. __________는 서버에 저장해 제공하거나, 웹 경로를 통해 사용하는 폰트를 말합니다. 
+웹에 있는 글꼴을 사용자의 로컬 환경(컴퓨터)으로 다운로드하여 적용할 땐 _________속성을 사용합니다.
+
+
+
+
+8. __________ 속성을 사용하면 CSS로 수직 정렬을 할 수 있는데, 
+주의할 점은 __________엔 해당 속성이 적용되지 않는다는 점입니다(inline, table-cell box에는 적용).
+
+
+
+
+9. 블록 요소를 가운데 정렬할 땐 _________을, 인라인 요소를 가운데 정렬할 땐 __________를 사용합니다.
+
+
+
+
+10. 들여쓰기는 __________ 속성, 밑줄이나 모양, 색상 변경 등의 장식은 __________ 속성을 사용해야 합니다.
+
+
+
+
+11. 요소 안 공백을 어떻게 처리할지는 __________ 속성을, 글자(자간) 사이의 간격을 지정할 땐 __________ 속성을, 
+단어 사이의 간격을 지정할 땐 __________ 속성을, 단어가 라인 끝에 나올 경우 어떻게 처리할지는 __________ 속성을, 
+요소를 벗어난 단어의 줄 바꿈을 지정할 땐 __________ 속성을 사용합니다.
+```
+
+
+
+
 
 <br><br><br>
 
 
-### [과제 완료 후 question.html](https://github.com/kimdaeyeobbb/Web_Programming/blob/main/Study/BoostcourseFE1/Week03/Mission/question2.html)
-```html
-<!DOCTYPE html>
 
-<html lang="ko">
-
-<head>
-    <title>여러 요소에 스타일 적용하기</title>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <style>
-        /*여기에 스타일을 추가합니다.*/
-
-        /* 재활용성을 활용하기 위해서 클래스를 사용 */
-        .red-text {
-            color: red;
-        }
-    </style>
-</head>
-
-<body>
-    <!--문제에 맞게 요소를 수정합니다.-->
-    <h2 class="red-text">고양이 사진첩</h2>
-    <main>
-
-        <!-- inline 스타일 방식으로 해당 요소에 직접 스타일 속성을 이용해서 규칙을 선언 -->
-        <!-- inline 스타일은 재활용이 불가능하므로 효율이 떨어진다. 따라서 클래스의 재활용성을 이용하였음 -->
-        <p class="red-text"><a href="#">여기</a>를 클릭하면 더 많은 고양이 사진을 볼 수 있습니다.</p>
-
-        <a href="#"><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg"
-                alt="바닥에 등을 대고 누워있는 주황색 고양이"></a>
-
-        <div>
-            <p>고양이가 좋아하는 것:</p>
-            <ul>
-                <li>캣닙</li>
-                <li>레이저 포인터</li>
-                <li>라자냐</li>
-            </ul>
-            <p>고양이가 싫어하는 것 TOP3:</p>
-            <ol>
-                <li>막 대하는 것</li>
-                <li>천둥</li>
-                <li>다른 고양이</li>
-            </ol>
-        </div>
-
-        <form action="https://freecatphotoapp.com/submit-cat-photo">
-            <label><input type="radio" name="indoor-outdoor" checked> 집 고양이</label>
-            <label><input type="radio" name="indoor-outdoor"> 야생 고양이</label><br>
-            <label><input type="checkbox" name="personality" checked> 사랑스러운 성격</label>
-            <label><input type="checkbox" name="personality"> 느긋한 성격</label>
-            <label><input type="checkbox" name="personality"> 에너지 넘치는 성격</label><br>
-            <input type="text" placeholder="내 고양이 사진 URL 주소" required>
-            <button type="submit">올리기</button>
-        </form>
-    </main>
-</body>
-
-
-</html>
-```
-
-- 특이사항
-<br> 클래스의 재활용성 이용하기 위해 red-text클래스 추가 후 h2 요소와 첫번째 p 요소에 한꺼번에 붉은색 적용
-
-
-
-<br><br><br>
 
 
 
 # 미션 3
-Q3. 브라우저는 어떤 요소에 적용된 CSS 스타일이 상충할 땐 각 스타일에 구체성을 부여하고 판단하여 우선으로 적용할 것을 선택합니다. 
-<br>
-구체성을 제대로 이해했는지 알아봅시다. (아래 입력된 question.html을 수정)
+## Q3. question.html를 보고 검은 테두리의 상자가 실제 화면에서 가로, 세로를 몇 픽셀 차지하고 있는지 맞혀봅시다. (객관식).
+### 그리고 박스모델에서 배운 개념을 사용해 그 이유를 적어봅시다. (주관식).
 
-- 요소를 분홍색(pink)으로 만들어주는 CSS 클래스를 만듭니다.
-- h1 요소에 1에서 만든 클래스를 추가하면 요소가 녹색(green)이 될지, 분홍색(pink)이 될 지 예상하고 그 이유를 적어봅니다.
-- h1 요소에 실제 1에서 만든 클래스를 추가해 예상에 맞는 결과가 나왔는지 확인합니다.
+- 200px x 300px
+- 220px x 320px
+- 210px x 310px
+- 220px x 220px
 
-### 과제 완료 전
-![image](https://user-images.githubusercontent.com/68424403/169806590-e9fd4171-6043-4f9e-9793-b0dbc38414f3.png)
-
-
-### 과제 완료 후
-![image](https://user-images.githubusercontent.com/68424403/169806608-e1120bf1-b4ea-4cb0-bae9-bd242b4cbad3.png)
-
-### 과제 완료 전 question.html
-```html
-<!DOCTYPE html>
-
-<html lang="ko">
-<head>
-    <title>구체성 이해하기</title>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <style>
-        body {
-            background-color: black;
-            font-family: monospace;
-            color: green;
-        }
-
-        /*여기에 스타일을 추가합니다.*/
-
-    </style>
-</head>
-<body>
-<h1>Hello World!</h1>
-</body>
-</html>
-```
-
-<br>
-
-### [과제 완료 후 question.html](https://github.com/kimdaeyeobbb/Web_Programming/blob/main/Study/BoostcourseFE1/Week03/Mission/question3.html)
 ```html
 <!DOCTYPE html>
 
 <html lang="ko">
 
 <head>
-    <title>구체성 이해하기</title>
+    <title>박스 사이즈</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <style>
-        body {
-            background-color: black;
-            font-family: monospace;
-            color: green;
+        section {
+            width: 400px;
+            height: 400px;
         }
-
-        /*여기에 스타일을 추가합니다.*/
-        /* 요소를 분홍색으로 만들어주는 CSS클래스 생성 */
-        .pink-text {
-            color: pink;
+        .box {
+            width: 50%;
+            height: 75%;
+            border: 10px solid;
         }
     </style>
 </head>
 
 <body>
-    <!-- css내 클래스 추가하여 해당 효과 적용 -->
-    <h1 class="pink-text">Hello World!</h1>
+    <section>
+        <div class="box"></div>
+    </section>
 </body>
-
 </html>
 ```
-#### 특이사항
-- 브라우저는 어떤 요소에 적용된 CSS 스타일이 상충할 때 스타일에 구체성을 부여하고 판단하여 우선적으로 적용할 것을 선택
-- 구체성: 선택자를 얼마나 명시적으로(구체적으로) 선언했느냐를 수치화한 것<br>
-(구체성의 값이 클수록 우선으로 적용 됨)<br>
-(값을 비교할 때 좌측에 존재하는 값부터 비교하며, 좌측 부분의 숫자가 클수록 높은 구체성 가짐)<br>
 
-- .pink-text는 구체성이 0,0,1,0으로 계산됨
-(0,0,1,0 : 선택자에 있는 모든 class 속성값, 기타 속성, 가상 클래스)
-
-- h1 요소에 1에서 만든 클래스를 추가하여 요소가 분홍색이 될것이라 예측
-=> 실제로 적용됨을 확인하였음
 
 <br><br><br>
 
@@ -291,409 +213,148 @@ Q3. 브라우저는 어떤 요소에 적용된 CSS 스타일이 상충할 땐 �
 
 
 # 미션 4
-## Q4. 가상 클래스 선택자는 특정 요소의 상태를 미리 추정해서 가상의 클래스로 스타일을 적용할 수 있는 선택자입니다. 
-간단한 인풋 폼을 사용해 사용자 동작과 관련된 가상 클래스에 스타일을 적용해봅시다.
+## Q4. 마진 병합(margin collapse)은 CSS 박스 모델을 제대로 이해하고 응용하기 위해 꼭 필요한 필수 개념입니다. <br>question.html에 있는 여러 예시를 보고, 각 예시 별로 마진 병합이 일어나는지 여부와, 마진 병합이 일어난다면 아래 페이지를 참고하여 그 이유를 적어주세요.
+### (마진 병합이 일어나지 않았다면 아래 페이지를 참고해 그 이유를 적어주시면 가산점을 드립니다).
 
-- question.html을 열어 스타일을 추가해 다음 요구사항을 만족시켜 봅시다.
-- input 요소가 사용자 입력으로 활성화 된 경우, 배경색을 붉은색(red)으로 변경합니다.
-- input 요소가 입력 초점을 가진 경우, 배경색을 붉은색(red)으로 변경합니다.
+- 참고 페이지1: https://www.boostcourse.org/cs120/lecture/92916
+- 참고 페이지2: https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing
 
-### 과제 완료 전
-![image](https://user-images.githubusercontent.com/68424403/169806825-261bcd6e-8b2e-4723-a0bc-bae6f7003692.png)
-
-
-### 과제 완료 후
-![image](https://user-images.githubusercontent.com/68424403/169806839-11738a14-d956-40c0-a606-b3f771db3d45.png)
-
-### 과제 완료 전 question.html
 ```html
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="ko">
+
 <head>
-    <title>가상 클래스 스타일 바꾸기</title>
+    <title>마진 병합</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <style>
-        /*여기에 스타일을 추가합니다.*/
-
-    </style>
-</head>
-
-<body>
-<form action="" method="post">
-    <input type="text" id="name" name="name"><label for="name">이름</label><br><br>
-
-    <input max="10" min="1" type="number" name="age" id="age"><label for="age">나이</label><br><br>
-
-    <fieldset>
-        <legend>좋아하는 색</legend>
-
-        <input id="blue" name="fav-color" type="checkbox" value="blue"><label for="blue">파란색</label>
-        <input id="red" name="fav-color" type="checkbox" value="red"><label for="red">붉은색</label>
-        <input id="green" name="fav-color" type="checkbox" value="green"><label for="green">녹색</label>
-    </fieldset>
-    <br>
-
-    <input type="submit">
-
-</form>
-</body>
-</html>
-```
-
-
-### [과제 완료 후 question.html](https://github.com/kimdaeyeobbb/Web_Programming/blob/main/Study/BoostcourseFE1/Week03/Mission/question4.html)
-```html
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-    <title>가상 클래스 스타일 바꾸기</title>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <style>
-        /*여기에 스타일을 추가합니다.*/
-        /* id값은 유일해야한다는 점을 이용하기 위해 id+가상 클래스 사용
-        & 구체성을 높여주는 효과 & 시각적으로 무엇에 적용시키는지 정확히 알 수 있게 됨
-        */
-        /* :active -> 사용자 입력으로 활성화된 요소에 적용 */
-        #name:active {
+        .red-box {
+            width: 100%;
             background-color: red;
         }
 
-        /* :focus -> 현재 입력 초점을 가진 요소에 적용 */
-        #name:focus {
-            background-color: red;
-        }
-    </style>
-</head>
-
-<body>
-    <form action="" method="post">
-        <input type="text" id="name" name="name"><label for="name">이름</label><br><br>
-
-        <input max="10" min="1" type="number" name="age" id="age"><label for="age">나이</label><br><br>
-
-        <fieldset>
-            <legend>좋아하는 색</legend>
-
-            <!-- 체크 박스 - 기본적으로 체크 되어있으므로 checked 추가 -->
-            <input id="blue" name="fav-color" type="checkbox" value="blue" checked="checked"><label
-                for="blue">파란색</label>
-            <input id="red" name="fav-color" type="checkbox" value="red" checked="checked"><label for="red">붉은색</label>
-            <input id="green" name="fav-color" type="checkbox" value="green" checked="checked"><label
-                for="green">녹색</label>
-        </fieldset>
-        <br>
-
-        <!-- '제출' 대신 요구조건에 맞게 submit으로 제출버튼 내용 수정 -->
-        <input type="submit" value="submit">
-
-    </form>
-</body>
-
-</html>
-```
-- 요구사항
-1. input 요소가 사용자 입력으로 활성화 된 경우, 배경색을 붉은색으로 변경
-- style 태그에 #name:active 추가
-id값은 유일해야한다는 점을 이용하기 위해 id="name"+가상 클래스 사용<br>
-(구체성을 높여주는 효과 & 시각적으로 무엇에 적용시키는지 정확히 알 수 있게 됨)<br>
-- :active 
-사용자 입력으로 활성화된 요소에 적용 
-
-
-<br>
-
-
-2. input 요소가 입력 초점을 가진 경우, 배경색을 붉은색(red)으로 변경
-- style 태그에 #name:focus 추가
-id값은 유일해야한다는 점을 이용하기 위해 id="name"+가상 클래스 사용<br>
-(구체성을 높여주는 효과 & 시각적으로 무엇에 적용시키는지 정확히 알 수 있게 됨)<br>
-- :focus
-현재 입력 초점을 가진 요소에 적용
-
-<br>
-
-
-3. 좋아하는 색 3가지 기본 체크 표시
-- 기본적으로 체크 되어있으므로 checked="checked" 추가 
-
-4. '제출' 대신 요구조건에 맞게 submit으로 제출버튼 내용 수정
-```html
-<input type="submit" value="submit">
-```
-으로 수정
-
-
-
-<br><br><br>
-
-
-
-
-
-# 미션 5
-##  다양한 CSS 개념을 사용하여 스타일을 추가해봅시다. 
-만족시켜야 할 요구사항은 다음과 같습니다. (question.html을 열어 스타일을 추가합니다.)
-
-1-1. 메인 글 내에 있는 링크의 색은 blue이어야 하고 밑줄이 없어야 합니다.
-
-1-2. 커서가 해당 링크 위에 올라갔을 땐 밑줄이 생깁니다.
-
-2-1. aside 요소 안에 있는 링크 색은 black 이어야 하고, 밑줄이 있어야 합니다.
-
-2-2. 커서가 해당 링크 위에 올라가면 밑줄이 사라집니다.
-
-주의사항: HTML 수정은 금지합니다. 요소에 클래스 등을 추가할 수 없습니다.
-
-### 과제 완료 전
-![image](https://user-images.githubusercontent.com/68424403/169807054-25f7ab14-b4cf-49d5-8151-cde7b33ebd4d.png)
-
-### 과제 완료 후
-![image](https://user-images.githubusercontent.com/68424403/169807080-90899ceb-cc1f-4a3c-a704-22ead1eb2173.png)
-
-### 메인 글 링크에 마우스를 올린 경우
-![image](https://user-images.githubusercontent.com/68424403/169807128-aacb4ffc-f10e-4eed-adfb-ada57259ce29.png)
-
-### aside 내 링크에 마우스 올린 경우
-![image](https://user-images.githubusercontent.com/68424403/169807152-7a49cbaf-b5d2-421c-b3f9-056673f4c0bc.png)
-
-
-### 과제 완료 전 question.html
-```html
-<!DOCTYPE html>
-
-<html lang="en">
-<head>
-    <title>CSS 이해하기 종합</title>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <style>
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .blue-box {
+            width: 100%;
+            background-color: blue;
         }
 
-        p {
-            margin-bottom: 24px;
-        }
-
-        aside p:last-of-type {
-            margin-bottom: 0;
-        }
-
-        aside {
-            background: lightgray;
+        .horizontal-container {
+            width: 600px;
+            height: 200px;
+            border-color: black;
             border: 2px solid;
-            padding: 16px;
+            margin-top: 20px;
         }
 
-        /*여기에 스타일을 추가합니다.*/
-
-    </style>
-</head>
-
-<body>
-<article>
-    <h2>세계 지구의 날 - 대한민국 청와대</h2>
-    <p>
-        오늘은 지구의 날입니다.
-        세계 시민들이 뜻을 모아 정한 날로, 52년 전 미국의 대규모 원유 유출 사고를 계기로 시작되었습니다.
-        <a href="">세계적인 비영리단체 ‘Earth Day’</a>가 정한 올해 지구의 날 주제는 ‘지구에 투자하자’입니다.
-        우리는 저녁 8시, 10분의 소등으로 함께할 것입니다.
-        어둠 속에서 잠시 우리의 특별한 행성, 지구를 생각해보았으면 합니다.
-    </p>
-    <p>
-        지금 인류는 지구 위기의 심각성을 느끼며 지구 생명체의 한 구성원으로서 탄소중립을 실천하고 있습니다.
-        우리나라 역시 세계에서 14번째로 탄소중립을 법제화했고, 2030년 국가 온실가스 감축목표도 40%로 상향하며 우리의 강력한 탄소중립 실현 의지를 국제사회에 알렸습니다.
-        쉽지 않은 일이지만 지금처럼 국민과 산업계, 정부가 힘을 합한다면 우리가 앞장서 새로운 시대를 열어갈 수 있을 것입니다.
-    </p>
-    <p>
-        우리 국민들은 세계 어느 나라보다 탄소중립 의지가 높고, 강한 실천력이 있습니다.
-        에너지 절약과 분리배출, 플라스틱 줄이기에도 성숙한 시민의식을 보여주고 있습니다.
-        불편함을 보람으로 바꿔내 주신 국민들의 참여와 노력만큼 탄소중립 정책이 다음 정부에서도 성공적으로 추진되길 바랍니다.
-    </p>
-    <p>
-        우리의 지구사랑, 아직 늦지 않았습니다.
-        저도 오늘 금강송 한 그루를 지구에 투자하겠습니다.
-    </p>
-
-    <aside>
-        대한민국 청와대는 <strong>공식 홈페이지, 트위터, 페이스북</strong>을 통해 문재인 대통령의 말과 글을 공유합니다. <a href="">이곳</a>을 클릭하면 공식 홈페이지로 이동합니다.
-    </aside>
-</article>
-
-</body>
-</html>
-```
-
-<br>
-
-### [과제 완료 후 question.html](https://github.com/kimdaeyeobbb/Web_Programming/blob/main/Study/BoostcourseFE1/Week03/Mission/qeustion5.html)
-```html
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-    <title>CSS 이해하기 종합</title>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <style>
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            margin-bottom: 24px;
-        }
-
-        aside p:last-of-type {
-            margin-bottom: 0;
-        }
-
-        aside {
-            background: lightgray;
+        .vertical-container {
+            width: 400px;
+            height: 500px;
+            border-color: black;
             border: 2px solid;
-            padding: 16px;
+            margin-top: 20px;
         }
 
-
-        /*여기에 스타일을 추가합니다.*/
-
-        /* 1-1. 메인 글 내에 링크색 blue & 밑줄 제거*/
-
-        /* p태그 내 a태그에 정확하게 속성 변경될 수 있도록 부모-자식 관계 명시 */
-        article p a {
-            /* 링크 색상 blue로 변경*/
-            color: blue;
-
-            /* 커서가 해당 링크 위에 올라갈 경우 a 태그 내 밑줄 제거 */
-            text-decoration: none;
-
+        .first-box-1 {
+            height: 100%;
+            width: 100px;
+            display: inline-block;
+            margin-right: 50px;
         }
 
-        /* 1-2. 커서가 해당 링크 위에 올라갔을 때 밑줄 생성*/
-        /* p태그 내 a태그에 정확하게 속성 변경될 수 있도록 부모-자식 관계 명시 */
-        article p a:hover {
-            /* :hover - 커서가 링크 위에 올라갔을 때 */
-            /* text-decoration:underline - 밑줄 생성 */
-            text-decoration: underline;
+        .second-box-1 {
+            height: 100%;
+            width: 150px;
+            display: inline-block;
+            margin-left: 130px;
         }
 
-        /* 2-1. aside 요소 안에 있는 링크색은 black & 밑줄 존재*/
-        /* aside태그 내 a태그에 정확하게 속성 변경사항이 적용되도록 부모-자식 관계 명시 */
-        article aside a {
-            /* 링크 색상 black으로 변경 */
-            color: black;
-
-            /* text-decoration: underline - 밑줄 생성 */
-            text-decoration: underline;
+        .first-box-2 {
+            height: 100px;
+            margin-bottom: 40px;
         }
 
-
-
-        /* 2-2. 커서가 해당 링크 위에 올라가면 밑줄이 사라짐 */
-        /* aside태그 내 a태그에 정확하게 속성 변경사항이 적용되도록 부모-자식 관계 명시 */
-        article aside a:hover {
-
-            /* 커서가 해당 링크 위에 올라갈 경우 a 태그 내 밑줄 제거 */
-            text-decoration: none;
+        .second-box-2 {
+            height: 200px;
+            margin-top: 20px;
         }
+
+        .parent-3 {
+            height: 400px;
+            padding-top: 20px;
+        }
+
+        .child-3 {
+            height: 200px;
+            margin-top: 40px;
+        }
+
+        .parent-4 {
+            height: 400px;
+            margin-top: 40px;
+        }
+
+        .child-4 {
+            height: 200px;
+            margin-top: 40px;
+        }
+
+        .parent-5 {
+            height: 400px;
+        }
+
+        .child-5 {
+            height: 200px;
+            margin-top: 40px;
+        }
+
+        .navigation {
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .heading {
+            height: 160px;
+            margin-top: 60px;
+        }
+
     </style>
 </head>
 
 <body>
-    <article>
-        <h2>세계 지구의 날 - 대한민국 청와대</h2>
-        <p>
-            오늘은 지구의 날입니다.
-            세계 시민들이 뜻을 모아 정한 날로, 52년 전 미국의 대규모 원유 유출 사고를 계기로 시작되었습니다.
-            <a href="">세계적인 비영리단체 ‘Earth Day’</a>가 정한 올해 지구의 날 주제는 ‘지구에 투자하자’입니다.
-            우리는 저녁 8시, 10분의 소등으로 함께할 것입니다.
-            어둠 속에서 잠시 우리의 특별한 행성, 지구를 생각해보았으면 합니다.
-        </p>
-        <p>
-            지금 인류는 지구 위기의 심각성을 느끼며 지구 생명체의 한 구성원으로서 탄소중립을 실천하고 있습니다.
-            우리나라 역시 세계에서 14번째로 탄소중립을 법제화했고, 2030년 국가 온실가스 감축목표도 40%로 상향하며 우리의 강력한 탄소중립 실현 의지를 국제사회에 알렸습니다.
-            쉽지 않은 일이지만 지금처럼 국민과 산업계, 정부가 힘을 합한다면 우리가 앞장서 새로운 시대를 열어갈 수 있을 것입니다.
-        </p>
-        <p>
-            우리 국민들은 세계 어느 나라보다 탄소중립 의지가 높고, 강한 실천력이 있습니다.
-            에너지 절약과 분리배출, 플라스틱 줄이기에도 성숙한 시민의식을 보여주고 있습니다.
-            불편함을 보람으로 바꿔내 주신 국민들의 참여와 노력만큼 탄소중립 정책이 다음 정부에서도 성공적으로 추진되길 바랍니다.
-        </p>
-        <p>
-            우리의 지구사랑, 아직 늦지 않았습니다.
-            저도 오늘 금강송 한 그루를 지구에 투자하겠습니다.
-        </p>
+    <h1>예시1</h1>
+    <div class="horizontal-container">
+        <div class="first-box-1 red-box"></div>
+        <div class="second-box-1 blue-box"></div>
+    </div>
 
-        <aside>
-            대한민국 청와대는 <strong>공식 홈페이지, 트위터, 페이스북</strong>을 통해 문재인 대통령의 말과 글을 공유합니다. <a href="">이곳</a>을 클릭하면 공식 홈페이지로
-            이동합니다.
-        </aside>
-    </article>
+    <h1>예시2</h1>
+    <div class="vertical-container">
+        <div class="first-box-2 red-box"></div>
+        <div class="second-box-2 blue-box"></div>
+    </div>
+
+    <h1>예시3</h1>
+    <div class="vertical-container">
+        <div class="parent-3 red-box">
+            <div class="child-3 blue-box"></div>
+        </div>
+    </div>
+
+    <h1>예시4</h1>
+    <div class="vertical-container">
+        <div class="parent-4 red-box">
+            <div class="child-4 blue-box"></div>
+        </div>
+    </div>
+
+    <h1>예시5</h1>
+    <div class="vertical-container">
+        <div class="parent-5 red-box">
+            <div class="child-5 blue-box"></div>
+        </div>
+    </div>
 
 </body>
-
 </html>
 ```
-
-<br><br>
-
-- 수행사항
-
-
-1-1. 메인 글 내에 링크색 blue로 변경 & 밑줄 제거
-
-```css
-/* a태그에 정확하게 속성 변경될 수 있도록 부모-자식 관계 명시 */
-article p a {
-
-    /* 링크 색상 blue로 변경*/
-    color: blue;
-
-    /* a태그 밑줄 제거*/
-    text-decoration: none;
-}
-```
-
-
-1-2. 커서가 해당 링크 위에 올라갔을 때 밑줄 생성
-
-```css
-/* a태그에 정확하게 속성 변경될 수 있도록 부모-자식 관계 명시 */
-article p a:hover {
-    /* :hover - 커서가 링크 위에 올라갔을 때 */
-    /* text-decoration:underline - 밑줄 생성 */
-    text-decoration: underline;
-}
-```
-
-2-1. aside 요소 안에 있는 링크 색은 black 이어야 하고, 밑줄이 있어야 함
-```css
-/* aside태그 내 a태그에 정확하게 속성 변경사항이 적용되도록 부모-자식 관계 명시 */
-article aside a {
-    /* 링크 색상 black으로 변경 */
-    color: black;
-
-    /* text-decoration: underline - 밑줄 생성 */
-    text-decoration: underline;
-}
-```
-
-
-2-2. 커서가 해당 링크 위에 올라가면 밑줄이 사라짐
-```css
-/* aside태그 내 a태그에 정확하게 속성 변경사항이 적용되도록 부모-자식 관계 명시 */
-article aside a:hover {
-
-    /* 커서가 해당 링크 위에 올라갈 경우 a 태그 내 밑줄 제거 */
-    text-decoration: none;
-}
-```
-
