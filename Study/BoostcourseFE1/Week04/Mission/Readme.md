@@ -206,13 +206,23 @@ vertical-align, word-break, word-spacing,  word-wrap,  white-space, 단위, 블�
 </html>
 ```
 
-- 정답: 220px x 320px<br>
-- 이유: box의 width는 부모요소 section의 width를 상속받아 50%만 적용시키므로 200px이고<br>
-height는 section의 75%이므로 300px이다. <br>
-이때 content와 padding을 감싸고 있는 border의 상하좌우 두께가 10px이므로 <br>
-200px에 10px 2개, 300px에 10px 2개를 더해주면 <br><br>
-width = 400px*0.5 + 10px+10px -> <strong>width = 220px</strong> <br>  
-height = 400px*0.75 + 10px+10px -> <strong>height = 320px</strong> <br>
+
+- 정답<br>
+220px x 320px
+
+<br>
+
+- 이유<br>
+box의 width는 부모요소 section의 width를 상속받아 50%만 적용하므로 200px이고, <br>
+height는 section의 height를 상속받아 75%만 적용하므로 300px이다.<br>
+이때 content와 padding을 감싸고 있는 border의 상하좌우 두께가 10px이므로<br>
+200px에 10px 2개, 300px에 10px 2개를 더해주면 검은 테두리의 상자가 실제 화면에서 차지하고 있는 픽셀을 알아낼 수 있다.<br><br>
+전체 계산 과정은 다음과 같다<br><br>
+<strong>width = 400px X 0.5 + 10px+10px -> width = 220px</strong><br>
+<strong>height = 400px X 0.75 + 10px+10px -> height = 320px</strong><br>
+
+
+
 
 
 <br><br><br>
