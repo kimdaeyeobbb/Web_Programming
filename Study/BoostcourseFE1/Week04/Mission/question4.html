@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+    <title>마진 병합</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+        .red-box {
+            width: 100%;
+            background-color: red;
+        }
+
+        .blue-box {
+            width: 100%;
+            background-color: blue;
+        }
+
+        .yellow-box {
+            width: 100%;
+            background-color: yellow;
+        }
+
+        .horizontal-container {
+            width: 600px;
+            height: 200px;
+            border-color: black;
+            border: 2px solid;
+            margin-top: 20px;
+        }
+
+        .vertical-container {
+            width: 400px;
+            height: 500px;
+            border-color: black;
+            border: 2px solid;
+            margin-top: 20px;
+        }
+
+        .first-box-1 {
+            height: 100%;
+            width: 100px;
+            display: inline-block;
+            margin-right: 50px;
+        }
+
+        .second-box-1 {
+            height: 100%;
+            width: 150px;
+            display: inline-block;
+            margin-left: 130px;
+        }
+
+        .first-box-2 {
+            height: 100px;
+            margin-bottom: 40px;
+        }
+
+        .second-box-2 {
+            height: 200px;
+            margin-top: 20px;
+        }
+
+        .parent-3 {
+            height: 400px;
+            padding-top: 20px;
+        }
+
+        .child-3 {
+            height: 200px;
+            margin-top: 40px;
+        }
+
+        .parent-4 {
+            height: 400px;
+            margin-top: 40px;
+        }
+
+        .child-4 {
+            height: 200px;
+            margin-top: 40px;
+        }
+
+        .parent-5 {
+            height: 400px;
+        }
+
+        .child-5 {
+            height: 200px;
+            margin-top: 40px;
+        }
+
+        .navigation {
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .heading {
+            height: 160px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>예시1</h1>
+    <div class="horizontal-container">
+        <div class="first-box-1 red-box"></div>
+        <div class="second-box-1 blue-box"></div>
+    </div>
+
+    <h1>예시2</h1>
+    <div class="vertical-container">
+        <div class="first-box-2 red-box"></div>
+        <div class="second-box-2 blue-box"></div>
+    </div>
+
+    <h1>예시3</h1>
+    <div class="vertical-container">
+        <div class="parent-3 yellow-box">
+            <div class="child-3 blue-box"></div>
+        </div>
+    </div>
+
+    <h1>예시4</h1>
+    <div class="vertical-container">
+        <div class="parent-4 red-box">
+            <div class="child-4 blue-box"></div>
+        </div>
+    </div>
+
+    <h1>예시5</h1>
+    <div class="vertical-container">
+        <div class="parent-5 red-box">
+            <div class="child-5 blue-box"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
