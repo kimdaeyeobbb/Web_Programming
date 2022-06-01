@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vertical-align</title>
+    <style>
+        p {
+            padding: 10px;
+            border: 1px dashed #aaa;
+            line-height: 1;
+            font-size: 16px;
+        }
+
+        p span {
+            background-color: rgba(0, 255, 255, 0.5);
+            border: 1px solid #aaa;
+        }
+
+        p span:nth-child(1) {
+            background-color: rgba(255, 255, 0, 0.5);
+        }
+
+        p span:nth-child(2),
+        p span:nth-child(4) {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        p span:nth-child(3) {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        /* table */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table td,
+        table th {
+            border: 1px solid #aaa;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>vertical-align</h1>
+    <p><span>vertical-align:</span>
+        <span style="vertical-align: baseline;">baseline;</span>
+        <span>---</span>
+        <span style="vertical-align: baseline;">수직정렬</span>
+    </p>
+    <p><span>vertical-align:</span>
+        <span style="vertical-align: sub;">sub;</span>
+        <span>---</span>
+        <span style="vertical-align: sub;">수직정렬</span>
+    </p>
+    <p><span>vertical-align:</span>
+        <span style="vertical-align: super;">super;</span>
+        <span>---</span>
+        <span style="vertical-align: super;">수직정렬</span>
+    </p>
+    <p>
+        <span>vertical-align:</span>
+        <span style="vertical-align: text-top;">text-top;</span>
+        <span>---</span>
+        <span style="vertical-align: text-top;">수직정렬</span>
+    </p>
+    <p><span>vertical-align:</span>
+        <span style="vertical-align: text-bottom;">text-bottom;</span>
+        <span>---</span>
+        <span style="vertical-align: text-bottom;">수직정렬</span>
+    </p>
+    <p><span>vertical-align:</span>
+        <span style="vertical-align: middle;">middle;</span>
+        <span>---</span>
+        <span style="vertical-align: middle;">수직정렬</span>
+    </p>
+    <p><span>vertical-align:</span>
+        <span style="vertical-align: top;">top;</span>
+        <span>---</span>
+        <span style="vertical-align: top;">수직정렬</span>
+    </p>
+    <p><span>vertical-align:</span>
+        <span style="vertical-align: bottom;">bottom;</span>
+        <span>---</span>
+        <span style="vertical-align: bottom;">수직정렬</span>
+    </p>
+    <p><span>vertical-align:</span>
+        <span style="vertical-align: 4em;">4em;</span>
+        <span>---</span>
+    </p>
+    <p><span>vertical-align:</span>
+        <span style="vertical-align: 4px;">4px;</span>
+        <span>---</span>
+    </p>
+    <p><span>vertical-align:</span>
+        <span style="vertical-align: 20%;">20%;</span>
+        <span>---</span>
+    </p>
+    <p><span>vertical-align:</span>
+        <span style="vertical-align: -10px;">-10px;</span>
+        <span>---</span>
+    </p>
+
+    <table>
+        <caption>table cell vertical-align</caption>
+        <thead>
+            <tr>
+                <th>속성 값</th>
+            </tr>
+        </thead>
+        <tbody>xzzaq1` `112
+            <tr>
+                <td style="vertical-align:baseline;">vertical-align:baseline</td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top;">vertical-align:top</td>
+            </tr>
+            <tr>
+                <td style="vertical-align:middle;">vertical-align:middle(cell 기본값)</td>
+            </tr>
+            <tr>
+                <td style="vertical-align:bottom;">vertical-align:bottom</td>
+            </tr>
+            <tr>
+                <td>null</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
