@@ -124,7 +124,7 @@ vertical-align, word-break, word-spacing,  word-wrap,  white-space, 단위, 블�
 
 
 
-6. 다양한 글꼴 속성을 한 번에 선언할 수 있도록 해주는 font 속성을 사용할 때, _font-family_와 _generic-family_는 반드시 선언해줘야 합니다.
+6. 다양한 글꼴 속성을 한 번에 선언할 수 있도록 해주는 font 속성을 사용할 때, _font-size_와 _font-family_는 반드시 선언해줘야 합니다.
 
 
 
@@ -136,7 +136,7 @@ vertical-align, word-break, word-spacing,  word-wrap,  white-space, 단위, 블�
 
 
 8. _vertical-align_ 속성을 사용하면 CSS로 수직 정렬을 할 수 있는데, 
-주의할 점은 _블록레벨요소_엔 해당 속성이 적용되지 않는다는 점입니다(inline, table-cell box에는 적용).
+주의할 점은 _블록레벨 요소_엔 해당 속성이 적용되지 않는다는 점입니다(inline, table-cell box에는 적용).
 
 
 
@@ -206,9 +206,23 @@ vertical-align, word-break, word-spacing,  word-wrap,  white-space, 단위, 블�
 </html>
 ```
 
-- 
-- 220px x 320px
-- box의 width는 부모요소 section의 50%이므로 200px이고, height는 section의 75%이므로 300px이다. 이때 border는 10px이므로 width는 220px, height 320px이 된다.
+
+- 정답<br>
+220px x 320px
+
+<br>
+
+- 이유<br>
+box의 width는 부모요소 section의 width를 상속받아 50%만 적용하므로 200px이고, <br>
+height는 section의 height를 상속받아 75%만 적용하므로 300px이다.<br>
+이때 content와 padding을 감싸고 있는 border의 상하좌우 두께가 10px이므로<br>
+200px에 10px 2개, 300px에 10px 2개를 더해주면 검은 테두리의 상자가 실제 화면에서 차지하고 있는 픽셀을 알아낼 수 있다.<br><br>
+전체 계산 과정은 다음과 같다<br><br>
+<strong>width = 400px X 0.5 + 10px+10px -> width = 220px</strong><br>
+<strong>height = 400px X 0.75 + 10px+10px -> height = 320px</strong><br>
+
+
+
 
 
 <br><br><br>
@@ -362,24 +376,42 @@ vertical-align, word-break, word-spacing,  word-wrap,  white-space, 단위, 블�
 </html>
 ```
 
-- 수행사항
+* 수행사항 <br><br>
+* 마진병합이란..? <br>
+  - 인접한 공간에 margin-bottom과 margin-top을 적용할 경우 두 속성 중 큰 속성값이 작은 속성값을 병합하는 현상 <br>
+  - 웹 사이트 레이아웃 작업 진행 시 margin-top과 margin-bottom 속성이 제대로 적용되지 않을 때가 존재함 <br>
+  => 마진 병합(collapsing margins)때문에 발생할 가능성이 높음<br>
+  - top값과  bottom 값이 겹치게 되면 작은 값은무시되고, 더 큰값으로 적용이 됨<br>
+  - 형제간에 발생하는 마진 병합 현상은 형제 HTML 태그에 margin-bottom과 margin-top 속성을 적용했을 경우 공백이 큰 속성값을 기준으로 설정됨<br>
+  - 부모 자식 간에 발생하는 마진 병합 현상은 margin-top 속성이 parent와 child에 모두 적용되어 함께 여백이 생기는것을 뜻한다. (함께 내려간다)<br><br>
 
-- 예시1
-마진병합이 일어나지 않았음.<br>
-이유 : 마진병합은 좌우에 대해서는 일어나지 않습니다.<br>
 
-- 예시2
-마진병합이 일어남.<br>
-두 요소가 상하로 인접하므로 마진병합이 일어납니다.<br>
+1. 예시1 <br>
+   - 마진병합이 일어나지 않았음.<br>
+   - 이유 : 마진 병합은 상하에서만 일어나는 현상이므로 margin-left와 margin-right에서는 발생하지 않음<br>
+   따라서 Block 요소의 성격을 띄고 있는 태그에서만 마진 병합이 발생함 <br><br>
 
-- 예시3
-마진병합이 일어나지 않았음.<br>
-부모요소에 마진이 존재하지 않기 때문에 마진병합은 일어나지 않습니다.<br>
 
-- 예시4
-마진병합이 일어남.<br>
-부모요소의 상단마진과 첫번째 자식요소의 상단 마진 병합이 일어납니다.<br>
+2. 예시2<br>
+   - 두 요소가 상하로 인접하므로 마진병합이 일어납니다.<br>
+   - 이유: first-box-2의 margin-bottom: 40px가 second-box-2의 margin-top: 20px보다 크므로 큰 속성값인 40px가 작은 속성값 20px를 병합한다.<br>
+   따라서 red-box와 blue-box 사이에는 40px의 margin이 존재하게 된다.<br><br>
 
-- 예시5
-마진병합이 일어나지 않았음.<br>
-부모 요소에 마진이 존재하지 않기 때문에 마진 병합은 일어나지 않습니다.<br>
+
+3. 예시3<br>
+   - 마진병합이 일어나지 않았음.<br>
+   - 이유: padding-top이 존재하고, 부모요소에 마진이 존재하지 않기 때문에 마진병합은 일어나지 않습니다.<br>
+   만약에 .parent-3에 maring-top이 존재한다면 .child-3 또한 margin-top에 대한 적용을 함께 받는다.<br><br>
+
+
+4. 예시4<br>
+   - 마진병합이 일어남.<br>
+   - 이유: 부모요소의 상단마진과 첫번째 자식요소의 상단 마진 병합이 일어납니다.<br>
+   .parent-4와 .child-4 모두에게 margin-top: 40px가 적용된다. 여기서 margin-top을 키우면 둘 중 더 큰쪽의 영향을 받아 추가 여백이 생긴다.<br><br>
+
+
+5. 예시5<br>
+   - 마진병합이 일어남.<br>
+   - 이유: div는 block format context가 아니므로 자식의 영역을 모두 커버하지 못한다.<br>
+   따라서 자식의 margin이 부모 바깥으로 튀어나가게 된다.<br>
+   태그에 시각적인 요소가 없다면 margin값 중 더 큰값의 적용을 받게 된다.<br>
