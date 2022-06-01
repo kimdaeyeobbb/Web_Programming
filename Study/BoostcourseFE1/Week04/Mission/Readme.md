@@ -414,3 +414,4 @@ height는 section의 height를 상속받아 75%만 적용하므로 300px이다.<
    - 마진병합이 일어남.<br>
    - 이유: div는 block format context가 아니므로 자식의 영역을 모두 커버하지 못한다.<br>
    따라서 자식의 margin이 부모 바깥으로 튀어나가게 된다.<br>
+   태그에 시각적인 요소가 없다면 margin값 중 더 큰값의 적용을 받게 된다.<br>
