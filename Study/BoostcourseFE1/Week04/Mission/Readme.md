@@ -124,7 +124,7 @@ vertical-align, word-break, word-spacing,  word-wrap,  white-space, 단위, 블�
 
 
 
-6. 다양한 글꼴 속성을 한 번에 선언할 수 있도록 해주는 font 속성을 사용할 때, _font-family_와 _generic-family_는 반드시 선언해줘야 합니다.
+6. 다양한 글꼴 속성을 한 번에 선언할 수 있도록 해주는 font 속성을 사용할 때, _font-size_와 _font-family_는 반드시 선언해줘야 합니다.
 
 
 
@@ -136,7 +136,7 @@ vertical-align, word-break, word-spacing,  word-wrap,  white-space, 단위, 블�
 
 
 8. _vertical-align_ 속성을 사용하면 CSS로 수직 정렬을 할 수 있는데, 
-주의할 점은 _블록레벨요소_엔 해당 속성이 적용되지 않는다는 점입니다(inline, table-cell box에는 적용).
+주의할 점은 _블록레벨 요소_엔 해당 속성이 적용되지 않는다는 점입니다(inline, table-cell box에는 적용).
 
 
 
@@ -206,9 +206,13 @@ vertical-align, word-break, word-spacing,  word-wrap,  white-space, 단위, 블�
 </html>
 ```
 
-- 
-- 220px x 320px
-- box의 width는 부모요소 section의 50%이므로 200px이고, height는 section의 75%이므로 300px이다. 이때 border는 10px이므로 width는 220px, height 320px이 된다.
+- 정답: 220px x 320px<br>
+- 이유: box의 width는 부모요소 section의 width를 상속받아 50%만 적용시키므로 200px이고<br>
+height는 section의 75%이므로 300px이다. <br>
+이때 content와 padding을 감싸고 있는 border의 상하좌우 두께가 10px이므로 <br>
+200px에 10px 2개, 300px에 10px 2개를 더해주면 <br><br>
+width = 400px*0.5 + 10px+10px -> <strong>width = 220px</strong> <br>  
+height = 400px*0.75 + 10px+10px -> <strong>height = 320px</strong> <br>
 
 
 <br><br><br>
