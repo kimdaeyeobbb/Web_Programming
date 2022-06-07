@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Practice 1</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        function submitjs() {
+            // id=div1 인 태그의 내용을 "반갑습니다"로 수정
+            // document - 웹페이지에 존재하는 html 요소에 접근할 때 사용
+            // getElementById - 내부 아이디값에 해당 하는 html 요소에 접근하는 함수
+            // innerHTML - 접근한 html 요소의 코드를 변경할 수 있게 해줌
+            document.getElementById("div1").innerHTML = "반갑습니다";
+
+            // id가 div1인 태그에 border: 2px solid red;라는 스타일 추가
+            document.getElementById("div1").setAttribute("style", "border:2px solid red;");
+        }
+
+        function submitjquery() {
+            $("#div1").html("잘지내세요.");
+            $("#div1").css("border", "3px dotted blue");
+        }
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+        안녕하세요
+    </div>
+
+    <button type="button" onclick="submitjs();"> 변환 1</button>
+    <button type="button" onclick="submitjquery();"> 변환 2</button>
+</body>
+
+</html>
