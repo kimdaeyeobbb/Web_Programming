@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>display</title>
+    <style>
+        body>div {
+            padding: 5px;
+            border: 1px dashed #aaa;
+        }
+
+        .box {
+            padding: 15px;
+            background-color: #eee;
+            border: 1px solid #aaa;
+        }
+
+        .none .box {
+            display: none;
+        }
+
+        .inline .box {
+            display: inline;
+        }
+
+        .block .box {
+            display: block;
+        }
+
+        .inline-block .box {
+            display: inline-block;
+        }
+
+        .list-item .box {
+            display: list-item;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>display</h1>
+    <h2>none</h2>
+    <div class="none">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+    </div>
+    <h2>inline</h2>
+    <div class="inline">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+        <div class="box">box4</div>
+        <div class="box">box5</div>
+        <div class="box">box6</div>
+        <div class="box">box7</div>
+        <div class="box">box8</div>
+        <div class="box">box9</div>
+        <div class="box">box10</div>
+    </div>
+    <h2>block</h2>
+    <div class="block">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+    </div>
+    <h2>inline-block</h2>
+    <div class="inline-block">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+    </div>
+    <h2>list-item</h2>
+    <div class="list-item">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>clear</title>
+    <style>
+        .container {
+
+            border: 1px dashed #aaa;
+        }
+
+        div,
+        span {
+            padding: 20px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>clear: none</h2>
+
+    <div class="container">
+        <div style="float:left">float:left;</div>
+        <span style="display:block;clear:none;">내용 맘대로 내용 맘대로 내용 맘대로 내용 맘대로내용 맘대로 내용 맘대로 내용 맘대로 내용 맘대로내용 맘대로 내용 맘대로 내용
+            맘대로 내용 맘대로내용 맘대로 내용 맘대로 내용 맘대로 내용 맘대로</span>
+    </div>
+
+    <h2>clear: left</h2>
+    <div class="container">
+        <div style="float:left">float:left;</div>
+        <span style="display:block; clear:left;">내용 맘대로 내용 맘대로 내용 맘대로 내용 맘대로내용 맘대로 내용 맘대로 내용 맘대로 내용 맘대로내용 맘대로 내용 맘대로 내용
+            맘대로 내용 맘대로내용 맘대로 내용 맘대로 내용 맘대로 내용 맘대로</span>
+    </div>
+
+    <h2>clear: right</h2>
+    <div class="container">
+        <div style="float:right">float:right;</div>
+        <span style="display:inline-block;clear:right;">내용 맘대로 내용 맘대로 내용 맘대로 내용 맘대로내용 맘대로 내용 맘대로 내용 맘대로 내용 맘대로내용 맘대로 내용
+            맘대로 내용 맘대로 내용 맘대로내용 맘대로 내용 맘대로 내용 맘대로 내용 맘대로</span>
+    </div>
+
+    <h2>clear: both</h2>
+    <div class="container">
+        <div style="float:left">float:left;</div>
+        <div style="float:right">float:right;</div>
+        <span style="display:block;clear:both;">내용 맘대로 내용 맘대로 내용 맘대로 내용 맘대로내용 맘대로 내용 맘대로 내용 맘대로 내용 맘대로내용 맘대로 내용 맘대로 내용
+            맘대로 내용 맘대로내용 맘대로 내용 맘대로 내용 맘대로 내용 맘대로</span>
+    </div>
+</body>
+
+</html>

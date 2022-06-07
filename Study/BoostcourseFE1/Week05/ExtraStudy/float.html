@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>float</title>
+    <style>
+        .container {
+            border: 1px dashed #aaa;
+            padding: 15px;
+            clear: both;
+        }
+
+        .container div,
+        .container span {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #aaa;
+            color: #fff;
+        }
+
+        .container :nth-child(1) {
+            background-color: green;
+        }
+
+        .container :nth-child(2) {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>요소를 보통의 흐름에서 벗어나 띄워지게 함</h2>
+
+    <div class="container" style="width:400px;">
+        <div style="float:left;">Box1</div>
+        <div style="float:left;">Box2</div>
+    </div>
+
+    <h2 style="margin-top:100px;">주변 텍스트나 인라인요소가 주위를 감싸는 특징이 있음.</h2>
+    <div class="container" style="width:400px;">
+        <div style="float:left;">Box1</div>
+        <div style="float:right;">Box2</div>
+        <p>CSS 속성(property) float 은 한 요소(element)가 보통 흐름(normal flow)으로부터 빠져 텍스트 및 인라인(inline) 요소가 그 주위를 감싸는 자기 컨테이너의
+            좌우측을 따라 배치되어야 함을 지정합니다. 부동(floating) 요소 는 float 의 계산값(computed value)이 none이 아닌 요소입니다.</p>
+    </div>
+
+    <h2>대부분의 요소에 display 값을 block으로 변경함.</h2>
+    <div class="container" style="width:400px;">
+        <span style="float:left;">inline1</span>
+        <span>inline2</span>
+    </div>
+</body>
+
+</html>
