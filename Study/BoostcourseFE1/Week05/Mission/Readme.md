@@ -11,22 +11,22 @@ absolute, relative, absolute, offset, z-index, , screen, width, min-, 미디어 
 <br>
 
 ```html
-1. _____요소는 좌에서 우로 요소가 추가됩니다. 반면 ______요소는 위에서 아래로 추가됩니다. 이런 요소 배치 로직을 normal-flow라고 합니다.
+1. _inline level_요소는 좌에서 우로 요소가 추가됩니다. 반면 _block level_요소는 위에서 아래로 추가됩니다. 이런 요소 배치 로직을 normal-flow라고 합니다.
 
 참고: https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Flow_Layout
 
  
 
-2. ______ 속성값을 사용하면 해당 요소를 inline level 요소처럼 렌더링(배치)하지만 block level 성질을 가질 수 있게 할 수 있습니다.
+2. _inline-block_ 속성값을 사용하면 해당 요소를 inline level 요소처럼 렌더링(배치)하지만 block level 성질을 가질 수 있게 할 수 있습니다.
 
  
 
-3. __________을 설정하면 해당 요소가 화면에 렌더링 되지 않는 반면(DOM에 존재하지 않음)
-__________ 을 설정하면 요소가 화면에 보이지는 않지만 렌더링 되며 화면에 공간을 가지고 있게 됩니다(DOM에 존재함).
+3. _display: none;_을 설정하면 해당 요소가 화면에 렌더링 되지 않는 반면(DOM에 존재하지 않음)
+_visibility: hidden;_ 을 설정하면 요소가 화면에 보이지는 않지만 렌더링 되며 화면에 공간을 가지고 있게 됩니다(DOM에 존재함).
 
  
 
-4. 요소를 normal flow에서 벗어나서 띄우고 싶을 땐 __________ 속성을 사용합니다. 
+4. 요소를 normal flow에서 벗어나서 띄우고 싶을 땐 _absolute_ 속성을 사용합니다. 
 기사 글 서두에 이미지를 넣어주거나 첫 글자를 크게 키워서 보여주는 등의 목적으로 만들어진 이 속성은 
 Flexible Box Layout과 Grid Layout이 나오기 전에 레이아웃을 짜기 위한 목적으로도 쓰였으나, 
 Flexible Box Layout과 Grid Layout이 나온 이후에는 본래 목적 이외에 레이아웃을 짜기 위한 목적으로는 잘 쓰이지 않습니다.
@@ -42,14 +42,14 @@ Flexible Box Layout과 Grid Layout이 나온 이후에는 본래 목적 이외�
 참고:https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Floats#the_background_of_floats
 
 ```html
-5. 요소를 원하는 위치로 이동시킬 땐 __________ 속성을 사용합니다. 
+5. 요소를 원하는 위치로 이동시킬 땐 _position_ 속성을 사용합니다. 
 일반적인 flow 알고리즘은 여러 요소가 한 픽셀을 차지하지 않도록 합니다. 
 하지만 이 속성을 사용하면 요소(박스)를 겹치게 할 수 있습니다.
 
 
 
-6. position 속성의 기본값은 __________이고, __________, __________, __________값을 가질 수 있습니다. 
-이 중 __________는 해당 요소를 normal-flow에서 벗어나게 합니다.
+6. position 속성의 기본값은 _static_이고, _absolute_, _fixed_, _relative_값을 가질 수 있습니다. 
+이 중 _absolute_는 해당 요소를 normal-flow에서 벗어나게 합니다.
 
  
 
