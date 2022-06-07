@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./KDY_LION2.css">
+
+    <!-- google font: Noto Serif Korean 적용 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- section: HTML 문서에 포함된 독립적인 섹션을 정의할 때 사용. 보통 H1~H6를 자식 요소로 포함하고 있는 경우가 많다 -->
+
+    <section class="login">
+        <h2>로그인 또는 회원가입<input type="button" class="img-button"></h2>
+        <p>위니브에서 여러분의 궁금증을 해결하세요! :)</p>
+        <ul>
+            <li><input type="text" placeholder="아이디" title="아이디입력"></li>
+            <li><input type="password" placeholder="비밀번호" title="비밀번호입력"></li>
+
+
+            <!-- checkbox는 name,value가 불필요 -->
+            <!-- checkbox는 id와 for를 엮어서 체크하면 id 저장여부를 체크 및 해지할 수 있게 자리를 마련 -->
+
+            <li><input type="checkbox" id="chk_id"><label for="chk_id">아이디저장</label></li>
+
+            <!--button으로 기능 요소 생성-->
+
+            <li><button id="login_btn">로그인</button></li>
+        </ul>
+
+
+        <!-- a태그 충돌 방지를 위해 div 태그 안에 삽입 -->
+
+        <div>
+            <a href="">회원가입</a>
+            <a href="">아이디/비밀번호 찾기</a>
+        </div>
+
+
+
+
+        <!-- 외부 링크를 통해 로그인 -->
+        <!-- 해당 a태그는 section의 자식으로 찾음 -->
+
+
+        <span class="or-txt">또는</span>
+        <div>
+            <a href="">구글 계정으로 로그인</a>
+            <a href="">페이스북 계정으로 로그인</a>
+            <a href="">네이버 계정으로 로그인</a>
+            <a href="">카카오톡 계정으로 로그인</a>
+        </div>
+    </section>
+</body>
+
+</html>

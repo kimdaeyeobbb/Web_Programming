@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Serif KR", serif;
+}
+
+body {
+  width: 610px;
+  height: 706px;
+  background-color: #4d4d4d;
+}
+
+/* h2는 (가로 사이즈가 100%인)block element이므로 부모인 section의 크기를 따라감 */
+/* 부모인 section은 가로 사이즈를 410px로 줌 -> 따라서 자식은 가로사이즈가 100%이므로 .login h2에서도 부모의 크기만큼 꽉차게 됨  */
+
+.login {
+  background-color: #ffffff;
+  border-radius: 12px;
+
+  width: 593px;
+  height: 610px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  /* transfrom: translate 기능 확인을 위해 삽입 */
+  border: 1px double #4e4e4e;
+
+  /* transform: translate => 자기를 기준으로 움직임 */
+  /* 자기기준 반만큼 움직이게 만들어서 한쪽(왼쪽)으로 쏠리지 않게 만듦 */
+  /* -50%: 자기 크기의 반만큼 x축으로 이동. -50%: 자기 크기의 반만큼 y축으로 올라감 */
+  /* 이를 통해 정 가운데에 위치하게 됨 */
+  transform: translate(-50%, -50%);
+}
+
+/* chrome extension인 color picker를 이용해서 색깔 따옴 */
+.login h2 {
+  /* 기본적으로 들어간 볼드체특성 빼줌 */
+  font-weight: normal;
+  font-size: 32px;
+  color: #1a1a1a;
+
+  /* 로그인 아래에 임의의 선을 만들어서 체킹 */
+  border-bottom: 2px solid #dbdbdb;
+
+  /* 텍스트 가운데 정렬 */
+  text-align: center;
+
+  /* 줄간격 초기화 (로그인 또는 회원가입 부분과 아래의 선 사이의 줄간격을 뜻함) */
+  /* line-height:100% 대신 line-height:1(숫자는 1의배수, 2의배수... 인것)로 설정해도 됨 */
+  line-height: 100%;
+
+  /* 로그인 또는 회원가입텍스트과 선 사이의 간격*/
+  padding: 26px 0 22px 0;
+}
+
+input.img-button {
+  background: url("../images/close.png") no-repeat;
+  border: none;
+  width: 32px;
+
+  cursor: pointer;
+}
+
+#login_btn {
+  width: 537px;
+  height: 70px;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  background-color: #2f80ed;
+}
+
+/* '또는' 부분 */
+span.or-txt {
+  /* span은 인라인 요소이므로 display:block까지 해줘야 100% 적용됨*/
+  border: 1px solid fuchsia;
+  display: block;
+
+  /* margin 상 우 하 좌 */
+  margin: 37px 0 24px 0;
+
+  /* 선을 아래로 내려서 '또는' 옆에 위치시키기*/
+  position: relative;
+}
+
+/* '또는' 부분의 자식 요소. before는 왼쪽 기준*/
+span.or-txt:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 0;
+  background-color: #c6c6c6;
+  width: 44%;
+  height: 2px;
+}
