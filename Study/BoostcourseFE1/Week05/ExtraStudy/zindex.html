@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>z-index</title>
     <style>
+        /* position이 static이 아닌 경우에만 z-index 지정 가능 */
+        /* 부모의 z-index가 존재할 경우 부모 안에서만 의미 있음 */
         .parent {
             z-index: 10;
             position: relative;
