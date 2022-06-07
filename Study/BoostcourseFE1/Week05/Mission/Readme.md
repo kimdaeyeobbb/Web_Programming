@@ -11,7 +11,8 @@ absolute, relative, absolute, offset, z-index, , screen, width, min-, 미디어 
 <br>
 
 ```html
-1. _inline level_요소는 좌에서 우로 요소가 추가됩니다. 반면 _block level_요소는 위에서 아래로 추가됩니다. 이런 요소 배치 로직을 normal-flow라고 합니다.
+1. _inline level_요소는 좌에서 우로 요소가 추가됩니다. 반면 _block level_요소는 위에서 아래로 추가됩니다. 
+이런 요소 배치 로직을 normal-flow라고 합니다.
 
 참고: https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Flow_Layout
 
@@ -71,11 +72,11 @@ offsetTop 값을 지정(CSS에서 top 속성)하면 offsetParent를 기준으로
 
  
 
-10. __________은 미디어 타입에서 가장 많이 쓰이는 타입입니다. 미디어 특성 중 가장 많이 쓰이는 특성은 __________입니다.
+10. _screen_은 미디어 타입에서 가장 많이 쓰이는 타입입니다. 미디어 특성 중 가장 많이 쓰이는 특성은 _width_입니다.
 
  
 
-11. 미디어 특성은 이름 앞에 __________ 또는 __________ 접두사를 붙일 수 있습니다. 
+11. 미디어 특성은 이름 앞에 _min-_ 또는 _max-_ 접두사를 붙일 수 있습니다. 
 실제로 반응형 사이트를 제작할 때는 보통 접두사를 붙여서 사용합니다.
 ```
 
