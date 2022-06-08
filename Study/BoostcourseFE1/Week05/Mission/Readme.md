@@ -124,6 +124,33 @@ offsetTop 값을 지정(CSS에서 top 속성)하면 offsetParent를 기준으로
 ![image](https://user-images.githubusercontent.com/68424403/171997153-aaf78ffc-3afd-4dec-ba0f-6feccf19fdbc.png)
 
 
+<br>
+
+* 수행사항
+
+  - ```<div>``` 요소와 ```<img>``` 요소의 computed 값 캡처
+
+    + ```<div>```요소 캡쳐 
+
+    ![image](https://user-images.githubusercontent.com/68424403/172499574-a88e016d-fe54-4ba3-ba50-8ed487a52288.png)
+   
+
+
+
+  - ```<div>``` 요소와 ```<img>``` 요소의 computed 값 캡처
+     + ```<img>```요소 캡쳐
+   
+    ![image](https://user-images.githubusercontent.com/68424403/172499628-c3c5bb02-9487-4e56-a7fc-cf4330118eef.png)
+
+
+
+
+<br><br>
+
+* 수행사항
+  - ```<div>```크기가 ```<img>``` 보다 큰 이유
+
+
 
 
 
