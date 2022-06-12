@@ -41,3 +41,66 @@
 <br><br><br>
 
 # Q3
+
+
+
+# Q4
+
+
+
+# Q5
+
+
+
+# Q6
+
+
+
+# Q7
+
+
+
+# Q8
+## 다음 코드에서 printStar() 함수의 실행 결과로 올바른것은?
+### for는 반복문, let은 변수선언, console.log는 문자열 출력을 의미합니다. 또한 const printStar = () => (...) 구문은 function printStar() {...} 와 동일합니다.
+
+```javascript
+const printStar = () => {
+  let str = ""
+  
+  for (let i=0; i<5; i++){
+    for (let j=0; j<5; j++) {
+      if (j>i){
+        str += "*";
+      } else {
+        str += " ";
+      }
+    }
+    str += "\n";
+  }
+  console.log(str);
+}
+```
+
+
+<br><br><br>
+
+
+
+# Q9
+## 다음 코드를 실행했을 때 출력되는 숫자는?
+### 자바스크립트 코드이며, 자바스크립트는 함수형 언어로 함수에 전달된 매개변수는 별도의 메모리 공간을 갖습니다. 지역변수와 전역변수의 의미를 묻는 문제입니다. 또한 a++은 a=a+1과 같으며, 사칙연산 (=, -, *, /) 보다 연산자 우선순위가 낮습니다.
+
+```javascript
+let a = 10;
+let b = 60;
+
+const foo = (a) => {
+  a = 100;
+  a+b;
+}
+
+foo(a);
+
+console.log(b + a++);
+```
