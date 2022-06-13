@@ -138,3 +138,17 @@ foo(a);
 
 console.log(b + a++);
 ```
+
+### 정답 
+![image](https://user-images.githubusercontent.com/68424403/173320801-a7dd5df9-8640-4256-8aaa-9681b91fb6fd.png)
+
+
+
+### 해설
+
+- foo(a)  <br>
+전역변수인 a=10이 함수에 들어가고 expression block에서 a=100이 아닌 전역변수 a=10이 적용되어 a+b는 70이다. <br><br>
+
+- console.log(b + a++)<br>
+a++은 후위 연산자로, 연산을 마친다음에 커지므로 b + a++이 60+20이 아니라 60+10이다. 이후에 전역변수가 a=20으로 커진다.<br>
+
