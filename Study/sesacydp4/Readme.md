@@ -83,6 +83,40 @@ const printStar = () => {
 ```
 
 
+### 정답 
+![image](https://user-images.githubusercontent.com/68424403/173307939-287159e6-75d5-4cc6-8f50-5fd4bb32506b.png)
+
+
+
+### 해설
+ 
+해당문제가 잘못 제작 되었다고 생각함. <br>
+화살표 함수를 만들었지만, 함수를 이용하는 command가 존재하지 않기 때문이다. <br>
+따라서 본 문제를 다음과 같이 수정하여야 본 의도대로 답이 도출될 것이다. <br>
+```javascript
+let str = "";
+
+for (let i = 0; i < 5; i++) {
+  for (let j = 0; j < 5; j++) {
+    if (j > i) {
+      str += "*";
+    } else {
+      str += " ";
+    }
+  }
+  str += "\n";
+}
+console.log(str);
+```
+
+
+- [화살표 함수 관련 참고자료](https://ko.javascript.info/arrow-functions-basics) <br>
+
+
+
+
+
+
 <br><br><br>
 
 
