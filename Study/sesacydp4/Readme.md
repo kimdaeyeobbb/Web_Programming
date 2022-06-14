@@ -53,10 +53,59 @@
 
 
 # Q6
+## HTML/CSS가 브라우저에 렌더링되는 순서로 가장 올바른 것은?
+
+### 정답
+![image](https://user-images.githubusercontent.com/68424403/173332081-52de2d86-64e1-4f65-902c-4ffc0b766e26.png)
+
+### 해설
+
+
+
+
+- [브라우저 렌더링 동작 과정 참고자료1](https://tecoble.techcourse.co.kr/post/2021-10-24-browser-rendering/)
+- [브라우저 렌더링 동작 과정 참고자료2](https://d2.naver.com/helloworld/59361)
+- [브라우저 렌더링 동작 과정 참고자료3](https://medium.com/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98-%EB%A0%8C%EB%8D%94%EB%A7%81-%EA%B3%BC%EC%A0%95-5c01c4158ce)
+- [브라우저 렌더링 동작 과정 참고자료4](https://yozm.wishket.com/magazine/detail/646/)
+- [브라우저 렌더링 동작 과정 참고자료5](https://intrepidgeeks.com/tutorial/the-order-in-which-the-home-page-is-displayed-to-the-user-browser-rendering-process)
+
+
+<br><br><br>
+
+
+
+
 
 
 
 # Q7
+## 일반적인 REST API를 만들 때, HTTP 메소드와 성격이 올바르게 짝지어지지 않은 것은?
+
+### 정답
+![image](https://user-images.githubusercontent.com/68424403/173321812-db2b49b9-f97b-4416-b832-c5e7226237db.png)
+
+### 해설
+
+- <strong>자원에 대한 행위는 HTTP Method(GET, POST, PUT, DELETE)로 표현한다.</strong>
+
+
+|METHOD|역할|
+|---|---|
+|POST|POST를 통해 해당 URI를 요청하면 리소스를 생성|
+|GET|해당 리소스 조회 & 해당 Document에 대한 자세한 정보 가져옴|
+|PUT|해당 리소스 전체 수정|
+|DELETE|리소스 삭제|
+|PATCH|리소스 부분적 수정|
+|CONNECT|요청한 리소스에 대해 양방향 연결 시작|
+|HEAD|특정 리소스를 GET 메서드로 요청했을 때 돌아올 헤더를 요청|
+|OPTIONS|목표 리소스와 통신 옵션 설명하기 위해 사용|
+
+
+- [REST API 참고자료](https://meetup.toast.com/posts/92)
+- [REST API 참고자료 2](https://developer.mozilla.org/ko/docs/Web/HTTP/Methods/PATCH)
+
+
+<br><br><br>
 
 
 
@@ -138,3 +187,17 @@ foo(a);
 
 console.log(b + a++);
 ```
+
+### 정답 
+![image](https://user-images.githubusercontent.com/68424403/173320801-a7dd5df9-8640-4256-8aaa-9681b91fb6fd.png)
+
+
+
+### 해설
+
+- foo(a)  <br>
+전역변수인 a=10이 함수에 들어가고 expression block에서 a=100이 아닌 전역변수 a=10이 적용되어 a+b는 70이다. <br><br>
+
+- console.log(b + a++)<br>
+a++은 후위 연산자로, 연산을 마친다음에 커지므로 b + a++이 60+20이 아니라 60+10이다. 이후에 전역변수가 a=20으로 커진다.<br>
+
