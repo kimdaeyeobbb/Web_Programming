@@ -1,0 +1,26 @@
+### POSTMAN 등을 이용하여 무거운 요청을 하는것보다 간단한 방법 이용한 사례
+
+GET https://jsonplaceholder.typicode.com/posts
+
+### 구분자 (###로 요청 구분)
+
+POST https://jsonplaceholder.typicode.com/posts
+Content-Type: application/json
+
+{
+    "userID": 100,    
+    "title": "This is title",
+    "body": "This is body"
+}
+
+
+### PUT : 수정
+
+PUT https://jsonplaceholder.typicode.com/posts/5
+Content-Type: application/json
+
+{
+    "userID": 100,    
+    "title": "This is title",
+    "body": "This is body"
+}
