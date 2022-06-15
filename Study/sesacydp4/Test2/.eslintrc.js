@@ -26,5 +26,6 @@ module.exports = {
     'func-names': 'off', // 화살표 함수 쓸 때 이름을 잘 안쓰는데, 그런 경우 에러를 내보내지 않겠다는 뜻
     'object-shorthand': 'off',
     'class-methods-use-this': 'off', // this를 사용하지 않는 클래스의 메서드는 끄겠다는 뜻
+    'no-var': 'off',
   },
 };
