@@ -201,7 +201,12 @@ padding: 요소 내부의 여백을 담당. 요소 내부에 빈 공간을 추�
 
 ### 해설
 
+- 아래의 부분이 빠진듯함. (문제오류라고 생각함)
+```html
+<div class="br20px" style="border-radius:20px">4</div>
+```
 
+- div* : div내 모든 요소 선택
 
 
 <br><br><br>
