@@ -38,22 +38,22 @@ head태그와 달리 화면에 보이는 것들이 주로 body태그에 들어�
 - div 사용전
 ```html
 <body>
-  <p>영화 소개</p>
-  <p>영화를 소개하는 페이지입니다.</p>
-  <p>TV 프로그램 소개</p>
-  <p>TV 프로그램을 소개하는 페이지입니다.</p>
+  <p>선수 소개</p>
+  <p>선수를 소개하는 페이지입니다.</p>
+  <p>훈련 프로그램 소개</p>
+  <p>훈련 프로그램을 소개하는 페이지입니다.</p>
 </body>
 ```
 
 - div 사용후
 ```html
-<div class="movie">
-  <p>영화 소개</p>
-  <p>영화를 소개하는 페이지입니다.</p>
+<div class="player">
+  <p>선수 소개</p>
+  <p>선수를 소개하는 페이지입니다.</p>
 </div>
-<div class="tv">
-  <p>TV 프로그램 소개</p>
-  <p>TV 프로그램을 소개하는 페이지입니다.</p>
+<div class="training">
+  <p>훈련 프로그램 소개</p>
+  <p>훈련 프로그램을 소개하는 페이지입니다.</p>
 </div>
 ```
 
@@ -62,14 +62,18 @@ head태그와 달리 화면에 보이는 것들이 주로 body태그에 들어�
 - span 사용전
 ```html
 <body>
-  <p>영화 소개</p>
-  <p>이번 영화의 하이라이트 장면은 바로 여기입니다.</p>
+  <p>선수 소개</p>
+  <p>이번 시즌 이 선수의 하이라이트 장면은 바로 이 부분입니다.</p>
 </body>
 ```
 
-- span 사용후
+- span 사용후 (하이라이트 텍스트 부분만 디자인을 다르게 적용하고 싶을 경우)
+- span태그를 사용하여 태그 내 공간을 분할함
+- 텍스트는 inline element이므로 내부 콘텐츠를 span 태그로 grouping 할 수 있음
+- grouping하여 element의 공간을 분할하면 분할된 요소에 CSS를 적용시킬 수 있음
 ```html
-
+<p>선수 소개</p>
+<p>이번 시즌 이 선수의 <span>하이라이트</span> 장면은 바로 이 부분입니다.</p>
 ```
 
 
@@ -119,6 +123,45 @@ justify-content: center;
 
 ### 해설
 
+1. margin-left:auto; margin-right:auto;<br>
+CSS margin속성은 정의된 테두리 외부의 요소 주위에 공간을 만드는 데 사용됨<br>
+auto: 브라우저가 자동으로 여백 지정<br>
+margin-left:auto; margin-right:auto; <br>
+-> 둘다 auto이므로 사용된 값이 동일. 컨테이닝 블록의 가장자리를 기준으로 요소를 수평 중앙에 배치시킴<br>
+margin은 박스 가장 바깥의 영역이며 element의 외부 여백을 담당함<br>
+여기서는 전체를 감싸는 박스의 margin 설정을 해준것이므로 margin이 적용되지 않음<br>
+만약 내부의 각 div 태그에 모두 margin 설정시 margin이 적용되는 것을 확인할 수 있음
+
+
+<br><br>
+
+
+
+2. padding-left:auto; padding-right:auto;<br>
+padding: 요소 내부의 여백을 담당. 요소 내부에 빈 공간을 추가한다.<br>
+
+
+
+
+
+
+<br><br>
+
+
+
+
+3. justify-content: center;<br>
+가로축을 기준으로 좌우에 대한 정렬<br>
+
+
+<br><br>
+
+
+
+4. align-items: center;<br>
+세로 축을 기준으로 정렬<br>
+
+
 
 <br><br><br>
 
@@ -135,6 +178,8 @@ justify-content: center;
 
 ### 해설
 
+- flex 아이템들은 가로 방향으로 배치되고, 자신이 자신 내용물의 width만큼 영역을 차지함  (이걸로 1,2번제거)
+- border radius => 영역의 테두리  (이걸로 4번제거)
 
 
 
