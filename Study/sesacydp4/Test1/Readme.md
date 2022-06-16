@@ -410,11 +410,19 @@ cp/dev/null ~/test.txt
 
 ### 정답
 
-df
+df<br>
+
+- df: 리눅스 시스템 전체의 디스크 여유 공간 확인
+
 <br><br>
 
 ### 해설
 
+
+- netstat: 네트워크의 문제를 찾아내고 성능 측정으로서 네트워크 상의 트래픽을 결정하기 위해 사용
+- free: 리눅스 시스템에서 전체 메모리에 대한 현황을 보여줌 
+- vmstat: 현재 메모리 상태를 보여줌
+- top: 현재 메모리 사용량, CPU 사용량 등을 나타냄
 
 <br><br><br>
 
@@ -441,9 +449,34 @@ df
 ```linux
 rm -rf data
 ```
+
+- rm -rf data: 파일이나 디렉토리 구분없이 그냥 삭제 (삭제하려는 대상이 확실한 경우 rm -r data에 f옵션을 추가해 에러 무시하고 삭제)
+
+
+- rm data: 파일 삭제 (디렉토리를 삭제하려고 하면 에러 발생
+- rmdir data: 빈 폴더(디렉토리) 삭제 (디렉토리 안에 폴더나 파일이 있다면 에러 발생)
+- rm -d data: 빈 폴더(디렉토리) 삭제 (디렉토리 안에 폴더나 파일이 있다면 에러 발생)
+- rm -r data: 파일을 갖고 있는 폴더(디렉토리) 삭제 (-r 옵션은 재귀적으로 하위에 있는 모든 파일 및 디렉토리를 삭제하라는 뜻)
+
+
 <br><br>
 
 ### 해설
+
+
+- rmdir data:
+
+
+
+- cp/dev/null data: 
+
+
+
+- del data:
+
+
+
+
 
 
 <br><br><br>
@@ -464,7 +497,12 @@ union 절
 <br><br>
 
 ### 해설
+- 집계함수(SUM, AVG, MIN, MAX, COUNT 등)는 GROUP BY와 주로 함께 사용한다.<br>
 
+|UNION|JOIN|
+|---|---|
+|두 개 이상의 테이블을 합침|두 개 이상의 테이블을 합침|
+|수직결합 (Column수를 맞춰줘야 함|일치하는 행을 수평결합|
 
 <br><br><br>
 
@@ -485,6 +523,15 @@ union 절
 <br><br>
 
 ### 해설
+
+```sql
+select e.* 
+from Dept d 
+inner join Emp e 
+ON d.id = e.dept;
+```
+부서코드와 부서아이디가 일치하는것이 총 9개<br>
+inner join은 두 테이블 모두에 존재하는 데이터를 조회하므로 9행이 출력된다.<br>
 
 
 <br><br><br>
@@ -509,23 +556,38 @@ NoSQL은 데이터를 2차원 구조의 Collection이 담고 있다.  (X)
 <br><br>
 
 ### 해설
+- SQL이 2차원 테이블간의 관계로 정보를 매핑한다. 
+- NoSQL은 관계형이 아닌 DB이다<br> EX) key&value(연관배열) / Column-based(기존의 행 대신 열로 데이터를 저장) / Document-oriented(JSON이나 XML을 데이터로 삼음)
 
-
-- RDBMS의 특징
+- RDBMS의 특징<br>
+관계형 데이터베이스 시스템 (Relational DataBase Management System)<br>
+SQL을 통해 DBMS에 데이터를 구축, 관리하고 활용한다.<br>
+즉, SQL을 사용하여 DBMS에 중요한 정보들을 입력,관리하고 추출한다.
 
 
 <br><br>
 
-- NoSQL의 특징
-
+- NoSQL의 특징<br>
+NoSQL은 RDBMS가 아닌 다른 다양한 형태로 데이터를 저장하고 관리한다.<br>
+ex) key-value DB(Redis, Amazon Dynamo DB 등), Document DB(Mongo DB), Wide Column DB(HBase), Graph DB(Neo4J) 
 
 <br>
 
 |분류|RDBMS|NoSQL|
 |---|---|---|
-|개념|관계형 데이터베이스 관리 시스템(Relational DataBase Management System)|ㅁ| 
-|사용 사례|MySQL<br> Oracle<br> PostgreSQL<br> IBM DB2 등|ㅁ|
-|
+|개념|관계형 데이터베이스 관리 시스템(Relational DataBase Management System)|-| 
+|사용 사례|MySQL<br> Oracle<br> PostgreSQL<br> IBM DB2 등|-|
+
+
+
+
+|분류|SQL|NoSQL|
+|---|---|---|
+|데이터 적합성|정형화된 데이터 저장|비정형화,반정형화된 데이터 저장에 적합<BR>(빅데이터 시대 이후로는 다양한 정형화되지 않은 데이터들이 쏟아져나왔기 때문)| 
+|데이터 저장|2차원 테이블에 모든 데이터를 일괄적으로 저장|대용량 데이터 저장에 적합<br>다양한 자료형태로 저장하므로 도메인에서 고성능을 낼 수 있음|
+|인력 운영비용|비싸다<br> 단일 쿼리를 사용하므로 SQL제품들에 대한 러닝커브도 낮고, 관련 전문가 시장도 성숙하여 인력 풀 자체가 훨씬 크다.|저렴하다<br>NoSQL은 표준화가 부족해서 다양한 유형을 가지고 있고, 제품마다 쿼리도 다르다. 즉, NoSQL은 러닝커브가 높고, 인력을 교육해서 사용하는 비용이 SQL보다 더 많이 든다.|
+
+
 
 
 <br><br>
@@ -560,6 +622,8 @@ NoSQL은 데이터를 2차원 구조의 Collection이 담고 있다.  (X)
 ### 해설
 
 - Thread: Process 내에서 실제로 실행되는 단위
+- 다중 스레드: 하나의 프로세스에 2개이상의 스레드들을 생성하여 수행하는 것
+- 다중 스레드 개념을 도입하면 자원의 중복할당을 방지하고 훨씬 작은 자원만으로도 작업을 처리할 수 있
 - Thread는 CPU의 사용 효율을 높임
 - CPU의 개수가 많아 여유가 있을 때 Process 방식이 Thread 방식보다 효율적이다.
 
