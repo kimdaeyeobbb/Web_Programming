@@ -7,9 +7,74 @@
 3. button
 4. body
 
-### 정답 : table
+### 정답 
+
+table
+
+<br>
 
 ### 해설
+
+- body태그
+
+HTML 문서의 내용을 나타냄. 따라서 위 문제에서는 body태그는 무조건 포함되어야 한다.
+<br>
+해당 HTML 문서의 텍스트, 하이퍼링크, 이미지, 리스트 등과 같이 모든 콘텐츠를 포함하는 영역을 정의할 때 사용. 
+<br>
+HTML 문서에는 단 하나의 body만 존재할 수 있음
+<br>
+head태그와 달리 화면에 보이는 것들이 주로 body태그에 들어감
+
+
+
+<br><br>
+
+- div VS span
+
+|div|span|
+|---|---|
+|block element, inline element를 그룹으로 묶을 때 사용|inline element를 그룹으로 묶을 때 사용|
+
+- div 사용전
+```html
+<body>
+  <p>영화 소개</p>
+  <p>영화를 소개하는 페이지입니다.</p>
+  <p>TV 프로그램 소개</p>
+  <p>TV 프로그램을 소개하는 페이지입니다.</p>
+</body>
+```
+
+- div 사용후
+```html
+<div class="movie">
+  <p>영화 소개</p>
+  <p>영화를 소개하는 페이지입니다.</p>
+</div>
+<div class="tv">
+  <p>TV 프로그램 소개</p>
+  <p>TV 프로그램을 소개하는 페이지입니다.</p>
+</div>
+```
+
+<br>
+
+- span 사용전
+```html
+<body>
+  <p>영화 소개</p>
+  <p>이번 영화의 하이라이트 장면은 바로 여기입니다.</p>
+</body>
+```
+
+- span 사용후
+```html
+
+```
+
+
+
+<br><br>
 
 - table 태그 vs CSS 비교
 
@@ -41,14 +106,60 @@
 <br><br><br>
 
 # Q3
+## [HTML CSS] 다음과 같이 내용을 가운데 정렬하려 할 때 [가] 부분에 가장 적절한 CSS는?
+![image](https://user-images.githubusercontent.com/68424403/173803042-496eebca-229f-4ca5-ad3c-413eab661656.png)
 
+
+
+
+### 정답
+
+justify-content: center; 
+<br><br>
+
+### 해설
+
+
+<br><br><br>
 
 
 # Q4
+## 다음 HTML 문서를 브라우저로 봤을 때 가장 적절한 결과는?
 
+![image](https://user-images.githubusercontent.com/68424403/173803272-50ffdc21-c3f5-4bb6-90b3-3b98c7961427.png)
+
+### 정답
+3번
+
+<br><br>
+
+### 해설
+
+
+
+
+
+<br><br><br>  
 
 
 # Q5
+## 위 문제의 4번 구문을 개선하려고 한다. [가] 부분에 가장 적절한 CSS selector는?
+![image](https://user-images.githubusercontent.com/68424403/173803631-87af71b5-f479-412c-b1bb-4b26ac361884.png)
+
+
+
+### 정답
+
+.box > div
+<br><br>
+
+
+### 해설
+
+
+
+
+<br><br><br>
 
 
 
@@ -201,3 +312,258 @@ console.log(b + a++);
 - console.log(b + a++)<br>
 a++은 후위 연산자로, 연산을 마친다음에 커지므로 b + a++이 60+20이 아니라 60+10이다. 이후에 전역변수가 a=20으로 커진다.<br>
 
+
+
+<br><br><br>
+
+
+
+
+
+# Q10
+## [Linux] 홈(~) 디렉터리에 내용이 없는 test.txt 파일이 필요하다. 이때 사용되는 명령으로 가장 적절한 것은?
+![image](https://user-images.githubusercontent.com/68424403/173804020-5a2a9ef1-36e6-42b7-944a-6fb4c159b11f.png)
+
+
+
+
+
+### 정답
+
+```linux
+cp/dev/null ~/test.txt
+```
+<br><br>
+
+### 해설
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+# Q11
+## [Linux] 사용자가 갑자기 몰려 시스템이 느려지고 있다. 이때 상태 확인용 명령으로 가장 부적절한 것은?
+### 실행할 필요가 없거나, 또는 가장 후순위로 사용되는 명령을 고르시오 
+
+![image](https://user-images.githubusercontent.com/68424403/173805068-c00bf792-c0f3-4967-b111-29c127decdc1.png)
+
+
+
+### 정답
+
+df
+<br><br>
+
+### 해설
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Q12
+## [Linux] 여러 파일을 담고 있는 data라는 디렉토리가 있다. data 디렉토리를 완전히 제거하는 명령으로 가장 적절한 것은?
+![image](https://user-images.githubusercontent.com/68424403/173805427-c9ad0426-e323-4a03-a1f9-1173e533bdb6.png)
+
+
+
+### 정답
+```linux
+rm -rf data
+```
+<br><br>
+
+### 해설
+
+
+<br><br><br>
+
+
+
+
+
+
+
+# Q13
+## [SQL] 다음과 같이 두 개의 테이블이 있다. 출력 결과 이미지와 같이 출력하기 위한 쿼리 작성시 사용되지 않는 것은?
+![image](https://user-images.githubusercontent.com/68424403/173805720-b1ff2b1c-30f3-470a-9fd8-e33ed08c85bf.png)
+
+
+### 정답
+union 절
+<br><br>
+
+### 해설
+
+
+<br><br><br>
+
+
+
+
+
+# Q14
+## [SQL] 위 13번 문제에서 제시한 Dept 테이블과 Emp 테이블을 inner join 했을 때 출력되는 행의 수는?
+![image](https://user-images.githubusercontent.com/68424403/173806096-1458dc14-a2ac-4d58-9a96-5be5a91d9bbf.png)
+
+
+
+
+
+### 정답
+9행
+<br><br>
+
+### 해설
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+# Q15
+## RDBMS와 NoSQL (Document DB)의 특징이 올바르지 않은 것은?
+![image](https://user-images.githubusercontent.com/68424403/173806303-a27c14e5-7d00-46e9-b3eb-ad2f3e1249f0.png)
+
+
+
+
+### 정답
+NoSQL은 데이터를 2차원 구조의 Collection이 담고 있다.  (X)
+<br><br>
+
+### 해설
+
+
+- RDBMS의 특징
+
+
+<br><br>
+
+- NoSQL의 특징
+
+
+<br>
+
+|분류|RDBMS|NoSQL|
+|---|---|---|
+|개념|관계형 데이터베이스 관리 시스템(Relational DataBase Management System)|ㅁ| 
+|사용 사례|MySQL<br> Oracle<br> PostgreSQL<br> IBM DB2 등|ㅁ|
+|
+
+
+<br><br>
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+# Q16
+## [OS] Thread와 Process에 대한 설명 중 올바르지 않은 것은?
+![image](https://user-images.githubusercontent.com/68424403/173806856-519518c0-2582-4477-9926-b73c233643e4.png)
+
+
+### 정답
+하나의 Process에는 하나의 Thread만 존재할 수 있다.
+
+
+<br><br>
+
+### 해설
+
+- Thread: Process 내에서 실제로 실행되는 단위
+- Thread는 CPU의 사용 효율을 높임
+- CPU의 개수가 많아 여유가 있을 때 Process 방식이 Thread 방식보다 효율적이다.
+
+
+<br><br><br>
+
+
+
+
+
+# Q17
+## Network 관련 설명 중 가장 올바른 것은?
+![image](https://user-images.githubusercontent.com/68424403/173807147-c8c087cc-dd2a-4812-af43-995fe6b4a644.png)
+
+
+
+### 정답
+스위치, 허브, 라우터, 랜카드, 리피터 등은 모두 네트워크 장비의 일종이다.
+
+<br><br>
+
+### 해설
+
+- 도메인 주소는 범용(모든) DNS에 뿌려져 저장된다.
+- UDP는 전송결과를 알 수 없어 TCP에 비해 신뢰할 수 없다.
+- 각 브라우저는 각자의 포트로 통신하므로 2개의 포트가 사용된다.
+
+
+
+- 포트란?<br>
+네트워크 서비스나 특정 프로세스를 식별하는 논리 단위<br>
+컴퓨터끼리 정보를 교환하기 위해 사용하는 가상의 논리적 접속 위치<br>
+포트를 사는 계층은 전송 계층 프로토콜이며, TCP(전송 제어 프로토콜)와 UDP(데이터그램 프로토콜)이 이에 해당된다.<br>
+
+
+
+
+
+- TCP와 UDP의 특징<br>
+
+|특징\명칭|TCP (전송 제어 프로토콜)|UDP (사용자 데이터그램 프로토콜)|
+|---|---|---|
+|개념|신뢰성 있는 데이터 통신을 가능하게 해주는 프로토콜|TCP보다 신뢰성이 떨어지지만 전송 속도가 일반적으로 빠른 프로토콜<BR> 비교적 데이터의 신뢰성이 중요하지 않을 때 사용 (영상 스트리밍 등)|
+|통신 방식|Connection 연결 (3 way-handshake) - 양방향 통신|ㅁ|
+|데이터의 순차전송|O|X|
+|흐름 제어(Flow Control)|O|X|
+|혼잡 제어(Congestion Control)|O|X|
+|오류 감지(Error Detection)|O|O|
+|데이터 전송을 위해 사용하는 프로토콜|TCP에서 데이터 전송을 위해 사용하는 프로토콜은 HTTP(하이퍼 텍스트 전송 프로토콜), HTTPs(하이퍼 텍스트 전송 프로토콜 보안), FTP(파일 전송 프로토콜), SMTP(단순 메일 전송 프로토콜)|UDP에서 데이터 전송을 위해 사용하는 프로토콜은 BOOTP(Bootstrap 프로토콜), DHCP(동적 호스트 구성 프로토콜), DNS(도메인 이름 서버), TFTP(간이 파일 전송 프로토콜)|
+|기본 기능|데이터 패킷의 통신 프로세스를 시작하기 전에 항상 먼저 소스와 대상 호스트 간의 연결을 설정함|원본과 대상 끝 사이에 링크를 설정하지 않고 데이터를 대상 호스트로 직접 전달함|
+|연결 유형|데이터 전송을 시작하기 전에 연결을 설정해야하며, 발신자와 수신자 간의 통신이 끝나면 통신 장치가 연결을 종료하거나 종료해야 함을 의미하는 연결 지향 프로토콜|소스와 대상 끝 사이에 연결을 설정, 유지 및 종료 할 의무가 없음을 나타내는 연결없는 프로토콜입니다. 브로드 캐스트 및 멀티 캐스트 목적에 가장 적합|
+|속도|UDP보다 느림|TCP보다 빠르며 간단하며 효율적|
+|신뢰|안정적 (데이터 전송을 시작하기 전에 연결을 설정해야 하며, 발신자와 수신자간 통신이 끝나면 통신 장치가 연결을 종료하거나 종료해야함을 뜻함)|신뢰할 수 없음 (데이터의 패킷 전달이 보장되지 않으므로 신뢰할 수 없는 프로토콜임)|
+|문제점|전송의 신뢰성은 보장하나 매번 connection을 연결해서 시간 손실이 발생 (3 way-handshake), 패킷을 조금만 손실해도 재전송|
+
+
+<br><br><br>
