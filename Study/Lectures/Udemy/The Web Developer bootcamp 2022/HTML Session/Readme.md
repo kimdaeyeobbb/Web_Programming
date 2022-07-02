@@ -57,3 +57,73 @@
   새로운 기능을 추가하지도, 새로운 시각 효과를 내지도 않는다.<br>
   마크업에 의미를 부여한다는 것을 제외하면 전혀 새로울 것이 없다.<br>
   div,div,div만 반복해서 쓰기보다 article, section, main을 쓰는 것이다.<br>
+
+<br><br>
+
+## Semantic Markup Instructions
+
+- main<br>
+  문서의 주요 내용을 나타냄<br>
+  페이지의 주요 내용을 의미함 &amp; 페이지 전반에서 계속 반복되는 내용은 전부 제외함<br>
+  여러 페이지에서 반복되는 것은 페이지의 메인 컨텐츠에 포함되지 않음<br>
+  Ex) 사이드바, nav 링크, 저작권 정보, 로고 검색 형식 등
+  Ex)
+
+<br>
+
+- nav<br>
+  페이지에서 내비게이션 링크를 제공하는 것들<br>
+  wikipedia처럼 같은 페이지의 다른 부분을 가리키는 링크일 수 있음<br>
+  다른 사이트로 이동하는 링크가 아니라 페이지내 다른 곳으로 이동<br>
+  또는 전혀 다른 출처로 이동하는 링크 일 수 있다<br>
+  nav는 링크를 포함하여 원하는 내용으로 채우면 됨<br>
+
+```html
+<nav class="crumbs">
+  <ol>
+    <li class="crumbs"><a href="bikes">Bikes</a></li>
+    <li class="crumbs"><a href="bikes/bmx">BMX</a></li>
+    <li class="crumbs"><a href="bikes">Just Bike 3000</a></li>
+  </ol>
+</nav>
+
+<h1>Jump Bike 3000</h1>
+<p>아무 내용 입력</p>
+```
+
+<br>
+
+- section<br>
+  웹 사이트나 애플리케이션의 독립적인 부분을 나타냄<br>
+  (div는 제네릭 컨테이너이므로 아무 곳에나 다 쓸 수 있음-medium)<br>
+  div와 달리 section은 내용의 한 부분. 웹 사이트의 독립적인 부분이어야 함<br>
+  nav 대신 section을 사용할 수 있음<br>
+  section태그 설정 후에도 크게 달라지는 것은 없지만 테두리를 넣거나 색을 바꾸는 등 하나의 그룹으로 묶어서 처리하고 싶을 경우 div보다는 section이 낫다<br>
+
+<br>
+
+- article<br>
+
+  문서 내의 독립적인(self-contained) 구성을 나타냄<br>
+
+  독립적인 구성 &amp; 다시 사용할 수 있는 것이기만 하면 되므로 한 페이지에 하나 이상의 article이 있을수도 있다<br>
+
+  내용을 그룹으로 묶을 때 사용하는 요소<br>
+
+  <br>
+
+- aside<br>
+
+  문서의 일부가 될 수 있지만 필요조건은 아니다<br>
+
+  사이드바나 말풍선 등으로 표현함<br>
+
+  <br>
+
+- header<br>
+
+  네비게이션 관련 내용을 포함함<br>
+
+<br>
+
+- footer<br>
