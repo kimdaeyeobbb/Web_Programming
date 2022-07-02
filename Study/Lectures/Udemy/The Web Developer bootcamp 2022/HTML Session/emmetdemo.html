@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmet Demo</title>
+</head>
+
+<body>
+    <!-- Emmet 예시1(자식 (>)사용) - main>section>h1 입력으로 만듦 -->
+    <main>
+        <section>
+            <h1></h1>
+        </section>
+    </main>
+    <!-- Emmet 예시2(자식 (>) 사용) - nav>ul>li로 만듦 -->
+    <nav>
+        <ul>
+            <li></li>
+        </ul>
+    </nav>
+
+    <!-- Emmet 예시3(형제 (+) 사용)-->
+    <h1></h1>
+    <h2></h2>
+    <h3></h3>
+
+    <!-- Emmet 예시4 (Multiplication (*)사용 - 유사한 작업시 유용) - ul>lu*5로 만듦 -->
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <!-- Emmet 예시5 (Item numbering ($) - 번호 부여) -->
+    <!-- ul>li.item$*5 -->
+    <ul>
+        <li class="item1"></li>
+        <li class="item2"></li>
+        <li class="item3"></li>
+        <li class="item4"></li>
+        <li class="item5"></li>
+    </ul>
+
+    <!-- nav>ul>li*5>a[href=$]-->
+    <nav>
+        <ul>
+            <li><a href="1"></a></li>
+            <li><a href="2"></a></li>
+            <li><a href="3"></a></li>
+            <li><a href="4"></a></li>
+            <li><a href="5"></a></li>
+        </ul>
+    </nav>
+
+    <!-- {} - 새로운 요소에 텍스트를 넣을 때 사용 -->
+    <!-- a{Click me}-->
+    <a href="">Click me</a>
+
+    <!-- nav>ul>li*5>a[href=www.$.com]{Click Me} -->
+    <nav>
+        <ul>
+            <li><a href="www.1.com">Click Me</a></li>
+            <li><a href="www.2.com">Click Me</a></li>
+            <li><a href="www.3.com">Click Me</a></li>
+            <li><a href="www.4.com">Click Me</a></li>
+            <li><a href="www.5.com">Click Me</a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>
