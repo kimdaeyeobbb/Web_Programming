@@ -509,3 +509,43 @@
 - input은 아님을 명심하자<br>
 
 <br><br>
+
+## 유효성 검사
+
+- 일반적으로 제한을 추가하거나 사용자 입력 또는 데이터의 유효성을 확인하는 것임<br>
+
+  ex) 어떤 필드는 절대 비어 있으면 안된다<br>
+
+  ex2) 비밀번호는 7~12자리 여야 한다<br>
+
+  ex3) 비밀번호는 특수문자, 소문자,대문자, 숫자를 포함하며 공백은 없어야한다<br>
+
+<br>
+
+- 서버 자체에서도 유효성 검사를 수행한다<br>
+
+  서버는 받은 데이터가 기준에 맞는지 확인한다<br>
+
+- 사용 예시<br>
+
+```html
+<!-- 유효성 검사 -->
+<h2>Validations Demo</h2>
+<form action="/dummy">
+  <label for="first">Enter First name</label>
+  <!-- required: value를 필수 입력값으로 두고 싶을때 사용-->
+  <input type="texxt" name="first" id="first" required />
+  <p>
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      minlength="5"
+      maxlength="20"
+      required
+    />
+  </p>
+  <button>Submit</button>
+</form>
+```

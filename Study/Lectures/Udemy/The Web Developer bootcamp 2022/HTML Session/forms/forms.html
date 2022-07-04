@@ -226,8 +226,21 @@
             <textarea id="requests" rows="10" cols="60" name="Requests?" placeholder="Type Something here"></textarea>
         </p>
         <button>Submit</button>
+
     </form>
 
+    <!-- 유효성 검사 -->
+    <h2>Validations Demo</h2>
+    <form action="/dummy">
+        <label for="first">Enter First name</label>
+        <!-- required: value를 필수 입력값으로 두고 싶을때 사용-->
+        <input type="texxt" name="first" id="first" required>
+        <p>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" minlength="5" maxlength="20" required>
+        </p>
+        <button>Submit</button>
+    </form>
 </body>
 
 </html>
