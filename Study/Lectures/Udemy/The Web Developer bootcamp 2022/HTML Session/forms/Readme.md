@@ -115,7 +115,7 @@
   (아래 예시 참고)
 
   ```html
-  form action="/tacos">
+    <form action="/tacos">
           <!-- 여기서 label태그와 input 태그가 username을 매개체로 연결되어 있다 -->
           <!-- label과 input을 중첩하지 않는 흔한 방법 -->
           <!-- 이 방법이 스타일 지정이 편하다 -->
