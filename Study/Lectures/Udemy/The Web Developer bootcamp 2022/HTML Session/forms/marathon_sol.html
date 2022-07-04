@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register From</title>
+</head>
+
+<body>
+    <h1>Race Registration!</h1>
+    <form action="">
+        <div>
+            <label for="first">First Name</label>
+            <!-- name: 데이터를 제출할 때 사용되는 이름이므로 유용한 속성 -->
+            <input type="text" id="first" name="firstname" required>
+            <label for="last">Last Name</label>
+            <input type="text" id="last" name="lastname" required>
+        </div>
+
+        <p>Select a Race: </p>
+
+        <!-- 줄을 나누기 위해 각각의 쌍을 div로 감싸자 -->
+        <div>
+            <!-- input:radio 라는 emmet 이용 -->
+            <!-- 라디오 버튼 마다 label이 필요 -->
+            <!-- id는 숫자로 시작하면 안된다 -->
+            <!-- 라디오 버튼 3개의 이름 속성을 같게 만들어서 이것들을 연결하여 브라우저가 같은 데이터라고 인식하도록 하자 -->
+            <!-- radio 버튼의 value 값은 옵션 각각에 할당된 실제 값임-->
+            <input type="radio" name="race" id="funrun" value="funrun">
+            <label for="funrun">Fun Run 5k</label>
+        </div>
+        <div>
+            <input type="radio" name="race" id="half" value="half">
+            <label for="half">Half Marathon</label>
+        </div>
+        <div>
+            <input type="radio" name="race" id="full" value="full">
+            <label for="full">Full Marathon</label>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+
+        <div>
+            <label for="division">Select Age Group</label>
+            <select name="division" id="division">
+                <option value="kids">under 18</option>
+                <option value="ya">18-30</option>
+                <option value="adults">30-50</option>
+                <option value="seniors">50+</option>
+            </select>
+        </div>
+        <button>Register</button>
+    </form>
+</body>
+
+</html>
