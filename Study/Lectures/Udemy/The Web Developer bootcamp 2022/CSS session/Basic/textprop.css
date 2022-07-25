@@ -1,0 +1,34 @@
+/* 요소 자체가 화면 전체를 가로지르게 됨  & 정렬 */
+
+h1 {
+  /* 텍스트 정렬로 h1 전체를 움직일 수는 없다 */
+  /* 해당 h1에 대한 내용의 한도 내에서만 작용함 */
+  text-align: center;
+  font-weight: 700;
+  text-decoration: #f78120 underline wavy;
+  letter-spacing: 20px;
+  /* 반응형 웹에서는 픽셀은 비추천 (픽셀은 절대적인 단위이므로)*/
+  font-size: 100px;
+
+  /* 두번째 대체(백업)폰트인 Arial은 앞선 두 개가 다 없는 상태여야 적용 */
+  font-family: Lucida Grande, Verdana, Arial;
+}
+
+h2 {
+  text-decoration: overline;
+}
+
+p {
+  text-align: center;
+  line-height: 2;
+}
+
+h3 {
+  /* line-through: to do list에서 완료한 사항을 지울 때 유용 */
+  text-decoration: line-through;
+}
+
+/* 마우스 커서를 올려놓기 전까지는 밑줄표시가 나타나지 않게 만듦 */
+a {
+  text-decoration: none;
+}
