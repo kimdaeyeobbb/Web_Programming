@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<footer lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CSS Selectors</title>
+        <link rel="stylesheet" href="./selec.css">
+    </head>
+
+    <body>
+        <nav>
+            <label for="search">Search</label>
+            <!-- id는 label과 input을 연결할 뿐 아니라 CSS의 모든 요소에 훅을 제공한다 -->
+            <input type="text" placeholder="search" id="search">
+            <button>Log In</button>
+            <!-- button id ="" => 얘는 CSS에서 이 버튼을 가리키는 단순한 훅 -->
+            <!-- id값을 넣어줘야 달라짐 -->
+            <button id="signup">Sign Up</button>
+        </nav>
+        <main>
+            <h1>Polpular Posts</h1>
+            <!-- section
+                - 뭔가를 대표하므로 클래스를 부여하자 => 섹션마다 다른 스타일을 적용할 수 있다
+-->
+            <section class="post">
+                <span>Posted by <a href="#213adas">/u/not_funny</a></span>
+                <h2>Lol look at this hilarious meme<span class="tag">funny</span></h2>
+                <button>+Vote</button>
+                <hr>
+            </section>
+            <section class="post">
+                <span>Posted by <a href="#345adas">/u/gooner41lyfe</a></span>
+                <h2>Happy birthday to the strongest defender/bodyguard in the Prem! <span class="tag">gunners</span>
+                </h2>
+                <button>+Vote</button>
+                <hr>
+            </section>
+            <section class="post">
+                <span>Posted by <a href="#981adas">/u/dogfan</a></span>
+                <h2>This Corgi got some good stuff from the vet. <span class="tag">dogs</span></h2>
+                <button>+Vote</button>
+                <hr>
+            </section>
+        </main>
+        <footer>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="#puppies">Puppies</a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+
+    </html>

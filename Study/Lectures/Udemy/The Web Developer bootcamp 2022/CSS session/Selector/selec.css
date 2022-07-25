@@ -1,0 +1,52 @@
+/* 전체 선택자 */
+* {
+  color: pink;
+}
+
+/* 요소 선택자 */
+button {
+  font-size: 30px;
+  background-color: #f1faee;
+}
+
+h1,
+h2 {
+  color: skyblue;
+  background-color: #f1faee;
+}
+
+body {
+  background-color: #f1faee;
+}
+
+/* ID Selector - id명 앞에 우물정자를 붙여야 함 */
+
+#signup {
+  background-color: #1d3557;
+  color: #f1faee;
+}
+
+/* class
+- 스티거 같은 것 
+- 나중에 찾고 싶은 어떤 요소에든 붙일 수 있음
+- 
+*/
+
+.tag {
+  background-color: #e63946;
+  color: #f1faee;
+  font-size: 16px;
+}
+
+/* 자손 선택자 
+- span a보다 효율적
+- post에 속한 a태그
+*/
+
+.post a {
+  color: #457b9d;
+}
+
+footer a {
+  color: #e63946;
+}
