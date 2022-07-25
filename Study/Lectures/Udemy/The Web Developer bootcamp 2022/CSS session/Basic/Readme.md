@@ -1,8 +1,6 @@
 # [Section 6] CSS Basic
 
-## 6-60. 스타일을 올바르게 담기
-
-### CSS 작성 스타일
+## CSS 작성 스타일
 
 1. INLINE STYLE
 
@@ -61,4 +59,79 @@
 
    <br>
 
-   > - a
+<br><br>
+
+## CSS Text Properties
+
+<br>
+
+### :one: font-align (텍스트 정렬)
+
+- 텍스트 정렬을 할 때 사용
+
+<br>
+
+### :two: font-weight (폰트 굵기)
+
+- 선택한 텍스트에서 주어진 부분의 굵기를 조정하는 것
+
+<br>
+
+### :three: text-decoration
+
+- 텍스트를 꾸미는 선을 조정
+
+- 밑줄, 윗줄, 취소선 같은 것들이 있는 경우 이런것들을 조정한다
+
+```css
+h1 {
+  text-decoration: underline;
+}
+```
+
+<br>
+
+### :four: line-height
+
+- 텍스트의 줄 간격을 지정
+
+<br>
+
+### :five: letter-spacing
+
+- 텍스트의 글자 사이의 간격을 조절
+
+<br><br>
+
+## FONT FAMILY
+
+- 요소의 폰트를 변경할 때 사용
+
+- 폰트를 변경하는 작업은 브라우저에 내제된(built-in) 폰트에 따라 다르기 때문에 또 다른 주제인 사용자 지정 폰트를 설치 또는 삽입하는 방법을 배우기 전에는 생각보다 간단하지 않을 수 있다
+  (따라서 그 전까지는 브라우저 폰트나 웹 안전 폰트를 쓰도록 하자)
+
+- 사용방법
+  ```css
+   {
+    font-family: verdana;
+  }
+  ```
+
+<br>
+
+### font stack
+
+- 사용하려는 폰트를 순서대로 적은 목록
+
+- 백업(대체)폰트는 제네릭 패밀리에서 지정할 수 있다
+
+- 사용예시
+
+```css
+/* 쉼표 앞은 첫번째 선택, 쉼표 뒤는 다음 선택 */
+h1 {
+  font-family: Gill Sans Extrabold, sans-serif;
+}
+/* sans-serif: 백업용 대체 폰트임. 특정 폰트가 아니라 Sans Sarif라는 font family이다
+(따라서 Sans Serif 폰트 중에서 또다른 것들이 사용가능하다) */
+```
