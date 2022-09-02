@@ -82,6 +82,8 @@ div {
     - margin이 존재시 부모가 제공하는 contents 영역만큼 가득 채워야지! 해줌
     - margin left를 고려한 것을 기반으로 가득채움 (마우스를 오른쪽 끝으로 스크롤시)
     - 부모가 제공해주는 컨텐츠 영역의 크기만큼 가득 채움. margin, padding, border등을 고려해서 가득 채움.
+    
+![unknown](https://user-images.githubusercontent.com/68424403/188040319-cb60f694-3199-4642-b76b-8f4521189986.png)
 
 - margin
 
