@@ -1,0 +1,78 @@
+/* type selector => 너무 광범위함. 좋은 방법이 아님 
+여기서 div는 type selector. 4개를 지칭하게 되므로 위험 */
+/* 얘를 .wrapper로 수정하는게 좋음
+div {
+  background-color: orange;
+  width: 800px;
+  margin: 0 auto;
+}
+*/
+
+/* 기본 스타일을 없애주기 위해 의도적으로 type selector 이용 */
+/* margin을 의도적으로 0으로 초기화 */
+
+h1,
+p {
+  margin: initial;
+}
+
+/* h1은 container에 해당 (컨텐츠를 감싸는 그릇) */
+/* h1내부의 텍스트는 inline element의 성질을 띔 (단지 태그가 없을 뿐임) */
+h1 {
+  background-color: aqua;
+  width: 300px;
+  /* text-align: center는 h1을 가운데 정렬 시키지 않음 (h1 내부의 요소에 영향) */
+  /* 다음의 것들을 통해 h1이 가운데 정렬이 됨 */
+  /* margin: 0 auto => block level element을 가운데 정렬 */
+
+  /* text-align: right => text-align: center가 상속되어도 내 성질을 우선시 함 */
+  text-align: right;
+}
+
+p {
+  background-color: bisque;
+  width: 300px; /* 오른쪽 영역은 p의 곤간이며 사용가능한 공간임*/
+  /* width: auto
+  margin-left: auto;
+  등으로 사용가능 
+  => p라는 container가 옮겨진 것 */
+
+  /* margin-left와 margin-right를 auto로 설정 -> p영역 전체를 가운데 정렬 */
+  margin-left: auto;
+  margin-right: auto;
+
+  /* 텍스트 가운데 정렬 -> 안에있는 inline들이 반응하게 만듦 */
+  text-align: center;
+}
+
+.wrapper {
+  background-color: orange;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  background-image: url(images/cover06.png);
+  /* text-align center는 h1과 p를 가운데 정렬 시킨적이 없다
+  
+  무슨말일까?
+  => h1은 block level element, width: auto로 설정되어있음. 부모가 설정한 컨텐츠 영역크기만큼 가득 채움
+  => text-align: center는 h1이 아닌 h1 내부에있는 텍스트에 영향을 준것이다(inline elements)
+  inline elements => 내부에 있는 텍스트, 이미지까지 포함함. 여기서는 부모에서 설정한 text-align의 영향을 받음
+  
+  => 즉, h1과 p자체가 가운데 정렬이 된것이 아닌 h1과p 내부에 있는 요소들이 text-align:center의 영향을 받은 것이다 (h1과 p의 배경색을 넣어보면서 직접 확인할 것)*/
+
+  text-align: center; /* 블록 레벨의 하위에 존재하는 모든 것들이 적용받음*/
+  color: yellow; /* 상속되는 property */
+}
+
+img {
+  /* 이미지에는 text-align: center 적용 X (이미지는 블록레벨요소가 아님) */
+  /* margin: 0 auto도 의미없음 (블록레벨요소에 적용되는 작업이므로)*/
+  /* 따라서 img의 상위요소에 text-aling:center를 적용시킬 것 (블록 레벨요소에 작업을 해서 inline 요소인 img에 적용되게끔 만듦) */
+  background-color: red;
+}
+
+.footer {
+  background-color: #999;
+}

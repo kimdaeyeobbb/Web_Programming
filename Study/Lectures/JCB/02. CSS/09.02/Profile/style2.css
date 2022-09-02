@@ -1,0 +1,185 @@
+/* Reset */
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* 기본 마크업 제거 (reset) */
+li {
+  list-style-type: none;
+}
+
+h1,
+h2 {
+  /* font-size: 16px; , font-size: initial 등
+    이렇게 h1을 기본폰트사이즈인 16px로 초기화하면 안됨. h1은 폰트 사이즈를 초기화해주고자 폰트사이즈를 고정해주면 부모의 font-size가 도달하지 못하는 상황이 발생 (폰트 사이즈는 기본적으로 상속이 되는 property이다) */
+
+  /* 이처럼 부모의 값을 받아오게끔 만드는 게 좋음 (폰트 사이즈를 상속 받음)*/
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  /* color 초기화 (사용자 스타일 시트 내용 제거) */
+  color: inherit;
+
+  /* text-decoration 초기화 (사용자 스타일 시트 내용 제거)*/
+  text-decoration: inherit;
+}
+
+/* Components */
+.wrapper {
+  background-color: #ddd;
+  /* width는 상속이 아님. 
+  header의 width는 auto이기 때문에
+  직계 부모의 크기만큼 가득차게 됨. 
+  header의 width는 설정된 적이 없음.
+  
+  상속 - 부모에게 설정한 것이 그대로 내려오는 것 */
+  width: 800px;
+  margin: 0 auto;
+}
+
+/* 상단 부분의 큰 레이아웃 완성 */
+.header {
+  color: white;
+  text-align: center;
+  /* margin-top 대신 padding 사용 => 텍스트의 변화에 유연하게 대처 가능 */
+  padding: 50px 0;
+  /*background-size: 100% 100%;
+   100%, 100% => 가로(너비), 세로(높이) 기준으로 이미지 사이즈가 꽉 차게 만듦*/
+
+  /* 이미지 비율이 깨지지 않게 하게 위해 100%,100% 대신 cover 사용*/
+  background-size: cover;
+
+  background-image: url(./images/cover02.png);
+}
+
+/* type selector는 사용을 자제할 것. 모든 이미지에게 이 속성이 적용 되버림 */
+/* 지금은 이미지가 하나이지만, 앞으로 이미지가 추가되면 모든 이미지에 이 속성이 자동으로 추가 되어버림. 따라서 class를 사용할 것 */
+/*
+img {
+  border-radius: 50%;
+  border: 5px solid white;
+}
+*/
+
+/* .header > img => >는 직계 자식이라는 표시 */
+/* header 하위의 모든 img에 적용 (decendent selector: 하위 셀렉터) */
+.header img {
+  border-radius: 50%;
+  border: 5px solid white;
+}
+
+.header h1 {
+  font-size: 80px;
+  font-weight: bold;
+}
+
+/* p요소는 블록레벨요소임. width값이 지정되지 않았을 경우 width는 auto로 되어있음
+width: auto는 부모가 지정한 영역만큼 컨텐츠가 가득 차는 것 
+p 내부의 텍스트는 인라인레벨요소임 */
+.header p {
+  border-top: 5px solid;
+  /* p요소의 컨텐츠 양만큼 너비가 자동으로 잡히도록 width: 300px처럼 설정하지 말고 다음과 같이 설정 
+  width: fit-content => 내부 텍스트 크기만큼 width값이 결정됨*/
+
+  width: fit-content;
+  margin: 0 auto;
+
+  /* border와 텍스트 사이의 영역에 간격을 주기 위한 작업 */
+  /*
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  */
+  padding: 10px 20px;
+}
+
+.section {
+  /* 배경화면 기본특성 => 도배되어 반복되는 특성 */
+  background-image: url(./images/icon-information.png);
+  /* 따라서 기본 속성을 없앰 => 반복제거 */
+  background-repeat: no-repeat;
+  /* 오른쪽 기준 30px 떨어짐. 세로기준 center*/
+  background-position: right 40px center;
+  background-color: white;
+  margin: 20px;
+  padding: 20px;
+}
+
+/* 여기에 작성된 코드는 .section보다 후반영 
+최종적으로 CSS에 작성한 코드가 모여서 적용됨 (.section + .skill)
+=> 이것이 css의 특성이다 */
+
+/* skill에 추가 특성 기재시 이것이 더 우선시 되어 적용됨
+단, skill이 section보다 위에 존재하면 skill 선적용 후 section이 적용되므로
+skill의 특성은 반영되지 않는다 */
+.skill {
+  background-image: url(images/icon-skills.png);
+}
+
+/* 위의 코드보다 이렇게 작성하는 것이 더 좋다 */
+/*
+.section {
+  background-repeat: no-repeat;
+  background-position: right 40px center;
+  background-color: white;
+  margin: 20px;
+  padding: 20px;
+}
+
+.information {
+  background-image: url(./images/icon-information.png);
+}
+
+.skill {
+  background-image: url(images/icon-skills.png);
+}
+
+*/
+
+.section h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.footer {
+  /* 부모인 footer에 text-align 적용
+    => 인라인 요소인 a가 영향을 받게끔 만듦*/
+  text-align: center;
+  background-color: white;
+  padding: 20px 0;
+
+  /* background-color: inherit;
+  => 상속이 안되나, 억지로 상속시킨 케이스*/
+}
+
+.link {
+  /* width가 없으면 텍스트의 양만큼 너비가 잡힘 */
+  /* height가 없으면 텍스트의 높이만큼 자동으로 높이가 잡힘 */
+  padding: 10px 20px;
+
+  /* display => 블록 요소를 인라인화, 인라인요소를 블록화 함*/
+  /* inline-block => 인라인의 특성과 블록의 특성이 골고루 포함되어 있음 */
+  display: inline-block;
+  border-radius: 40px;
+  border: 4px solid;
+  color: #ccc;
+}
+
+.link.github {
+  color: dodgerblue;
+}
+
+.link.facebook {
+  color: violet;
+}
+
+.link.contact {
+  color: black;
+}

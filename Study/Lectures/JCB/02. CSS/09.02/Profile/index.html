@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style2.css">
+    <title>Make Profile</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- class 명은 숫자로 시작하면 안됨 & 지칭대상을 구체적으로 지시 -->
+        <!-- 헤더 영역공간을 어떻게 분리할 것인지 윤곽이 나오면  <div class="header">Header</div> 를 다음과 같이 수정-->
+        <div class="header">
+            <!-- 추가 마크업 -->
+            <img src="./images/profile03.png">
+            <h1>JANE DOE</h1>
+            <!-- h2는 두번째 단계의 제목
+            JANE DOE(신원 미상의 인물 - 홍길동과 같은 역할)의 Information이 h2이고, 
+            FRONT-END DESIGNER는 h1를 보충해주는 컨텐츠이므로 h2 대신p태그 사용하는것이 적절 -->
+            <p>FRONT-END DESIGNER / DEVELOPER</p>
+            <!-- 브라우저단에서 유저 에이전트 스타일 시트가 각각 요소들에게 제공해주는 요소들로만 구성되어 있는 강태이므로 유저 사용자 스타일로 바꾸는 작업이 필요함 (깐 메추리알, 밀키트 정도의 역할을 하게끔 만들어줘야 함)-->
+
+        </div>
+        <div class="contents">
+            <div class="section information">
+                <h2>Information</h2>
+                <!-- ul: unordered list (순서없는 리스트)-->
+                <ul>
+                    <li>Danny</li>
+                    <li>DannyKim@naver.com</li>
+                    <li>Seoul, Korea</li>
+                </ul>
+            </div>
+            <!-- skill 이라는 두번째 클래스 달아줘서 개별 특성 반영시키기 -->
+            <div class="section skill">
+                <h2>Skills</h2>
+                <!-- ul: unordered list (순서없는 리스트)-->
+                <ul>
+                    <li>Photoshop</li>
+                    <li>Graphic Design</li>
+                    <li>HTML/CSS, javascript</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer">
+            <!-- a는 인라인요소이므로 가로로 배치 -->
+            <a class="link github" href="">Github</a>
+            <a class="link facebook" href="">Facebook</a>
+            <a class="link contact" href="">Contact</a>
+        </div>
+    </div>
+</body>
+
+</html>
