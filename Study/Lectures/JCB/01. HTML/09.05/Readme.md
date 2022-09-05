@@ -32,3 +32,21 @@
 # Ref
 
 [Tim Berners-Lee: Semantic markup with linked data](https://www.youtube.com/watch?v=OM6XIICm_qo&t=332s)
+
+
+<hr>
+<br><br>
+
+
+# HW1 - Samsung Homepage analysis
+
+
+- header: 브랜딩 영역 표시. 회사의 로고 및 이미지를 포함
+- aside
+    - 로그인, 광고 등 기타 컨텐츠를 포함 
+    - 본문 영역 옆에 사용하는 태그, 해당 본문의 옆에 공지사항 표시 / 문의사항 목록을 표시할 때 사용
+- nav(navigation): 메뉴영역에 사용
+- heading 태그 내에 p태그를 따로 사용하면 문법오류
+- html 파일 내에 구조를 짤 때 html 언어 자체를 최대한 효율적으로 사용해야함 (필요없는 마크업의 사용을 최소화할 것)
+- 한 섹션의 제목은 모든 내용을 포괄할 수 있어야 함
+- ㅁ
