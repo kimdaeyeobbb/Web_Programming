@@ -69,7 +69,7 @@ p {
 img {
   /* 이미지에는 text-align: center 적용 X (이미지는 블록레벨요소가 아님) */
   /* margin: 0 auto도 의미없음 (블록레벨요소에 적용되는 작업이므로)*/
-  /* 따라서 img의 상위요소에 text-aling:center를 적용시킬 것 (블록 레벨요소에 작업을 해서 inline 요소인 img에 적용되게끔 만듦) */
+  /* 따라서 img의 상위요소에 text-alingn:center를 적용시킬 것 (블록 레벨요소에 작업을 해서 inline 요소인 img에 적용되게끔 만듦) */
   background-color: red;
 }
 
