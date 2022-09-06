@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>srcset 확인</title>
+</head>
+
+<body>
+    <picture>
+        <!-- 906px 이상 일때 a.jpg 로드-->
+        <source srcset="./sample/a.jpg" media="(min-width:960px)" />
+        <source srcset="./sample/b.jpg" media="(min-width:620px)" />
+        <source srcset="./sample/c.jpg" media="귀여운 아기 펭귄들" />
+    </picture>
+</body>
+
+</html>
