@@ -1,85 +1,64 @@
-/* 코드 설계 
-1. 전체 이미지 배치
-2. 인라인 요소와 블록 레벨 요소에 유의
-- 공통 특징: 가운데 정렬 (fox,green, 텍스트)
--  
-
-
-.wrapper {
-  position: relative;
-  text-align: center;
-  background-image: url(./images/bg.png);
+/* 화면에 가득 채우기 위해 height:100% 설정 */
+/* height 값을 100%로 설정 -> 부모요소를 기준으로 100%만큼의 높이 가짐 
+body는 부모인 html을 기준으로 100%를 게산함
+따라서 html에 100% 설정시 모두에게 적용 가능 */
+html,
+body {
+  height: 100%;
 }
-
-.section {
-  background-repeat: no-repeat;
-  background-image: url(./images/animal07.png), url(./images/green.png);
-}
-
-.txt {
-  /* position: absolute 넣으니까 배경이 사라짐 */
-/*  position: absolute;
-  /* top: 50% 넣었을 때 변화X*/
-/*  top: 505%;
-  /* left: 50% 넣었을 때 오른쪽으로 붙어버림 */
-/*  left: 50%;
-  transform: translate(-50%, -50%);
-}
-*/
-
-/*
-#mutiplebg {
-  background-image: url(./images/animal07.png), url(./images/green.png);
-  background-position: right top, 0 0;
-  background-repeat: no-repeat, no-repeat;
-  padding: 75px;
-  text-align: center;
-}
-*/
 
 body {
   background-image: url(./images/bg.png);
 }
 
 /* 기본 스타일 초기화 */
+
 body,
-h1,
-p,
-ul {
+h1 {
   margin: 0;
   padding: 0;
 }
 
-li {
-  list-style-type: none;
-}
-
-.wrapper {
-  position: relative;
-}
-
-#fox {
-  position: relative;
+.fox {
+  /* block 
+  -> 전후 바꿈이 일어나서 다른 요소를 밀어내고 혼자 한 줄을 차지함 
+  -> 인라인 요소와 달리 width, height, margin, padding 속성이 모두 반영됨 */
   display: block;
-  margin: auto;
+  /* 상하단:0px, auto: 중앙에 정렬 */
+  margin: 0px auto;
 }
 
-.row {
-  background-color: orange;
-  color: white;
-  padding-left: 40%;
-  padding-right: 40%;
+/* 이미지 초기화 */
+/* (인라인 요소인) 이미지 아래 여백 제거 */
+img {
+  /* 추천 - 이미지 아래의 베이스라인 배치를 바꿈 */
+  /* 이미지가 vertical-align을 통해 상단으로 붙음 */
+  vertical-align: top;
+
+  /* 비추천 */
+  /*display: block;*/
+}
+
+.text {
+  width: 300px;
+  margin: 0 auto;
   text-align: left;
 }
 
-h1 {
-  text-align: center;
+.soil {
+  background-color: #9a5f32;
+
+  /* 하단 왼쪽, 하단 오른쪽 15px씩 */
+  border-radius: 0 0 15px 15px;
+  /* 하단에 border */
+  border-bottom: 7px solid #703c26;
+
+  color: white;
+
+  padding: 15px;
 }
 
-.col {
-}
-
-/* Component */
-
-.green {
+.soil p {
+  /* opacity: 요소의 불투명도 설정 (0:투명 ~ 1:불투명(기본값)) */
+  opacity: 0.6;
 }
