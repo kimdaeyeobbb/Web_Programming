@@ -1,0 +1,34 @@
+#div1 {
+  background-color: orange;
+  width: 100%;
+  padding: 20px 50px;
+}
+
+/* div에 높이, 너비가 지정되지 않으면 배경색이 나타나지 않는다 */
+#div2 {
+  background-color: blue;
+  width: auto;
+  padding: 20px 50px;
+}
+
+/* 여기서 div는 selector(선택자) '역할' -> 여기서는 태그가 아님*/
+/* 여기서 div -> type selector 임 */
+/* div에 높이, 너비가 지정이 되지 않으면 배경색이 나타나지 않음 */
+div {
+  /* width값 미지정시 width: auto로 되어있음 */
+  /* width: auto => 이 영역만큼 body에 가득 차 있는 것 */
+  width: 200px; /*직계 부모 기준*/
+  height: 200px; /* 자식 기준 */
+  padding: 40px;
+  border: 10px solid red;
+
+  /* box-sizing: content-box; => box-sizing의 initial value */
+  box-sizing: content-box;
+
+  /* margin => 사용가능한 공간을 자동으로 취함 
+  따라서, margin-left auto => 여기서 사용시 오른쪽 정렬됨*/
+  margin-left: auto;
+
+  /* 얘까지 써주면 가운데 정렬 */
+  margin-right: auto;
+}
