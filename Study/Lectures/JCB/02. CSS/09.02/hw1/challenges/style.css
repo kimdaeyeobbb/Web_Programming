@@ -1,0 +1,85 @@
+/* 코드 설계 
+1. 전체 이미지 배치
+2. 인라인 요소와 블록 레벨 요소에 유의
+- 공통 특징: 가운데 정렬 (fox,green, 텍스트)
+-  
+
+
+.wrapper {
+  position: relative;
+  text-align: center;
+  background-image: url(./images/bg.png);
+}
+
+.section {
+  background-repeat: no-repeat;
+  background-image: url(./images/animal07.png), url(./images/green.png);
+}
+
+.txt {
+  /* position: absolute 넣으니까 배경이 사라짐 */
+/*  position: absolute;
+  /* top: 50% 넣었을 때 변화X*/
+/*  top: 505%;
+  /* left: 50% 넣었을 때 오른쪽으로 붙어버림 */
+/*  left: 50%;
+  transform: translate(-50%, -50%);
+}
+*/
+
+/*
+#mutiplebg {
+  background-image: url(./images/animal07.png), url(./images/green.png);
+  background-position: right top, 0 0;
+  background-repeat: no-repeat, no-repeat;
+  padding: 75px;
+  text-align: center;
+}
+*/
+
+body {
+  background-image: url(./images/bg.png);
+}
+
+/* 기본 스타일 초기화 */
+body,
+h1,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.wrapper {
+  position: relative;
+}
+
+#fox {
+  position: relative;
+  display: block;
+  margin: auto;
+}
+
+.row {
+  background-color: orange;
+  color: white;
+  padding-left: 40%;
+  padding-right: 40%;
+  text-align: left;
+}
+
+h1 {
+  text-align: center;
+}
+
+.col {
+}
+
+/* Component */
+
+.green {
+}
