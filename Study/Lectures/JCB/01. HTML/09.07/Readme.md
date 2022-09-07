@@ -151,6 +151,29 @@
 
   <br><br>
 
+# input vs button
+
+- button은 input보다 스타일 적용하기가 편함
+- input은 닫는태그가 없으므로 value특성에 텍스트값만 지정가능
+- 이와달리 button은 내부에 여러가지 자식 컨텐츠를 추가할 수 있음 & ::after 등과 같은 가상요소 사용가능
+
+<br><br>
+
+# UI 에디터
+
+- [TOAST UI](https://ui.toast.com/)
+
+- [부트스트랩기반 에디터](https://summernote.org/)
+
+<br><br>
+
+# table
+
+- 데이터를 동적으로 다룰 때에 tbody에 데이터를 쏴줌
+  (단, thead가 없으면 에러가 나므로 thead도 반드시 적어줄 것)
+
+- scope: 어떤 방향으로 데이터가 진행되는지를 나타내줌
+
 # 기타 내용
 
 - 회사 내에서 디자이너가 기존의 바퀴를 새로 만들어달라고 하면 가능하면 거절할 것
@@ -175,3 +198,20 @@ document.getElementsByTagName('video')[0].playbackRate = 2.5;
 ```
 
 - 버튼 클릭시 양식이 제출되고 해당 페이지가 refresh됨
+
+- [querystring]()
+
+## URL
+
+- 기본구조
+- `https: // user : pass @ sub.example.com :8080 /p/a/t/h ? querty=string # hash`
+
+  - ? 뒤에 query(질의) = string (해시값)
+
+- h1 ~ h6은 익명 영역을 생성 (필드 영역을 생성한다는 뜻)
+
+- [로그인 샘플](https://github.com/paullabkorea/FrontendSchool_1/blob/main/html/sample_%EB%A1%9C%EA%B7%B8%EC%9D%B8.html)
+
+- [약관 동의 샘플](https://github.com/paullabkorea/FrontendSchool_1/blob/main/html/sample_%EC%95%BD%EA%B4%80%EB%8F%99%EC%9D%98.html)
+
+- [회원가입 회원정보입력 샘플](https://github.com/paullabkorea/FrontendSchool_1/blob/main/html/sample_%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85_%ED%9A%8C%EC%9B%90%EC%A0%95%EB%B3%B4%EC%9E%85%EB%A0%A5.html)
