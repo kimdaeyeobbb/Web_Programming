@@ -9,12 +9,40 @@
 </head>
 
 <body>
-    <form action="" method="">
+    <!-- form action은 지정해줘야함. 미지정시 현재 URL을 기본값으로 함  -->
+    <form action="012 form.html">
         <!-- key: name, value: id,pw과같이 key값에 대응하는 값으로 들어오는 것-->
-        <input type="text" name="id" />
-        <input type="password" name="pw" />
-        <button type="submit">로그인</button>
+        <input type="text" name="id" /><br>
+        <input type="password" name="pw" /><br>
+        <input type="button" value="눌러엇!" /><br>
+        <input type="search" /><br>
+        <input type="date" /><br>
+        <input type="time" /><br>
+        <input type="range" /><br>
+        <input type="number" /><br>
+        <input type="color" /><br>
+        <!-- radio button: 택1 -->
+        <input type="radio" /><br>
+        <!-- checkbox: 다중선택 -->
+        <input type="checkbox" /><br>
+        <input type="file" /><br>
+        <input type="email" /><br>
+        <button type="submit">로그인</button><br>
+
+        <!-- 읽기 전용 -->
+        <input type="text" name="성별" value="남" readonly /><br>
+        <input type="text" name="아이디" /><br>
+        <input type="text" name="test" maxlength="10" /><br>
+        <!-- 필수입력 -->
+        개인정보 동의해?<input type="checkbox" name="test" required /><br>
+        <input type="text" placeholder="통장잔고" name="test" required><br>
+        <button type="submit">회원가입</button><br>
+
     </form>
+    <!-- form에 있는 값이 넘겨줘도 괜찮은 값인지 script 태그 내에서 2번째 유효성 검증 수행 (난독화 등 수행되어있는지)-->
+    <script>
+
+    </script>
 </body>
 
 </html>

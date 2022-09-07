@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>label tag</title>
+</head>
+
+<body>
+    이름: <input type="text" name="name" />
+    <hr />
+    <label>
+        이름: <input type="text" name="name" />
+    </label>
+
+    <!-- 결과물을 보면 html 개행때문에 이름 : 과 박스 사이에 간격이 발생 -->
+    <label for="fullname">이름: </label>
+    <input type="text" name="name" id="fullname" />
+</body>
+
+</html>
