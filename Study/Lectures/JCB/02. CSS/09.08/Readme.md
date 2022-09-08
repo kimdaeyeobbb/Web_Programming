@@ -22,13 +22,21 @@
 - 아직 진행중인 프로젝트, 사용시 유의할 것
 - 참고 삼아서 보는정도는 괜찮음
 
-# ref
+# 아이디 선택자 (id selector)
 
-- 빔캠프 소그리기
-- 빔캠프 팀소개 웹 페이지 만들기
-- 빔캠프 반응형 자기소개 페이지, 웹사이트 따라만들기
-- 빔캠프 아코디언 커버 따라만들기 2개
--
+- 페이지 내 요소를 유일하게 식별할 때 사용
+- 같은 페이지 내 id값은 유일해야 함
+- id명은 알파벳 , '\_'(언더바), '-'(하이픈)으로 시작해야 함
+- id명은 직관적이고 간단명료 해야함
+
+# 클래스 선택자 (class selector)
+
+- 해당 요소를 식별할 때 사용
+- 한 페이지내에 여러 개가 존재할 수 있음
+- 알파벳, '\_'(언더바), '-'(하이픈)으로 시작해야함
+- 클래스명은 직관적이고 간단명료 해야함
+- 클래스는 중복이 가능하다
+- [클래스 선택자 예시](./class_selector.html)
 
 # 1만 시간의 법칙
 
@@ -69,6 +77,19 @@
 
 - id는 언더바, 하이픈 등으로 시작해야 함
 
+# 선택자 우선순위
+
+1. 후자 우선의 원칙
+
+   - 동일한 선택자가 연속으로 사용되는 경우 후자에 존재하는 것을 우선시함
+
+2. 구체성(Specificity)의 원칙
+
+   - 한 선택자가 다른 선택자보다 더 구체적으로 작성된 경우 구체적인 선택자를 우선으로 함
+
+3. 중요성의 원칙
+   - 다른 속성보다 더 우선적으로 적용되어야 할 중요한 스타일 속성이 있는 경우 속성값 다음에 `!important`를 추가함
+
 # CSS Specificity - CSS 구체성(명시도)
 
 - 같은 우선순위일 경우 후자의 것을 우선시함
@@ -108,10 +129,29 @@
 
 - [잭오랜턴 캐릭터 따라 만들기](https://www.youtube.com/watch?v=-whGdudSBqU&ab_channel=%EB%B9%94%EC%BA%A0%ED%94%84CSS)
 
-- [Reset CSS](https://meyerweb.com/eric/tools/css/reset/)
+- [에릭 마이어의 Reset CSS](https://meyerweb.com/eric/tools/css/reset/)
+
+- [normalize css (reset css)](https://necolas.github.io/normalize.css/)
+
+- [sanitize css (reset css)](https://csstools.github.io/sanitize.css/)
+
+- [cssremedy (reset css)](https://github.com/jensimmons/cssremedy)
 
 - [Autoprexier CSS](https://autoprefixer.github.io/)
 
 - [Specificity Calculator](https://autoprefixer.github.io/)
 
 - [1만 시간의 법칙 Figma](https://www.figma.com/file/YIoHn24LhFrCBEedo96rx6/1%EB%A7%8C-%EC%8B%9C%EA%B0%84%EC%9D%98-%EB%B2%95%EC%B9%99?node-id=0%3A1)
+
+- [caniuse (브라우저에 따라 사용가능한 HTML 요소, CSS 속성, JS문법 등의 정보를 제공)](https://caniuse.com/)
+
+- [CSS 자가진단 체크리스트](https://velog.io/@teo/css-self-checklist)
+
+- [MDN- CSS 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Selectors)
+
+- [MDN- CSS 참고서](https://developer.mozilla.org/ko/docs/Web/CSS/Reference)
+
+- 빔캠프 소그리기
+- 빔캠프 팀소개 웹 페이지 만들기
+- 빔캠프 반응형 자기소개 페이지, 웹사이트 따라만들기
+- 빔캠프 아코디언 커버 따라만들기 2개
