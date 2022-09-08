@@ -50,3 +50,19 @@ body {
 footer a {
   color: #e63946;
 }
+
+/* 인접 선택자 */
+input + button {
+  background-color: green;
+}
+
+/* 인접 선택자 - h2 다음에 오는 button 바꿈 */
+h2 + button {
+  background-color: blue;
+  font-size: 20px;
+}
+
+/* 직계 자손 선택자 - 다른 일반 자손들과 달리 footer의 직계 자손임 */
+footer > a {
+  color: darkmagenta;
+}
