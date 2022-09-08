@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 자손 */
+        div p {
+            color: red;
+        }
+
+        /* 형제 */
+        div+p {
+            color: blue;
+        }
+
+        /* 직계자식 */
+        div>p {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>Hello world</p>
+    </div>
+
+    <!-- div>section>p{hello world}-->
+    <div>
+        <section>
+            <p>hello world</p>
+        </section>
+    </div>
+    <p>hello world</p>
+</body>
+
+</html>
