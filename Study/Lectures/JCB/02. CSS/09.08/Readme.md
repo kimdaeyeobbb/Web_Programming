@@ -93,3 +93,25 @@
 
 1. 블록 박스
 2. 인라인 박스
+
+# Ref
+
+- [CSS Specifishity](https://specifishity.com/)
+
+- [CSS로 라이언 그리기](https://zinee-world.tistory.com/426)
+
+- [flex box 연습](https://flexboxfroggy.com/#ko)
+
+- [CSS dinner](https://flukeout.github.io/#)
+
+- [flex & grid](https://flexngrid.com/)
+
+- [잭오랜턴 캐릭터 따라 만들기](https://www.youtube.com/watch?v=-whGdudSBqU&ab_channel=%EB%B9%94%EC%BA%A0%ED%94%84CSS)
+
+- [Reset CSS](https://meyerweb.com/eric/tools/css/reset/)
+
+- [Autoprexier CSS](https://autoprefixer.github.io/)
+
+- [Specificity Calculator](https://autoprefixer.github.io/)
+
+- [1만 시간의 법칙 Figma](https://www.figma.com/file/YIoHn24LhFrCBEedo96rx6/1%EB%A7%8C-%EC%8B%9C%EA%B0%84%EC%9D%98-%EB%B2%95%EC%B9%99?node-id=0%3A1)
