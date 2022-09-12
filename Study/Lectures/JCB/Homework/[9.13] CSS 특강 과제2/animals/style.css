@@ -1,0 +1,56 @@
+/* Resets */
+h1,
+p {
+  margin: 0;
+}
+
+img {
+  vertical-align: top;
+}
+
+/* Layouts */
+/* wrapper 에 대한 마크업 */
+/* 가운데 정렬해주는 layout 클래스 */
+.wrapper {
+  /* width값 미지정시 auto로 지정됨  => wrapper의 직계 부모인 body가 제공해주는 contents 영역만큼 가득 차는 것*/
+  width: 300px;
+
+  /* 사용가능한 공간을 둘로 나눠서 가운데 정렬 */
+
+  /*
+  margin-left: auto;
+  margin-right: auto;
+*/
+
+  /* 단축 속성 */
+  margin: 100px auto;
+}
+
+/* Components */
+body {
+  background-image: url(./images/bg.png);
+}
+
+.animal-cover {
+}
+
+.animal-ground {
+  background-image: url(./images/green.png);
+  background-repeat: no-repeat;
+  background-color: #9c6133;
+  color: #d2baad;
+  /* 마진겹침이 안일어나도록 만듦 */
+  padding: 80px 30px 30px 30px;
+  border-radius: 0 0 26px 26px;
+  border-bottom: 10px solid #4a260b;
+}
+
+.animal-ground h1 {
+  color: white;
+  margin-bottom: 14px;
+}
+
+/* 새로이 p태그가 추가되어도 딱 붙지 않고 일정 간격을 두고 떨어지게 만듦 */
+.animal-ground p + p {
+  margin-top: 1em;
+}
