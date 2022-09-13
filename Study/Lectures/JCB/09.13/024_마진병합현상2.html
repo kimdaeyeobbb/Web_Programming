@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마진병합현상</title>
+    <style>
+        /* 마진병합현상은 일부러 의도한 것임 */
+        /* 대부분의 경우 문제로 여겨지지 않고, 해결하지 않아도 되는 파트임 */
+        .parent {
+            background-color: red;
+            height: 200px;
+            margin-top: 50px;
+        }
+
+        .child {
+            margin-top: 100px;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>절대 및 상대단위</title>
+    <style>
+        div {
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 16px (기본 body의 font-size)-->
+    hello 1
+    <div>
+        <!-- 32px (부모 폰트사이즈*2배) -->
+        hello 2
+        <div>
+            <!-- 64px -->
+            hello 3
+            <div>
+                <!-- 128px -->
+                hello world
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

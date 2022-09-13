@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>의도적인 margin & padding </title>
+    <style>
+        /* 얘 때문에 전체 박스모델이 깨짐 */
+        /* 폰트도 커지지만, 박스모델이 커지므로 전체 UI가 깨질 확률이 높다  */
+        html {
+            font-size: 32px;
+        }
+
+        div {
+            background-color: red;
+            width: 2rem;
+            height: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>
