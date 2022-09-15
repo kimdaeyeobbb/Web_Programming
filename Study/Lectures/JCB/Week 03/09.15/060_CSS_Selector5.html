@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .foo {
+            background-color: blue;
+        }
+
+        /* 가상 클래스 선택자는 콜론이 하나임 */
+        /* 첫 요소를 스타일링 */
+        /* foo를 가진애들중에서 첫번쨰 자식이 foo인 경우에 적용 */
+        .foo:first-child {
+            background-color: red;
+        }
+
+        .foo:last child {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <!-- 주의사항. 첫번째 선택지가 foo가 아닌 경우 선택이 안됨 -->
+        <div>hello</div>
+        <li class="foo">1</li>
+        <li>2</li>
+
+        <!-- 실제로 클래스가 있음 -->
+        <li class="foo">3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</body>
+
+</html>

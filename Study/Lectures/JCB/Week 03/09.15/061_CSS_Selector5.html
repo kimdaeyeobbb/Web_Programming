@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selector</title>
+    <style>
+        /* 0부터 시작하지 않음 */
+        div:nth-child(1) {
+            background-color: red;
+        }
+
+        /* n은 0부터 시작함 */
+        div:nth-child(2n) {
+            background-color: red;
+        }
+
+        div:nth-child(odd) {
+            background-color: burlywood;
+        }
+
+        /* 논란이있어서 협의를 보는데 오래 걸림 */
+        a:visited {
+            color: aquamarine;
+        }
+
+        /* 최신에 채택된 선택자 */
+        li:not(.클래스명) {
+            color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://www.paullab.co.kr">hello</a>
+    <div>hello 1</div>
+    <div>hello 2</div>
+    <div>hello 3</div>
+    <div>hello 4</div>
+    <div>hello 5</div>
+    <div>hello 6</div>
+</body>
+
+</html>

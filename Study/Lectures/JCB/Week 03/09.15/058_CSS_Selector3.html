@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selector</title>
+    <style>
+        /* 띄워쓰기를 포함 완전한 단어를 포함 */
+        a[href~="https"] {
+            color: blue;
+        }
+
+        /* 띄워쓰기 무관 문자열로서 포함하면 됨 */
+        a[href*="weniv"] {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- #으로 되어있으면 refresh가 되지 않고 최상단으로 올라감 -->
+    <a href="#">눌러!</a>
+    <a href="weniv">눌러!</a>
+    <a href="wenivs">눌러!</a>
+    <a href="we weniv">눌러!</a>
+    <a href="we weniv we">눌러!</a>
+    <a href="wenivadasdqwfqf">눌러!66</a>
+</body>
+
+</html>

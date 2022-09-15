@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selector</title>
+    <style>
+        button {
+            border: 1px solid black;
+            padding: 15px;
+            background-color: brown;
+            border-radius: 5px;
+            color: white;
+            /* 변하는 모든것에 대해 5초간의 간격을 두고 변함 */
+            transition: all .5s;
+        }
+
+        button:hover {
+            background-color: salmon;
+            letter-spacing: 2px;
+        }
+
+        a:active {
+            color: red;
+        }
+
+        input:focus {
+            border: 5px solid royalblue;
+        }
+
+        input:checked+label {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <button>hello</button>
+    <a href="#">hello</a>
+    <form action="" method="get">
+        <input type="text" />
+        <input type="text" />
+        <input id="check" type="checkbox">
+        <label for="check">오늘 아침은 삼겹살</label>
+    </form>
+</body>
+
+</html>

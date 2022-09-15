@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selector</title>
+    <style>
+        a[href^="https"] {
+            color: blue;
+        }
+
+        /* 이미지가 .png로 끝나면 색상 변경 */
+        a[href$=".png"] {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="http://www.paul.co.kr">위니브</a>
+    <a href="https://www.paul.co.kr">위니브</a>
+    <a href="https://wwww.paullab.co.kr/a.png">사진</a>
+</body>
+
+</html>
