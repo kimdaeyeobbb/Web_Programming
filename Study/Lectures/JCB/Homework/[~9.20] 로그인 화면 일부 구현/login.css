@@ -1,0 +1,30 @@
+/* Reset */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* layout */
+.wrapper {
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  width: 350px;
+  height: 140px;
+  margin: 30px auto;
+}
+
+.welcome {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 19px 0 0 16px;
+}
+
+.login_btn {
+  background-color: #711bff;
+  color: #ffffff;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+}
