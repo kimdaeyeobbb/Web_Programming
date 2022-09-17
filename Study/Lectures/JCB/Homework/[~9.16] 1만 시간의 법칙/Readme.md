@@ -7,4 +7,5 @@
 - [CSS flex](https://studiomeal.com/archives/197)
 - [align items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items)
 - [align items: center in css](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container)
+- [clipboard API](https://developer.mozilla.org/ko/docs/Web/API/Clipboard_API)
 -

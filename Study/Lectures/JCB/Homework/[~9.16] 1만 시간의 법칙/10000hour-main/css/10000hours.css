@@ -42,11 +42,8 @@
     transform: rotate(360deg);
   }
 }
-
+/* 100% 360회전 => 50%라고 안써줘도 50%일떄는 180도 회전하는것이 명확하므로 제거  */
 @keyframes rotate {
-  50% {
-    transform: rotate(180deg);
-  }
   100% {
     transform: rotate(360deg);
   }
@@ -54,7 +51,8 @@
 
 html,
 body {
-  width: 100%;
+  /* html,body는 본래 화면전체를 차지하는것이 명확하므로 width:100%는 불필요 */
+  /* width: 100%; */
   height: 100%;
 }
 
@@ -64,17 +62,18 @@ body {
   color: #fff;
 }
 
-/* 메인 콘텐츠 */
-#contents {
-  display: flex;
-  justify-content: center;
-}
-
 .wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  /* wrapper는 div로 감싸여져 있으므로 width: 100%가 불필요 */
+  /* width: 100%; */
+
+  /* wrapper는 컨텐츠를 감싸고 있는 부모 컨텐츠이므로 자식요소에 비례하여 요소의 높이값이 달라짐. 
+따라서 height 값이 불필요함. 자기 자식의 크기만큼 커지고 있는 부모라고 보면 됨  
+height:100%은 불필요*/
+  /* height: 100%; */
+
+  /* wrapper는 전체 ui를 감싸고 있음. 따라서 display: flex와 flex-direction은 불필요 */
+  /* display: flex;
+  flex-direction: column; */
   margin-top: 50px;
 }
 
@@ -99,6 +98,7 @@ body {
 
 .title_img img {
   width: 100%;
+  /* 이미지를 정해주면 이미지는 자동으로 높이값을 잡으므로 height:auto는 불필요함  */
   height: auto;
 }
 
@@ -111,6 +111,9 @@ body {
 }
 
 .intro .intro_saying {
+  /* 폰트는 용량이 꽤나 나간다.
+  따라서 UI가 널리 사용되지 않으면 폰트가 적용된 이미지를 사용하는게 효율적일 수 있다 
+  이미지는 용량이 적게 나가기 때문이다 */
   font-family: 'OTEnjoystoriesBA';
   font-size: 36px;
   color: #f5df4d;
@@ -125,7 +128,8 @@ body {
 }
 
 .intro .quotes {
-  position: relative;
+  /* 불필요
+  position: relative; */
   padding-top: 20px;
 }
 
@@ -187,8 +191,12 @@ body {
 
 /* 버튼 공통 스타일 */
 button {
-  display: flex;
-  align-items: center;
+  /* 불필요 */
+  /* display: flex; */
+
+  /* 불필요 */
+  /* align-items: center; */
+
   font-family: 'GmarketSansBold';
   font-size: 20px;
   color: #5b2386;

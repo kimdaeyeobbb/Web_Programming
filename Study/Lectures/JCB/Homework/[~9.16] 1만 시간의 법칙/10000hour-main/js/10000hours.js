@@ -10,20 +10,20 @@ const loading = document.querySelector('.result_loading'); // 버튼은 아니�
 // 각각 클릭했을 때의 함수를 정의
 function calculator() {
   const fieldValue = document.querySelector('#field_value'); // ~전문가
-  let timeValue = document.querySelector('#time_value'); // ~전문가가 되기 위해 훈련하는 시간
-  let timeValue_int = Number(timeValue.value); // Number- 수치로 입력하게 하기 위함
+  const timeValue = document.querySelector('#time_value'); // ~전문가가 되기 위해 훈련하는 시간
+  const timeValue_int = Number(timeValue.value); // Number- 수치로 입력하게 하기 위함
 
   const fieldResult = document.querySelector('.field_result');
   const timeResult = document.querySelector('.time_result');
 
   if (fieldValue.value == '') {
     // 값이 비어있는 경우
-    alert('입력되지 않았습니다.');
+    alert('분야가 입력되지 않았습니다.');
     fieldValue.focus(); // 입력되지 않은 창을 바로 알게 하기 위함
     return false;
   } else if (timeValue.value == '') {
     // 값이 비어 있는 경우
-    alert('입력되지 않았습니다.');
+    alert('시간이 입력되지 않았습니다.');
     timeValue.focus();
     return false;
   } else if (timeValue_int > 24) {
@@ -37,12 +37,15 @@ function calculator() {
   loading.style.display = 'flex'; //
 
   setTimeout(function () {
-    // loading과 result값 변경
-    loading.style.display = 'none';
-    result.style.display = 'flex';
+    // 값을 할당하는 과정
     fieldResult.innerText = fieldValue.value;
     timeResult.innerText = parseInt(10000 / timeValue_int, 10); // 소수점 자리는 빼고 나눈값을 10진수로 표현
-  }, 1800); // 1.8초 뒤에 실행
+
+    // 할당된 값을 UI에 노출시킴
+    // loading과 result값 변경
+    loading.style.display = 'none';
+    result.style.display = 'flex'; // 결과값이 들어간 상태에서 결과값을 노출하라
+  }, 1800); // 1.8초 뒤에 인에있는 내용을 실행
 }
 
 function openModal() {
@@ -63,6 +66,8 @@ window.onclick = function (event) {
   }
 };
 
+// 이전 방식 - 이제 사용 X
+/*
 function copyUrl() {
   let url = window.location.href;
   let tmp = document.createElement('input'); // tmp값을 가상의 element로 하나 만듦
@@ -75,13 +80,16 @@ function copyUrl() {
 
   alert('URL이 복사되었습니다');
 }
+*/
 
 /* clip */
 function copyUrl() {
   const url = window.location.href;
 
   navigator.clipboard.writeText(url).then(() => {
-    alert('URL이 복사되었습니다.');
+    // 클립보드에 문자열 입력
+    // 텍스트를 입력하는 동작이 이행되면 then이 호출됨
+    alert('URL이 복사되었습니다.'); // url이 복사되었음을 알림
   });
 }
 
