@@ -311,3 +311,234 @@ flex-basis: 300px(아이템들의 기본 컨텐츠 크기) */
 ## grid area
 
 - 92-2 html파일 복습 요망 (누락된 부분)
+
+## 심화
+
+- 클래스 이름을 랜덤으로 설정: 크롤링 방지 (해커의 공격 위험 감소)
+
+## 성배 레이아웃
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>template areas</title>
+    <style>
+      body {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+          'header header header'
+          'main main aside'
+          'footer footer footer';
+      }
+
+      header {
+        grid-area: header;
+        background-color: pink;
+      }
+
+      main {
+        grid-area: main;
+        background-color: royalblue;
+      }
+
+      aside {
+        grid-area: aside;
+        background-color: lightgreen;
+      }
+
+      footer {
+        grid-area: footer;
+        background-color: aquamarine;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>header</header>
+    <main>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error repellat
+      earum iure id natus, consectetur, aut a adipisci, suscipit dolore in quam
+      commodi recusandae magni excepturi sapiente quasi optio accusantium?
+    </main>
+    <aside>aside</aside>
+    <footer>footer</footer>
+  </body>
+</html>
+```
+
+## template areas 표준 정답
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>template areas</title>
+    <style>
+      body {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        /* 
+                    3. 간격은 맞춰 주는 것이 좋습니다. 
+                    4. main 넓이를 많이 주어야 할 때에는 아래처럼 구성할 수 있습니다.
+                */
+        grid-template-areas:
+          '.       .       .       time'
+          'header  header  header  header'
+          'aside-a main    main    aside-b'
+          'footer  footer  footer  footer';
+      }
+
+      header {
+        grid-area: header;
+        background-color: pink;
+      }
+
+      main {
+        grid-area: main;
+        background-color: royalblue;
+      }
+
+      .aside-a {
+        grid-area: aside-a;
+        background-color: lightgreen;
+      }
+
+      .aside-b {
+        grid-area: aside-b;
+        background-color: lightgreen;
+      }
+
+      footer {
+        grid-area: footer;
+        background-color: aquamarine;
+      }
+
+      p {
+        grid-area: time;
+        background-color: blueviolet;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+            1. 위치 상으로 맨 위로 올라가는 것이 맞지 않을까요? 
+            2. time 태그가 있습니다.
+        -->
+    <p>현재시간 :<time>22-09-19</time></p>
+    <header>header</header>
+    <main>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error repellat
+      earum iure id natus, consectetur, aut a adipisci, suscipit dolore in quam
+      commodi recusandae magni excepturi sapiente quasi optio accusantium?
+    </main>
+    <aside class="aside-a">aside</aside>
+    <aside class="aside-b">aside</aside>
+    <footer>footer</footer>
+  </body>
+</html>
+```
+
+## transition
+
+- : (가상클래스 선택자)
+- :: (가상요소 선택자)
+
+- 성능이슈가 발생할 수 있음
+
+- cubic-bezier 검색해서 정리
+
+- transition은 가상 선택자(.one:hover 등)에 쓰는 경우는 잘 없음
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Transition Test</title>
+    <style>
+      /* 
+            : - 가상클래스선택자
+            :: - 가상요소선택자 
+            */
+
+      .one {
+        font-size: 16px;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        transition: all 1s;
+        /* transition: 1000ms; */
+        /* transition-delay: 1s; */
+        /* transition-duration: 1s; */
+        /* transition-property: font-size, background-color; */
+        /* transition-timing-function: linear; */
+        /* transition-timing-function: cubic-bezier(0, 0.39, 1, 0.55); */
+        /* transition-timing-function: steps(3, start); */
+        /* transition-timing-function: steps(3, end); */
+      }
+
+      .one:hover {
+        font-size: 32px;
+        width: 300px;
+        height: 300px;
+        background-color: blue;
+        /* transition-duration: 1s; */
+      }
+
+      .one:active {
+        font-size: 32px;
+        width: 1000px;
+        height: 1000px;
+        background-color: greenyellow;
+        /* transition-duration: 10s; */
+      }
+
+      .one::before {
+        content: '가상요소야!';
+        display: block;
+        width: 100px;
+        height: 100px;
+        background-color: brown;
+        transition: all 1s;
+      }
+
+      .one:hover::before {
+        content: '가상요소야!';
+        display: block;
+        width: 200px;
+        height: 200px;
+        background-color: green;
+      }
+
+      .two {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        transition: all 1s;
+        transition-delay: 1s;
+      }
+
+      .two:hover {
+        width: 300px;
+        height: 300px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="one">hello world</div>
+    <div class="two">hello world</div>
+  </body>
+</html>
+```
+
+## transform
+
+- a
