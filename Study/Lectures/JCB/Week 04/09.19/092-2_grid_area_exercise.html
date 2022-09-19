@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid area exercise</title>
+    <style>
+        .container {
+            display: grid;
+            height: 500px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .item {
+            border: 1px solid black;
+        }
+
+        .item:nth-child(1) {
+            /* 첫번째 스타트 라인 */
+            grid-column-start: 1;
+
+            /* 3번째까지 */
+            grid-column-end: 3;
+
+
+        }
+
+        .item:nth-child(2) {
+
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-row-start: 2;
+            grid-row-end: 2;
+        }
+
+        .item:
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+
+    </div>
+</body>
+
+</html>
