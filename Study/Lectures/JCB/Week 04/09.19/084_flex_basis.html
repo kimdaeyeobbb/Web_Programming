@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex-basis</title>
+    <style>
+        .container {
+            display: flex;
+            /* 1. 주 축에 따라 basis가 넓이가 되기도하고, 높이가 되기도 함 */
+            /* flex-direction: column; */
+
+            /* 4. flex-wrap: wrap => 넓이를 다 포함하지 못하는 경우에는 개행함 */
+            flex-wrap: wrap;
+        }
+
+        .item {
+            width: 50px;
+            height: 50px;
+            background-color: aqua;
+            border: 1px solid black
+        }
+
+        .item:nth-child(2) {
+            /* 1. 주 축에 따라 basis가 넓이가 되기도하고, 높이가 되기도 함 */
+            /* flex-basis: 150px; */
+
+
+            /* 2. 2개의 값이 있었을 때 basis의 값을 우선시함 */
+            /* flex-basis: 100px;
+            width: 100px; */
+
+            /* 3-1. width의 값은 넓이를 강제함 */
+            /* width: 100px; */
+
+            /* 3-2. flex-basis는 이와달리 크기에 맞게 늘어남 */
+            flex-basis: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item">1</div>
+        <!-- width는 넓이를 강제하므로 내용물이 튀어나가면 밖에써줌 -->
+        <div class="item">22222222222222222222222222222</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+    </div>
+</body>
+
+</html>
