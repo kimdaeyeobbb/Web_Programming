@@ -539,6 +539,60 @@ flex-basis: 300px(아이템들의 기본 컨텐츠 크기) */
 </html>
 ```
 
+- transition을 모두 자세히 알필요는 없고 `transition: all 0.3s`는 꼭 알아둘 것
+
 ## transform
 
-- a
+- 형태 변환시 사용
+
+- 기준을 벗어나는 경우
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>transform</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: dodgerblue;
+        transition: all 1s;
+      }
+
+      .box:hover {
+        transform: scale(2);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">hello world</div>
+  </body>
+</html>
+```
+
+- 왼쪽 상단이 기준인데, transform의 기준은 x축: center, y축:center이므로 화면상의 영역을 벗어나는 것이다.
+
+- transform-origin => 어떤 기준을 잡게 할것이냐!
+
+## 웹 브라우저 랜더링 (매우 중요, 기술면접 단골)
+
+1. 파싱
+
+   - 브라우저는 우선 HTML파일을 DOM으로 변환(파싱)함
+   - ㅁ
+
+2. 스타일 계산
+
+   - CSS 역시 파싱하여 CSSOM으로 변환함
+
+3. 레이아웃
+
+- 추가 내용 서술
+
+- GPU: 한번에 다중 연산 수행
+- ㅁ
