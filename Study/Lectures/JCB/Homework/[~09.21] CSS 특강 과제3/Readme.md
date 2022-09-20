@@ -1,3 +1,10 @@
+# 최종 결과물
+
+![image](https://user-images.githubusercontent.com/68424403/191280499-9f4d88bb-5952-4b20-a52d-00c626e26fac.png)
+
+
+
+
 # 내용 정리
 
 - 마진을 차지하고 있는 공간의 크기와 보여지는 디자인을 별도로 가져갈 수 있는 property라고 인지하면 네거티브 마진을 이해할 수 있다.
