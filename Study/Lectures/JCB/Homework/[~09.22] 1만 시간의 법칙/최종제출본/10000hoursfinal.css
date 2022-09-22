@@ -34,30 +34,6 @@
       format('opentype');
 }
 
-/* 애니메이션 효과명: rotate */
-
-@-webkit-keyframes rotate {
-  /* 기준시간의 절반시간까지의 동작을 정의 (10초의 기준시간이 있다면 5초까지의 동작을 정의) */
-  50% {
-    transform: rotate(180deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes rotate {
-  /* 기준시간의 절반시간까지의 동작을 정의 (10초의 기준시간이 있다면 5초까지의 동작을 정의) */
-  50% {
-    transform: rotate(180deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 html,
 body {
   width: 100%;
