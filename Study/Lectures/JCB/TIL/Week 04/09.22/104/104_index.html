@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 실무 테크닉 1</title>
+    <style>
+        /* input 요소를 사라지게 만듦 */
+        .txt-hide {
+            position: absolute;
+            /* 요소를 잘라냄 */
+            clip: rect(0 0 0 0);
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+        }
+
+        /* content가 없으면 가상요소가 존재하지 않음 */
+        .labl-hold::before {
+            display: inline-block;
+            content: '';
+
+            /* 원래 체크박스 이미지 크기와 동일하게 설정 */
+            width: 22px;
+            height: 22px;
+
+            vertical-align: -5px;
+            /* 배경화면으로 불러옴 */
+            background-image: url(./img/icon_check_empty.png);
+
+        }
+
+        /* 체크가 되었을 때의 스타일 & 백그라운드일때 */
+        .inp-hold:checked+.labl-hold::before {
+            /* 선택되었을 떄 바꾸어야 하는 것 */
+            background-image: url(./img/icon_check.png);
+        }
+
+        /* 포커싱이 되었을 때 & 형제요소에 그려줌 */
+        .inp-hold:focus+.labl-hold::before {
+            /* 요소에 바깥선을 그려줌 - border와 유사 */
+            /* outline은 레이아웃에 영향을 미치지 않음 */
+            /* border는 이와 달리 레이아웃에 영향을 미침 */
+            outline: 2px solid #000;
+
+            /* outline 꾸며줌 */
+            outline-offset: 5px;
+            border-radius: 50%;
+            /* box sizing border-box를 쓰면 border 속성을 줘도 되는데 이미지가 밀림 */
+
+        }
+    </style>
+</head>
+
+<body>
+    <a href="">링크</a>
+    <button>버튼</button>
+    <input type="checkbox">
+    <!-- input의 id와 label의 for를 동일하게 만들어서 연결 -->
+    <input type="checkbox" id="inpHold" class="inp-hold txt-hide">
+    <label for="inpHold" class="labl-hold">선택해주세요</label>
+</body>
+
+</html>
