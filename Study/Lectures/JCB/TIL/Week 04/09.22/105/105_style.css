@@ -1,0 +1,45 @@
+.container-select {
+  position: relative;
+  width: 200px;
+  margin: 100px auto 0;
+}
+
+.btn-select {
+  /* 부모 컨테이너에 종속되게끔 100% 설정 */
+  width: 100%;
+  /* 패딩도 컨텐츠에 포함되므로, 패딩을 통해 요소의 넓이를 조절할 수 있다  */
+  padding: 11px 13px 11px 13px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: left;
+  border: 1px solid #9b51e0;
+  border-radius: 10px;
+  cursor: pointer;
+  /* 초기 위치가 좌상단이므로 우중간으로 이동 + 우측벽에서부터 10px 만큼 떨어지게 만듦 */
+  background: url(./img/icon-Triangle-down.png) right 12px center no-repeat;
+
+  /* 텍스트 넘치는 경우 말줄임표 처리하는 코드 3줄 */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.btn-select:focus {
+  outline: 3px solid #f8e4ff;
+}
+
+/* on이라는 클래스가 붙게 되면  */
+.btn-select .on + .list-memeber {
+  display: block;
+}
+
+.list-memeber {
+  /* display:none; */
+  position: relatives;
+  top: 9px;
+  left: 0;
+  border: 1px solid #c4c4c4;
+  box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
