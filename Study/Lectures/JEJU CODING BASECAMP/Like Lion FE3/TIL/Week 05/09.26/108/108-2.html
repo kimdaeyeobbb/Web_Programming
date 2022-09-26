@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            /* 이미지가 반응형으로 변함 */
+            /* width: 100%; */
+
+            /* 원본 사이즈 이상으로 커지지 않음 */
+            max-width: 100%;
+        }
+
+        body{
+            /* 마진 제거 */
+            margin:0;
+        }
+
+        article{
+            width: 100%;
+            height: 100vh;
+
+            /* background 축약 속성 */
+            /* background-position: 왼쪽상단 */
+            /* 
+            50% 인 경우 컨테이너*(여기서는 뷰포트)의 절반만큼의 영역을 차지
+            높이는 너비에 비례해서 줄어듦.
+            100% => 배경이 다 덮지 못하므로 cover로 수정 
+            
+            left top -> center로 수정시 중심축에 위치함
+            */
+            background: url(/photo-1477959858617-67f85cf4f1df.jfif) center  / cover  no-repeat;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <article>
+
+    </article>
+</body>
+</html>
+
+
