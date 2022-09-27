@@ -128,3 +128,24 @@
 
 - less보다 많은 기능을 보유(그러나 각 장단점이 존재)
 - sass는 mixin만 배워도 유용하게 사용할 수 있음
+- .scss의 파일명이 '\_'로 시작하는 것은 코드를 작성하고 저장했을 때 .css로 만들어지지 않는다<br>(대신 import를 해서 style.css에 합쳐서 컴파일 된다)<br>(컴파일- css로 변환되는 것)
+
+## 질의응답
+
+```html
+<body>
+  <!-- style태그를 body태그 안에서 사용하는 경우는 극히 드물다 -->
+  <style>
+    .two {
+      color: blue;
+    }
+  </style>
+  <!-- script를 body안 중간에서 사용하는 경우는 이런 경우는 종종 있다 
+  (스크립트를 중간에 컨트롤 해야하는 경우) -->
+  <script></script>
+  <div class="one">hello</div>
+  <div class="two">hello</div>
+
+  <script></script>
+</body>
+```

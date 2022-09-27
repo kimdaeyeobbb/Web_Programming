@@ -1,0 +1,38 @@
+/* 눈 조정을 위해서 */
+.eye-right {
+  /* 한 싸이클의 애니메이션이 얼마에 걸쳐 일어날지를 지정 */
+  animation-duration: 1s;
+  animation-name: blink;
+
+  /* 얘를 안넣으면 눈이 번쩍 -> 스르르 감김 -> 번쩍뜸 -> 스르르 감김이 반복. 얘를 넣어서 자연스럽게 눈이 깜빡이게 만듦 */
+  /* 애니메이션이 앞으로, 뒤로 또는 앞뒤로 번갈아 재생되어야하는지 여부를 지정 */
+  /* alternate
+  애니메이션이 각 주기의 방향을 뒤집으며, 첫 번째 반복은 정방향으로 진행
+  사이클이 짝수인지 홀수인지를 결정하는 카운트가 하나에서 시작됨 */
+  animation-direction: alternate;
+
+  /* 애니메이션이 몇 번 반복될지를 지정 */
+  animation-iteration-count: infinite;
+  /* 변하는 요소의 원점 (변형이 적용되는 지점)*/
+  transform-origin: 353.5px 129px;
+}
+
+/* keyframes - CSS 애니메이션 과정의 중간 절차를 제어 */
+@keyframes blink {
+  /* 변경이 없다면 from이 없어도 됨 */
+  to {
+    /* y축을 따라 수직으로 요소의 크기를 조정하는 변환 */
+    transform: scaleY(0.5);
+
+    /* scaleX(0.1) => 무섭게 만듦 */
+  }
+}
+
+.eye-left {
+  /* 한 싸이클의 애니메이션이 얼마에 걸쳐 일어날지를 지정 */
+  animation-duration: 1s;
+  animation-name: blink;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  transform-origin: 353.5px 129px;
+}
