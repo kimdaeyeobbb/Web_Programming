@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .one {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- style태그를 body태그 안에서 사용하는 경우는 극히 드물다 -->
+    <style>
+      .two {
+        color: blue;
+      }
+    </style>
+    <!-- script를 body안 중간에서 사용하는 경우는 이런 경우는 종종 있다 (스크립트를 중간에 컨트롤 해야하는 경우) -->
+    <script></script>
+    <div class="one">hello</div>
+    <div class="two">hello</div>
+
+    <script></script>
+  </body>
+</html>

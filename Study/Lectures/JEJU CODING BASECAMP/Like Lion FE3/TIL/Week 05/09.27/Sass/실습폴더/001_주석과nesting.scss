@@ -1,0 +1,39 @@
+// 한 줄 주석
+
+/* 여러줄 주석 */
+ul {
+  li {
+    color: red;
+    font-size: 10px;
+  }
+}
+
+.one {
+  color: red;
+  .two {
+    color: green;
+
+    .three {
+      color: blue;
+    }
+    .four {
+      color: black;
+    }
+  }
+}
+
+/* 추가 내용 */
+.one_ {
+  color: red;
+}
+
+.two_ {
+  color: green;
+
+  .three_ {
+    color: blue;
+  }
+  .four_ {
+    color: black;
+  }
+}
