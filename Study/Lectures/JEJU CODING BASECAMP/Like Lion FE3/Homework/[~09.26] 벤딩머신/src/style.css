@@ -1,0 +1,343 @@
+/* FONT Anti-aliasing */
+*{
+    transform : rotate(0.04deg); 
+}
+
+html{
+    width:100%;
+    height:100%;
+}
+
+body{
+    width:100%;
+    height:100%;
+    background-color: #EAE8FE;
+   
+}
+
+
+button {
+border: none;
+background-color: white;
+filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.5));
+}
+
+.hidden {
+display: block;
+overflow: hidden;
+position: absolute;
+text-indent: -9999px;
+line-height: 0;
+font-size: 1px;
+color: transparent;
+}
+
+.colaName {
+font-size: 9px;
+}
+
+.main {
+display: flex;
+justify-content: center;
+gap: 0 28px;
+padding-top: 247px;
+}
+
+.logo {
+position: absolute;
+top: 0;
+width: 100%;
+max-width: 386px;
+height: 180px;
+background-image: url("../images/logo.png");
+background-repeat: no-repeat;
+background-size: 100%;
+background-position: center;
+}
+
+.machine {
+width: 360px;
+padding: 31px 27px 28px;
+box-sizing: border-box;
+background-color: white;
+}
+
+.machine .colaList {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 12px;
+}
+
+.machine .colaList li {
+position: relative;
+}
+
+.machine .btn-cola {
+width: 94px;
+padding: 11px 0 9px;
+border-radius: 10px;
+cursor: pointer;
+}
+
+.machine .btn-cola .img-item {
+display: block;
+margin: 0 auto;
+width: 36px;
+}
+
+.machine .btn-cola .colaName {
+display: block;
+margin-top: 6px;
+margin-bottom: 7px;
+line-height: 13px;
+}
+
+.machine .btn-cola .price {
+width: 70px;
+padding: 5px 16px 5px 15px;
+border-radius: 50px;
+font-size: 12px;
+background-color: #6327FE;
+color: white;
+}
+
+.machine .btn-cola:active::before {
+content: '';
+display: block;
+position: absolute;
+border: 3px solid #6327FE;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border-radius: 10px;
+box-sizing: border-box;
+}
+
+.machine .colaList li.soldOut {
+pointer-events: none;
+}
+
+.machine .colaList li.soldOut::before {
+content: '';
+display: block;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 10;
+border-radius: 10px;  background: no-repeat center/ 60px 46px url(../images/Sold-out.png) rgba(0, 0, 0, 0.7);
+}
+
+.machine .colaList li.sold-out::after {
+content: '품절';
+overflow: hidden;
+position: absolute;
+text-indent: -9999px;
+line-height: 0;
+font-size: 1px;
+color: transparent;
+}
+
+.machine .cont-buy {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 12px;
+margin-top: 20px;
+}
+
+.cont-buy button {
+width: 94px;
+padding: 6px 9px 8px;
+border-radius: 5px;
+font-size: 13px;
+line-height: 19px;
+cursor: pointer;
+}
+
+.cont-buy .box-balance,
+.cont-buy .inp-deposit {
+border-radius: 5px;
+}
+
+.machine .box-balance {
+grid-column: 1/3;
+padding: 6px 10px;
+background-color: #EAE8FE;
+border-radius: 5px;
+font-size: 14px;
+line-height: 20px;
+}
+
+.machine .box-balance span {
+float: right;
+}
+
+.machine .inp-deposit {
+grid-column: 1/3;
+width: 200px;
+padding: 6px;
+border: 1px solid #BDBDBD;
+color: #BDBDBD;
+font-size: 13px;
+line-height: 19px;
+}
+
+.machine .item-staged {
+grid-column: 1/3;
+height: 106px;
+padding: 12px;
+overflow-y: scroll;
+border: 1px solid #BDBDBD;
+border-radius: 5px;
+background-color: #EAE8FE;
+}
+
+.machine .item-staged .btn-stagedItem {
+width: 170px;
+padding: 8px;
+border-radius: 5px;
+filter: none;
+}
+
+.item-staged li+li {
+margin-top: 6px;
+}
+
+ul.item-staged .img-item {
+width: 18px;
+float: left;
+}
+
+ul.item-staged .colaName {
+float: left;
+padding-top: 10px;
+margin-left: 10px;
+line-height: 13px;
+}
+
+ul.item-staged .countNum {
+display: flex;
+justify-content: center;
+align-items: center;
+float: right;
+width: 30px;
+height: 30px;
+padding: 4px 11px;
+border: 1px solid #BDBDBD;
+border-radius: 5px;
+font-size: 14px;
+}
+
+.machine .btn-get {
+width: 94px;
+padding: 43px 35px;
+background-color: #6327FE;
+color: white;
+}
+
+.my-bag {
+width: 360px;
+background-color: #EAE8FE;
+}
+
+.my-bag .box-my-money {
+padding: 9px 27px;
+background-color: white;
+}
+
+.my-bag .my-money {
+width: 306px;
+padding: 6px 10px;
+border-radius: 5px;
+font-size: 14px;
+line-height: 20px;
+font-weight: 700;
+background-color: #EAE8FE;
+}
+
+.my-bag .my-money span {
+float: right;
+}
+
+.my-bag .my-items {
+padding: 25px 27px 32px;
+margin-top: 20px;
+background-color: white;
+}
+
+.my-bag .my-items .tit-getCola {
+display: block;
+text-align: center;
+margin-bottom: 13px;
+font-size: 14px;
+font-weight: 700;
+}
+
+.my-bag .item-staged {
+height: 364px;
+padding: 12px;
+overflow-y: scroll;
+border: 1px solid #BDBDBD;
+border-radius: 5px;
+background-color: #EAE8FE;
+}
+
+.my-bag .item-staged .btn-stagedItem {
+width: 276px;
+padding: 8px;
+line-height: 13px;
+border-radius: 5px;
+filter: none;
+}
+
+.my-bag .item-staged .countNum {
+font-size: 16px;
+border: 1px solid #BDBDBD;
+}
+
+.my-bag .my-items .total {
+display: block;
+text-align: right;
+margin-top: 10px;
+font-size: 12px;
+line-height: 17px;
+}
+
+/* Media Query */
+@media screen and (max-width: 560px) {
+body {
+    background-color: white;
+}
+.logo {
+    width: 166px;
+    height: 71px;
+}
+.main {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+}
+.my-bag {
+    background-color: white;
+}
+.item-staged .btn-stagedItem {
+    border: 1px solid #BDBDBD;
+}
+}
+
+/* Scroll Bar */
+.item-staged::-webkit-scrollbar{
+width: 6px;
+}
+
+.item-staged::-webkit-scrollbar-thumb{
+height: 17%;
+background-color: white;
+border-radius: 10px;    
+}
+
+.item-staged::-webkit-scrollbar-track{
+background-color: transparent;
+}
