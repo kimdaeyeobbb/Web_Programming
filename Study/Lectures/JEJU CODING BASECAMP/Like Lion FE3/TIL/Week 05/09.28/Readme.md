@@ -120,3 +120,5 @@
 - 테일윈드는 사용하면 디자인이 나와있는 경우에 있어서 빠르게 코딩이 가능하다
 
 - 부트스트랩에서는 일일이 css고치지 않고 의도대로 적용이 안되면 !important를 때려버림
+
+- [많이 쓰는 카드 클래스](https://getbootstrap.com/docs/5.2/components/card/)
