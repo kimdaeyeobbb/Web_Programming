@@ -1,0 +1,11 @@
+.one {
+  background-color: yellow;
+  .two {
+    font-size: 20px;
+
+    // three를 밖으로 빼내기 위해 @at-root 사용 (컴파일되어 나오는 결과물에는 three가 nesting 되지  않음
+    @at-root .three {
+      display: flex;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+/* 공통 클래스를 가진 선택자를 중첩 */
+.box-yellow {
+  background-color: yellow;
+}
+.box-red {
+  background-color: red;
+}
+
+.btn-submit {
+  background-color: yellow;
+}
+.btn-close {
+  background-color: red;
+} /*# sourceMappingURL=004_부모선택자_엠퍼센드.css.map */

@@ -1,0 +1,56 @@
+// 변수의 type
+// numbers, strings, color, booleans, lists, null, map
+
+// - numbrs: 1, .82, 20px, 2em 등
+// - strings: "./images/a.png", blod, left, uppercase 등
+// - colors: green, #FFF, rgba(255,0,0,0.5) 등
+// - booleans: true, false
+// - lists
+// - maps
+// - null
+
+// number (숫자)
+$one: 1;
+
+// string (문자)
+$two: "./asset/img";
+
+$three: "background.png";
+
+.test {
+  background-image: url($two + $three);
+}
+
+// color(색)
+$four: #fff;
+
+// booleans (참, 거짓)- 논리형
+$five: true;
+
+// null
+$siz: null;
+
+//list
+$font-size: 10px 12px 16px; // 폰트사이즈의 1번쨰, 2번쨰, 3번째
+// $image-file: photo_01, photo_02, photo_03   // 이미지파일명 리스트 (1번째, 2번째, 3번째) - 지금은 photo라는 변수가 선언되어있지 않은 상태
+
+// .test2{
+//     font-size: nth($list: $font-size, $n: 2);
+// }
+
+.test3 {
+  font-size: nth($list: $font-size, $n: 2);
+}
+
+// map(key,value로 구성)
+
+$font-weights: (
+  "regular": 400,
+  "medium": 500,
+  "bold": 700,
+); // 글자 굵기 리스트
+
+// 아래와 같은 형태로 사용 - ruby sass
+.test4 {
+  $font-weight: map-get($font-weights, "medium"); // 500
+}

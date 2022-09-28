@@ -1,0 +1,22 @@
+// '$변수: 값' 꼴로 사용
+
+$한글변수: #fff;
+$한글변수2: 34px;
+
+// 색상
+$red: #ee4444;
+$black: #222;
+$bg-color: #3e5e9e;
+$link-color: red;
+$p-color: #282a36;
+
+// 폰트사이즈
+$font-p: 14px;
+$font-h1: 28px;
+
+// 폰트
+$base-font: "Noto Sans KR", sans-serif;
+
+.one {
+  font-size: $font-p;
+}
