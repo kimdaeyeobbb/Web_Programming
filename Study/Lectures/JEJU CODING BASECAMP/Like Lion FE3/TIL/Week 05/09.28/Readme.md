@@ -95,3 +95,13 @@
 ## Extend
 
 - [Sass mixin & Extend toast](https://ui.toast.com/fe-guide/ko_HTMLCSS)
+
+## Sass function
+
+- 리턴값이 존재
+- `()` 표시가 있으면 함수 -> 이 `소괋호()`가 `실행시키는 역할`을 함
+- `XXX()` 에서 `XXX`는 '변수'일 뿐임
+
+## Ref
+
+- [도움되는 Sass 깃헙](https://github.com/7ninjas/scss-mixins)

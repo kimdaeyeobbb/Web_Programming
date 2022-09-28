@@ -1,0 +1,10 @@
+$danny: 10;
+
+@while $danny > 1 {
+  $danny: $danny - 2;
+  .content-#{$danny} {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }
+}

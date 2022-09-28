@@ -1,0 +1,11 @@
+@function sigma($number) {
+  $result: 0; // 지역변수
+  @for $i from 1 to $number {
+    $result: $result + $i;
+  }
+  @return $result;
+}
+
+.one {
+  width: sigma(11) px;
+}

@@ -1,0 +1,7 @@
+// 쓰고싶은 곳에 #{$변수명} 사용
+
+@for $danny from 1 through 4 {
+  .photo-box:nth-child(#{$danny}) {
+    background-image: url("../assets/phoster#{$danny}.png");
+  }
+}

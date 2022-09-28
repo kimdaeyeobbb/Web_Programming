@@ -1,0 +1,8 @@
+// #{$변수명}
+
+@for $danny from 1 through 3 {
+  .profile-#{$danny} {
+    background-color: red;
+    font-size: #{$danny * 10}; //#{$danny} * 10 으로 쓰면 안됨
+  }
+}
