@@ -1,0 +1,6 @@
+// 지금은 rails sass가 extension이므로 콘솔창에 결과값이 출력되지 않고, node환경에서 출력됨
+@debug 100 > 50; // true
+@debug 10px < 17px; // true
+@debug 1000ms <= 1s; // true
+@debug 1px == 1px; // true
+@debug 1px != 1em; // true

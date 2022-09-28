@@ -1,0 +1,23 @@
+.info {
+  font-size: 15px;
+  line-height: 1.34;
+  text-align: right;
+}
+.info span {
+  line-height: 1.34;
+}
+
+.one {
+  font-size: 12px;
+}
+.one .three {
+  font-size: 12px;
+}
+
+.four {
+  font-size: 15px;
+}
+
+.five {
+  font-size: 15px;
+}/*# sourceMappingURL=008_변수의_scope.css.map */

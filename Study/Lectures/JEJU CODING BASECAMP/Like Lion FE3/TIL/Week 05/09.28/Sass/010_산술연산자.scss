@@ -1,0 +1,30 @@
+// Sass 공식문ㅅ
+
+@debug 10s+15s; // 25s
+@debug 1in - 10px;
+@debug 15px-10px; // 0.8958333333 in
+@debug 1in % 9px; // 0.065in (1in == 96px)
+
+.one {
+  font-size: 15px- 10px;
+}
+
+// .two{
+//     font-size: 15px - 1em;   // 단위가 다르므로 에러 발생 (띄워쓰기를 안하면 에러없이 그대로 컴파일되어 나오므로 유의)
+// }
+
+.three {
+  font-size: 15px - 1in; // -81px
+}
+
+.four {
+  font-size: 1in - 15px; //   font-size: 0.84375in;
+}
+
+.five {
+  font-size: 1cm - 15px;
+}
+
+.six {
+  font-size: 1 - 15px;
+}
