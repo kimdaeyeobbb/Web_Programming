@@ -1,0 +1,15 @@
+@mixin sample {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @content;
+}
+
+.one {
+  // 사용하는 곳에서 (추가로 스타일링을 할 수 있음)
+  @include sample {
+    color: white;
+  }
+
+  background-color: red;
+}

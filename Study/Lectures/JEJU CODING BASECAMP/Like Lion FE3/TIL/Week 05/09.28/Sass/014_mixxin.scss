@@ -1,0 +1,16 @@
+// 파선아실 - 파라미터는 선언할 때   , 아규먼트는 실제로 쓸 때
+
+@mixin image-style($url, $size, $repeat, $positionX, $positionY) {
+  background-image: url($url);
+  background-size: $size;
+  background-repeat: $repeat;
+  background-position: $positionX, $positionY;
+}
+
+.profile {
+  @include image-style("./asset/user.jpg", cover, no-repeat, center, center);
+}
+
+.box-one {
+  @include image-style("images/poster1.svg", cover, no-repeat, 40%, 50%);
+}

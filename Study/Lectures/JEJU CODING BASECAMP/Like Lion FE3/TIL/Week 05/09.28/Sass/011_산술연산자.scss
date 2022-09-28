@@ -1,0 +1,39 @@
+// Sass 공식문서
+
+.one {
+  font-size: 10px + 10px;
+}
+
+.two {
+  font-size: 10px - 10px;
+}
+
+.three {
+  font-size: 10px / 10px; // 문자
+}
+
+// .four {
+//   font-size: 10px * 10px;   // error
+// }
+
+// .five{
+//     font-size: 10px ** 10px;   // 에러
+// }
+
+.six {
+  font-size: 10px%10px;
+}
+
+.seven {
+  font-size: 10px / 10; // 문자
+}
+
+.eight {
+  font-size: (
+    10px / 10px
+  ); // 슬래시(/)는 리스트에서 사용하므로 혼동유발 가능성 존재. 따라서 괄호를 사용할 것
+}
+
+.nine {
+  font-size: 10px % 3px;
+}

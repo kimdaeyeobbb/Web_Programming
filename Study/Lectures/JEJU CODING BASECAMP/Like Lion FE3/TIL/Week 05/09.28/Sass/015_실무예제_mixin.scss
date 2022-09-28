@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+// 위에 코드를 가져와서 기본값을 설정해주었다.
+@mixin image-style($url, $size, $repeat, $positionX: 50%, $positionY: 50%) {
+  background-image: url($url);
+  background-size: $size;
+  background-repeat: $repeat;
+  background-position: $positionX $positionY;
+}
+
+//background관련 스타일 코드가 들어있다.
+//mixin의 인수에 따라 조금씩 다른 스타일링이 가능하다.
+.profile {
+  @include image-style("./assets/user.jpg", cover, no-repeat);
+}
+
+.profile-1 {
+  @include image-style("./assets/user.jpg", cover, no-repeat, 30%);
+}
+
+.profile-2 {
+  @include image-style("./assets/user.jpg", cover, no-repeat, 30%, 30%);
+}
+// profile과 .box-one은 서로 관계가 없지만, 코드가 중복되기때문에 mixin을 만들어서
+// 각 요소에서 사용합니다.
+@mixin thumb($total, $img, $type) {
+  @for $i from 1 through $total {
+    li:nth-child(#{$i}) .thumb {
+      background-image: url(#{$url} + #{$img} + #{$i} + '.' + #{$type});
+    }
+  }
+}
+
+@include thumb(10, "background", "png");
+
+@mixin circleBase {
+  display: block;
+  border-radius: 50%;
+
+  // 크로스브라우징 기법
+  -ms-border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+@mixin circle($size, $color: null) {
+  //$size: unitCheck($size);    // 전역변수인 size를 재선언해서 지역변수화 -> 얘를 주석처리하면 ex1에서 사용이 명확해짐
+  @include circleBase;
+  width: $size;
+  height: $size;
+  background-color: $color;
+}
+
+.ex1 {
+  @include circle(100, red);
+}

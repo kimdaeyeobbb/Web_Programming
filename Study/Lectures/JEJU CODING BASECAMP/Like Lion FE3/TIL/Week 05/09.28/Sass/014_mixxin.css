@@ -1,0 +1,13 @@
+.profile {
+  background-image: url("./asset/user.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center, center;
+}
+
+.box-one {
+  background-image: url("images/poster1.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 40%, 50%;
+}/*# sourceMappingURL=014_mixxin.css.map */
