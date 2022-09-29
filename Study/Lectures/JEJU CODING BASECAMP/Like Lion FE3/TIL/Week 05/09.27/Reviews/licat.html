@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>라이켓 그리기 복습</title>
+    <!-- <link rel="stylesheet" href="./licat.css"> -->
+    <link rel="stylesheet" href="./reset.css" />
+    <style>
+      /* reset */
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* design */
+      .outerbox {
+        background-image: url(./gggl.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100%;
+      }
+
+      body {
+        /* 직선을 따라 두 개 이상의 색상 간의 점진적 전환으로 구성된 이미지를 만듦 */
+        background-image: linear-gradient(to right, red 50%, blue 50%);
+        /* 종횡비를 유지하면서 이미지가 화면에 꽉 차게 유지 */
+        width: 100%;
+        height: auto;
+      }
+
+      *,
+      *::after,
+      *::before {
+        box-sizing: border-box;
+      }
+
+      .whitetiger {
+        /* background-color: green; */
+        position: relative;
+        top: 100px;
+        margin: 50px auto;
+        width: 400px;
+        height: 300px;
+      }
+
+      .whitetiger .ear {
+        position: absolute;
+        top: 40;
+        /* 이 픽셀을 바로 얻을 수 없고, 이리저리 조절 해보면서 얻어내는 값임 */
+        width: 80px;
+        height: 92px;
+        border: 10px solid black;
+
+        /* 귀 색상 */
+        background-color: #ffffff;
+        border-radius: 35%;
+      }
+
+      /* 귀 라인 */
+      .earline.left {
+        position: absolute;
+        top: 40px;
+        left: 0;
+        width: 60px;
+        height: 10px;
+        border: 5px solid black;
+        border-radius: 10% 0 0 60%;
+        background-color: black;
+        border-radius: 10% 0 0 60%;
+        background-color: black;
+        transform: rotate(90deg);
+      }
+
+      .earline.right {
+        position: absolute;
+        top: 40px;
+        left: 0;
+        width: 60px;
+        height: 10px;
+        border: 5px solid black;
+        border-radius: 60% 0 0 10%;
+        background-color: black;
+        transform: rotate(90deg);
+      }
+
+      /* 귀를 양쪽으로 옮김 */
+      .whitetiger .ear.left {
+        top: 0;
+        left: 5px;
+        /* 왼쪽으로 30도 기울임 */
+        transform: rotate(-30deg);
+        /* 귀를 둥글게 깎음 (네방향) */
+        border-radius: 70% 50% 0 0;
+        /* 귀 부분에 음영을 넣음 */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .whitetiger .ear.right {
+        top: 0px;
+        right: 5px;
+        /* 오른쪽으로 30도 기울임 */
+        transform: rotate(30deg);
+        border-radius: 50% 70% 0 0;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .whitetiger .face {
+        position: absolute;
+        width: 400px;
+        height: 420px;
+        border-radius: 40% 40% 50% 50%;
+        background-color: #ffffff;
+        border: 10px solid black;
+      }
+
+      /* 백호의 눈 */
+      .eye {
+        position: absolute;
+        top: 110px;
+        width: 50px;
+        height: 73px;
+        border-radius: 50%;
+        background-color: black;
+      }
+
+      /* 왼쪽 눈 */
+      .eye.left {
+        /* 왼쪽 기준 */
+        /* eye와 left가 동시에 가지는 property - 여기서 absolute를 또 주면 중복임 */
+        left: 100px;
+      }
+
+      /* 오른쪽 눈 */
+      .eye.right {
+        /* 오른쪽 기준 */
+        right: 100px;
+      }
+
+      /* 코 (코가 어디 다른곳에 찍히는게 아니므로 .face등을 앞에 써줄 필요가 없음) */
+      .nose {
+        position: absolute;
+        /* 코 위치 - 그냥 픽셀을 알 수 없고, 밀어봐야 알 수 있음 */
+        top: 200px;
+        left: 160px;
+
+        /* 코 크기 */
+        width: 55px;
+        height: 45px;
+        background-color: black;
+
+        /* 사각형인 코 깎기 */
+        border-radius: 20% 20% 50% 50%;
+      }
+
+      /* 입 */
+      .mouth {
+        position: absolute;
+
+        /* 입 크기 */
+        width: 150px;
+        height: 50px;
+        border: 10px solid black;
+
+        /* 입 깎기 */
+        border-radius: 10% 10% 40% 40%;
+
+        /* 입의 위치 */
+        top: 300px;
+        left: 115px;
+        background-color: bisque;
+      }
+
+      /* 홍조 */
+      .blush {
+        position: absolute;
+        top: 200px;
+        width: 44px;
+        height: 33px;
+        border-radius: 50%;
+        background-color: palevioletred;
+      }
+
+      .blush.left {
+        left: 45px;
+      }
+
+      .blush.right {
+        right: 45px;
+      }
+
+      /* 눈썹 */
+      .eyebrow {
+        position: absolute;
+        top: 90px;
+        width: 64px;
+        height: 8px;
+        border-radius: 30%;
+        background-color: black;
+      }
+
+      .eyebrow.left {
+        left: 85px;
+        box-shadow: 0.5vmin 0.5vmin 0.5vmin;
+      }
+
+      .eyebrow.right {
+        right: 85px;
+        box-shadow: 0.5vmin 0.5vmin 0.5vmin;
+      }
+
+      /* 수염 */
+      .mustache.left {
+        position: absolute;
+        top: 280px;
+        left: 0;
+        width: 80px;
+        height: 10px;
+        border: 5px solid black;
+        border-radius: 10% 0 0 60%;
+        background-color: black;
+        border-radius: 30% 30%;
+        background-color: black;
+        transform: rotate(140deg);
+      }
+
+      .mustache.right {
+        position: absolute;
+        top: 280px;
+        right: 0;
+        width: 80px;
+        height: 10px;
+        border: 5px solid black;
+        border-radius: 30% 30%;
+        background-color: black;
+        transform: rotate(40deg);
+      }
+
+      .mustache.left2 {
+        position: absolute;
+        top: 310px;
+        left: 0;
+        width: 80px;
+        height: 10px;
+        border: 5px solid black;
+        border-radius: 10% 0 0 60%;
+        background-color: black;
+        border-radius: 30% 30%;
+        background-color: black;
+        transform: rotate(130deg);
+      }
+
+      .mustache.right2 {
+        position: absolute;
+        top: 310px;
+        right: 0;
+        width: 80px;
+        height: 10px;
+        border: 5px solid black;
+        border-radius: 30% 30%;
+        background-color: black;
+        transform: rotate(50deg);
+      }
+
+      /* 머리라인 */
+      .headline.center {
+        position: absolute;
+        top: 0px;
+        left: 183px;
+        width: 10px;
+        height: 80px;
+        border-radius: 0 30%;
+        background-color: black;
+      }
+
+      .headline.left {
+        position: absolute;
+        top: 15px;
+        left: 105px;
+        width: 80px;
+        height: 10px;
+        border-radius: 0 30%;
+        background-color: black;
+      }
+
+      .headline.left2 {
+        position: absolute;
+        top: 40px;
+        left: 105px;
+        width: 80px;
+        height: 10px;
+        border-radius: 0 30%;
+        background-color: black;
+      }
+
+      .headline.right {
+        position: absolute;
+        top: 15px;
+        right: 110px;
+        width: 80px;
+        height: 10px;
+        border-radius: 0 30%;
+        background-color: black;
+      }
+
+      .headline.right2 {
+        position: absolute;
+        top: 40px;
+        right: 110px;
+        width: 80px;
+        height: 10px;
+        border-radius: 0 30%;
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outerbox"></div>
+
+    <!-- 전체 판 (얼굴+머리+귀 등 모두 포함) => 중앙 정렬 되어 있어야 함 -->
+    <div class="whitetiger">
+      <!-- 귀 부분 -->
+      <div class="ear left">
+        <div class="earline left"></div>
+      </div>
+      <div class="ear right">
+        <div class="earline right"></div>
+      </div>
+
+      <!-- 얼굴 부분 -->
+      <div class="face">
+        <!-- 눈 -->
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+
+        <!-- 코-->
+        <div class="nose"></div>
+
+        <!-- 입 -->
+        <div class="mouth"></div>
+
+        <!-- 홍조 -->
+        <div class="blush left"></div>
+        <div class="blush right"></div>
+
+        <!-- 눈썹 -->
+        <div class="eyebrow left"></div>
+        <div class="eyebrow right"></div>
+
+        <!-- 수염-->
+        <div class="mustache left"></div>
+        <div class="mustache right"></div>
+
+        <div class="mustache left2"></div>
+        <div class="mustache right2"></div>
+
+        <!-- 머리 라인 -->
+        <div class="headline center"></div>
+        <div class="headline left"></div>
+        <div class="headline left2"></div>
+        <div class="headline right"></div>
+        <div class="headline right2"></div>
+      </div>
+    </div>
+  </body>
+</html>
