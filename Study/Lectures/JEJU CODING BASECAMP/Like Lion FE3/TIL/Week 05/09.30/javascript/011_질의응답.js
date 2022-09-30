@@ -45,3 +45,16 @@ let userData = [
 console.log(Math.min(...userData.map((value) => value.age)));   // 24
 
 console.log(Math.round(4.7));
+console.log(Math.round(4.4));
+
+console.log(Math.random() * 100);
+
+console.log(Math.sqrt(64));   // 8
+
+console.log(Math.abs(-10));   // 10s
+
+
+console.log(123123123123123123123 + 2);   // 제대로 계산 X
+console.log(BigInt(123123123123123123123) + BigInt(2));   // 제대로 계산 X
+console.log(BigInt(123123123123123123123n) + BigInt(2n));   // 제대로 계산 O - BigInt의 n은 non-limited일 가능성이 있다
+
