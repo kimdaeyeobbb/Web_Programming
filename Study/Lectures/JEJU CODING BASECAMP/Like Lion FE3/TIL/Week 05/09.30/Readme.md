@@ -99,4 +99,54 @@ console.log(
   - 형 변환시 `Number`사용은 권장 X
   - 형 변환시 `parseInt`사용을 권장 O
 
-- ㅁ
+- onClick
+
+  - js 스펙에 포함되지 X
+
+- group
+
+  - 계층구조에 포함되지 않는다면 group을 쓸 이유가 없다
+
+- 이스케이프 문자
+
+  - \n(개행),\t(수평 탭) 등을 넣어서 특수문자임을 알리는 것
+  - 이를 이용해서 원래 형태로 출력을 할 수 있게 됨
+
+- indexOf는 정규표현식을 허용하지 않음
+- 0 이외의 다른 숫자는 true이다. (-1도 true)
+
+- [정규 표현식](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Regular_Expressions)
+
+- 정규표현식은 내부에 들어가는 것이 '패턴'이다
+- [정규 표현식 실습 사이트](https://regexr.com/5nvc2)
+- 유효성 검증할 때 정규표현식 사용
+- 정규표현식 예제
+
+```js
+h[eao]llo
+
+hello world  // hello 찾음
+hello  world  // hello 찾음
+hello, world  // hello 찾음
+Hello World
+
+hello world hello  // hello hello 찾음
+
+hello  // hello 찾음
+hallo  // hallo 찾음
+hollo // hollo 찾음
+
+```
+
+- /gm <br> => global과 multiline을 뜻함
+
+- 공백도 문자로 포함
+
+- substr(시작위치, 길이)
+
+  - 시작인덱스부터 길이만큼 반환
+  - 사용을 권고하지 않음
+
+- [substr VS substring](http://chongmoa.com/javascript/275354)
+
+- replace(바꿀문자열, 바뀔문자열)
