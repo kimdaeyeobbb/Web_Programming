@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="one"></p>
+    <script>
+      // document는 이 문서 전체를 뜻함
+      // about:blank에서 개발자 도구 열고 console에서 document.라고 치면 여러가지 document 메서드를 볼 수 있다
+      document.getElementById("one").innerHTML = "hello <strong>world</strong>";
+      console.log("hello world 2");
+      window.alert("hello world 3");
+
+      document.write("hello world 4");
+    </script>
+  </body>
+</html>
