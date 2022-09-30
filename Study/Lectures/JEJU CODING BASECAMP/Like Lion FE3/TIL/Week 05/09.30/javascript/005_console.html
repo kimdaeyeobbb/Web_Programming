@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("hello");
+
+      let data = {
+        a: 10,
+        one: 1,
+        two: 2,
+        three: 3,
+        c: 100,
+        b: 3,
+      };
+      console.log(data);
+      // 객체는 인덱스가 없으므로 키값 순서대로 출력 되는 듯함
+
+      for (const d in data) {
+        console.log(d);
+      }
+      // 순회를 돌았을 때에는 순서를 보장함
+
+      let data2 = [10, 20, 30];
+      console.dir(data2);
+      // 요소 &값 & 내부에서 사용할 수 있는 것들 출력
+
+      console.info("hello world");
+      // 정보를 표현할 때 사용
+
+      console.group("one");
+      // 이 안에 있는 것들은 one 그룹내에 속함 (group이 끝날때까지)
+      console.log("호준/팀원");
+      console.log("유정/팀원");
+      console.log("혜연/팀원");
+
+      // 하위의 새로운 그룹 시작
+      console.group("two");
+      console.log("태수/팀장");
+      console.log("슬기/팀장");
+      console.groupEnd();
+      // 그룹화 종료
+      console.log("end");
+      console.groupEnd();
+      console.log("end");
+      // 그룹 2개이므로 end도 두번 적용
+
+      console.table(data);
+      // 테이블형식으로 데이터 표현
+
+      console.error("error");
+      console.error("정신차렷!");
+
+      console.warn("hello");
+      console.warn("실행은 해줄게, 경고문구는 살려둬");
+
+      console.log("%chello wolrd", "color:red; font-size:32px");
+      // 꾸미고 싶은 문자열 앞에 %c를 사용
+
+      console.log(
+        "%chello world%chello",
+        "color:blue;font-size:20px",
+        "color:green;font-size:40px"
+      );
+    </script>
+  </body>
+</html>

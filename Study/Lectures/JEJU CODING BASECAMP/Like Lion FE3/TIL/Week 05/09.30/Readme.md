@@ -43,3 +43,46 @@ document.write("hello world 4");
 - innerHTML
 
   - 특정 요소의 메서드 (요소를 찍어내야만 요소에 대한 결과가 innerHTML에 들어감. 요소의 메서드이지, document의 메서드가 아니다)
+
+- 웹페이지를 구성하는 요소
+
+  - html, js, css, 왓슨(web assembly)
+
+- [json-generator](https://json-generator.com/)
+
+  - json 파일 생성함
+
+- console 창에서 꾸미고 싶은 문자열 앞에 %c를 사용 (뒤에서 꾸며줄 것을 지정)
+
+```js
+console.log("%chello wolrd", "color:red; font-size:32px");
+```
+
+<br>
+
+```js
+console.log(
+  "%chello world%chello",
+  "color:blue;font-size:20px",
+  "color:green;font-size:40px"
+);
+```
+
+- 대부분의 회사에서 한글 코딩을 권장하지 않는다
+
+- 변수명을 숫자로 쓰면 에러발생
+- 변수명을 숫자로 시작하면 에러 발생
+
+- 문자는 대소문자를 구별함
+
+- [document.write가 되면 버튼이 사라지는 이유](https://ko.javascript.info/modifying-document#ref-1045)
+
+  - 로드시 기존의 문서 내용이 사라짐
+
+- '\_'(언더바) => 반복문 돌 때 의미없는 변수에 사용
+
+- 특수문자도 일부 사용가능함 (잘못알려주는 블로그가 많다)
+
+  - 하지만 특수문자를 사용하는 경우는 드물기 때문에 $,\_ 정도만 사용가능하다고 생각하는게 좋다
+
+- 변수는 let, const, var, if, else 이런 지정된 키워드로 사용하지 않음
