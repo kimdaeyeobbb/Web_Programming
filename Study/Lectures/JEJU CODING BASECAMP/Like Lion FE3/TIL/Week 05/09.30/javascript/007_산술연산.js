@@ -13,3 +13,8 @@ console.log(one, one, two.tow);
 console.log(one, 'X', two, '=', one * two);
 console.log(one + ' X ' + two + '= ' + one * two);
 console.log(`${one} X ${two} = ${one * two}`);
+
+
+// 템플릿 리터럴 내의 연산은 밖으로 빼주는 것을 권장함
+let three = one * two;
+console.log(`${one} X ${two} = ${three}`);
