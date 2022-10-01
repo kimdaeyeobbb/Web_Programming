@@ -6,4 +6,4 @@ function printall2(arr: number[]) {
 }
 
 printall2([1, 2, 3]);
-printall2(1, 2, 3); // error
+printall2(1, 2, 3); // errorc
