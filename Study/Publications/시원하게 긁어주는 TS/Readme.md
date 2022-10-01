@@ -79,4 +79,52 @@ tup1[0].toLowerCase(); // 여기서 tolowercase는 첫번째 요소에만 사용
 tup1[1].toLowerCase(); // error number에는 toLowerCase 적용 불가
 
 ```
+### 아이디어 
 
+- 여기서 js상 void를 안넣었을 때와 넣었을 때의 차이점 & ts에서 void를 넣어주면 js와 뭐가 다른지에 대해서 조금 더 구체적으로 서술해야 함
+```ts
+// void, never 
+
+/* javascript */
+function sayHello(){
+    console.log('hello');   // 콘솔만찍고 아무것도 반환하지 않음
+}
+
+/* typescript */
+// void -> 함수에서 아무것도 반환하지 않을 때 사용
+function sayHello():void {
+  console.log("hello");
+}
+```
+<br>
+
+- 여기서 js상 never를 안넣었을 때와 넣었을 때의 차이점 & ts에서 never를 넣어주면 js와 뭐가 다른지에 대해서 조금 더 구체적으로 서술해야 함
+```ts
+/* js */
+function showError(){
+    throw new Error();    // 항상 에러를 반환
+}
+
+function infLoop(){   // 영원히 끝나지 않는 함수
+    while(true){
+        // do forever  
+    }
+}
+
+/* ts */
+function showError():never {
+  throw new Error(); // 항상 에러를 반환
+}
+
+function infLoop():never {
+  // 영원히 끝나지 않는 함수
+  while (true) {
+    // do forever
+  }
+}
+```
+
+
+### 아이디어
+
+-
