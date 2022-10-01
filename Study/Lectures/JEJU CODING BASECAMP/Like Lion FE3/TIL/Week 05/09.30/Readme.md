@@ -170,3 +170,15 @@ hollo // hollo 찾음
 - 1024MB => 1GB
 - 1024GB => 1TB
 - 1024TB => 1PB
+
+## 추가 내용
+
+- 아주 큰 값을 입력받았을 때에는 string으로 바꾼 다음 BitInt로 바꿔야 안전하다
+
+- [자바스크립트 전개 구문](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+
+- [자바스크립트 타입과 자료구조](https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures)
+
+- [타입스크립트 전개 구문](https://codingcoding.tistory.com/1293)
+
+- [BigInt](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
