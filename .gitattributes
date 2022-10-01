@@ -1,0 +1,5 @@
+* text=auto
+*.ts linguist-detectable=true
+*.ts linguist-language=TypeScript
+*.html linguist-detectable=false
+*.css linguist-detectable=false
