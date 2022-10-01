@@ -43,3 +43,13 @@
 var ex1: string = "Coffee chat 22.10.01";
 // 변수명 뒤에 타입이 들어옴 (기존의 js에서는 타입지정 X => ts는 이와달리 정적타입)
 ```
+
+
+## ch03
+
+### 이용하고 싶은 아이디어 (배열내 메서드 종류가 다름으로 js를 환기시킴과 동시에 타입에 대한 설명으로 자연스레 이어나가려는 목적)
+- array내 요소가 string일 때 사용할 수 있는 메서드 종류
+![image](https://user-images.githubusercontent.com/68424403/193397892-fe3b7eaa-be30-4a95-a06c-09adcea574cb.png)
+
+- array내 요소가 number일 때 사용할 수 있는 메서드 종류
+![image](https://user-images.githubusercontent.com/68424403/193397905-e0e2d41e-1b0a-43cf-a6a9-0350413c9d04.png)
