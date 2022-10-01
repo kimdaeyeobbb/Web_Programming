@@ -43,3 +43,40 @@
 var ex1: string = "Coffee chat 22.10.01";
 // 변수명 뒤에 타입이 들어옴 (기존의 js에서는 타입지정 X => ts는 이와달리 정적타입)
 ```
+
+
+## ch03
+
+### 이용하고 싶은 아이디어 (배열내 메서드 종류가 다름으로 js를 환기시킴과 동시에 타입에 대한 설명으로 자연스레 이어나가려는 목적)
+
+
+- array내 요소가 string일 때 사용할 수 있는 메서드 종류
+![image](https://user-images.githubusercontent.com/68424403/193397892-fe3b7eaa-be30-4a95-a06c-09adcea574cb.png)
+
+- array내 요소가 number일 때 사용할 수 있는 메서드 종류
+![image](https://user-images.githubusercontent.com/68424403/193397905-e0e2d41e-1b0a-43cf-a6a9-0350413c9d04.png)
+
+
+- 해당부분 전체 코드
+```ts
+let age: number = 30;
+let isStudent: boolean = true;
+
+// Array
+let numarr1: number[] = [1, 2, 3];
+let numarr2: Array<number> = [1, 2, 3];
+let strarr1: string[] = ["가", "나", "다"];
+let strarr2: Array<string> = ["가", "나", "다"];
+
+strarr1.push(7); // error (문자열 배열에 숫자를 추가하려고 하므로)
+
+// tuple
+let tup1: [string, number]; // 인덱스별로 타입이 다를 때 사용 (배열의 첫번쨰 요소는 string, 두번째 요소로 number를 사용)
+tup1 = ["가", 1]; // 여기서 tolowercase는 첫번째 요소에만 사용이 가능하게 됨
+tup2 = [2, "나"]; // error
+
+tup1[0].toLowerCase(); // 여기서 tolowercase는 첫번째 요소에만 사용이 가능하게 됨
+tup1[1].toLowerCase(); // error number에는 toLowerCase 적용 불가
+
+```
+
