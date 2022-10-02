@@ -101,3 +101,46 @@ w-fit	    width: fit-content;
 <br><br>
 
 ## color
+
+- 유의사항
+
+```html
+<!-- width와 height를 같게 설정해서 정사각형을 만듦 -->
+<!-- bg: background-color -->
+<!-- 순수 CSS였다면 뒤의것을 적용시켜서 bg-red-500이 적용됐을것임 -->
+<!-- 그러나 여기도 red -->
+<div class="w-10 h-10 bg-blue-500 bg-red-500"></div>
+<br />
+<!-- 순수 CSS였다면 뒤의것을 적용시켜서 bg-blue-500이 적용됐을것임 -->
+<!-- 여기도 red로 설정됨. (즉, 같은 숫자일때 red가 더 높은 우선순위를 가지는 것)-->
+<div class="w-10 h-10 bg-red-500 bg-blue-500"></div>
+```
+
+- 이 케이스의 경우 위 아래 정사각형 둘 다 red가 적용된다
+- red가 blue보다 우선순위를 가진다는 뜻이다 (같은 숫자일 경우)
+- React에서 이와같이 동시에 color를 주는 경우가 있으므로 유의해야 한다.
+  (물론 색상 2개를 한꺼번에 적용시키는것은 좋은 사용법이 아니다)
+
+<br>
+
+- 색상이 점점 더 진해지는 예제
+
+```html
+<!-- 색상이 점점 더 진해지는 예제 -->
+<div class="bg-sky-50 aspect-square"></div>
+<div class="bg-sky-100 aspect-square"></div>
+<div class="bg-sky-200 aspect-square"></div>
+<div class="bg-sky-300 aspect-square"></div>
+<div class="bg-sky-400 aspect-square"></div>
+<div class="bg-sky-500 aspect-square"></div>
+<div class="bg-sky-600 aspect-square"></div>
+<div class="bg-sky-700 aspect-square"></div>
+<div class="bg-sky-800 aspect-square"></div>
+<div class="bg-sky-900 aspect-square"></div>
+```
+
+<br><br>
+
+## Typography
+
+- aㅁ
