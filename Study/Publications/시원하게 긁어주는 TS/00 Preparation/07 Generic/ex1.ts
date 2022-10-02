@@ -45,12 +45,8 @@ getSize2<number>(arr5);
 
 /* 두번쨰 */
 const arr6 = ["a", "b", "c"];
-getSize2<string>(arr2); // 사실 <string>처럼 타입을 기재해주지 않아도 타입스크립트는 전달되는 매개변수를 보고 어떤 타입인지 알 수 있음
+getSize2<string>(arr6); // 사실 <string>처럼 타입을 기재해주지 않아도 타입스크립트는 전달되는 매개변수를 보고 어떤 타입인지 알 수 있음
 
 /* 세번째 */
-const arr3 = [false, true, true];
-getSize2(arr3);
-
-/* 네번쨰 */
-const arr4 = [{}, {}, { name: "Tim" }];
-getSize2(arr4);
+const arr7 = [false, true, true];
+getSize2<boolean | string>(arr7); // 특정 타입을 강조하고 싶은 경우 union 사용
