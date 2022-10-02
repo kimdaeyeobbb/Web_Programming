@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tailwind 연습 - sizing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- h${hello world}*6-->
+    <h1>hello world</h1>
+    <h2>hello world</h2>
+    <h3>hello world</h3>
+    <h4>hello world</h4>
+    <h5>hello world</h5>
+    <h6>hello world</h6>
+    <!-- space-y-8 => 각 상하요소의 간격  (x는 좌우요소의 간격) -->
+    <!-- 숫자는 안에있는 아이템들의 top, bottom 간격-->
+    <!-- bg-blue-300 =>  background color: blue, 숫자가 높아질수록 진해짐  -->
+    <div class="space-y-4 bg-blue-300">
+      <!-- w-96 => 0.25rem*96 -->
+      <!-- shadow: 그림자, rounded: radius. 모서리 깎는 것 -->
+      <div class="w-96 bg-white shadow rounded">w-96</div>
+      <div class="w-80 bg-white shadow rounded">w-80</div>
+      <div class="w-72 bg-white shadow rounded">w-72</div>
+      <div class="w-64 bg-white shadow rounded">w-64</div>
+      <div class="w-60 bg-white shadow rounded">w-60</div>
+      <div class="w-56 bg-white shadow rounded">w-56</div>
+      <div class="w-52 bg-white shadow rounded">w-52</div>
+      <!-- w-1/4 => 전체의 1/4 -->
+      <div class="w-1/4 bg-white shadow rounded">w-1/4</div>
+      <div class="w-4/4 bg-white shadow rounded">w-4/4</div>
+      <div class="w-3/4 bg-white shadow rounded">w-3/4</div>
+      <div class="w-2/4 bg-white shadow rounded">w-2/4</div>
+    </div>
+  </body>
+</html>
