@@ -95,4 +95,46 @@ console.log(Boolean([])); // true (빈 Array를 true 취급)
 console.log(Boolean({})); // true
 ```
 
-- a
+<br><br>
+
+## 비교연산자
+
+```js
+const one = 10;
+const two = 3;
+const one_ = "10";
+
+console.log(one > two);
+console.log(one >= two);
+console.log(one < two);
+console.log(one <= two);
+console.log(one == two);
+console.log(one === two); // 다른 언어에 없음
+
+// 우리를 힘들게 하는 js
+console.log("------------------");
+console.log(one == one_); // true (js는 너무 관대하다)
+console.log(one === one_); // false (타입까지 비교했을 경우 false)
+console.log(one != one_); // false
+console.log(one !== one_); // true
+```
+
+<br><br>
+
+## 논리연산자
+
+- 정말 많이 사용함
+- /_ true:1, flase:0, and(&&):곱, or(||):합, not(!):부정 _/
+
+```js
+/* true:1, flase:0, and(&&):곱, or(||):합, not(!):부정 */
+// and, or는 단락평가에도 사용함
+
+console.log(true || false); // true
+console.log(true && false); // false
+console.log(true || true); // true
+console.log(!false); // true
+console.log(!!false); // false
+console.log(!!""); // false
+console.log(!![]); // true
+```
