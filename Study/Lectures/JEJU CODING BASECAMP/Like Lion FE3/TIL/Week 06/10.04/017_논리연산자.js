@@ -17,4 +17,3 @@ console.log(!![]);   // true
 
 console.log('-------------------');
 console.log('false' == false);   // false
-console.log([] && 'hi');
