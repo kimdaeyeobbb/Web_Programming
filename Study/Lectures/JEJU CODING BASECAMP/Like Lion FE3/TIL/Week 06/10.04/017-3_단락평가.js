@@ -1,12 +1,23 @@
-
-
-
-
 /* 단락 평가 */
 username = '';   // false
 console.log(username && "이름을 입력하지 않으신 분");
 // 앞에것이 false이면 and할 필요가 없음
-username = console.log(username || "이름을 입력하지 않으신 분");   // 앞의 것이 false이고 or 연산시 뒤의것을 읽어야함. 이럴 때 바로 변수에 뒤의것을 읽어서 넣음. 이것이 단락평가
+console.log(Boolean(username && "이름을 입력하지 않으신 분"));   // false
+
+username = console.log(username || "이름을 입력하지 않으신 분");  // 이름을 입력하지 않으신 분
+// 앞의 것이 false이고 or 연산시 뒤의것을 읽어야함. 
+// 이럴 때 바로 변수에  or 뒤의것을 읽어서 넣음. 이것이 단락평가
+
+/* and 연산 */
+console.log(0 && 1);  // 연산결과가 false인 경우 false값을 가지는 변수를 출력
+console.log(false && 1);  // 연산결과가 false인 경우 false값을 가지는 변수를 출력
+
+console.log(Boolean(NaN)); // false
+
+console.log(NaN && 1);   // 연산결과가 false인 경우 false값을 가지는 변수를 출력
+console.log(0 && NaN);   // 연산결과가 false인 경우 false값을 가지는 변수를 출력
+console.log(NaN && 0);   // 연산결과가 false인 경우 false값을 가지는 변수를 출력
+
 
 /* 단락 평가2 */
 username2 = 'abc';  // true
@@ -19,29 +30,7 @@ console.log(username2);
 /* 단락평가 3 */
 username3 = '';   // false
 pw3 = '';   // false
-"회원가입성공여부" = username3 || "이름을 입력하지 않으신 분";
+isMembership = username3 || "이름을 입력하지 않으신 분";  // 회원가입 성공여부
 console.log(username3);
+console.log(Boolean(username3));   // false
 
-
-
-/* 문제 - id와 pw를 입력해야만 회원가입성공여부가 t또는 f가 나오게 만들기
-둘 중 하나라도 입력이 안되면 false */
-
-
-// 정답1
-회원가입성공여부 = username || "이름을 입력하지 않으신 분";
-console.log(username);
-회원가입성공여부 = !!(username && pw);
-
-
-// 정답2 (드모르간의 법칙)
-// not(A or B) = (not A) and (not B)
-// not (A and B) = (not A) or (not B)
-const x = 0;
-const y = 1;
-console.log(!(x || y) === (!x && !y));   // false와 and의 조합일 경우 그 코드 자체가 불필요해지는 경우가 존재
-console.log(!(x && y) === (!x || !y));
-
-
-// 정답3
-회원가입성공여부 = !!pw && !!username;
