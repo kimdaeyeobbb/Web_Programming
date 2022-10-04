@@ -1,6 +1,6 @@
 # 10.04
 
-## BigInt
+## BigInt (2020년에 등장. 대략적으로 훑고만 지나가기)
 
 - 9007199254740991라는 숫자와 Number.MAX_SAFE_INTEGER는 동일한 숫자이다.
 - 안전하지 않은 숫자를 BigInt안에 넣으면 안전하지 않은 숫자가 도출된다
@@ -19,21 +19,28 @@
            const rate = 0.1;
            const total = 10000;
 
-           //... 1000줄의 코드, 무슨 일이 일어나도 상관없음
+           //... 1000줄의 코드
            return rate * total;
            ```
+
+      - 1000줄의 코드가 있는 중간 지점에서 `rate`와 `total`의 값이 바뀌지 않으므로 무슨 일이 일어나도 상관없음 (rate\*total의 값이 1000임을 알 수 있음)
 
 2.  let
 
     - 참조 변경 가능
 
       ```js
-      const rate = 0.1;
-      const total = 10000;
+      let rate = 0.1;
+      let total = 10000;
 
       //... 1000줄의 코드, 무슨 일이 일어났는지 알 수 없음
       return rate * total;
       ```
+
+      - `let`은 중간에 값이 변경될 수 있다.
+      - 따라서 1000줄의 코드가 중간에 껴있을 경우 `rate`와 `total`의 값이 변경되었을 수 있다.
+      - 이 경우 코드리뷰를 하는 사람들도 중간에 값이 변경이 되었으니까 `let`을 사용했겠지! 라고 추측할 우려가 있다.
+      - 따라서 중간에 아무것도 변하지 않는데 `let`을 사용하는것은 의미없는 행위이다.
 
 3.  var
 
@@ -182,6 +189,20 @@ const y = 0;
 console.log("abc" / y); // NaN
 ```
 
+- [NaN 참고자료](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/NaN)
+  - NaN이란?
+    - 전역 스코프의 변수
+    -
+  - NaN를 반환하는 연산의 종류
+    1. 숫자로서 읽을 수 없는 경우<br> ex)
+       `parseInt("zzz")`, `Number(undefined)`
+    2. 결과가 허수인 수학 계산식<br> ex)
+       `Math.sqrt(-1)`
+    3. 피연산자가 `NaN` <br> ex)
+       `7 ** NaN`
+    4. 정의할 수 없는 계산식 <br> ex) `0 * Infinity`
+    5. 문자열을 포함하면서 덧셈이 아닌 계산식 <br> ex) ` "가"/3`
+
 <br>
 
 - 단락평가
@@ -237,17 +258,99 @@ console.log(!(x && y) === (!x || !y));
 
 ```
 
+- AND 연산
+
+```JS
+/* and 연산 */
+console.log(0 && 1);  // 연산결과가 false인 경우 false값을 가지는 변수를 출력
+console.log(false && 1);  // 연산결과가 false인 경우 false값을 가지는 변수를 출력
+
+console.log(Boolean(NaN)); // false
+
+console.log(NaN && 1);   // 연산결과가 false인 경우 false값을 가지는 변수를 출력
+console.log(0 && NaN);   // 연산결과가 false인 경우 false값을 가지는 변수를 출력
+console.log(NaN && 0);   // 연산결과가 false인 경우 false값을 가지는 변수를 출력
+```
+
 ### 여기서부터 다시 보기 (11시 ~ ) (018-2_confuse2부터)
 
 - 암묵적 형변환은 의도를 파악하기 어려워서 사용을 자제하는게 좋다
-- 묵시적 형변환 추천
+- 묵시적 형변환 추천 (parseInt 등)
 - 마이너스 연산은 숫자에서 사용하는것이 자명함 (암묵적 연산)
 - 문자열에서 +는 이어붙이기 위함
-- js는 관대하기 때문에 마이너스 연산시 error를 뿜지 않고 수학적으로 계산해서 Number로 던져줌
+- js는 관대하기 때문에 마이너스 연산시 error를 뿜지 않고 수학적으로 계산해서 Number로 던져줌 (빼기 연산을 한다는 것은 숫자임이 자명하므로)
 
 <br>
 
 ## Object
+
+```js
+function sum(x, y) {
+  return x + y;
+}
+
+console.log(sum(10, 20));
+console.log(sum); // 코드 전체 출력 (function의 기능 전체 출력)
+console.log(typeof sum); // function
+console.dir(sum);
+
+// 변수 추가
+sum.value = "danny";
+console.log(sum);
+console.dir(sum); // value: "danny"가 추가되었음을 확인할 수 있음
+// js객체의 모든 속성을 보여줌
+
+console.log("\n");
+
+let newuser = {
+  id: "puppy",
+  pw: "1234",
+  // md5 해시생성시 (지금은 사용 X)
+  // FF0EB2864FEB22354747F8C85D42CCB5 라는 해시값 생성
+  // 적은 항상 내부에 있다. 비밀번호는 나도 모르게 만들 것
+  name: "danny",
+  email: "kimdyk2@kakao.com",
+  active: "true", // 활성화 상태 (비활성화될 경우, 휴면계정으로 전환)
+};
+
+console.log(newuser["id"]); // key로 value 찾기
+console.log(newuser.id); //
+
+let user = [
+  {
+    id: "lion",
+    pw: "1234",
+    // md5 해시생성시 (지금은 사용 X)
+    // FF0EB2864FEB22354747F8C85D42CCB5 라는 해시값 생성
+    // 적은 항상 내부에 있다. 비밀번호는 나도 모르게 만들 것
+    name: "danny",
+    email: "kimdyk2@kakao.com",
+    active: "true", // 활성화 상태 (비활성화될 경우, 휴면계정으로 전환)
+  },
+  {
+    id: "puppycat",
+    pw: "1234",
+    // md5 해시생성시 (지금은 사용 X)
+    // FF0EB2864FEB22354747F8C85D42CCB5 라는 해시값 생성
+    // 적은 항상 내부에 있다. 비밀번호는 나도 모르게 만들 것
+    name: "danny",
+    email: "kimdyk2@kakao.com",
+    active: "true", // 활성화 상태 (비활성화될 경우, 휴면계정으로 전환)
+  },
+];
+```
+
+- 활성화/비활성화 상태는 상태변경만으로 간단히 조절할 수 있음(비활성화될 경우, 휴면계정으로 전환됨)
+
+- 추가내용
+  - js에서는 점(.)을 소수점으로 판단한다 (메서드로 판단하지 않는다.)
+    ```js
+    let one = 10;
+    console.log(one.toString());   // 가능
+    console.log(10.toString());   // 불가능 (js에서는 .을 소수점으로 판단함 & 메서드로 판단하지 않음)
+    ```
+
+<br>
 
 ## 해시값 (참고만 할 것)
 
@@ -290,6 +393,30 @@ console.log(!(x && y) === (!x || !y));
 
 <br>
 
+## 추가내용
+
+- 배열에는 순서가 있다. 하지만 이와 달리 객체는 순서를 기억하지 않는다. 객체는 키에 순서를 매기지 않고 저장한다. 그 결과 브라우저가 달라지면 키가 나오는 순서도 달라진다. 그러므로 키의 순서가 중요할 때는 객체를 사용해서 프로그램을 만들지 않는게 좋다.
+
+<br>
+
+- 회원정보 업데이트 하는 방법 1
+
+```js
+newuser["name"] = 회원정보업데이트["name"];
+newuser["email"] = 회원정보업데이트["email"];
+```
+
+<br>
+
+- 회원정보 업데이트 하는 방법 2
+
+```js
+newuser = { ...user, ...회원정보업데이트 };
+console.log(newuser);
+```
+
+<br>
+
 ## 코딩 컨벤션 (NHN)
 
 - [NHN 코딩 컨벤션](https://nuli.navercorp.com/data/convention/NHN_Coding_Conventions_for_Markup_Languages.pdf)
@@ -310,6 +437,83 @@ console.log(!(x && y) === (!x || !y));
 
 - [구글 코딩 컨벤션](https://github.com/google/styleguide)
 
--
+## 에어비엔비 코딩 컨벤션
+
+- [에어비엔비 자바스크립트 코딩 컨벤션](https://github.com/airbnb/javascript)
 
 ## Object
+
+- prototype이 안붙은 애들은 Object라는 키워드를 그대로 사용해야 함 ex) `Object.values`
+- prototype이 붙은 애들은 Object라는 키워드를 사용할 필요가 없음 ex) `dog.tostring`
+
+## 해시테이블
+
+- [해시테이블](https://mangkyu.tistory.com/102)
+- 키와 값들이 매핑되어있는 자료구조
+
+<br>
+
+## Map
+
+- [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+
+- new Map으로 만든 객체만 keys, values, entries 메서드를 사용할 수 있다
+
+<br>
+
+## 나머지 매개변수와 스프레드 용법
+
+- [나머지 매개변수와 스프레드 용법](https://ko.javascript.info/rest-parameters-spread)
+
+<br>
+
+## 배열에서 원본이야기
+
+- 원본을 수정하지 않으려면 spread 용법을 사용해서 새로운 객체에 넣어준다
+
+- [참고자료](https://stackoverflow.com/questions/57032373/whats-the-time-complexity-of-javascript-spread-syntax-in-arrays)
+
+- [참고자료](https://velog.io/@yukyung/Spread-Operator%EB%8A%94-%EC%96%95%EC%9D%80-%EB%B3%B5%EC%82%AC%EC%9D%BC%EA%B9%8C-%EA%B9%8A%EC%9D%80-%EB%B3%B5%EC%82%AC%EC%9D%BC%EA%B9%8C)
+
+<br>
+
+## 배열
+
+- 데이터의 집합. 여러개의 값을 하나의 이름으로 묶어서 사용할 수 있게 도와줌
+- 배열의 각 값은 원소(element) 혹은 요소라고 부름
+- 배열의 크기는 length 프로퍼티를 통해 알 수 있음
+
+```js
+let data = [10, 20, 30];
+console.log(data.length); // 3
+```
+
+- 배열의 생성자 함수에 숫자를 한개만 넣으면 인스턴스의 길이를, 여러 숫자를 넣으면 배열의 원소를 뜻함
+
+```js
+let data2 = new Array(5); // new라는 키워드. Array는 생성자
+let data3 = new Array("사과", "수박", "복숭아", "딸기", "바나나");
+console.log(data3);
+```
+
+- splice(): 기존의 요소를 삭제하거나, 교체하거나, 새 요소를 추가함. 인덱스, 카운트, 아이템 순서로 인자를 전달함
+
+```js
+let data3 = new Array("사과", "수박", "복숭아", "딸기", "바나나");
+data3.splice(3, 1); // 3번 인덱스 요소 하나만 삭제
+data3.splice(3); // 3번 인덱스부터 전부 삭제
+
+// 아이템 추가
+data3.splice(3, 0, "한라봉");
+console.log(data3);
+
+data3.splice(3, 1, "제주감귤");
+console.log(data3);
+
+data3.splice(3, 0, ["제주감귤", "체리"]);
+console.log(data3);
+```
+
+- 배열에도 리터럴 표현이 존재함 ([])
+- 각괄호 + 인덱스를 통해 각 원소에 접근할 수 있으며, 원소에 값을 저장할수도 있음. 심지어 존재하지 않는 원소에도 접근이 가능함
+- 리터럴 생성과 동시에 원소에 접근할수도 있음 ([1,2,3.][0] === 1)
