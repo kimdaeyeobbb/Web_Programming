@@ -1,5 +1,40 @@
 # 시원하게 긁어주는 TypeScript 집필 준비 자료
 
+## 터미널 명령어 모음
+
+1. tsc app.ts<br>
+
+```ts
+tsc app.ts  // tsc => typescript compiler
+```
+
+2. node app.js<br>
+
+- node를 통해 app.js를 실행시키는 것
+
+```js
+node app.js   // app.js의 결과를 보여줌
+```
+
+3. tsc --init<br>
+
+- tsconfig.json을 추가해서 vscode의 버그를 해결함
+
+```ts
+tsc --init
+```
+
+4. tsc -w<br>
+
+- 타입스크립트 컴파일러가 파일 내 변경사항을 감지하고, 변경 내용을 자동으로 컴파일할 수 있도록 만들어줌
+
+```ts
+tsc -w app.ts
+// w: watch. 감시하다.
+```
+
+<br><br>
+
 ## ch 01
 
 ### 타입스크립트 큰 특징
