@@ -141,6 +141,122 @@ w-fit	    width: fit-content;
 
 <br><br>
 
-## Typography
+## 기본타입 사용하기
 
-- aㅁ
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tailwindcss</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- https://tailwindcss.com/docs/margin -->
+    <!-- https://tailwindcss.com/docs/padding -->
+    <!-- https://tailwindcss.com/docs/font-weight -->
+    <!-- https://tailwindcss.com/docs/text-color -->
+    <div class="text-base">hello world</div>
+    <div class="text-lg">hello world</div>
+    <div class="text-2xl">hello world</div>
+    <!-- p-3: 0.75rem임 -->
+    <div class="text-5xl p-3">hello world</div>
+    <!-- pt: padding top -->
+    <div class="text-5xl pt-3">hello world</div>
+    <div class="text-5xl">hello world</div>
+
+    <br />
+    <br />
+
+    <div class="text-base">hello world</div>
+    <div class="text-base mt-3 mb-3">hello world</div>
+    <div class="text-base mt-3">hello world</div>
+
+    <br />
+    <br />
+
+    <div class="text-base">hello world</div>
+    <!-- my-3에서 y는 위, 아래 -->
+    <!-- mx-3에서 x는 왼쪽, 오른쪽 -->
+    <!-- my 뒤에 숫자는 공식문서 확인해가면서 조절 (중간에 빈 숫자가 존재) -->
+    <div class="text-base my-3">hello world</div>
+    <div class="text-base">hello world</div>
+
+    <!-- https://tailwindcss.com/docs/list-style-type -->
+    <div class="p-5">
+      <ul class="list-disc">
+        <li>hello world</li>
+        <li>hello world</li>
+        <li>hello world</li>
+        <li>hello world</li>
+        <li>hello world</li>
+      </ul>
+    </div>
+
+    <div class="p-5">
+      <!-- list-inside: 리스트 들여쓰기(없애고 만들면서 실습해보기) -->
+      <ul class="list-disc list-inside">
+        <li>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore,
+          dignissimos provident molestiae quo ipsa consectetur nulla repellendus
+          harum? Error architecto corporis, laborum nam molestias modi similique
+          natus dicta suscipit quis.
+        </li>
+        <li>hello world</li>
+        <li>hello world</li>
+        <li>hello world</li>
+        <li>hello world</li>
+      </ul>
+    </div>
+
+    <div class="p-5">
+      <ul class="list-decimal">
+        <li>hello world</li>
+        <li>hello world</li>
+        <li>hello world</li>
+        <li>hello world</li>
+        <li>hello world</li>
+      </ul>
+    </div>
+
+    <div class="w-32 h-32 bg-red-400"></div>
+    <br />
+    <div class="w-32 h-32 bg-red-400 rounded"></div>
+    <br />
+    <!-- rounded: 원으로 깎기 -->
+    <div class="w-32 h-32 bg-red-400 rounded-2xl"></div>
+    <br />
+    <div class="w-32 h-32 bg-red-400 rounded-full"></div>
+
+    <br />
+    <br />
+
+    <!-- rounded-full w24 -->
+    <!-- https://tailwindcss.com/docs/border-radius -->
+    <!-- https://tailwindcss.com/docs/border-width -->
+
+    <!-- border는 픽셀이다 -->
+    <!-- border top에 4px 적용 시킨 것. red뒤의 숫자가 높을수록 진해짐 -->
+    <div class="border-t-4 border-red-400">hello world</div>
+    <br />
+    <!-- border bottom: 4px -->
+    <div class="border-b-4 border-red-400">hello world</div>
+    <br />
+    <!-- border left: 4px -->
+    <div class="border-l-4 border-red-400">hello world</div>
+    <br />
+    <!-- border right: 4px -->
+    <div class="border-r-4 border-red-400">hello world</div>
+    <br />
+    <!-- 전체 테두리를 줌 -->
+    <div class="border-4 border-red-400">hello world</div>
+
+    <!-- https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values -->
+    <div class="text-[17px]">hello world</div>
+    <div class="mt-[17px]">hello world</div>
+    <div class="bg-[#4267B2] text-white">facebook</div>
+  </body>
+</html>
+```
