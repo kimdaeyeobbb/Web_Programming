@@ -32,7 +32,7 @@ tsc --init
 tsc -w app.ts
 // w: watch. 감시하다.
 ```
-
+ 
 <br><br>
 
 ## ch 01
