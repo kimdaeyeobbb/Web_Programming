@@ -138,3 +138,103 @@ console.log(!!false); // false
 console.log(!!""); // false
 console.log(!![]); // true
 ```
+
+<br>
+
+- !와 !!등을 굳이 사용하는 이유 (적절한 예시는 아니므로 가볍게 보고 넘길 것)
+
+```js
+let couponlist = ["9b5fcc71", "9b5fcc72", "9b5fcc73"];
+user = [
+  {
+    userid: 1,
+    username: "danny",
+    coupon: couponlist[0],
+    haveCoupon: !!coupon, // 쿠폰보유 여부
+  },
+];
+```
+
+- 배열이랑 객체는 참조형이라 일단은 메모리 주소를 참조하고 있어서 빈 껍데기여도 true가 나오는 걸까요? (가볍게 보고 넘길 것)
+
+  - 아니오. js가 태생적으로 그런것뿐임. (이 논리대로라면 다른 언어에도 동일하게 작동해야 함)
+
+<br>
+
+```js
+console.log("-------------------");
+console.log("confuse_1");
+console.log(!"false"); // false
+console.log("false" == false); // false
+console.log(!!NaN); // false (0으로 나눴을 때 Not A Number)
+console.log(!!null); // false
+console.log(!!undefined); // false
+```
+
+<br>
+
+```js
+console.log("false" == false); // false
+
+const x = 10;
+const y = 0;
+
+console.log("abc" / y); // NaN
+```
+
+<br>
+
+- 단락평가
+
+```js
+
+
+
+
+/* 단락 평가 */
+username = '';   // false
+console.log(username && "이름을 입력하지 않으신 분");
+// 앞에것이 false이면 and할 필요가 없음
+username = console.log(username || "이름을 입력하지 않으신 분");   // 앞의 것이 false이고 or 연산시 뒤의것을 읽어야함. 이럴 때 바로 변수에 뒤의것을 읽어서 넣음. 이것이 단락평가
+
+/* 단락 평가2 */
+username2 = 'abc';  // true
+username2 = username2 || '이름을 입력하지 않으신분';
+// 앞의것이 true+or연산 -> 뒤의 것을 읽어서 변수에 바로 집어넣음
+// => 이것이 단락평가
+console.log(username2);
+
+
+/* 단락평가 3 */
+username3 = '';   // false
+pw3 = '';   // false
+"회원가입성공여부" = username3 || "이름을 입력하지 않으신 분";
+console.log(username3);
+
+
+
+/* 문제 - id와 pw를 입력해야만 회원가입성공여부가 t또는 f가 나오게 만들기
+둘 중 하나라도 입력이 안되면 false */
+
+
+// 정답1
+회원가입성공여부 = username || "이름을 입력하지 않으신 분";
+console.log(username);
+회원가입성공여부 = !!(username && pw); // 결과값을 불리언으로 내보내기 위해 !! 사용
+
+
+// 정답2 (드모르간의 법칙)
+// not(A or B) = (not A) and (not B)
+// not (A and B) = (not A) or (not B)
+const x = 0;
+const y = 1;
+console.log(!(x || y) === (!x && !y));   // false와 and의 조합일 경우 그 코드 자체가 불필요해지는 경우가 존재
+console.log(!(x && y) === (!x || !y));
+
+
+// 정답3
+회원가입성공여부 = !!pw && !!username;   // 결과값을 불리언으로 내보내기 위해 !! 사용
+
+```
+
+### 여기서부터 다시 보기 (11시 ~)
