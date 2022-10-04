@@ -44,20 +44,18 @@ var ex1: string = "Coffee chat 22.10.01";
 // 변수명 뒤에 타입이 들어옴 (기존의 js에서는 타입지정 X => ts는 이와달리 정적타입)
 ```
 
-
 ## ch03
 
 ### 이용하고 싶은 아이디어 (배열내 메서드 종류가 다름으로 js를 환기시킴과 동시에 타입에 대한 설명으로 자연스레 이어나가려는 목적)
 
-
 - array내 요소가 string일 때 사용할 수 있는 메서드 종류
-![image](https://user-images.githubusercontent.com/68424403/193397892-fe3b7eaa-be30-4a95-a06c-09adcea574cb.png)
+  ![image](https://user-images.githubusercontent.com/68424403/193397892-fe3b7eaa-be30-4a95-a06c-09adcea574cb.png)
 
 - array내 요소가 number일 때 사용할 수 있는 메서드 종류
-![image](https://user-images.githubusercontent.com/68424403/193397905-e0e2d41e-1b0a-43cf-a6a9-0350413c9d04.png)
-
+  ![image](https://user-images.githubusercontent.com/68424403/193397905-e0e2d41e-1b0a-43cf-a6a9-0350413c9d04.png)
 
 - 해당부분 전체 코드
+
 ```ts
 let age: number = 30;
 let isStudent: boolean = true;
@@ -77,53 +75,56 @@ tup2 = [2, "나"]; // error
 
 tup1[0].toLowerCase(); // 여기서 tolowercase는 첫번째 요소에만 사용이 가능하게 됨
 tup1[1].toLowerCase(); // error number에는 toLowerCase 적용 불가
-
 ```
-### 아이디어 
+
+### 아이디어
 
 - 여기서 js상 void를 안넣었을 때와 넣었을 때의 차이점 & ts에서 void를 넣어주면 js와 뭐가 다른지에 대해서 조금 더 구체적으로 서술해야 함
+
 ```ts
-// void, never 
+// void, never
 
 /* javascript */
-function sayHello(){
-    console.log('hello');   // 콘솔만찍고 아무것도 반환하지 않음
+function sayHello() {
+  console.log("hello"); // 콘솔만찍고 아무것도 반환하지 않음
 }
 
 /* typescript */
 // void -> 함수에서 아무것도 반환하지 않을 때 사용
-function sayHello():void {
+function sayHello(): void {
   console.log("hello");
 }
 ```
+
 <br>
 
 - 여기서 js상 never를 안넣었을 때와 넣었을 때의 차이점 & ts에서 never를 넣어주면 js와 뭐가 다른지에 대해서 조금 더 구체적으로 서술해야 함
+
 ```ts
 /* js */
-function showError(){
-    throw new Error();    // 항상 에러를 반환
-}
-
-function infLoop(){   // 영원히 끝나지 않는 함수
-    while(true){
-        // do forever  
-    }
-}
-
-/* ts */
-function showError():never {
+function showError() {
   throw new Error(); // 항상 에러를 반환
 }
 
-function infLoop():never {
+function infLoop() {
+  // 영원히 끝나지 않는 함수
+  while (true) {
+    // do forever
+  }
+}
+
+/* ts */
+function showError(): never {
+  throw new Error(); // 항상 에러를 반환
+}
+
+function infLoop(): never {
   // 영원히 끝나지 않는 함수
   while (true) {
     // do forever
   }
 }
 ```
-
 
 ### 아이디어 (enum)
 
@@ -155,12 +156,11 @@ enum Os3 { // 각각에게 7,8,9라는 값을 할당
 
 console.log(Os["Android"]); // 2
 console.log(Os[2]); // Android
-
 ```
 
 <br>
 
-- 
+-
 
 ```ts
 // enum
@@ -204,9 +204,7 @@ let myOS: OS4;
 // myOS에는 Window, Ios, Android만 입력할 수 있게 됨
 
 myOS = OS4.Window; // enum타입 사용 예시
-
 ```
-
 
 <br>
 
@@ -222,20 +220,15 @@ let str1 = null;
 let str2 = undefined;
 
 /* ts */
-let str1:null = null;
-let str2:undefined = undefined;
+let str1: null = null;
+let str2: undefined = undefined;
 ```
-
-
 
 <br><br>
 
-
-
-
 ## 아이디어 (interface)
 
-- x,y에 마우스를 갖다대면 number라는 타입이 뜨는데, 
+- x,y에 마우스를 갖다대면 number라는 타입이 뜨는데,
 
 ```ts
 // 인터페이스로 함수 정의
@@ -263,12 +256,14 @@ const agecounting: IsAdult = (age) => {
 };
 
 agecounting(29);
-
 ```
 
 <br><br>
 
+### 아이디어 (제네릭)
+
+- 변환된 결과는 제네릭이라는 키워드가 없으므로 JS는 일반적인 JS의 프로토타입을 사용함 + TS는 넘겨주는 타입이 명확하지만 JS는 ANY 타입임(모든 값을 다 받는 타입으로 변환이 됨)
+
+- 프로그램을 세련되게 작업하고 싶을 경우 제네릭을 사용함
+
 ### 아이디어
-
-
-
