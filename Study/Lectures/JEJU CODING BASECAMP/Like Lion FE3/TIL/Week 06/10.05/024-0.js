@@ -2,7 +2,7 @@ let myObj = {};   // 객체를 중괄호를 통해 선언 -> '리터럴'이라�
 
 let myObj2 = {
     val1: 10, val2: 30
-}  // 프로퍼티: key와 value의 쌍
+}  // 프로퍼티: key와 value의 쌍 (객체 리터럴은 key와 value의 쌍으로 구성)
 
 
 /* Immutable */
