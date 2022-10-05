@@ -1,0 +1,1 @@
+console.log("a,b,c".split(","));   // 문자열을 배열로 만듦
