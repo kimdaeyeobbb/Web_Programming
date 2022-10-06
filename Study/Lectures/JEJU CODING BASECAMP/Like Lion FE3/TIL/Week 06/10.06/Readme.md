@@ -1234,4 +1234,66 @@ for (let i = 1; i < 6; i++) {
 console.log(s2);
 ```
 
-## aㅁ
+## while문
+
+- 내용 보충 요망
+
+## 레이블
+
+```js
+// 레이블
+// 탈출할 공간을 명시해줌
+timestable: for (let x = 2; x < 10; x++) {
+  for (let y = 1; y < 10; y++) {
+    if (x === 4) break timestable; // 4단일떄 label매긴 타임타이블로 돌아감
+    console.log(`${x} X ${y} = ${x * y}`);
+  }
+}
+```
+
+## for in
+
+- 내용 보충 요망
+
+## for of
+
+```js
+for (const i of "hello world") {
+  console.log(i);
+}
+
+/* 요소 내 숫자 하나씩 더하기 */
+let s = 0;
+for (const i of "12345") {
+  s += parseInt(i);
+}
+
+console.log(s); // 15
+```
+
+- 내용 보충 요망
+
+## 질의응답
+
+```js
+let data = {
+  one: "하나",
+  two: "둘",
+  three: "셋",
+  four: "넷",
+};
+
+for (const i in data) {
+  console.log(i);
+  console.log(data[i]); // 대갈화 접근법 -> 괄호 내 변수에 접근이 가능
+  console.log(data.i); // undefined -> Object.key방법은 해당 Object에 해당 key가 있어야 접근이 가능함
+  console.log(data.one); // 이건 되는데... 왜?
+}
+```
+
+- data.i에서 i가 변수로써 사용되는 것이 아니라 문자 그대로의 i로 사용되어서 그런 것
+- 뒤에 .을 찍으면 '문자'로 인식함
+
+- 내용보충 요망
+
+## 15시 50분 이후 라운지와 기타 섹션의 질의응답 모음 정리해서 게시 요망
