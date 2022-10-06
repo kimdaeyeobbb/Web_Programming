@@ -1190,4 +1190,48 @@ x 를 구멍으로 바꾸면 자바스크립트랑 똑같음.
 자바스크립트 함수도 "구멍에 뭐 집어넣음 규칙에 따라 각각 다른 기능 실행해주는 마법의 모자" 일 뿐. 아무튼 비유하자면 그렇다~!
 ```
 
-- a
+## 문자열 뒤집기 (암기 요망 - 재귀함수 할 때 비교할 for문)
+
+```js
+/* 재귀함수 할 때 비교할 for문  */
+
+let txt = "hello world";
+let result = "";
+
+for (let i = txt.length - 1; i >= 0; i--) {
+  result += txt[i];
+}
+
+console.log(result);
+
+// 반복문2
+
+let result2 = "";
+for (let i = 0; i < txt.length; i++) {
+  result2 = txt[i] + result2;
+}
+
+console.log(result2);
+```
+
+## 재귀함수 할 때 비교할 for문 - 시그마 & 팩토리얼
+
+```js
+/* 재귀함수 할 때 비교할 for문  */
+
+//2. 시그마 (누적합)
+let s1 = 0;
+for (let i = 1; i < 101; i++) {
+  s1 += i;
+}
+console.log(s1);
+
+//3. 팩토리얼 (5! = 1x2x3x4x5 = 120)
+let s2 = 1;
+for (let i = 1; i < 6; i++) {
+  s2 += i;
+}
+console.log(s2);
+```
+
+## aㅁ
