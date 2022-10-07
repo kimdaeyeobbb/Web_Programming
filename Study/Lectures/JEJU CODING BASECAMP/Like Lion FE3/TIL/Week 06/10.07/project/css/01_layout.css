@@ -1,0 +1,65 @@
+/* reset */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button:disabled {
+  cursor: inherit;
+}
+
+/* 변수명 지정할 경우 --를 써줘야 함 (반복 사용을 알림) */
+:root {
+  --max-width: 1320px;
+}
+
+.max-width {
+  border: 2px solid royalblue;
+  /* 반응형으로 만드는 방법 1 - width & max-width*/
+  /* width: var(--max-width);
+  /* 양쪽에 30씩, 총 60px (미디어 쿼리를 쓰지 않고도 반응형으로 만듦) */
+  /*max-width: calc(100%-60px); */
+
+  /* 반응형으로 만드는 방법2*/
+  width: min(var(--max-width), calc(100%-60px));
+  margin: 0 auto;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  /* min-height => 브라우저의 높이값으로 꽉 채운다는 것 */
+  /* height를 쓰면 100vh를 넘어갈 수 있음 (뷰포트 높이를 넘어가지 않도록 하기위해 min-height사용) */
+  min-height: 100vh;
+}
+
+header {
+  background-color: salmon;
+}
+
+main {
+  background-color: sandybrown;
+  flex-grow: 1;
+}
+
+aside {
+  background: aquamarine;
+  /* 스크롤 이동시 위치 고정되어 따라다녀야 하므로 fixed로 설정 */
+  position: fixed;
+  top: 100px;
+  right: calc(50% + var(--max-width) / 2 +24px);
+  width: 124px;
+}
+
+footer {
+  background-color: gold;
+}
