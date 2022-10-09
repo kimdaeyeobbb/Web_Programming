@@ -2,9 +2,18 @@
 
 ## shift
 
-- shift시 반환값:
+- shift시 반환값: 첫번째 요소
 
-- 다시 채워넣을것
+```js
+let data = [1, 2, 3, 4, 5];
+let first = data.shift();
+console.log(first); // 1 (맨 앞 요소를 제거)
+console.log(data); // [2,3,4,5]
+
+data.unshift(6); // 맨 앞에 요소 삽입
+console.log(data.unshift(7)); // 7까지 넣으면 요소는 6개 -> unshift는 요소의 길이를 반환 (6)
+console.log(data); // [7,6,2,3,4,5]
+```
 
 ## unshift
 
@@ -20,19 +29,30 @@
 
 - 뒤에서 넣음
 
+## indexOf
+
+- 요소의 인덱스 확인
+
+```js
+data = ["a", "b", "c", "d"];
+console.log(data.indexOf("c")); // 2
+console.log(data.indexOf("a")); // 0
+console.log(data.indexOf("f")); // -1 (해당 요소 없음)
+```
+
+## isArray
+
+- 배열인지 아닌지를 확인
+
+```js
+console.log(Array.isArray([1, 2, 3])); // true
+console.log(Array.isArray("fe")); // false
+```
+
 ## fill
 
 ```js
 let data = ["a", "b", "c", "d"];
-data.shift(); // a
-console.log(data); // 맨앞 요소 제거
-
-data.unshift("e");
-console.log(data); // 맨 앞에 요소 추가
-
-console.log(data.indexOf("d")); // 3
-console.log(data.indexOf("e")); // 0
-console.log(data.indexOf("f")); // -1 (배열 내에 없는 경우 -1)
 
 data.fill("hello"); // 전체 데이터를 이것으로 채움
 console.log(data);
@@ -48,13 +68,40 @@ console.log(data);
 
 - 데이터의 원본을 수정하지 않음
 
-## split
+```js
+data = [010, 012, 1234, 5678];
+let result = data.join("-");
+console.log(result); // 8-10-1234-5678
+console.log(typeof result); // string
+```
 
-- 데이터를 자르고 싶을 경우에 사용
+```js
+data = [010, 012, 1234, 5678];
+console.log(data[0].toString(10)); // 10진수로 변환시 8
+let result = data.join("-");
+console.log(result); // 8-10-1234-5678
+console.log(typeof result); // string
+console.log(parseInt(result[0], 10).toString(8)); // 8진수로 다시 변환시 10
+```
 
-- `문자열.split('-')` 꼴로 사용
+- [진법 확인 ref 1](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Numbers_and_dates)
+
+- [진법 확인 ref 2](https://blog.outsider.ne.kr/361)
 
 ## Array & fill
+
+- 예제
+
+```js
+let a = Array(10);
+console.log(a); // 19 (선언만되고 비어있음)
+console.log(a.length); // 10
+
+let b = Array(100).fill(0); // 0이 100개로 차있는 Array
+console.log(b);
+```
+
+- 예제
 
 ```js
 let test = Array(100);
@@ -66,10 +113,53 @@ console.log(test2);
 
 ## repeat & split
 
+- repeat
+
+  - 문자열의 메서드이다
+  - Array의 메서드가 아니다
+
+- 예제
+
 ```js
 let test3 = ".".repeat(10).split("."); // repeat은 문자열의 메서드
 console.log(test3); // ['', '', '', '', '', '', '', '', '', '', '']
 ```
+
+- 예제
+
+```js
+console.log("ㅋ ".repeat(10)); // ㅋ ㅋ ㅋ ㅋ ㅋ ㅋ ㅋ ㅋ ㅋ ㅋ
+console.log("ㅋ ".repeat(10).split(" ")); // ['ㅋ','ㅋ','ㅋ','ㅋ','ㅋ','ㅋ','ㅋ','ㅋ','ㅋ','ㅋ']
+
+console.log(".".repeat(3).split(".")); // [ '', '', '', '' ] (요소가 4개)
+```
+
+## split의 경우 왜 1개가 추가되는지?
+
+```js
+console.log(".".repeat(3).split(".")); // [ '', '', '', '' ] (요소가 4개) [1]
+console.log("010-1234-5678".split("-")); // [ '010', '1234', '5678' ] // [2]
+```
+
+- [2]를 보면 '-'는 2개인데 요소가 3개이다. ([1]또한 이것과 똑같은 원리이다)
+
+- ['','','',''] 이 나온이유는 '.'의 양쪽으르 기준으로 나뉘기 떄문이다.
+  아래의 예시를 보면 조금 더 이해하기가 쉬울것이다
+
+```js
+console.log(".".repeat(3)); // ...
+console.log(".".repeat(3).split(".")); // [ '', '', '', '' ]
+console.log("z".repeat(3)); // zzz
+console.log("z".repeat(3).split("z")); // [ '', '', '', '' ]
+console.log("?".repeat(3)); // ???
+console.log("?".repeat(3).split("?")); // [ '', '', '', '' ]
+```
+
+## split
+
+- 데이터를 자르고 싶을 경우에 사용
+
+- `문자열.split('-')` 꼴로 사용
 
 ## Array.from
 
@@ -113,11 +203,22 @@ console.log(test7);
 */
 ```
 
-## split의 경우 왜 1개가 추가되는지?
-
-- 따로 정리해서 내용 추가
-
 ## flat
+
+- 재귀적으로 평탄화 작업을 할 때 사용 (주로 알고리즘에서 사용)
+
+- 예제
+
+```js
+let arr = [
+  [1, 2, 3],
+  [4, 5, 6],
+];
+console.log(arr.flat()); // [ 1, 2, 3, 4, 5, 6 ]
+console.log(arr); // [ [ 1, 2, 3 ], [ 4, 5, 6 ] ] (원본에 영향을 미치지 않음)
+console.log(arr.flat(0)); // [ [ 1, 2, 3 ], [ 4, 5, 6 ] ]
+console.log(arr.flat(1)); // [ 1, 2, 3, 4, 5, 6 ]
+```
 
 ```js
 let test8 = [
@@ -126,12 +227,15 @@ let test8 = [
 ];
 console.log(test8.flat()); // [ 1, 2, 3, 4, 5, 6 ]
 
-let test9 = [
+let arr3 = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, [9, 10, [11, 12]]],
 ];
-console.log(test9); // [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, [ 9, 10, [Array] ] ] ]
+console.log(arr3); // [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, [ 9, 10, [Array] ] ] ]
+console.log(arr3.flat(1)); // [ 1, 2, 3, 4, 5, 6, 7, 8, [ 9, 10, [ 11, 12 ] ] ]
+console.log(arr3.flat(2)); // [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, [ 11, 12 ] ]
+console.log(arr3.flat(3)); // [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
 ```
 
 ## includes
