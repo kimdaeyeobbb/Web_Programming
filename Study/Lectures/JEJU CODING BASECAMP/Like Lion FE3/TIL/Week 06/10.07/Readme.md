@@ -1,6 +1,9 @@
 # 오늘도 개발자가 안된다고 했다 특강
 
-- [깃허브 수업 교안](https://fluoridated-office-e89.notion.site/221007-GitHub-Projects-Issues-c211cf6d98a84f56afcf2f70137ea07b#3674fc81ad534832bfb6c5ce25276e34)
+
+# 221007 GitHub Projects, Issues 특강
+
+- [221007 GitHub Projects, Issues 실습](https://fluoridated-office-e89.notion.site/221007-GitHub-Projects-Issues-c211cf6d98a84f56afcf2f70137ea07b#3674fc81ad534832bfb6c5ce25276e34)
 
 <br>
 
