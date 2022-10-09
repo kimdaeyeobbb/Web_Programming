@@ -5,6 +5,8 @@
 
 - [221007 GitHub Projects, Issues 실습](https://fluoridated-office-e89.notion.site/221007-GitHub-Projects-Issues-c211cf6d98a84f56afcf2f70137ea07b#3674fc81ad534832bfb6c5ce25276e34)
 
+- [마크다운 문법 정리](https://gist.github.com/ihoneymon/652be052a0727ad59601)
+
 <br>
 
 # ㄱ나나요? HTML/CSS 특강
