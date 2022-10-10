@@ -240,15 +240,15 @@ console.log(arr3.flat(3)); // [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
 
 ## includes
 
+- 데이터의 포함 유무를 파악하여 t/f로 반환
+
 ```js
 let test10 = ["a", "b", "c", "d", "e"];
 console.log(test10.includes("b")); // true
 console.log(test10.includes("z")); // false
 ```
 
-## splice
-
-- a
+## splice와 유사한 전개구문 사용
 
 - 전개구문 이용해서 데이터 추가하기 (splice와 유사)
 
@@ -258,6 +258,44 @@ let b = ["c", "d"];
 let c = [...a, 100, ...b];
 console.log(c); // [ 'a', 'b', 100, 'c', 'd' ]
 ```
+
+## splice
+
+- 기본 꼴
+
+```
+배열.splice(요소를 위치시키고자 하는 인덱스, 제거할 요소의 개수, 추가할 요소)
+```
+
+- 특정한 인덱스에 요소를 위치시킴
+
+- 배열내 3번째 매개변수 생략시 배열 내에 존재하는 기존 요소를 제거할 때 사용
+
+```js
+const cafe = ["coffee", "cake", "tea", "cookie"];
+cafe.splice(1, 0, "bread");
+
+console.log(cafe);
+//expected output: ['coffee', 'bread', 'cake', 'tea', 'cookie']
+
+const cafe2 = ["coffee", "cake", "tea", "cookie"];
+cafe2.splice(-1, 2, "bread");
+
+console.log(cafe2);
+//expected output: ['coffee', 'cake', 'tea', 'bread']
+
+const cafe3 = ["coffee", "cake", "tea", "cookie"];
+cafe3.splice(-2, 2, "ricecake");
+console.log(cafe3); // [ 'coffee', 'cake', 'ricecake' ]
+
+const cafe4 = ["coffee", "cake", "tea", "cookie"];
+cafe4.splice(2, 2);
+console.log(cafe4); // [ 'coffee', 'cake' ]
+```
+
+## slice
+
+- 배열의 일부붑을 잘라서 새로운 배열로 반환
 
 ```js
 let data11 = ["a", "b", 100, "c", "d"];
