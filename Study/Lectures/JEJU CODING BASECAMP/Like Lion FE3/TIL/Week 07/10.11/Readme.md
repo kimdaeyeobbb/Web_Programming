@@ -101,3 +101,95 @@ console.log(one, two, three);
 - 콘솔창에서는 let을 재선언해도 에러가 나지 않음 (원래는 let을 재선언하면 에러 발생)
 
 - [자바스크립트 딥다이브](https://poiemaweb.com/es6-destructuring)
+
+```JS
+
+/* 예제 1 */
+let data = { name: 'hojun', age: 10, money: 100 }
+let { name, age } = data
+
+console.log(name, age)  // hojun 10
+
+
+/* 예제2 */
+let { name2, age2 } = { name2: 'kim', age2: 20 }
+console.log(name2, age2)  // kim 20
+
+
+/* 예제3 */
+let data2 = {
+    name3: 'hojun', age3: 10, money: 100, company: 'weniv'
+}
+
+let { name3, age3, ...rest } = data2
+console.log(name3, age3, rest)   // hojun 10 { money: 100, company: 'weniv' }
+
+
+
+/* 순서 뒤바꾸면 undefined */
+let data4 = {
+    name4: 'hojun', money4: 100, company4: 'weniv', age4: 10
+}
+
+let { name4, age4, ...rest4 } = data4
+console.log(name4, age4, rest4)  // hojun 10 { money4: 100, company4: 'weniv' }
+```
+
+- age4의 자리를 바꿔도 서로 매칭이 되므로 age4의 value에 10이 들어감
+
+## RORO 기법
+
+- 함수에 값을 전달할 때 Object로 전달하면 가독성이 높아진다는 기법
+
+- RORO기법 등의 디자인 패턴에서도 구조분해할당 등이 많이 사용됨
+
+- 놓친 것 다시 기재
+
+## 구조분해할당 & spread 문법
+
+- 예시
+
+```js
+let a = [10, 20, 30];
+a.push(100);
+a.unshift(1000);
+console.log(a); // [ 1000, 10, 20, 30, 100 ]
+
+/* spread 문법 */
+a = [1000, ...a, 100];
+console.log(a); // [1000, 1000, 10, 20, 30, 100, 100]
+
+/* 이어 붙이기 */
+let b = [1, 2, 3];
+let c = [10, 20, 30];
+let d = [...b, ...c];
+console.log(d); // [ 1, 2, 3, 10, 20, 30 ]
+```
+
+- 예시2
+
+```js
+let str = "hello world";
+console.log([str]); //[ 'hello world' ]
+
+console.log([...str]);
+/*
+ [
+  'h', 'e', 'l', 'l',
+  'o', ' ', 'w', 'o',
+  'r', 'l', 'd'
+]
+ */
+
+console.log("!".repeat(10)); // !!!!!!!!!!
+console.log([..."!".repeat(10)]);
+/*
+[
+  '!', '!', '!', '!',
+  '!', '!', '!', '!',
+  '!', '!'
+]
+ */
+```
+
+## 날짜

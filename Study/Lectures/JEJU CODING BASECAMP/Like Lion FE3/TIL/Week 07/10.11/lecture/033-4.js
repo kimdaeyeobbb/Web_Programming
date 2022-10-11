@@ -20,10 +20,10 @@ let { name3, age3, ...rest } = data2
 console.log(name3, age3, rest)
 
 
-/* 순서 뒤바꾸면 error */
-// let data4 = {
-//     name4: 'hojun', money4: 100, company4: 'weniv', age4: 10
-// }
+/* 순서 뒤바꾸면 undefined */
+let data4 = {
+    name4: 'hojun', money4: 100, company4: 'weniv', age4: 10
+}
 
-// let { name4, age4, ...rest4 } = data2
-// console.log(name4, age4, rest4)
+let { name4, age4, ...rest4 } = data4
+console.log(name4, age4, rest4)  // hojun 10 { money4: 100, company4: 'weniv' }
