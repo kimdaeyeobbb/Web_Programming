@@ -507,7 +507,7 @@ function 함수({ a = 10, b = 20, c = 30 }) {
 
 ## 재귀함수 & 문자열 뒤집기
 
-- 예제
+- 재귀함수 예제
 
 ```js
 /* 재귀함수 & 문자열 뒤집기 */
@@ -531,4 +531,21 @@ reverse('d')          true                   d
 */
 ```
 
-- ㅁ
+- 반복문 예제
+
+```js
+/* for문으로 구현 */
+txt = "world";
+result = "";
+for (const i of txt) {
+  result = i + result;
+}
+
+console.log(result);
+```
+
+## 코드 돌아가는 과정 확인하는 사이트
+
+- [사이트 링크](https://pythontutor.com/)
+
+## a

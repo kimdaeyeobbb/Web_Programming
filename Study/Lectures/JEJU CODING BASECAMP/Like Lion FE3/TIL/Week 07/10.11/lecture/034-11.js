@@ -18,3 +18,13 @@ reverse('ld')         false                  reverse(txt.slice(1)) + l = dl
 reverse('d')          true                   d
 
 */
+
+
+/* for문으로 구현 */
+txt = 'world'
+result = ''
+for (const i of txt) {
+    result = i + result
+}
+
+console.log(result)
