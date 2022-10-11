@@ -309,7 +309,7 @@ console.log(result11); // [ 'c', 'd', 'hello world', 'a', 'b', 100 ]
 
 ## 콜백함수 사용
 
-- 내용 정리해서 추가 삽입하기
+- 콜백은 요소 값, 요소 인덱스, 순회 중인 배열과 같은 세 인수와 함께 호출됨
 
 ```js
 let test1 = Array(100)
@@ -361,6 +361,79 @@ console.log(test3);
 ```
 
 - 여기서 ("\_") 언더바는 의미없는 변수일 때 사용함
+
+## map
+
+- 배열 내에 있는 요소에 오름차순으로 접근해서 주어진 함수를 호출한 결과를 모아 새로운 배열로 반환함
+
+```js
+// let test1 = Array(100).fill(0)
+// console.log(test1)
+
+// test1 = test1.map((_, index) => index)
+// console.log(test1)
+
+const arr = [
+  {
+    name: "title1",
+    contents: "contents1",
+    dataNum: 1,
+    data: [1, 2, 3],
+  },
+  {
+    name: "title2",
+    contents: "contents2",
+    dataNum: 2,
+    data: [1, 2, 3],
+  },
+  {
+    name: "title3",
+    contents: "contents3",
+    dataNum: 3,
+    data: [1, 2, 100],
+  },
+  {
+    name: "title4",
+    contents: "contents4",
+    dataNum: 4,
+    data: [1, 2, 3],
+  },
+  {
+    name: "title5",
+    contents: "contents5",
+    dataNum: 5,
+    data: [1, 2, 100],
+  },
+];
+
+arr1 = arr.map((i) => i.name);
+console.log(arr1);
+//expected output: ['title1', 'title2', 'title3', 'title4', 'title5']
+
+arr2 = arr.map((i) => i.name).indexOf("title3");
+console.log(arr2);
+//expected output: 2
+
+arr3 = arr.map((i) => {
+  if (i.data.includes(100)) {
+    return i.name;
+  }
+});
+
+arr4 = arr
+  .map((i) => {
+    if (i.data.includes(100)) {
+      return i.name;
+    }
+  })
+  .filter((i) => i);
+
+console.log(arr3); // [ undefined, undefined, 'title3', undefined, 'title5' ]
+console.log(arr4); // [ 'title3', 'title5' ]
+
+arr5 = [null, undefined, 0, 1, -1, " ", "", "a"].filter((i) => i);
+console.log(arr5); // [ 1, -1, ' ', 'a' ]
+```
 
 ## 닌자 코드
 
