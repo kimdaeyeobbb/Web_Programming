@@ -283,3 +283,52 @@ console.log(func1(10, 20, 30));
 - `console.log의 return 값`은 `undefined`
 
 - 필요 이상의 argument를 넣었을 때 지정한 개수를 넘어가는 argument는 무시됨
+
+- 필요 이하의 argument를 넣었을 때
+
+```js
+/* 필요 이하의 argument를 넣었을 때 */
+function func1(a, b, c) {
+  return a + b + c;
+}
+
+console.log(func1(10, 20)); // 10+20+undefined => NaN (c에는 할당된 값이 없으므로 undefined였음)
+```
+
+## 필요 이상의 argument가 들어 갔을 때의 처리 방법
+
+- 구조분해할당을 이용한 argument 처리
+
+```js
+function func1(a, b, ...c) {
+  console.log(c);
+  return Math.max(...c);
+}
+
+console.log(func1("hello", "world", 10, 20, 30, 40, 50)); // 50
+
+function func2([a, b], ...c) {
+  console.log(a);
+  console.log(b);
+  console.log(c);
+}
+
+func2([1, 2], 10, 20, 30, 40);
+```
+
+- 기본값 할당
+
+```js
+/* 기본값 할당 */
+
+function func3(a = 10, b = 20, c = 30) {
+  return a + b + c;
+}
+
+console.log(func3()); // 60
+console.log(func3(100)); // 150
+console.log(func3(100, 200)); // 330
+console.log(func3(100, 200, 300)); // 600
+```
+
+- a
