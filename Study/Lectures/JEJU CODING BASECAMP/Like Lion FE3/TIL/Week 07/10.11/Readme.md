@@ -414,4 +414,40 @@ for (let i = 2; i < 6; i++) {
 console.log(result); // 120
 ```
 
-- 예제 2
+## 시그마
+
+- 누적합
+
+- 에제
+
+```js
+/* 재귀함수 */
+function sigma(n) {
+  if (n <= 1) {
+    return 1;
+  }
+  return n + sigma(n - 1);
+}
+
+console.log(sigma(100)); // 5050
+
+/* 반복문 */
+let result = 0;
+for (let i = 1; i < 101; i++) {
+  result += i;
+}
+console.log(result); // 5050
+```
+
+- 순회를 돌지 않고 해결할 수 있으면 돌지 않고 해결하는 것이 좋은 코드이다
+
+```js
+let n = 100;
+console.log((n * (n + 1)) / 2);
+```
+
+- 예제
+
+```js
+
+```
