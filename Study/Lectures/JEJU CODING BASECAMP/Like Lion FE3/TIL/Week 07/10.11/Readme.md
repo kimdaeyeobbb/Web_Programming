@@ -446,8 +446,63 @@ let n = 100;
 console.log((n * (n + 1)) / 2);
 ```
 
-- 예제
+## argumnt 없이 함수를 호출할 수 있는 예제
+
+- 구조분해할당을 할때 매핑된 객체가 없는 것임
 
 ```js
+function func2({ a = 2, b = 1, c = 3 } = {}) {
+  console.log(a, b, c);
+  return a + b + c;
+} // 아무것도 입력하지 않으면 {}값이 대입 (객체가 매핑이 안되었을 경우)
+console.log(func2({ a: 20, b: 30, c: 10 })); // 60
+func2(); // argument 없이 호출가능 -> 2 1 3
 
+function func3({ a2 = 10, b2 = 20, c2 = 30 }) {
+  return a2 + b2 + c2;
+}
+func3({}); // Object로 비어있는 값을 전달
+console.log(func3({})); // 60
+
+let { one = 1, two = 2 } = {}; // 매핑되는 값이 없으므로 one,two값이 그대로 남음 (할당이 되지 않아서 Object값이 그대로 남음)
+console.log(one); // 1
+console.log(two); // 2
+
+let { one2 = 2, two2 = 3, three2 = 4 } = { one2: 100 };
+console.log(one2, two2, three2); // 100 3 4
 ```
+
+```js
+////// 동현님 글 //////
+function 함수({ a = 2, b = 1, c = 3 } = {}) {
+  console.log(a, b, c);
+  return a + b + c;
+}
+console.log(함수({ a: 20, b: 30, c: 10 }));
+함수(); // 아규먼트 없이 호출 가능
+
+// 설명
+// O
+function 함수(a = 10, b = 20, c = 30) {
+  return a + b + c;
+}
+함수();
+
+// X
+function 함수({ a = 10, b = 20, c = 30 }) {
+  return a + b + c;
+}
+함수();
+
+// O
+function 함수({ a = 10, b = 20, c = 30 }) {
+  return a + b + c;
+}
+함수({}); // 이 코드를 축소한 코드가 위의 코드입니다.
+// 참고삼아서만 알아두세요.
+// let {one = 1, two = 2} = {one:100}
+// let {one = 1, two = 2} = {}
+// let {a=10, b=20, c=30} = undefined
+```
+
+## a
