@@ -548,4 +548,41 @@ console.log(result);
 
 - [사이트 링크](https://pythontutor.com/)
 
-## a
+## 지역변수와 전역변수
+
+- block level scope
+
+```js
+if (true) {
+  let x = 10;
+  const y = 10;
+}
+console.log(x, y);
+```
+
+- function level scope
+- 밖에서 선언딘 x는 함수 내부에서도 접근이 가능함
+
+```js
+let x = 100;
+function xplus() {
+  x = x + 10;
+}
+xplus();
+console.log(x);
+```
+
+- 함수가 종료된 다음에는 선언되었던 변수는 휘발됨
+- 메모리 효율을 높일 수 있음 (모두 전역변수로 선언하면 메모리 낭비가 심함)
+
+```js
+// 함수가 끝나면 메모리주소에서 잡은것을 모두 풀기 때문에 사라짐
+function yplus() {
+  let y = 100;
+  y = y + 10;
+}
+yplus();
+console.log(y);
+```
+
+## ㅁ
