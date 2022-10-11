@@ -265,4 +265,21 @@ console.log(console.log("hellozzz")); // console.log의 반환값은 undefined
 지붕올리기(); // 10만줄
 ```
 
-## ㅁ
+## 함수의 다양한 형태
+
+- 콘솔창의 기능
+  - 마지막 라인에 한하여 console.log()를 찍지 않아도 return 값을 console 창에 출력해준다 (IDE말고 인터넷상의 콘솔창에 해당)
+  - 두번째부터는 console.log로 감싸주지 않으면 콘솔창에 return 값이 출력되지 않음
+
+```js
+function func1(a, b, c) {
+  return a + b + c;
+}
+
+func1(10, 20, 30); // 처음에만 출력. 두번째부터는 console.log로 감싸줘야 출력
+console.log(func1(10, 20, 30));
+```
+
+- `console.log의 return 값`은 `undefined`
+
+- 필요 이상의 argument를 넣었을 때 지정한 개수를 넘어가는 argument는 무시됨
