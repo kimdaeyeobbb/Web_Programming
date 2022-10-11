@@ -192,4 +192,77 @@ console.log([..."!".repeat(10)]);
  */
 ```
 
-## 날짜
+## 함수
+
+- parameter: 선언될 때 쓰이는 것
+- argument: 사용될 때 쓰이는 것
+
+```js
+function hello(parameter) {
+  console.log(parameter);
+  console.log("hello world");
+  return 100;
+}
+
+let argument = 100;
+hello(argument);
+```
+
+- 예제
+
+```js
+function hello(parameter) {
+  console.log(parameter);
+  console.log("hello world");
+  return 100;
+}
+
+let argument = 100;
+hello(argument);
+
+console.log(hello(100) + hello(100));
+
+function hello2(parameter) {
+  console.log("안녕!");
+}
+
+console.log(String(hello2()) + String(hello2())); // undefinedundefined
+
+/* return만 써주면 함수를 종료시켜줌 */
+function hello3(parameter) {
+  return; // 얘는 return undefined와 동일
+}
+
+console.log(String(hello3()) + String(hello3())); // undefinedundefined
+```
+
+- 함수는 return을 만나면 종료됨
+- return 자체만 쓰이면 return undefined와 동일
+- [함수에서의 반환값 1](https://developer.mozilla.org/ko/docs/Learn/JavaScript/Building_blocks/Return_values)
+- [함수에서의 반환값 2](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/return)
+
+```js
+console.log(console.log("hellozzz")); // console.log의 반환값은 undefined
+```
+
+## 함수를 사용하는 이유
+
+1. 재사용성
+   - 재사용하지 않을 코드는 함수로 정의할 필요가 없나? (=> 가능하면 함수로 만드는게 좋다)
+2. 유지보수
+   - 3번 사항 + 변수의 scope 제한 (A영역에서 사용한 변수를 B영역에서 사용할 수 없게 만듦)
+3. 구조 파악이 용이하다
+4. 추상화
+   - 컴퓨터 과학에서 추상화는 복잡한 자료, 모듈, 시스템 등으로부터 핵심적인 개념 또는 기능을 간추려 내는 것
+   - 추상화로 개발하는 것이 현대 프로그래밍언어의 철학에 맞다 (객체지향 프로그래밍)
+
+```js
+/* 집짓지 코드 */
+땅파기(); // 10만줄
+기반다지기(); // 10만줄
+기둥세우기(); // 10만줄
+벽돌쌓기(); // 10만줄
+지붕올리기(); // 10만줄
+```
+
+## ㅁ
