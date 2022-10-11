@@ -849,4 +849,87 @@ let b = (data) => {
 console.log(b(data));
 ```
 
-## ㅁ
+## call by value, reference, sharing
+
+- 강의 내용 다시 정리
+- 자바스크립트는 call by value만 존재
+- 참조타입을 넘기면 주소가 넘어가는 것이 아니라 주소값을 복사한 복사본이 넘어감
+- array와 같은 convension 자료형을 넘길 때에는 함수 안에서 값의 수정이 일어남
+
+- 변경이 되는 예제 (배열은 참조타입이라서 변경됨)
+- 다른언어에서의 call by reference
+
+```js
+let test = [10, 20, 30];
+function func1(a) {
+  a[0] = 1000;
+}
+
+console.log(func1(test));
+```
+
+- 변경이 안되는 예제 (number 값은 원시타입이라서 변경이 안됨)
+- 다른언어에서의 call by value
+
+```js
+let test = [10, 20, 30];
+function func1(a) {
+  a = 1000;
+}
+
+console.log(func1(test));
+```
+
+- 값을 복사해서 넣음. a자리에 100의값을 가지는 test를 넣음. a를 수정해도 test값에는 변경이 없음(test를 수정해도 a의 값에는 변경이 없다)
+
+## call by value (값의 전달)
+
+- 자바스크립트에서는 call by value만 존재하고, call by sharing이라고도 한다 (자바스크립트에서는 call by reference는 존재하지 않는다)
+- call by sharing은 공식명칭이 아님 (js의 특징을 설명하기 위한 비공식 용어)
+
+## call by reference(참조-주소값의 전달)
+
+- 자바스크립트에서 call by reference는 존재하지 않음
+
+## 반례
+
+```js
+// 반례
+// call by reference가 아님
+var c = {};
+function test3(d) {
+  d = 1000;
+}
+
+console.log(c); // {}. 빈 Object
+```
+
+- 변수가 가리키고 있는 공간에 저장된 값이 전달됨
+
+## 클로저 (면접 질문으로 충분히 나올 수 있는 내용)
+
+- 강의 내용 다시 정리
+
+- 폐쇄된 공간(함수)안의 데이터에 접근하기 위한 테크닉
+- 변수 은닉, 메모리 효율, 코드 효율, 안정성 극대화를 위해 사용함
+
+```js
+function makeAdder(x) {
+  var y = 1;
+  return function (z) {
+    y = 100;
+    return x + y + z;
+  };
+}
+
+var add5 = makeAdder(5);
+var add10 = makeAdder(10);
+//클로저에 x와 y의 환경이 저장됨
+
+console.log(add5(2)); // 107 (x:5 + y:100 + z:2)
+console.log(add10(2)); // 112 (x:10 + y:100 + z:2)
+//함수 실행 시 클로저에 저장된 x, y값에 접근하여 값을 계산
+//지역스코프에서 값을 찾고, 없으면 그 밖에 있는 스코프에서 찾고, 계속해서 찾아 올라가 전역 스코프까지 찾아보는 것을 스코프체이닝
+//어려운 얘기로는 내부 렉시컬 환경에서 찾고 없으면 전역 렉시컬 환경에서 찾는다 얘기함.
+//함수가 수행된 이후에도 상위함수의 렉시컬 환경에 접근 가능
+```
