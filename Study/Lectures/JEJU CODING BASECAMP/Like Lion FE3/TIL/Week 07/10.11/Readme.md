@@ -640,4 +640,213 @@ console.log(func4(20, 30)); // 50
 - [화살표 함수 ref](https://ko.javascript.info/arrow-functions-basics)
 
 - 일반함수와 화살표함수는 호이스팅이 다르다
--
+
+## 호이스팅
+
+- 함수를 뒤에 선언해도 실행이 되는 것
+- 강의 내용 여기 다시 정리할 것
+
+```js
+// 참고자료 : https://hanamon.kr/javascript-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85%EC%9D%B4%EB%9E%80-hoisting/
+// JS의 모든 선언은 호이스팅(선언이 먼저 메모리에 저장)이 일어납니다.
+// 그러나 let, const, class 이용한 선언문은 호이스팅이 되었지만 안된 것처럼 동작
+// 이러한 현상은 일시적 사각지대(Temporal Dead Zone)에 빠지기 때문
+// 중요한 포인트는 그렇다하여 호이스팅이 안된 것은 아니라는 것!
+// 오류가 나는 이유는 var 키워드는 선언과 함께 undefined로 초기화
+// let과 const는 초기화 되지 않는 상태로 선언만 메모리 저장
+console.log(add1(10, 20)); // 30
+console.log(add2(10, 20)); // 30
+console.log(mul1); // undefined
+// console.log(mul1(10, 20)); // not a function
+// console.log(mul2); // Cannot access 'mul2' before initialization
+// console.log(mul2(10, 20)); // 위와 같은 애러
+// console.log(mul3) // mul3 is not defined, 호이스팅이 안되었기 때문
+
+function add1(x, y) {
+  return x + y;
+}
+
+function add2(x, y) {
+  return x + y;
+}
+
+var mul1 = function (a, b) {
+  return a * b;
+};
+
+let mul2 = function (a, b) {
+  return a * b;
+};
+```
+
+## 함수 주의사항
+
+- 즉시 실행함수
+
+- 즉시 실행함수 => 메모리 효율을 극대화(리소스 최적화)시키기 위해 사용 (이름이 없으므로 재사용성은 없음)
+
+```js
+// 즉시실행함수 - 메모리 효율을 극대화시키기 위해 사용 (이름이 없으므로 재사용성은 없음)
+
+/* 익명 즉시 실행 ㅏㅁ수 */
+(function () {
+  let a = 1;
+  let b = 2;
+  return a + b;
+})();
+
+/* 기명 즉시 실행 함수 */
+(function foo() {
+  let a = 3;
+  let b = 5;
+  return a * b;
+})();
+
+foo(); // ReferenceError: foo is not defined
+// 어차피 실행하지 못해서 의미가 없음
+// 메모리를 효율적으로 관리하기 위해 바로 실행해야 하는 것들을 즉시 실행함수로 관리
+```
+
+## 함수 연습문제
+
+```js
+/* 함수 연습문제 */
+// 중간고사 점수의 평균을 구하는 코드를 함수로 작성하시오
+
+// 연습문제
+let data = [
+  {
+    반: 1,
+    번: 1,
+    이름: "호준",
+    중간고사점수: 55,
+  },
+  {
+    반: 1,
+    번: 2,
+    이름: "길동",
+    중간고사점수: 60,
+  },
+  {
+    반: 1,
+    번: 3,
+    이름: "영희",
+    중간고사점수: 30,
+  },
+  {
+    반: 1,
+    번: 4,
+    이름: "철수",
+    중간고사점수: 20,
+  },
+  {
+    반: 1,
+    번: 5,
+    이름: "규리",
+    중간고사점수: 100,
+  },
+];
+
+// 중간고사 점수를 다 더하는 코드를 함수로 작성해주세요.
+
+// 1번
+function avg(data) {
+  let sum = 0;
+  for (let i = 0; i < data.length; i++) {
+    sum += data[i].중간고사점수;
+  }
+  return sum / data.length;
+}
+
+console.log(avg(data));
+
+// 2번
+console.log(
+  data.map(function (element) {
+    return element.중간고사점수;
+  })
+);
+
+let result = data.map((element) => element.중간고사점수);
+console.log(result);
+```
+
+- 강의 내용 다시 정리할 것
+
+- 정답
+
+```js
+// 연습문제
+let data = [
+  {
+    반: 1,
+    번: 1,
+    이름: "호준",
+    중간고사점수: 55,
+  },
+  {
+    반: 1,
+    번: 2,
+    이름: "길동",
+    중간고사점수: 60,
+  },
+  {
+    반: 1,
+    번: 3,
+    이름: "영희",
+    중간고사점수: 30,
+  },
+  {
+    반: 1,
+    번: 4,
+    이름: "철수",
+    중간고사점수: 20,
+  },
+  {
+    반: 1,
+    번: 5,
+    이름: "규리",
+    중간고사점수: 100,
+  },
+];
+
+// 중간고사 점수의 평균을 구하는 코드를 함수로 작성해주세요.
+
+// 동현, 준근님 코드
+function 평균값구하기(data) {
+  let sum = 0;
+  for (student of data) {
+    sum += student["중간고사점수"];
+  }
+  return sum / data.length;
+}
+
+function 평균값구하기(data) {
+  let 중간고사점수 = data.map((x) => x.중간고사점수);
+  let 중간고사점수합 = 중간고사점수.reduce((a, b) => a + b);
+  return 중간고사점수합 / data.length;
+}
+
+function 평균값구하기(data) {
+  return data.map((x) => x.중간고사점수).reduce((a, b) => a + b) / data.length;
+}
+
+console.log(
+  (function () {
+    return (
+      data.map((x) => x.중간고사점수).reduce((a, b) => a + b) / data.length
+    );
+  })()
+);
+
+let a = (data) =>
+  data.map((x) => x.중간고사점수).reduce((a, b) => a + b) / data.length;
+console.log(a(data));
+
+let b = (data) => {
+  return data.map((x) => x.중간고사점수).reduce((a, b) => a + b) / data.length;
+};
+console.log(b(data));
+```
+
+## ㅁ
