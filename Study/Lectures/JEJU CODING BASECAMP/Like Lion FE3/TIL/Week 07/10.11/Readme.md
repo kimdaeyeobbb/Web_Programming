@@ -385,3 +385,33 @@ func5({
 ```
 
 ## 재귀함수
+
+- 내가 나를 호출하는 함수
+
+- 재귀함수(Top down, 분할정복, 락드릴)로 구현할 수 있는것은 반복문(Bottom up)으로 구현할 수 있다
+
+- 알고리즘 대비시 재귀함수를 잘 알아야 함
+
+- 예제 1
+
+```js
+/* 재귀함수 */
+function factorial1(n) {
+  if (n <= 1) {
+    // 종료조건 -> 종료조건이 없으면 무한반복이 됨
+    return 1;
+  }
+  return n * factorial1(n - 1);
+}
+
+console.log(factorial1(5)); // 120
+
+/* 반복문 */
+let result = 1;
+for (let i = 2; i < 6; i++) {
+  result *= i;
+}
+console.log(result); // 120
+```
+
+- 예제 2
