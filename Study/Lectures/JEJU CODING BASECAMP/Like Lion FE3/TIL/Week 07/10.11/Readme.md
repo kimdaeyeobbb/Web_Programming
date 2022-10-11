@@ -331,4 +331,57 @@ console.log(func3(100, 200)); // 330
 console.log(func3(100, 200, 300)); // 600
 ```
 
-- a
+- 의도와는 달리 순서대로 값이 할당될 때 해결책 => 객체를 사용하자
+
+```js
+/* 기본값 할당 */
+
+function func3(a = 10, b = 20, c = 30) {
+  return a + b + c;
+}
+
+console.log(func3((c = 1000))); // 1050
+console.log(func3((c = 1000), (a = 2000))); // 3030
+```
+
+- 함수에서 객체를 argument로
+- [자바스크립트 RORO](https://www.google.com/search?q=%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8+RORO&oq=%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8+RORO&aqs=chrome..69i57.2464j0j9&sourceid=chrome&ie=UTF-8)
+
+```js
+/* 객체를 사용해서 의도대로 값이 들어가게끔 만들자 */
+/* 가독성이 떨어짐 */
+function func4(회원등급, 글쓰기, 글읽기, 채널관리, 백업, 소셜로그인여부) {   // 회원 등급 권한
+    console.log('함수기능')
+    return
+}
+
+
+func4('Gold', true, true, true, '대화방 전체 백업 가능', true)
+// 이 true가 뭔지를 모르기 때문에 해당 파일로 이동해서 무엇인지를 직접 확인해야 함 -> 불편
+
+/* 객체로 선언시 위의 문제점을 해결할 수 있음 */
+// 가독성이 좋아짐
+function func5({
+    회원등급: 'Silver',
+    글쓰기: false,
+    글읽기: false,
+    채널관리: false,
+    백업: '불가',
+    소셜로그인여부: true
+    }) {   // 회원 등급 권한
+    console.log('함수기능')
+    console.log(회원등급, 글쓰기, 글읽기, 채널관리, 백업, 소셜로그인여부)
+    return
+}
+
+func5({
+    회원등급: 'Gold',
+    글쓰기: true,
+    글읽기: true,
+    채널관리: false,
+    백업: '부분가능',
+    소셜로그인여부: true
+})
+```
+
+## 재귀함수
