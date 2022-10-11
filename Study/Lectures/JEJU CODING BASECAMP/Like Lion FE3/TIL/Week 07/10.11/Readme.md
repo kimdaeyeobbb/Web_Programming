@@ -585,4 +585,59 @@ yplus();
 console.log(y);
 ```
 
-## ㅁ
+- 예제
+
+```js
+function a() {
+  console.log("a 실행");
+  function b() {
+    console.log("b 실행");
+  }
+}
+
+a(); // a 실행
+b(); // error (접근이 불가능한 함수. 함수가 끝난 다음 휘발됨) -> 안에서 선언된 함수는 밖에서 꺼내어 쓸 수 없다
+```
+
+## 스코프
+
+- [사이트 링크](https://velog.io/@bico/JavaScript-%EB%A0%89%EC%8B%9C%EC%BB%AC-%EC%8A%A4%EC%BD%94%ED%94%84lexical-scope)
+
+## 화살표 함수
+
+- 일반함수에 비해 매우 간결함
+
+```js
+/* 일반함수 vs 화살표 함수 */
+function func1(x, y) {
+  return x + y;
+}
+
+let func2 = (x, y) => x + y;
+
+console.log(func1(10, 20)); // 30
+console.log(func2(10, 20)); // 30
+
+console.dir(func1); // func1
+console.dir(func2); // func2
+```
+
+```js
+function func3(a, b) {
+  let c = a + b;
+  return c;
+}
+
+let func4 = (a, b) => {
+  let c = a + b;
+  return c;
+};
+
+console.log(func3(20, 30)); // 50
+console.log(func4(20, 30)); // 50
+```
+
+- [화살표 함수 ref](https://ko.javascript.info/arrow-functions-basics)
+
+- 일반함수와 화살표함수는 호이스팅이 다르다
+-
