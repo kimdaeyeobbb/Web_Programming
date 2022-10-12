@@ -361,6 +361,21 @@ for (const i of board) {
 }
 
 console.log(m2); // Map(3) { '이호준' => 3, '김은하' => 2, '이준근' => 1 }
+
+/* 답안3 */
+let 회사게시판 = ["이호준", "이호준", "이호준", "김은하", "김은하", "이준근"];
+
+// 문제 1 : 몇 명이 게시판에 게시물을 썼나요?
+let 결과 = new Set(회사게시판);
+console.log(결과.size);
+// 문제 2 : 각각 몇 개의 게시물을 작성하였나요?
+
+let 결과2 = 회사게시판.reduce((a, b) => {
+  a[b] = (a[b] || 0) + 1;
+  return a;
+}, {});
+
+console.log(결과2);
 ```
 
 - set 순회하기
@@ -394,3 +409,250 @@ let union = new Set([...a].concat(...b)); // concat은 배열과 배열을 이�
 // 차집합
 let dif = new Set([...a].filter((x) => !b.has(x)));
 ```
+
+# 여기서부터 또 복습시작
+
+## this
+
+- 대부분의 경우 `this`의 값은 함수를 호출한 방법에 의해 결정됨
+
+## 엄격 모드
+
+- ㅁ
+- 보충 예정
+
+## this
+
+- 함수를 호출해주는 애가 this
+
+```js
+function a() {
+  console.log(this);
+}
+a(); // 함수를 호출해주는 애가 this
+```
+
+- 변수를 등록하더라도 window에 등록해야 함
+- 강의 듣고 보충요망
+
+## 13시부터 15시:5분강의 다시
+
+## this2
+
+- a
+
+## call
+
+- 인수에
+
+## 모놀리식 아키텍처 vs 마이크로서비스 아키텍처
+
+- 모놀리식
+
+  - 유저가 있으면 하나의 서버에 접속해서 유저에게 완성된 것을 보내줌
+
+- 마이크로서비스 아키텍처
+  - 프론트엔드 웹 서버가 따로있고, 웹 서버내 이미지 서버가 따로있고, css서버가 따로있고
+
+## JSON
+
+- 테이블 공간안에 데이터를 쏴주려고 함
+- 데이터를 화면에 뿌려주는 것인 FE의 역할
+
+## JSON 응용
+
+```
+참고사이트: https://test.api.weniv.co.kr/mall
+```
+
+```HTML
+<!-- 참고사이트: https://test.api.weniv.co.kr/mall -->
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script>
+      // 20221012153547
+      // http://test.api.weniv.co.kr/mall
+      let data = [
+        {
+          id: 1,
+          productName: "버그를 Java라 버그잡는 개리씨 키링 개발자키링 금속키링",
+          price: 12500,
+          stockCount: 100,
+          thumbnailImg: "asset/img/1/thumbnailImg.jpg",
+          option: [],
+          discountRate: 0,
+          shippingFee: 1500,
+          detailInfoImage: [
+            "asset/detail/2/detail1.png",
+            "asset/detail/2/detail2.png",
+          ],
+          viewCount: 0,
+          pubDate: "2022-02-28",
+          modDate: "2022-02-28",
+        },
+        {
+          id: 2,
+          productName: "우당탕탕 라이캣의 실험실 스티커 팩",
+          price: 3500,
+          stockCount: 1000,
+          thumbnailImg: "asset/img/2/thumbnailImg.jpg",
+          option: [],
+          discountRate: 0,
+          shippingFee: 1500,
+          detailInfoImage: [
+            "asset/detail/2/detail1.png",
+            "asset/detail/2/detail2.png",
+          ],
+          viewCount: 0,
+          pubDate: "2022-02-28",
+          modDate: "2022-02-28",
+        },
+        {
+          id: 3,
+          productName: "딥러닝 개발자 무릎 담요",
+          price: 17500,
+          stockCount: 0,
+          thumbnailImg: "asset/img/3/thumbnailImg.jpg",
+          option: [],
+          discountRate: 0,
+          shippingFee: 1500,
+          detailInfoImage: [
+            "asset/detail/3/detail1.png",
+            "asset/detail/3/detail2.png",
+            "asset/detail/3/detail3.png",
+          ],
+          viewCount: 0,
+          pubDate: "2022-02-28",
+          modDate: "2022-02-28",
+        },
+        {
+          id: 4,
+          productName: "네 개발잡니다 개발자키링 금속키링",
+          price: 13500,
+          stockCount: 100,
+          thumbnailImg: "asset/img/4/thumbnailImg.jpg",
+          option: [],
+          discountRate: 0,
+          shippingFee: 1500,
+          detailInfoImage: [
+            "asset/detail/4/detail1.png",
+            "asset/detail/4/detail2.png",
+          ],
+          viewCount: 0,
+          pubDate: "2022-02-28",
+          modDate: "2022-02-28",
+        },
+        {
+          id: 5,
+          productName: "Hack Your Life 개발자 노트북 파우치",
+          price: 36000,
+          stockCount: 230,
+          thumbnailImg: "asset/img/5/thumbnailImg.jpg",
+          option: [
+            {
+              id: 1,
+              optionName: "13인치",
+              additionalFee: 0,
+            },
+            {
+              id: 2,
+              optionName: "15인치",
+              additionalFee: 1000,
+            },
+          ],
+          discountRate: 19,
+          shippingFee: 1500,
+          detailInfoImage: [
+            "asset/detail/5/detail1.png",
+            "asset/detail/5/detail2.png",
+          ],
+          viewCount: 0,
+          pubDate: "2022-02-28",
+          modDate: "2022-02-28",
+        },
+        {
+          id: 6,
+          productName: "[NEW] 위니브 개발자, 캐릭터 스티커팩 2종",
+          price: 5500,
+          stockCount: 1000,
+          thumbnailImg: "asset/img/6/thumbnailImg.jpg",
+          option: [
+            {
+              id: 1,
+              optionName: "위니브 개발자 스티커팩",
+              additionalFee: 0,
+            },
+            {
+              id: 2,
+              optionName: "위니브 프랜즈 스티커팩",
+              additionalFee: 0,
+            },
+            {
+              id: 3,
+              optionName: "스티커팩 세트(개발자+프렌즈)",
+              additionalFee: 5000,
+            },
+          ],
+          discountRate: 0,
+          shippingFee: 1500,
+          detailInfoImage: [
+            "asset/detail/6/detail1.png",
+            "asset/detail/6/detail2.png",
+            "asset/detail/6/detail3.png",
+            "asset/detail/6/detail4.png",
+            "asset/detail/6/detail5.png",
+          ],
+          viewCount: 0,
+          pubDate: "2022-02-28",
+          modDate: "2022-02-28",
+        },
+        {
+          id: 7,
+          productName: "제주코딩베이스캠프 코딩 연습장 세트",
+          price: 8000,
+          stockCount: 1000,
+          thumbnailImg: "asset/img/7/thumbnailImg.jpg",
+          option: [],
+          discountRate: 0,
+          shippingFee: 1500,
+          detailInfoImage: [
+            "asset/detail/7/detail1.png",
+            "asset/detail/7/detail2.png",
+          ],
+          viewCount: 0,
+          pubDate: "2022-02-28",
+          modDate: "2022-02-28",
+        },
+      ];
+
+      let main = document.getElementById("main");
+
+      // https://test.api.weniv.co.kr/asset/img/7/thumbnailImg.jpg
+      let mainBodyData = [];
+      for (const item of data) {
+        mainBodyData.push(`
+                    <img src="${
+                      "https://test.api.weniv.co.kr/" + item.thumbnailImg
+                    }"/>
+                    <h2>${item.productName}</h2>
+                    <p>${item.price}</p>
+                `);
+      }
+      // console.log(mainBodyData.join(""));
+      main.innerHTML = mainBodyData.join("");
+    </script>
+  </body>
+</html>
+
+```
+
+## A
