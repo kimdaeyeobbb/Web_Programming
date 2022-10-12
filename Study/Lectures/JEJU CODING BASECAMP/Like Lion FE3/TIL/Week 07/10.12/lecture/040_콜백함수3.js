@@ -25,9 +25,9 @@ arr1.forEach(x => {
     result.push(x ** 2)
 })
 
-console.log(result)
+console.log(result)  // [ 100, 400, 900, 1600, 2500 ]
 
 
 let result3 = []
 let result2 = arr1.forEach(x => result3.push(x ** 2))
-console.log(result3)
+console.log(result3)  // [ 100, 400, 900, 1600, 2500 ]
