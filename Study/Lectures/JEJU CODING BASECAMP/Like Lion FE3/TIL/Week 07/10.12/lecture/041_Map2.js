@@ -15,7 +15,8 @@ console.log(m.has('열'))   // false
 
 /* map에서 값을 제거하기 */
 m.delete('하나')
-m.has('하나')
+console.log(m)  // Map(5) {'둘' => 2, '셋' => 3, '넷' => 4, true => '트루', [1, 2] => '리얼리?'}
+console.log(m.has('하나'))  // false
 
 /* 크기 구하기 */
 console.log(m.size)  // 5 (Object에는 length가 없음)
