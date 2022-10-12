@@ -933,3 +933,16 @@ console.log(add10(2)); // 112 (x:10 + y:100 + z:2)
 //어려운 얘기로는 내부 렉시컬 환경에서 찾고 없으면 전역 렉시컬 환경에서 찾는다 얘기함.
 //함수가 수행된 이후에도 상위함수의 렉시컬 환경에 접근 가능
 ```
+
+## call by value, reference, sharing
+
+- array와 같은 conversion 자료형을 넘길 때에는 함수 안에서 값이 수정이 된다
+- call by value(값의 전달)
+- call by value: argument에 값이 넘어올 때 복사한 값이 넘어온다
+
+- call by reference: argument에 값이 넘어올 때 주소값이 넘어온다 (주소값이 넘어왔으니 접근을 하면 원본이다!)
+- javascript는 참조값을 넘길 때 참조한 주소값을 '복사'하여 넘김. 그래서 call by reference가 아니라 call by value이다. '복사한 값'인 것이다. 주소값도 값이기 때문이다.
+
+## 질의응답
+
+1. 원시값보다 덩치가 큰 
