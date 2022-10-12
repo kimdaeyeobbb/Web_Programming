@@ -694,44 +694,215 @@ console.log(ss); // Set(5) { 'a', 'b', 'c', 'd', 'e' }
 let a = new Set("abc");
 let b = new Set("cde");
 
-// 교집합
+/* 교집합 */
 let cro = [...a].filter((value) => b.has(value));
+console.log(cro); // [ 'c' ]
 
-// 합집합
-let union = new Set([...a].concat(...b)); // concat은 배열과 배열을 이어붙임
+/* 합집합 */
+let union = new Set([...a].concat(...b));
+console.log(union); // Set(5) { 'a', 'b', 'c', 'd', 'e' }
 
-// 차집합
-let dif = new Set([...a].filter((x) => !b.has(x)));
+/* 차집합 */
+let dif = [...a].filter((value) => !b.has(value));
+console.log(dif); // [ 'a', 'b' ]
 ```
-
-## this
-
-- 대부분의 경우 `this`의 값은 함수를 호출한 방법에 의해 결정됨
 
 ## 엄격 모드
 
-- ㅁ
-- 보충 예정
+- `use strict`를 입력해서 최신의 방식으로 코드를 실행시키는 것
+- 함수별로 `use strict`를 적용하는 것은 좋지 않다
+  => 어떤 코드는 호환이되고, 다른 코드는 호환이 되지 않아 일관성에 맞지않기 때문
+  (가급적 전체 코드에 `use strict`를 적용할 것)
+
+<br><br>
 
 ## this
 
+- [참고 자료](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/this)
 - 함수를 호출해주는 애가 this
+- this는 같은 함수를 호출하는 방법에 의해 결정됨
+- 대부분의 경우 `this`의 값은 함수를 호출한 방법에 의해 결정됨
 
 ```js
 function a() {
   console.log(this);
 }
-a(); // 함수를 호출해주는 애가 this
+a(); // 함수를 호출해주는 a 가 this
+// Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+window.a();
+// Window {window: Window, self: Window, document: document, name: '', location: Location, …}
 ```
 
-- 변수를 등록하더라도 window에 등록해야 함
-- 강의 듣고 보충요망
+<br>
 
-## 13시부터 15시:5분강의 다시
+- 변수 등록시 window에 등록이 됨
 
-## this2
+- 실제로 window객체가 가지는 함수 예제
 
-- a
+```js
+function b() {
+  console.log("hello world");
+}
+b(); // hello world
+window.b(); // hello world
+```
+
+<br>
+
+- window가 test를 호출 & test가 three를 호출
+
+```js
+// window가 test를 호출
+let test = {
+  one: 1,
+  two: 2,
+  three: function () {
+    console.log(this);
+  },
+};
+
+//test가 three를 호출
+test.three(); // {one: 1, two: 2, three: ƒ}
+```
+
+<br>
+
+- test2는 window에 등록되어있다
+
+```js
+// window가 test를 호출
+let test = {
+  one: 1,
+  two: 2,
+  three: function () {
+    console.log(this);
+  },
+};
+
+// test2를 실행시킴
+let test2 = test.three;
+
+//test2가 어디에 등록되어있는지 확인 -> window에 등록
+test2(); // Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+```
+
+- `test.three`라고 했을 때 `test2`를 실행하는 녀석이 `window`이므로 `window`에서 `window`객체를 출력한다
+
+<br><br>
+
+## this란 무엇인가
+
+- 함수 내에서 함수 호출 맥락(context)를 뜻함
+  (맥락: 의미가 고정되어있지 않고, 사용하는 상황에 따라 변함)
+- 즉, 함수를 어떻게 호출하느냐에 따라서 this가 가리키는 대상이 달라진다
+- `this`의 값은 호출하는 방법에 의해 결정됨
+- 자바스크립트에서는 this가 함수와 객체를 연결시켜주는 실질적인 연결점 역할을 함
+- 자바스크립트는 선언할 때 결정되는 녀석이 있고, 호출할 때 결정되는 녀석이 있다.
+  this는 호출할 때 결정되는 녀석이다.
+
+- 호출하는 녀석이 this이다
+
+- 예시1 (함수가 자기자신을 가리킴)
+
+```js
+let someone = {
+  name: "danny",
+  whoAmI: function () {
+    console.log(this); // 함수가 자기자신을 가리킴
+  },
+};
+
+someone.whoAmI();
+// someone 자기자신이 나옴
+// { name: 'danny', whoAmI: [Function: whoAmI] }
+```
+
+<br>
+
+- 예시2 (예시1과 호출방법을 달리함)
+
+```js
+var someone = {
+  name: "danny",
+  whoAmI: function () {
+    console.log(this); // 함수가 자기자신을 가리킴
+  },
+};
+
+someone.whoAmI(); // someone이 whoAmI를  호출
+
+var myWhoAmI = someone.whoAmI;
+myWhoAmI(); // 브라우저(window)가 호출
+//Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+```
+
+- 자바스크립트의 this는 누가 실행했는지가 중요하다
+
+- 호출한 놈(객체) === this
+
+<br>
+
+## bind 사례
+
+- 예시3 (예시1,2와 호출한 놈을 달리함)
+
+```js
+var someone = {
+  name: "danny",
+  whoAmI: function () {
+    console.log(this); // 함수가 자기자신을 가리킴
+  },
+};
+
+someone.whoAmI(); // someone이 whoAmI를  호출
+
+var myWhoAmI = someone.whoAmI;
+myWhoAmI(); // 브라우저(window)가 호출
+//Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+var bindedWhoAmI = myWhoAmI.bind(someone); // someone을 this로 고정시킴
+bindedWhoAmI(); // {name: 'danny', whoAmI: ƒ}
+```
+
+<br><br>
+
+## this는 언제 사용하는가
+
+- class 내부에서 class 자신의 변수나 함수를 호출할 때 많이 사용함.
+- 과거 리액트에서는 class 컴포넌트를 많이 선언했고, 이 경우 this를 사용하였음
+
+<br><br>
+
+## window
+
+- 웹 브라우저 자바스크립트(클라이언트 자바스크립트)에서 전역객체명
+- 예시1 (this는 함수 안에서 전역 객체를 의미하는 window를 뜻함)
+
+```js
+function func() {
+  if (window === this) {
+    console.log("window === this");
+  }
+}
+
+func(); // window === this
+```
+
+<br><br>
+
+## bind
+
+- 함수의 호출 방법에 개의치 않고 `this`의 값을 고정적으로 설정하는 메서드
+
+<br><br>
+
+## 클로저
+
+- 선언된 위치에 따라 결정됨
+  => `this`는 이와달리 호출하는 방법에 따라 값이 결정됨
+
+<br><br>
 
 ## call
 
