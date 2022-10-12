@@ -5,22 +5,32 @@
 ## 호이스팅
 
 - 일단 지금은 함수형 호이스팅만 기억할 것
-- ~ 선언시 ~ 상관없이 맨위로감
-- let 선언시
+- (function 키워드 사용시)함수를 어디에서 선언했던지 상관없이 맨 위로 간다
+- (function 키워드 대신 let,const로 선언하여 함수를 만들었다면) 그 키워드를 위로 쓸 수 없다.
+  => 호이스팅은 되지만, TDZ때문에 실행할 수 없다
 
-## TDZ (Temporal D)
+- [참고자료](https://hanamon.kr/javascript-%ed%98%b8%ec%9d%b4%ec%8a%a4%ed%8c%85%ec%9d%b4%eb%9e%80-hoisting/)
 
-- A
+- 지난주 내용 일부
+
+```
+js의 모든 선언은 호이스팅(선언이 먼저 메모리에 저장)이 일어남
+그러나 let, const, class를 이용한 선언문은 호이스팅이 되었지만 안된 것처럼 동작함 (일시적 사각지대(TDZ)에 빠지기 때문이다)
+이것이 호이스팅이 일어나지 않는다고 보기는 어려우며, 오류가 나는 이유는 var 키워드는 선언과 함께 undefined로 초기화되기 때문이다
+let과 const는 초기화되지 않는 상태로 선언만 메모리에 저장된다
+```
+
+## TDZ (Temporal Dead Zone)
 
 ## 클로저
 
-- ㅁ
-
-## 여기위에만 다시 듣기
+## 여기위에만 다시 체킹 (완료)
 
 ## 생성자 함수
 
 - 앞에 new 키워드를 붙이고 첫 글자를 대문자로 시작하는 것
+
+### 생성자 함수가 아닌 예시
 
 - 비효율적 코드 (딱 봐도 코드가 길고 .. 별로..)
 
@@ -37,37 +47,66 @@ let newBook = {};
 newbook["책이름"] = "javascript"; // 예를 들어 form에서 입력 받은 값
 newbook["책가격"] = 1000000;
 newbook["저자"] = "세원, 석규, 슬기";
-newbook["책가격"] = "22.10.30";
+newbook["출판일"] = "22.10.30";
 
 // 위의 코드를 효율적으로 작성하는 것이 '생성자 함수'
+console.log(newBook);
 ```
 
-- 효율적인 코드
+### 생성자 함수 예시
+
+- 생성자 함수는 위의 코드보다 효율적인 코드임
 - 메모리 상으로 더 효율적
 
 ```js
-/
-
-// 위의 코드를 효율적으로 작성하는 것이 '생성자 함수'
-/* 효율적 코드 (생성자 함수) */
+/* 생성자 함수 */
 function Book2(책이름, 책가격, 저자, 출판일) {
-    // this = {}   // new 키워드 사용시 내부적으로 얘가 있는것처럼 작동
-    this.책이름 = 책이름   // this는 function이라는 자신을 가리키고 있음
-    this.책가격 = 책가격
-    this.저자 = 저자
-    this.출판일 = 출판일
-    //return this    // new 키워드 사용시 내부적으로 얘가 있는것처럼 작동
+  // this = {}   // new 키워드 사용시 내부적으로 얘가 있는것처럼 작동
+  this.책이름 = 책이름; // this는 function이라는 자신을 가리키고 있음
+  this.책가격 = 책가격;
+  this.저자 = 저자;
+  this.출판일 = 출판일;
+  //return this    // new 키워드 사용시 내부적으로 얘가 있는것처럼 작동
 }
 
 let data = Book2("HTML", 10, "유진", "22.12.30");
 console.log(data); // 함수 내에 return이 없으면 undefined
 
-let data2 = new Book2("CSS", 20, "유진", "23.12.30");   // new 키워드를 붙이면 undefined아님
+let data2 = new Book2("CSS", 20, "유진", "23.12.30"); // new 키워드를 붙이면 undefined아님
 console.log(data2); // Book2 {책이름: 'CSS', 책가격: 10, 저자: '유진', 출판일: '22.12.30'}
 
 let data3 = new Book2("js", 30, "유진", "24.12.30");
 
 console.log(data, data2, data3); // undefined Book2 {책이름: 'CSS', 책가격: 20, 저자: '유진', 출판일: '23.12.30'} Book2 {책이름: 'js', 책가격: 30, 저자: '유진', 출판일: '24.12.30'}
+```
+
+- 예시2
+- new 키워드를 사용하면 함수 내부적으로 `this = {}`와 `return this`가 있는것처럼 작동함
+
+```js
+function clothes(옷이름, 옷가격, 생산자, 제조일) {
+  this.옷이름 = 옷이름;
+  this.옷가격 = 옷가격;
+  this.생산자 = 생산자;
+  this.제조일 = 제조일;
+}
+
+let data = clothes("replica", 10, "nike", "22.10.12");
+console.log(data); // undefined (함수 내 return 값이 없으므로)
+
+let data2 = new clothes("hood", 20, "adidas", "23.10.12");
+console.log(data2);
+/*
+clothes {
+  '옷이름': 'hood',
+  '옷가격': 20,
+  '생산자': 'adidas',
+  '제조일': '23.10.12'
+}
+*/
+
+let data3 = new clothes("parka", 30, "k2", "24.10.12");
+console.log(data3); // clothes { '옷이름': 'parka', '옷가격': 30, '생산자': 'k2', '제조일': '24.10.12' }
 ```
 
 ## 생성자 함수를 왜 사용하나요?
@@ -77,6 +116,13 @@ console.log(data, data2, data3); // undefined Book2 {책이름: 'CSS', 책가�
 - 프로퍼티들의 집합을 만들 때 사용
 
 - [생성자 함수 자료](https://ko.javascript.info/constructor-new)
+
+- [객체 자료](https://ko.javascript.info/object)
+
+## 객체 리터럴(object literal)
+
+- 중괄호 {...}를 이용해 객체를 선언하는 것
+- 객체를 선언할 땐 주로 이 방법을 사용함
 
 ## 콜백함수
 
