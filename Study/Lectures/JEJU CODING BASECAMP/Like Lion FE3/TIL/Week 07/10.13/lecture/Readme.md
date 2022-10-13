@@ -344,22 +344,22 @@ Math.floor(Math.random() * 11);
 'hello world hello'처럼 마지막에 포함되는것을 출력
 ```
 
-    - str.includes() (포함여부 확인)
+- str.includes() (포함여부 확인)
 
 ```js
 "hello".includes("h"); // true
 "hello".includes("hl"); // false
 ```
 
-    - str.slice()
+- str.slice()
 
 ```js
 "hello".slice(4); // 'o'
 "hello".slice(-2); // 'lo'
 ```
 
-    - str.splice() -> 배열에 있는 메서드 (str에는 없음),[참고자료](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
-    - str.split()
+- str.splice() -> 배열에 있는 메서드 (str에는 없음),[참고자료](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+- str.split()
 
 ```js
 "he!l!lo wo!rld".split("!"); // ['he','l','lo wo','rld']
@@ -378,19 +378,20 @@ https://medium.com/dailyjs/parseint-mystery-7c4368ef7b21
 */
 ```
 
-    - str.substring()
-    - str.substr()
-    - str.toLowerCase()
-    - str.toUpperCase()
-    - str.trim()
-    - str.replace()
-    - str.concat()
-    - str.repeat()
-    ```js
-    "hello".repeat(100);
-    "0".repeat(100);
-    "5".repeat(100).split("").map(Number);
-    ```
+- str.substring()
+- str.substr()
+- str.toLowerCase()
+- str.toUpperCase()
+- str.trim()
+- str.replace()
+- str.concat()
+- str.repeat()
+
+```js
+"hello".repeat(100);
+"0".repeat(100);
+"5".repeat(100).split("").map(Number);
+```
 
 - Boolean(논리값)
 
@@ -418,33 +419,33 @@ https://medium.com/dailyjs/parseint-mystery-7c4368ef7b21
 
 ```js
 test = [100, 200, 300];
-test.map((e) => console.log(e)); // [undefined, undefined, undefined]
-test2.map((e) => e); // [100, 200, 300]
+test.map((e) => console.log(e)); // 리턴값: [undefined, undefined, undefined]
+test2.map((e) => e); // 리턴값: [100, 200, 300]
 ```
 
-    - filter (해당 조건에 포함되는 것들을 뽑아냄)
+- filter (해당 조건에 포함되는 것들을 뽑아냄)
 
 ```js
 test = [100, 200, 300];
 test.filter((e) => e >= 200); // -[200,300]
 ```
 
-    - push / pop - mutable(원본이 수정됨) (수정이 가능함)
-    - slice - immutable(원본이 수정되지 않음) (수정이 불가능함)
+- push / pop - mutable(원본이 수정됨) (수정이 가능함)
+- slice - immutable(원본이 수정되지 않음) (수정이 불가능함)
 
 ```js
 test = [100, 200, 300]; //(3) [100, 200, 300]
 test.slice(1); // (2) [200, 300]
 ```
 
-    - splice - mutable
-    - reduce - immutable
-    - join
-    - indexOf
-    - includes
-    - find
-    - concat
-    - [every](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
+- splice - mutable
+- reduce - immutable
+- join
+- indexOf
+- includes
+- find
+- concat
+- [every](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
 
 ```js
 fucntion 콜백함수(e){
