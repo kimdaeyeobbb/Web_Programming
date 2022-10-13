@@ -264,7 +264,9 @@ a.toString()   // '10'
 - 원시타입(primitive types) : number, string, boolean, null, undefined, symbol(ES6 추가, 변경 불가능한 유일한 값)
 - 참조타입(reference types) : object(object, array, map, set), function(function은 Object처럼 사용할 수 있어서 참조타입으로 취급 -> 에전책에는 type이 object, 최근에 바뀌어서 type이 function이 됨)
 
-# 10:11분 경 내용 다시 듣기
+  - 참조타입은 함수의 인자로 전달해줄 때 주의해야함. 주소값에 복사를 해서 변화되는 것이므로, 자료형이 안에서 바뀌지 않는한 해당값의 원본이 바뀔 수 있는 이슈가 존재함
+
+- 예시 (`함수를 객체로 사용할 수 있다` 정도로만 이해하고 넘어가기)
 
 ```js
 function aa(x){console.log()}
@@ -273,6 +275,7 @@ console.dir(aaa)
 aaa.hello = 1000
 console.dir(aaa)
 aaa.hello  // 1000
+
 ```
 
 - 참조타입의 데이터를 선언하고 함수의 인자로 전달시 원본값이 변할 수 있음
@@ -294,7 +297,7 @@ a; // [1000,20,30]   -> 원본값이 변함
   - 메서드 :
     - 10.toString()는 안됩니다. 이유는 무엇일까요? 소수점 때문에 그렇습니다.(JavaScript의 parsing때문이고, 아는 분이 많지는 않습니다.) -> 한국에서 이슈가 되었었음
     - (10).toString()와 변수명.toString()은 가능합니다.
-    - num.toFixed()
+    - num.toFixed() // 고정 소수점 표기 (아무것도 기재하지 않으면 0으로 ㅊ리)
     ```js
     (10.1).toFixed(); // '10'
     ```
@@ -306,6 +309,8 @@ a; // [1000,20,30]   -> 원본값이 변함
   parseInt("1hello world"); // 1
   Number("hello world"); // NaN
   ```
+
+- [Number vs parseInt](https://thisthat.dev/number-constructor-vs-parse-int/)
 
   - Math
     - Math.PI
@@ -328,7 +333,7 @@ Math.floor(Math.random() * 11);
 
 - String(문자열)
 
-  - 형태 : 'abcde', "abcde", `abcde ${변수명}`(`템플릿 리터럴` 혹은 `틸트`나 `백틱`이라고 부름)
+  - 형태 : 'abcde', "abcde", \`abcde ${변수명}\`(`템플릿 리터럴` 혹은 `틸트`나 `백틱`이라고 부름)
   - 호출 : 변수명, 변수명[0] (변수명[index], 호출은 할 수 있지만 개별 값 변경 불가)
   - 메서드 :
     - str.length (길이 출력)
