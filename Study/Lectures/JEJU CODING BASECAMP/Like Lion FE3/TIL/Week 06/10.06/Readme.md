@@ -464,6 +464,10 @@ let test3 = Array(100)
 console.log(sum); // 2418
 ```
 
+## foreach
+
+- 배열의 각 요소에 콜백을 1회씩 실행하여 최소 배열과
+
 ## map & filter를 정말 많이 사용함
 
 ## find & findindex
