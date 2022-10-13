@@ -427,7 +427,7 @@ test2.map((e) => e); // 리턴값: [100, 200, 300]
 
 ```js
 test = [100, 200, 300];
-test.filter((e) => e >= 200); // -[200,300]
+console.log(test.filter((e) => e >= 200)); // [200,300]
 ```
 
 - push / pop - mutable(원본이 수정됨) (수정이 가능함)
@@ -448,6 +448,16 @@ test.slice(1); // (2) [200, 300]
 - [every](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
 
 ```js
+test = [100, 200, 300];
+console.log(test.filter((e) => e >= 200)); // [200,300]
+
+const r = (a) => a > 199;
+const r2 = (b) => b > 99;
+console.log(test.every(r)); // false
+console.log(test.every(r2)); // true
+```
+
+```js
 fucntion 콜백함수(e){
     return e == true
 }
@@ -464,7 +474,7 @@ function 콜백함수2(e){
 /* 에시3 */
 ```
 
-    - [some](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/some) -> 하나라도 통과하면 true
+- [some](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/some) -> 하나라도 통과하면 true
 
 ```js
 fucntion 콜백함수3(e){
@@ -474,11 +484,11 @@ fucntion 콜백함수3(e){
 [1,10,9,6,5].some(콜백함수3)   // true
 ```
 
-    - fill — mutable
-    - shift — mutable
-    - unshift — mutable
-    - reverse — mutable
-    - sort — mutable
+- fill — mutable
+- shift — mutable
+- unshift — mutable
+- reverse — mutable
+- sort — mutable
 
 # 다시듣기 (11:00~11:06)
 
