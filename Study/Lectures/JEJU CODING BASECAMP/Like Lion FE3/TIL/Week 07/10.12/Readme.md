@@ -789,6 +789,43 @@ test2(); // Window {window: Window, self: Window, document: document, name: '',
 
 - `test.three`라고 했을 때 `test2`를 실행하는 녀석이 `window`이므로 `window`에서 `window`객체를 출력한다
 
+<br>
+
+- this가 자신의 버튼 자체를 가리키는 케이스
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1">클릭1</button>
+    <button id="btn2">클릭2</button>
+    <script>
+      let test1 = {
+        one: 1,
+        two: 2,
+        three: function () {
+          console.log(this);
+        },
+      };
+
+      let test2 = test1.three;
+
+      let btn1 = document.getElementById("btn1");
+      btn1.addEventListener("click", test1.three);
+
+      let btn2 = document.getElementById("btn2");
+      btn2.addEventListener("click", test2);
+    </script>
+  </body>
+</html>
+```
+
 <br><br>
 
 ## this란 무엇인가
