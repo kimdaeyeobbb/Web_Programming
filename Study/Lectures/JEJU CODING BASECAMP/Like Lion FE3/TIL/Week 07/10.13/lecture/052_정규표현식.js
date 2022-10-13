@@ -2,3 +2,6 @@
 ("paullab CEO leehojun hello CEO").replace(/CEO/g, "CTO"); // 'paullab CTO leehojun hello CTO'
 ("paullab CEO leehojun hello CEO").match(/CEO/g);
 ("paullab CEO leehojun hello CEO").split(/CEO/g);  // ['paullab ', ' leehojun hello ', '']
+
+
+(/CEO/g).test("paullab CEO leehojun hello CEO");  // true
