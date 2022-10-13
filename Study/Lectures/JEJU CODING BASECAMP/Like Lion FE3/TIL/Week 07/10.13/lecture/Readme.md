@@ -1208,7 +1208,8 @@ console.log("hello world");
   - 비동기 프로그래밍
   - 프로미스를 하면 코드가 바로 실행되는게 아니고, 앞의 코드가 성공이 되면 다음 단계로 넘어감
   - fetch가 promise를 반환
-  - 
+  - 비동기 프로그래밍이 resolve나 reject을 내뱉음
+  - 성공하면 then, 실패하면 catch로 넘어감
 
 ```js
 new Promise((resolve, reject) => {
@@ -1343,10 +1344,12 @@ snack;
 snack();
 //Promise {<fulfilled>: 'cake!'}
 
+/* 여기서 데이터틑 가져옴 -> 데이터를 가져와서 요리를 하곘다는 것 */
 const f = fetch(
   "https://raw.githubusercontent.com/paullabkorea/coronaVaccinationStatus/main/data/data.json"
 );
 f;
+
 //Promise {<fulfilled>: Response}
 const f = fetch(
   "https://raw.githubusercontent.com/paullabkorea/coronaVaccinationStatus/main/data/data.json"
@@ -1471,7 +1474,7 @@ a();
 
 - fetch
   - https://ko.javascript.info/fetch
-  - Fetch는 비동기 네트워크 통신을 구현하기 위해 사용하는 Web API이다.
+  - Fetch는 비동기 네트워크 통신을 구현하기 위해 사용하는 Web API이다. (fetch와 axios를 정말 많이 사용함 - 실무에서 필수적으로 다룸 -> 이쪽으로 통신해서 데이터를 가져옴)
   - 자바스크립트를 이용하여 브라우저가 서버에게 비동기적으로 데이터를 요청하고, 응답 받은 데이터를 동적으로 페이지 렌더링 하는 방식을 Ajax(Asynchronous Javascript and XML)라고 하고 대표적인 Web API로는 XMLHttpRequest 객체, JQuery, fetch 등이 있다.
     - response.text()
     - response.json()
