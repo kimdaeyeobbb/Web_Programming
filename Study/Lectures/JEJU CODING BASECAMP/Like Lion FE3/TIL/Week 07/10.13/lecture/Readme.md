@@ -24,7 +24,7 @@
 
 - head, body의 문서 처음, 중간, 끝
 - 보통 자바스크립트 코드는 끝에 넣음(but 처음에 넣는 경우도 있음. -> 미리 노드가 되어야 하는 것들. -> 시간이 오래걸리는 것은 나중에 삽입)
-- 보통 body의 맨 끝
+- 보통 body의 맨 끝에 삽입
 
 ```js
 <!DOCTYPE html>
@@ -49,11 +49,16 @@
 
 ## 내부 스크립트와 외부 스크립트
 
+### 내부 스크립트
+
 ```js
 <script>console.log('hello')</script>
 ```
 
-- 변수 이름이 중복 되었을 때 ~~
+### 외부 스크립트
+
+- 변수 이름이 중복 되었을 때 에러가 발생하므로 주의해야하는 케이스
+- 각각의 파일처럼 동작하는게 아니라, `a.js`, `b.js`, `c.js`등이 존재할 경우, 이들이 하나의 덩어리 내에서 부분으로 위치하여서 동작하는 것
 
 ```js
 <script src="test.js"></script>
@@ -130,9 +135,9 @@ console.log(x, y, z);
     var testAge2 = 10;
   }
   ```
-  - var(ES5 이전, 지금 사용 권장 X) : 함수 레벨 스코프, 재선언시 애러 X
-  - let(ES5) : 블록 레벨 스코프, 재선언시 애러 O, 콘솔에서는 애러 X, 변경가능한 자료형
-  - const(ES5) : 블록 레벨 스코프, 재선언시 애러 O, 콘솔에서는 애러 X, 변경이 불가능한 자료형(상수)
+  - var(ES5 이전, 지금 사용 권장 X) : 함수 레벨 스코프, 재선언시 에러 X
+  - let(ES5) : 블록 레벨 스코프, 재선언시 에러 O, 콘솔에서는 에러 X, 변경가능한 자료형
+  - const(ES5) : 블록 레벨 스코프, 재선언시 에러 O, 콘솔에서는 에러 X, 변경이 불가능한 자료형(상수)
 
 # 연산
 
@@ -156,18 +161,29 @@ console.log(x, y, z);
   ```
 
 - 단락회로 연산자(비트단위 연산)
+  - 비트 OR연산 `(|)` -> 대응되는 비트 중에서 하나라도 1이면 1을 반환함
+  - 비트 AND연산 `(&)` -> 대응되는 비트가 모두 1이면 1을 반환함
 
 ```JS
 console.log(9|3) //11
-console.log(37|3) // => 32+4+1 ||3 => (100000+100+1)|| 101
+console.log(37 | 3); // 32+4+1 = 0010 0101 | 0000 0011 -> 0010 0111 -> 32 + 4+2+1 = 39
 ```
+
+- Logical OR `(||)`
+
+  - `expr1 || expr2` -> `expr1`이 `true`로 바뀔 수 있으면 `expr1`을, 그렇지 않으면 `expr2`를 반환함
+
+- Logical AND `(&&)`
+  - `expr1 && expr2` -> 결과값이 거짓인(하나라도 거짓인) 경우 `expr1`을, 결과값이 참인 경우(둘다 참인경우) `expr2`를 반환
 
 ```js
 // 앞에 값이 널이냐를 확인하고 싶은 경우, 단락 회로 평가라고 부릅니다.
-result1 = 10 || 100;
-result2 = 0 && 100;
-result3 = null || 100;
-result4 = null && 100;
+console.log(10 || 100); // 10
+console.log(null || 100); // 100
+console.log(0 && 100); // 0
+console.log(null && 100); // null
+console.log(100 && 12); // 12
+console.log(true && "a"); // a
 
 username = "hojun";
 result5 = username || "유저 이름이 없습니다"; // 앞의것이 true이면 뒤의 것을 보지 않고 반환
@@ -180,15 +196,17 @@ result5 = username || "유저 이름이 없습니다"; // 앞의것이 false이�
 - 단항 산술 연산자(++x, x++, --x, x--)
 - nullish 병합 연산자(??) => 2020년에 도입
 
+  - 왼쪽 피연산자가 `null`또는`undefined`일 때 오른쪽 피연산자를, 그렇지 않으면 왼쪽 피연산자를 반환하는 논리 연산자
+
   ```js
   let result1;
-  let result2 = result1 ?? 100;
+  console.log(result1 ?? 100); // 100
 
-  let result3 = 10;
-  let result4 = result3 ?? 100;
+  let result2 = 10;
+  console.log(result2 ?? 100); // 10
 
-  let result5 = null;
-  let result6 = result5 ?? 100;
+  let result3 = null;
+  console.log(result3 ?? 100); // 100
   ```
 
 - null이면 자기자신의 값을 넘겨줌
