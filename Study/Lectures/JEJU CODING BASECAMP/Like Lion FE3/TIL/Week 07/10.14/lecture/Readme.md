@@ -264,4 +264,8 @@ myBtn.addEventListener("click", function () {
 
 
 
+# 참고자료
+
+- [색상에 따라 다르게 변화하게 만들기](https://velog.io/@real-bird/Javascript-%ED%81%B4%EB%A6%AD%ED%95%9C-div%EB%A7%8C-%EC%83%89%EC%83%81-%EB%B0%94%EA%BE%B8%EA%B8%B0)
+
 
