@@ -258,3 +258,10 @@ myBtn.addEventListener("click", function () {
 - 넵넵! myLi가 없는 상태이면 li태그 없이 텍스트가 입력이 됩니당!! 그래서 li에 먼저 자식으로 추가한 후 ul에 추가하는 것입니당!
 
 - 'li+txt' 합쳐지고 'ul+('li+txt')라고 생각하면 되는걸까요?? 정확합니당
+
+- 아래 그림 참고하세요
+![image](https://user-images.githubusercontent.com/68424403/195801004-df94d9cf-ca9d-4c94-803a-44910fe8e454.png)
+
+
+
+
