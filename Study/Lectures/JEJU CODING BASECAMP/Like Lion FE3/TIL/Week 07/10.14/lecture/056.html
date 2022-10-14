@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul></ul>
+    <button>Make Me More!</button>
+
+    <script>
+      const myBtn = document.querySelector("button");
+      const myUl = document.querySelector("ul");
+
+      myBtn.addEventListener("click", function () {
+        for (let i = 0; i < 5; i++) {
+          // li 요소를 생성
+          const myLi = document.createElement("li");
+
+          //text 노드를 생성함
+          const myTxt = document.createTextNode("안녕하세용! " + i);
+
+          // 자식으로 요소를 배치함
+          myLi.appendChild(myTxt);
+          myUl.appendChild(myLi);
+        }
+
+        const li = document.querySelector("li");
+
+        // 자식 요소를 제거함
+        myUl.removeChild(li); //  자식을 지우는 메서드이므로 부모가 앞에 존재해야 함
+      });
+    </script>
+  </body>
+</html>

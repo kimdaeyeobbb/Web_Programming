@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 250px;
+        height: 250px;
+        background-color: yellow;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="checkbox" />
+    </div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+      // eventlistener는 기본적으로 브라우저의 동작에 대해 수동적(passive)이다.
+      // passive: true를 대상으로 event.preventDefault()는 동작하지 않고 console warning을 발생시킨다.
+      document.addEventListener(
+        "wheel",
+        (event) => {
+          console.log("scrolling");
+          //event.preventDefault();
+        },
+        // 기본적으로 설정된 passive: true는 변경하지 않는 것이 좋다.
+        // 또한 passive: true인 것에 preventDefault()를 호출하는 것은 좋지 않다.
+        { passive: false }
+      );
+      const checkbox = document.querySelector("input");
+      checkbox.addEventListener("click", (event) => {
+        // long
+        console.log("checked");
+        // 브라우저에서 일어나는 기본적으로 발생하는 동작을 취소시킨다.
+        //event.preventDefault();
+      });
+    </script>
+  </body>
+</html>

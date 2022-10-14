@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    점심 식단
+    <article id="container">
+      <ul>
+        <li>탕수육</li>
+        <li class="item-second">유산슬</li>
+        <li>짜장면</li>
+      </ul>
+    </article>
+
+    저녁 식단
+    <article>
+      <ul>
+        <li>된장국</li>
+        <li class="item-second">김치찌게</li>
+        <li>해장국</li>
+      </ul>
+    </article>
+
+    <script>
+      const container = document.getElementById("container");
+      console.log(container);
+
+      const cl = document.getElementsByClassName("item-second");
+      console.log(cl[0]);
+
+      const firstli = document.getElementsByTagName("li");
+      console.log(firstli[0]);
+
+      /* 첫번째 아이템에 접근 */
+      console.log(document.querySelector(".item-second"));
+
+      /* li에 접근 */
+      console.log(document.querySelector("li"));
+    </script>
+  </body>
+</html>
