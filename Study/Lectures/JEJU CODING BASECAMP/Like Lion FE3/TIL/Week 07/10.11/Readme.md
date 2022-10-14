@@ -946,3 +946,18 @@ console.log(add10(2)); // 112 (x:10 + y:100 + z:2)
 ## 질의응답
 
 1. 원시값보다 덩치가 큰 
+
+
+
+
+
+
+
+
+# 참고자료
+
+- [참고자료 1](https://think0wise.tistory.com/65)
+- [참고자료 2](https://pythontutor.com/)
+- [참고자료 3](https://curryyou.tistory.com/275)
+- [참고자료 4](https://curryyou.tistory.com/276)
+- [참고자료 5](https://curryyou.tistory.com/277)
