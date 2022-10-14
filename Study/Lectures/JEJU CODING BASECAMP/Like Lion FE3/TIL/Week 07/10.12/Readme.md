@@ -1156,3 +1156,18 @@ func(); // window === this
 ```
 
 ## A
+
+
+
+
+
+
+
+
+# 참고자료
+
+- [참고자료 1](https://think0wise.tistory.com/65)
+- [참고자료 2](https://pythontutor.com/)
+- [참고자료 3](https://curryyou.tistory.com/275)
+- [참고자료 4](https://curryyou.tistory.com/276)
+- [참고자료 5](https://curryyou.tistory.com/277)
