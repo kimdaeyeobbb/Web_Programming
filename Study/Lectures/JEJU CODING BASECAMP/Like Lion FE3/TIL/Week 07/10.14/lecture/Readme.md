@@ -233,3 +233,28 @@ console.log(myStr); // String{'1,2,3,4'} -> 객체 생성
 
 - appendChild
   - target 안에 인자로 들어가는 요소를 자식 요소로 배치
+
+## 질의응답
+
+### 1. appendChild는 맨 마지막 노드에 추가된다고 이해했습니다. myTxt를 먼저 appendChild를 해주면 myLi가 없는 상태에서 붙여 줄수 있는건가요?? 'li+txt' 합쳐지고 'ul+('li+txt')라고 생각하면 되는걸까요??
+
+```js
+myBtn.addEventListener("click", function () {
+  for (let i = 0; i < 5; i++) {
+    // li요소를 생성합니다.
+    const myLi = document.createElement("li");
+
+    // text 노드를 생성합니다.
+    const myTxt = document.createTextNode("안녕하세용!" + i);
+    //  자식으로 요소를 배치합니다.
+    myLi.appendChild(myTxt);
+    myUl.appendChild(myLi);
+  }
+});
+```
+
+- 답변
+
+- 넵넵! myLi가 없는 상태이면 li태그 없이 텍스트가 입력이 됩니당!! 그래서 li에 먼저 자식으로 추가한 후 ul에 추가하는 것입니당!
+
+- 'li+txt' 합쳐지고 'ul+('li+txt')라고 생각하면 되는걸까요?? 정확합니당
