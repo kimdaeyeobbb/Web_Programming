@@ -13,7 +13,7 @@ VM483:2 Uncaught ReferenceError: Cannot access 'foo' before initialization
     at <anonymous>:2:17
 ```
 
-- let 이 블록내에서 선언되었으므로 블록 내에서 foo에 접근하게 되면 foo=2에 접근하게 되는것인데, 선언과 초기화가 동시에 진행되는 가정에서 콘솔창에 찍으려고 하니까 에러가 발생한 것
+- let 이 블록내에서 선언되었으므로 블록 내에서 foo에 접근하게 되면 foo=2에 접근하게 되는것인데, 선언과 초기화가 동시에 진행되는 정에서 콘솔창에 찍으려고 하니까 에러가 발생한 것
 - 호이스팅이 일어나지만 호이스팅이 일어나지 않는것처럼 보임
 - 변수가 TDZ에 들어가있어서 접근을 할 수 없게 됨
 
@@ -263,5 +263,9 @@ myBtn.addEventListener("click", function () {
 ![image](https://user-images.githubusercontent.com/68424403/195801004-df94d9cf-ca9d-4c94-803a-44910fe8e454.png)
 
 
+
+# 참고자료
+
+- [색상에 따라 다르게 변화하게 만들기](https://velog.io/@real-bird/Javascript-%ED%81%B4%EB%A6%AD%ED%95%9C-div%EB%A7%8C-%EC%83%89%EC%83%81-%EB%B0%94%EA%BE%B8%EA%B8%B0)
 
 
