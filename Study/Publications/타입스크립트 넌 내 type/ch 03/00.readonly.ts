@@ -7,4 +7,4 @@ console.log(strArr); // ["가", "나", "다", "라"];
 let numArr: ReadonlyArray<number> = [1, 2, 3, 4, 5, 6];
 console.log(numArr); // [ 1, 2, 3, 4, 5, 6 ]
 
-// stoneArr.push(7); // error
+numArr.push(7); // error
