@@ -486,3 +486,152 @@ fetch("http://test..api.weniv.co.kr/mall")
     console.log(메시지);
   });
 ```
+
+# 13시 ~ 14시 30분 다시 듣기
+
+# 작동 순서: ! -> !! -> hello world -> hello 인게 왜 그런 것인지 다시 확인 후 기재
+
+# 14시 40분 제공 코드
+
+- [사이트](https://paullabworkspace.notion.site/14-promise-async-await-a26f842fee9f4956b386e36155f5b58f)
+
+# 066
+
+- async를 앞에 써줘야 f가 promise가 됨
+
+# 067
+
+- async를 await의 문법적 설탕이라고 설명하는 것은 옳지 않음
+- async를 promise라고 생각하면 됨.
+- top-level await을 쓰면 비동기 함수 외부에서 await 키워드 사용할 수 있음
+- await은 async 함수 안에서만 사용가능하다 ? (X) -> 함수 밖에서도 사용이 가능하다 (최근에 바뀜. 원래는 await이 async안에서만 동작했으나 탑레벨 await이 새로 생겼고, 이로인해 함수 밖에서도 사용이 가능한 것임.)
+- 탑레벨 await가 생김으로 인하여 for문에서도 await을 사용할 수 있음
+
+# 에러핸들링
+
+- 기본 꼴
+
+```js
+try {
+  // code
+} catch (에러메시지) {
+  // code
+} finally {
+  // code
+}
+
+// new Error(message)
+// new SyntaxError(message)
+// new ReferenceError(message)
+```
+
+- 에러가 날 수 있는 여지가 있는 곳 전체에 try설정 => 나중에 감이 생기면 고도화 하는 것임
+- try ~ catch로 무한반복을 잡을 수 없음 (무한반복은 error가 아님)
+
+- 예제 1
+
+```js
+try {
+  let x = 10;
+  let y = 20;
+  console.log(x + y);
+} catch (e) {
+  console.log(e);
+} finally {
+  console.log("finally");
+}
+```
+
+- 예제2 (예제1을 고쳐서 에러 발생시킴)
+
+```js
+try {
+  let x = 10;
+  let y = 20;
+  console.log(x + y + z);
+} catch (e) {
+  console.log(e);
+} finally {
+  console.log("finally");
+}
+
+// ReferenceError: z is not defined
+//    at <anonymous>:4:23
+// finally
+```
+
+- 예제3 (z에 값이 할당되어 있지 않으므로 서비스가 멈춤) => 에러를 던져주고 스톱함.
+
+```js
+let x = 10;
+let y = 20;
+console.log(x + y + z);
+let z = 30; // 값이 할당되지 않음. 서비스가 멈춤
+```
+
+- 예제4 (예제3과 비교) => 일부 기능이 수행이 안될 수는 있지만 서비스는 정상적으로 작동함. 에러를 던져주고 마지막까지 수행함
+
+```js
+try {
+  let x = 10;
+  let y = 20;
+  console.log(x + y + z);
+} catch (e) {
+  console.log(e);
+} finally {
+  // 일부 기능이 수행이 안될 수는 있지만 서비스는 정상적으로 작동함
+  console.log("finally");
+}
+```
+
+- 예제 3,4 심화
+
+```js
+a(); // 로고 받아오기 메서드 - 사람 a가 개발함 (길동)
+b(); // 상품 정보 받아오기 메서드 - 사람 b가 개발함 (철수)
+c(); // 장바구니 구현 메서드 - 사람 c가 개발함 (둘리)
+
+// a()에서 문제가 발생했을 경우 b(), c()도 멈춤
+
+// but try~catch를 설정해주면 a()가 멈춰도 b(), c()는 작동함
+```
+
+## 코드리뷰시 - 에러처리 / 보안 이슈 처리하는 것이 중요
+
+- 예제 5
+  - throw는 강제적으로 에러를 발생시키는 것
+
+```js
+try{
+    let x = 10;
+    let y = 10;
+    throw new Error('에러야!')
+    console.log(x+y+z)
+} catch(e){
+    console.error(e)
+    console.dir(e)
+    console.error(e.message)
+} finally {
+    console..log('end')
+}
+```
+
+- 예제6 (syntax error)
+
+```js
+try{
+    let x = 10;
+    let y = 10;
+    throw new SyntaxError('에러야!')
+    console.log(x+y+z)
+} catch(e){
+    console.error(e)
+    console.dir(e)
+    console.error(e.message)
+} finally {
+    console..log('end')
+}
+```
+
+- try ~ catch는 런타임 에러만 잡아줌
+- [try~catch와 에러 핸들링](https://ko.javascript.info/try-catch)
