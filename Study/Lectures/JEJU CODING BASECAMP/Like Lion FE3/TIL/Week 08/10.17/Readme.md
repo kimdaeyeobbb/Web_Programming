@@ -661,3 +661,14 @@ try{
 
 - try ~ catch는 런타임 에러만 잡아줌
 - [try~catch와 에러 핸들링](https://ko.javascript.info/try-catch)
+
+
+# 질의응답
+
+- ![image](https://user-images.githubusercontent.com/68424403/196297541-82f3edfc-6f2e-42a9-803a-38801955e05b.png)
+
+- ![image](https://user-images.githubusercontent.com/68424403/196297670-8628be2b-c41f-4ca4-b95e-7fe1b2c93a9c.png)<br>
+전역 컨텍스트: 실행 컨텍스트가 생성되고 실행되기 전에 생성되어 애플리케이션이 종료될 때까지 유지하는 전역 객체입니다. 이는 모든 전역 변수와 전역 함수 등을 포함<br>
+[관련 자료](https://poiemaweb.com/js-execution-context)
+
+
