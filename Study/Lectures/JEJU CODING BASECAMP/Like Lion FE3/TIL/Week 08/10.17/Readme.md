@@ -193,6 +193,8 @@ console.log(0 == 0);
 0.1 + 0.2 = 0.3 // false (0.300000000000000004 처럼 무한대의 숫자가 나옴)
 ```
 
+## [부동 소수점 오차 참고자료](http://www.tcpschool.com/java/java_datatype_floatingPointNumber)
+
 - NaN를 발생시키는 예시 (숫자로 평가될 수 없는것과 연산한 경우)
 
 ```JS
