@@ -411,3 +411,78 @@ let p = new Promise(function(resolve,reject) => {
 
 - 성공되면 then이 받음 (resolve는 then이 받음)
 - then안에 받는 파라미터를 적어줌 (그 받은 메시지를 가지고 뭘 할것인지를 뒤에 이어서 적어줌)
+
+## promise reject & catch (여기부터 강의 다시)
+
+```js
+let p = new Promise(function (resolve, reject) => {
+    // 비동기적으로 실행될 code 작성
+    reject('hello world')    // 실패
+}).then(메시지 => {   // 성공(resolve)시 then이 받음. 받은 메시지를 가지고 뭘 할것인지를 기재
+    alert(메시지)
+    return 메시지.split(' ')[0]  // hello
+}).then(메시지 => {     // 위에서 return한 값이 또 메시지를 준 것
+    alert(메시지)
+    alert(메시지)
+    return 메시지[0]   // h
+})
+
+console.log(p)   // Promise {<pending>}
+console.log(p)  // Promise {<fulfilled>: 'h'}
+```
+
+- error를 만나면 catch가 잡아냄
+- promise 내부 에러는 catch가 담당
+- 캐치가 두 개 이상 사용될 수 있음
+- 주로 테스트를할 때 ~
+
+- 예제
+
+```js
+/* 일부러 시간이 걸리게 설계한 에제 */
+let p4 = new Promise(function (resolve, reject) {
+  setTimeout(() => resolve("끝났다!"), 3000);
+});
+
+console.log("hello world");
+console.log(p4); // Promise {<pending>}
+
+// 3초 후에
+console.log(p4); // Promise {<fulfilled>: '끝났다!'}
+```
+
+- finally는 관습적으로 마지막에 쓰는 것이지, 뒤에 이어붙이는 것이 안되는 것은 아님
+
+- async나 fetch도 promise를..?
+
+```js
+let test = async function () {
+  return "hello world";
+};
+
+console.log(test()); // Promise{<fulfilled>: 'hello world'}
+
+let data = fetch("http://test..api.weniv.co.kr/mall");
+console.log(data); // Promise{<fulfilld>: Response}
+```
+
+- 예제 (웹 브라우저 콘솔창에 찍어볼 것)
+
+```js
+fetch("http://test..api.weniv.co.kr/mall")
+  .then((메시지) => {
+    console.log(메시지);
+    return 메시지;
+  })
+  .then((메시지) => {
+    console.log(메시지.json());
+  })
+  .catch((메시지) => {
+    // 정상작동이 되면 필요가 없게되는 코드 (프로젝트 진행시 에러케이스에 대한 것들을 고려해서 코드 작성할 것)
+    //alert(메시지)
+    alert(
+      "홈페이지가 정상적으로 작동하지 않고 있습니다. 조치중이니 잠시만 기다려주시기 바랍니다."
+    );
+    console.log(메시지);
+  });
+```
