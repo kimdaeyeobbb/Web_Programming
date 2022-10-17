@@ -7,6 +7,7 @@ console.log(NaN == NaN); // false
 
 
 // javascript 내부적으로는 비교 x === y(여기서 x와 y는 값)는 true 또는 false를 생성합니다. 이러한 비교는 다음과 같이 수행됩니다.
+// x가 false를 출력하면 뒤에거를 보지 않고 false를 출력한다 
 
 /* Type(x)가 NaN이면 false를 반환합니다. y가 NaN이면 false를 반환합니다. 
 이것은 알고리즘이 먼저 피연산자 중 하나가 NaN유형을 확인하기 전에 있는지 확인하고 그렇다면 false어쨌든 반환할 것임을 의미합니다. 
