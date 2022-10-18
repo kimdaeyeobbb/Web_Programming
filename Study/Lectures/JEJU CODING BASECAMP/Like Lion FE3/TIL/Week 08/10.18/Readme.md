@@ -235,4 +235,402 @@ put();
 
 - [width 속성 및 height 속성을 지정하지 않으면 캔버스의 처음 너비는 300 픽셀이고, 높이는 150 픽셀이다](https://developer.mozilla.org/ko/docs/Web/API/Canvas_API/Tutorial/Basic_usage#:~:text=width%20%EB%B0%8F%20height%20%EC%86%8D%EC%84%B1%EC%9D%84,%EB%A7%9E%EA%B2%8C%20%ED%81%AC%EA%B8%B0%EA%B0%80%20%EC%A1%B0%EC%A0%95%EB%90%A9%EB%8B%88%EB%8B%A4.)
 
-- ㅁ
+- [캔버스 튜토리얼](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript)
+
+# 콜백지옥
+
+- 081 =>
+
+- [참고자료 - 드림코딩](https://youtu.be/s1vpVCrT8f4)
+
+# 로컬스토리지
+
+- [참고자료 1](https://developer.mozilla.org/ko/docs/Web/API/Window/localStorage)
+
+- [참고자료 2](https://ko.javascript.info/localstorage)
+
+- web sql -> 뜨고 있는 기술 / 웹에서 sql 다룸
+
+- 나만 가지고 있는 데이터
+
+- 삭제시키면 다시 복구 시킬 수 없음
+
+# json.stringify()
+
+- [참고사이트](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+
+- js값이나 객체를 json문자열로 변환함
+
+# 로컬스토리지 메모장 만들기
+
+- 코드 1
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메모장</title>
+  </head>
+  <body>
+    <hr />
+    <div class="display"></div>
+    <hr />
+    <input class="input" type="text" />
+    <button class="submitButton">Submit</button>
+    <script>
+      const input = document.querySelector(".input");
+      const display = document.querySelector(".display");
+      const button = document.querySelector(".submitButton");
+      const localStotageList = localStorage.getItem("memo") || "[]";
+      let dataArray = JSON.parse(localStotageList);
+
+      const render = () => {
+        localStorage.setItem("memo", JSON.stringify(dataArray));
+        display.innerHTML = dataArray.reduce((acc, e) => {
+          acc = acc + `<h3>${e}</h3>`;
+          return acc;
+        }, "");
+      };
+
+      button.onclick = () => {
+        dataArray.push(input.value);
+        render();
+      };
+    </script>
+  </body>
+</html>
+```
+
+- 코드2
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" name="" id="input" />
+    <button type="submit" id="btn">입력</button>
+    <button id="btn2">삭제</button>
+    <textarea name="" id="area" cols="30" rows="10"></textarea>
+    <script>
+      const input = document.querySelector("#input");
+      const area = document.querySelector("#area");
+      const btn = document.querySelector("#btn");
+      const btn2 = document.querySelector("#btn2");
+      const memo = [];
+
+      function 입력() {
+        let todo = input.value;
+        memo.push(todo);
+        localStorage.setItem("메모", JSON.stringify(memo));
+        area.value = JSON.parse(localStorage.getItem("메모"));
+        input.value = "";
+      }
+      area.value = JSON.parse(localStorage.getItem("메모"));
+
+      function 삭제() {
+        localStorage.removeItem("메모");
+        area.value = JSON.parse(localStorage.getItem("메모"));
+      }
+      btn.addEventListener("click", 입력);
+      btn2.addEventListener("click", 삭제);
+    </script>
+  </body>
+</html>
+```
+
+- 코드3
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .memo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+    <title>로컬스토리지</title>
+  </head>
+  <body>
+    <div class="memo">
+      <input type="text" name="" id="name" />
+      <textarea name="" id="text" cols="30" rows="10"></textarea>
+      <button onclick="submit()">제출!</button>
+    </div>
+    <div class="memo-list"></div>
+
+    <script>
+      const name = document.querySelector("input");
+      const text = document.querySelector("textarea");
+      const memoList = document.querySelector(".memo-list");
+      const submit = () => {
+        localStorage.setItem("name", name.value);
+        localStorage.setItem("text", text.value);
+        const p = document.createElement("p");
+        p.innerText = `${localStorage.getItem("name")} : ${localStorage.getItem(
+          "text"
+        )}`;
+        memoList.appendChild(p);
+
+        name.value = "";
+        text.value = "";
+      };
+    </script>
+  </body>
+</html>
+```
+
+- 코드4
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로컬스토리지</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+        margin: 50px auto;
+      }
+
+      label {
+        padding: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <form>
+        <label for="subject">제목:</label>
+        <input type="text" id="subject" />
+        <label for="content">내용:</label>
+        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        <button type="submit">저장하기</button>
+      </form>
+    </main>
+    <script>
+      const subject = document.querySelector("#subject");
+      const content = document.querySelector("#content");
+      const saveBtn = document.querySelector("button");
+
+      const memo = {
+        id: "",
+        subject: "",
+        content: "",
+      };
+
+      saveBtn.addEventListener("click", () => {
+        const date = new Date();
+        memo["id"] = date;
+        memo["subject"] = subject.value;
+        memo["content"] = content.value;
+
+        localStorage.setItem("메모", JSON.stringify(memo));
+      });
+    </script>
+  </body>
+</html>
+```
+
+- 코드 5
+
+```html
+<body>
+  <input type="text" name="" id="" />
+  <textarea name="" id="" cols="30" rows="10"></textarea>
+  <button type="button">메모 생성</button>
+  <div id="result">
+    <h2></h2>
+    <p></p>
+  </div>
+  <script>
+    const memoTitle = document.querySelector("input");
+    const memoContent = document.querySelector("textarea");
+    const memoCreate = document.querySelector("button");
+    const resultArea = document.getElementById("result");
+
+    const memo = {};
+    function memoCreateFun() {
+      memo["title"] = memoTitle.value;
+      memo["content"] = memoContent.value;
+      localStorage.setItem("메모", JSON.stringify(memo));
+      const getDataObj = JSON.parse(localStorage.getItem("메모"));
+      resultArea.querySelector("h2").textContent = getDataObj["title"];
+      resultArea.querySelector("p").textContent = getDataObj["content"];
+    }
+    memoCreate.addEventListener("click", memoCreateFun);
+  </script>
+</body>
+```
+
+- 코드 6
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+
+  <body>
+    <input id="title" type="text" />
+    <textarea id="content" cols="30" rows="10"></textarea>
+    <button id="save">저장</button>
+    <button id="load">불러오기</button>
+    <div id="show"></div>
+    <script>
+      const title = document.getElementById("title");
+      const content = document.getElementById("content");
+      const save = document.getElementById("save");
+      const load = document.getElementById("load");
+      const show = document.getElementById("show");
+
+      save.addEventListener("click", function () {
+        localStorage.setItem(
+          "memoNote",
+          JSON.stringify({
+            title: title.value,
+            content: content.value,
+          })
+        );
+      });
+
+      load.addEventListener("click", function () {
+        const memonote = JSON.parse(localStorage.getItem("memoNote"));
+        const saved_show = document.createElement("div");
+        const saved_title = document.createElement("h2");
+        const saved_content = document.createElement("p");
+
+        saved_title.textContent = memonote.title;
+        saved_content.textContent = memonote.content;
+
+        saved_show.appendChild(saved_title);
+        saved_show.appendChild(saved_content);
+
+        show.innerHTML = saved_show.innerHTML;
+      });
+    </script>
+  </body>
+</html>
+```
+
+- 코드 7
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <input type="text" class="tit-memo" />
+    <textarea class="txt-memo"></textarea>
+    <button>Add</button>
+    <ul class="list-memo"></ul>
+
+    <script>
+      const titMemoEl = document.querySelector(".tit-memo");
+      const txtMemoEl = document.querySelector(".txt-memo");
+      const listMemoEl = document.querySelector(".list-memo");
+      let memo = [];
+
+      const onSubmit = (e) => {
+        memo = [...memo, { title: titMemoEl.value, content: txtMemoEl.value }];
+        localStorage.setItem("memo", JSON.stringify(memo));
+
+        renderMemo();
+      };
+
+      const renderMemo = () => {
+        removeChildNode(listMemoEl);
+        const memoList = localStorage.getItem("memo");
+
+        JSON.parse(memoList).forEach(({ title, content }, i) => {
+          const li = document.createElement("li");
+
+          const strong = document.createElement("strong");
+          strong.textContent = title;
+
+          const p = document.createElement("p");
+          p.textContent = content;
+
+          li.append(strong, p);
+          listMemoEl.appendChild(li);
+        });
+      };
+
+      const removeChildNode = (el) => {
+        while (el.hasChildNodes()) {
+          el.removeChild(el.firstChild);
+        }
+      };
+
+      document.querySelector("button").addEventListener("click", onSubmit);
+    </script>
+  </body>
+</html>
+```
+
+- 코드8
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>localstorage_memo</title>
+  </head>
+  <body>
+    <input type="text" name="" id="title" />
+    <textarea name="" id="text" cols="30" rows="10"></textarea>
+    <button id="btn">memo</button>
+    <div id="memoList"></div>
+    <script>
+      const title = document.querySelector("#title");
+      const text = document.querySelector("#text");
+      const btn = document.querySelector("#btn");
+      const memoList = document.querySelector("#memoList");
+
+      function save() {
+        localStorage.setItem("title", title.value);
+        localStorage.setItem("text", text.value);
+        const p = document.createElement("p");
+        p.innerText = `${localStorage.getItem(
+          "title"
+        )} - ${localStorage.getItem("text")}`;
+        memoList.appendChild(p);
+      }
+
+      btn.addEventListener("click", save);
+    </script>
+  </body>
+</html>
+```
