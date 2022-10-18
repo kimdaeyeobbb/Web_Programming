@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <div class="two"></div>
+      <div class="two"></div>
+      <div class="two"></div>
+      <div class="two"></div>
+      <div class="two"></div>
+    </div>
+    <script>
+      /* 비교 */
+      const a = document.querySelector(".one");
+      console.log(a);
+
+      const b = d3.select(".one");
+      console.log(b);
+
+      /* 비교 */
+      const c = document.querySelectorAll(".two");
+      console.log(c);
+
+      const d = d3.selectAll(".two"); // querySelectorAll을 selectAll로 대체한 것
+      console.log(d);
+    </script>
+  </body>
+</html>
