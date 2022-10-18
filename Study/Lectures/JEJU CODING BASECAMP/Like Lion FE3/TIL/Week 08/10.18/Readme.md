@@ -266,6 +266,24 @@ arr1.forEach((el) => console.log(el)); // 가 나 다
 - CSS 속성을 변경할 때 애니메이션 속도를 조절하는 방법을 제공함
 - 속성 변경이 즉시 영향을 미치게 하는 대신, 그 속성의 변화가 일정 기간에 걸쳐 일어나도록 할 수 있음
 
+# Document.getElementById()
+
+- 구문
+
+```
+document.getElementById(id);
+```
+
+- `Document.getElementById()`메서드: 주어진 문자열과 일치하는 `id`속성을 가진 요소를 찾고, 이를 나타내는 `Element`객체를 반환함. <br> id는 문서 내에서 유일해야 하므로 특정 요소를 빠르게 찾을 때 유리함
+
+- 반환값
+  - 주어진 id와 일치하는 DOM 요소를 나타내는 `Element`객체 (문서 내에 주어진 id가 없으면 `null`)
+    <br>
+
+# Document.querySelector()
+
+- id가 없는 요소에 접근하려면 `Document.querySelector()`를 사용할 것 (`Document.querySelector`는 모든 선택자를 사용할 수 있음)
+
 # canvas
 
 - 내장되어있으므로 따로 스크립트가 필요하지 않음
@@ -274,6 +292,18 @@ arr1.forEach((el) => console.log(el)); // 가 나 다
 - [width 속성 및 height 속성을 지정하지 않으면 캔버스의 처음 너비는 300 픽셀이고, 높이는 150 픽셀이다](https://developer.mozilla.org/ko/docs/Web/API/Canvas_API/Tutorial/Basic_usage#:~:text=width%20%EB%B0%8F%20height%20%EC%86%8D%EC%84%B1%EC%9D%84,%EB%A7%9E%EA%B2%8C%20%ED%81%AC%EA%B8%B0%EA%B0%80%20%EC%A1%B0%EC%A0%95%EB%90%A9%EB%8B%88%EB%8B%A4.)
 
 - [캔버스 튜토리얼](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript)
+
+# HTMLCanvasElement.getContext()
+
+- 캔버스의 드로잉 컨텍스트를 반환함. 컨텍스트 식별자가 지원되지 않을 경우 `null`을 반환함
+- 기본 꼴
+
+```js
+var ctx = canvas.getContext(contextType)
+vat ctx = canvas.getContext(contextType, contextAttributes);
+```
+
+- `contextType`: 캔버스에 드로잉 컨텍스트를 정의하는 컨텍스트 식별자를 갖는 `DOMString`임. (2차원 렌더링 컨텍스트: `2d`, 3차원 렌더링 컨텍스트: `webgl`)
 
 # 콜백지옥
 
@@ -693,3 +723,11 @@ function 실행() {
 - [브라우저 저장소( 로컬 스토리지, 세션 스토리지, 쿠키)](https://ryuhojin.tistory.com/m/10)
 
 - [로컬스토리지, 세션스토리지, 쿠키 정리](https://velog.io/@kler/TIL4-%EB%A1%9C%EC%BB%AC%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EC%84%B8%EC%85%98%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EC%BF%A0%ED%82%A4-%EC%A0%95%EB%A6%AC)
+
+- [이벤트루프](https://youtu.be/8aGhZQkoFbQ)
+
+# 추가내용
+
+- JWT(JSON WEB TOKEN) 읽을 때 유효시간이 있으므로 로컬 스토리지에 넣고 써도 무관함 (만료기간이 있으므로)
+
+- [JSON은 자바스크립트 문법이 아니다](https://youtu.be/1ID6pfTViXo)
