@@ -220,3 +220,10 @@ put();
 - [교안](https://paullabworkspace.notion.site/D3-js-44bff65b641b46eba9b7685860a771cc)
 
 - d3는 기본적으로 svg로 그림을 그림
+
+- 빠르게 만들 수는 없지만 일일이 컨트롤이 가능
+
+# chartJS
+
+- 빠르게 만들 수 있지만 일일이 컨트롤 할 수 없음
+- label, data, config, const 변수선언해서 생성하는게 핵심
