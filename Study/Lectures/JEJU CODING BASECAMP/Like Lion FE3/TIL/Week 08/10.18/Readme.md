@@ -227,3 +227,12 @@ put();
 
 - 빠르게 만들 수 있지만 일일이 컨트롤 할 수 없음
 - label, data, config, const 변수선언해서 생성하는게 핵심
+
+# canvas
+
+- 내장되어있으므로 따로 스크립트가 필요하지 않음
+- [canvas의 width height 프로퍼티랑 css 스타일 width height랑은 다르다](https://stackoverflow.com/questions/4938346/canvas-width-and-height-in-html5)
+
+- [width 속성 및 height 속성을 지정하지 않으면 캔버스의 처음 너비는 300 픽셀이고, 높이는 150 픽셀이다](https://developer.mozilla.org/ko/docs/Web/API/Canvas_API/Tutorial/Basic_usage#:~:text=width%20%EB%B0%8F%20height%20%EC%86%8D%EC%84%B1%EC%9D%84,%EB%A7%9E%EA%B2%8C%20%ED%81%AC%EA%B8%B0%EA%B0%80%20%EC%A1%B0%EC%A0%95%EB%90%A9%EB%8B%88%EB%8B%A4.)
+
+- ㅁ
