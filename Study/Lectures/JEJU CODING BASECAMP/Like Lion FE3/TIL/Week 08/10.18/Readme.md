@@ -223,10 +223,48 @@ put();
 
 - 빠르게 만들 수는 없지만 일일이 컨트롤이 가능
 
+# document.queryselector
+
+- 제공한 선택자 또는 선택자 뭉치와 일치하는 문서 내 첫 번째 요소를 반환 (일치하는 요소가 없으면 null을 반환)
+
+- `querySelector`: 노드의 하위 트리에서 첫 번째로 일치하는 `Element` 노드를 반환함 (일치하는 요소가 없으면 null을 반환)
+
+- `querySelectorAll`: 노드의 하위 트리 안에서 일치하는 모든 `Element`를 포함한 `NodeList`를 반환함. 결과가 없으면 빈 `NodeList`를 반환함
+
+- 기본 꼴
+
+```html
+document.querySelector(selectors);
+```
+
+- selectors: 하나 이상의 선택자를 포함한 DOMstring (selector가 선택자인데, 해당 ID를 잘못 사용하여 문서 내에 여러 번 사용했을 경우 첫 번째로 그 ID를 사용한 요소를 반환함)
+
 # chartJS
 
 - 빠르게 만들 수 있지만 일일이 컨트롤 할 수 없음
 - label, data, config, const 변수선언해서 생성하는게 핵심
+
+# foreach
+
+- 주어진 함수를 배열 요소의 각각에 대해 실행시킴
+
+- 기본 꼴
+
+```js
+arr.forEach(callback(currentValue[,index[,array]])[,thisArg])
+```
+
+- 예제
+
+```js
+const arr1 = ["가", "나", "다"];
+arr1.forEach((el) => console.log(el)); // 가 나 다
+```
+
+# CSS transition
+
+- CSS 속성을 변경할 때 애니메이션 속도를 조절하는 방법을 제공함
+- 속성 변경이 즉시 영향을 미치게 하는 대신, 그 속성의 변화가 일정 기간에 걸쳐 일어나도록 할 수 있음
 
 # canvas
 
@@ -634,3 +672,24 @@ put();
   </body>
 </html>
 ```
+
+# 질의응답
+
+- Q) 위의 코드에서 교안에 메모리에 실행함수가 제일먼저 적재된다고 나와있는데 제일 먼저 적재되는 이유는 함수의 호이스팅과 관련되어 있는 것인가요?
+
+```js
+console.log(1);
+setTimeout(실행, 1000); // 핵심 : 1초를 보장하지 않는다!!
+console.log(3);
+function 실행() {
+  console.log(2);
+}
+```
+
+- A) 넵, 맞습니다. 적재만 되고, 실행은 되지 않는거에요.
+
+# 참고자료
+
+- [브라우저 저장소( 로컬 스토리지, 세션 스토리지, 쿠키)](https://ryuhojin.tistory.com/m/10)
+
+- [로컬스토리지, 세션스토리지, 쿠키 정리](https://velog.io/@kler/TIL4-%EB%A1%9C%EC%BB%AC%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EC%84%B8%EC%85%98%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EC%BF%A0%ED%82%A4-%EC%A0%95%EB%A6%AC)
