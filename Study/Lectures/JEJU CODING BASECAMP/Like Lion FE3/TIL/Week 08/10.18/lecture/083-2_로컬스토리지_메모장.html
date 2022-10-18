@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로컬스토리지</title>
+  </head>
+  <body>
+    <input type="text" name="" id="inputtext" />
+    <textarea name="" id="inputtextarea" cols="30" rows="10"></textarea>
+    <button id="btn'">메모 저장</button>
+    <script>
+      // setItem(key, value) – 키-값 쌍 저장
+      // getItem(key) – 키에 해당하는 값 호출
+      // removeItem(key) – 해당 값 삭제
+      // clear() – 모든 데이터 삭제
+      // key(index) – 인덱스(index)에 해당하는 키 호출
+      // length – 저장된 항목의 개수
+
+      const memo7 = [];
+      memo7.push("메모7");
+
+      /* 저장시 문자열로 변환해서 저장 */
+      localStorage.setItem("메모7", memo7);
+
+      /* 데이터를 꺼냄 */
+      console.log(localStorage.getItem("메모7"));
+      cnosole.log(JSON.stringify(memo7));
+      localStorage.setItem("메모7", JSON.stringify(meemo7));
+
+      const inputtext = document.querySelector("#inputtext");
+      const textarea = document.querySelector("#inputtextarea");
+      const button = document.querySelector("#btn");
+
+      button.addEventListener("click", () => {
+        const date = new Date();
+        memo7[]
+      });
+    </script>
+  </body>
+</html>
