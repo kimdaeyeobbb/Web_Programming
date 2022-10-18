@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+      /* 마우스 오버시 스트로크 적용 */
+      rect:hover {
+        stroke: black;
+        stroke-width: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>확진자수 현황</h1>
+    <div class="canvas"></div>
+    <script>
+      const width = 800;
+      const height = 800;
+      // margin top, margin bottom ~ (나중에 숫자만 고쳐서 크기 조정)
+      let [mt, mb, mr, ml] = [50, 50, 50, 50];
+
+      const svg = d3
+        .select(".canvas")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+      // console.log(mt, mb, mr, ml)
+
+      const graphWidth = width - ml - mr; //margin left와 margin right를 빼줌
+      const graphHeight = height - mt - mb;
+
+      const graph = svg
+        .append("g") // 그래프는 그룹으로 묶어서 작성
+        .attr("width", graphWidth)
+        .attr("height", graphHeight)
+        .attr("transform", `translate(${ml}, ${mt})`);
+
+      const xAxisG = graph
+        .append("g")
+        .attr("transform", `translate(0, ${graphHeight})`);
+      const yAxisG = graph.append("g");
+      // https://raw.githubusercontent.com/LiveCoronaDetector/livecod/master/data/data.json
+      // https://livecorona.co.kr/data/data.json
+      d3.json(
+        "https://raw.githubusercontent.com/LiveCoronaDetector/livecod/master/data/data.json"
+      )
+        .then(function (data) {
+          [_, ...data] = [...data]; // 스프레드 용법을 이용해서 데이터 복사 (맨 앞의 데이터를 빼고 복사하는 것 -> 전국 데이터는 필요없으므로 빼주는 것)
+          console.log(data);
+
+          const x = d3
+            .scaleBand()
+            .domain(data.map((item) => item.지역이름))
+            .range([0, graphWidth])
+            .padding(0.25);
+
+          const y = d3
+            .scaleLinear()
+            .domain([0, d3.max(data, (d) => d.확진자수)])
+            .range([graphHeight, 0]);
+
+          const bars = graph.selectAll("rect").data(data);
+
+          bars // bar 그래프를 그림
+            .enter()
+            .append("rect") // 사각형으로
+            .attr("height", (d) => graphHeight - y(d.확진자수))
+            .attr("width", x.bandwidth) // x의 bandwidth
+            .attr("fill", "hotpink")
+            .attr("x", (d) => x(d.지역이름))
+            .attr("y", (d) => y(d.확진자수));
+
+          const line = d3
+            .line()
+            .x((d) => x(d.지역이름) + 15)
+            .y((d) => y(d.확진자수))
+            .curve(d3.curveBasis); // 커브를 주면 곡선처럼 살짝 꺾임
+
+          bars
+            .enter()
+            .append("path")
+            .attr("fill", "none")
+            .attr("stroke", "blue")
+            .attr("stroke-width", "2px")
+            .attr("d", line(data));
+
+          bars
+            .enter()
+            .append("text")
+            .attr("x", (d) => {
+              if (d.확진자수 >= 1000) {
+                // 숫자의 크기에 따라 중앙정렬을 위해 얼마나 밀어주는지를 설정
+                return x(d.지역이름) + 3;
+              } else if (d.확진자수 >= 100) {
+                return x(d.지역이름) + 6;
+              } else if (d.확진자수 >= 10) {
+                return x(d.지역이름) + 9;
+              } else if (d.확진자수 >= 1) {
+                return x(d.지역이름) + 12;
+              }
+              return x(d.지역이름);
+            })
+            .attr("y", (d) => y(d.확진자수) - 5)
+            .text((d) => d.확진자수)
+            .style("font-size", "12px");
+          // .attr('text-anchor', 'end')
+
+          const xAxis = d3.axisBottom(x);
+          const yAxis = d3
+            .axisLeft(y)
+            .ticks(3)
+            .tickFormat((d) => d + "명");
+
+          xAxisG.call(xAxis);
+          yAxisG.call(yAxis);
+
+          xAxisG
+            .selectAll("text")
+            .attr("fill", "blue")
+            .attr("transform", "rotate(-45)")
+            .attr("text-anchor", "end");
+        })
+        .catch(function (err) {
+          // then과 엮어서 보기
+          console.log("실패!!");
+          console.error(err);
+        });
+    </script>
+  </body>
+</html>
