@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+      svg {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="canvas"></div>
+    <script>
+      const sampleData = [100, 30, 50, 70, 50, 20, 10, 200, 90, 100];
+      const sampleData2 = [120, 50, 20, 80, 90, 120, 100, 150];
+      const 과목 = [
+        "수학",
+        "영어",
+        "과학",
+        "사회",
+        "도덕",
+        "체육",
+        "미술",
+        "기술",
+      ];
+      const canvas = d3.select(".canvas");
+      const svg = canvas.append("svg").attr("width", 1000).attr("height", 1000);
+
+      sampleData.forEach((data, index) => {
+        svg
+          .append("rect")
+          .attr("x", 200 + index * 40)
+          .attr("y", 500 - data)
+          .attr("width", 30)
+          .attr("height", data)
+          .attr("fill", "hotpink")
+          .transition()
+          .duration(3000)
+          .ease(d3.easeLinear)
+          .style("fill", "blue")
+          .attr("y", 300 - data)
+          .attr("height", sampleData2[index]);
+
+        svg
+          .append("text")
+          .attr("x", 200 + index * 40)
+          .attr("y", 520)
+          .text(과목[index])
+          .style("font-size", "16px")
+          .style("font-weight", "bold")
+          .style("font-family", "Pacifico");
+      });
+    </script>
+  </body>
+</html>
