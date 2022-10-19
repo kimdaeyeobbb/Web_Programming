@@ -100,6 +100,13 @@
             productList.append(productDetailLink);
           });
           console.log(mainElement);
+          const cart = document.createElement("a");
+          cart.setAttribute("class", "link-btn cart-link");
+          mainElement.append(cart);
+
+          // console.log(productList)
+          // console.log(mainElement)
+          root.append(mainElement);
         })
         .then()
         .catch();
