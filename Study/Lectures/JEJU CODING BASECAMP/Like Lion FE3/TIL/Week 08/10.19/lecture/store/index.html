@@ -1,18 +1,65 @@
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>위니브 스토어</title>
-        <link
-            href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
-            rel="stylesheet"
-            type="text/css"
-        />
-        <link rel="stylesheet" href="src/style/style.css" />
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>위니브 스토어</title>
+    <link
+      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="src/style/style.css" />
+  </head>
 
-    <body>
-        <div id="root"></div>
-    </body>
+  <body>
+    <div id="root"></div>
+    <script>
+      const root = document.getElementById("root");
+
+      async function getProductData() {
+        // async가 붙으면 promise임
+        const response = await fetch("http://test.api.weniv.co.kr/mall");
+        // 얘도 프로미스임. 이 fetch는 promise를 반환하므로, 기다려야 response값이 제대로 돈다
+
+        const product = response.json();
+        return product;
+      }
+      //   console.log(getProductData()); // getProductData는 Promise임. (함수가 아님)
+      getProductData()
+        .then((product) => {
+          //   console.log(product); // product가 제대로 들어왔는지 확인
+          const mainElement = document.createElement("main");
+          mainElement.classList.add("product");
+          //   console.log(mainElement); // mainElement가 잘 작성되었는지 확인
+
+          // 통일성을 해친 것.
+          // innerHTML로 처음부터 했으면 끝까지 innerHTML로.
+          // DOM 컨트롤로 처음부터 했으면 끝까지 DOM 컨트롤로.
+          mainElement.innerHTML = `
+            <h1 class="ir">상품목록</h1>
+            <ul class="product-list"></ul>
+          `;
+          // console.log(mainElement);
+
+          const productList = mainElement.querySelector(".product-list");
+          product.forEach((item) => {
+            // console.log(item);
+            const productDetailLink = document.createElement("a");
+            productDetailLink.href = `/detail/${item.id}`;
+            productDetailLink.innerHTML = `
+            <li>
+                <div>${item.thumbnailImg}</div>
+                <div>${item.productName}</div>
+                <div>${item.price}</div>
+            </li>`;
+            // console.log(productDetailLink); // 제대로 나오는지 학인
+            productList.append(productDetailLink);
+          });
+          console.log(mainElement);
+        })
+        .then()
+        .catch();
+    </script>
+  </body>
 </html>
