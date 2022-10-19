@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>버튼입니다.</button>
+    <script>
+      const btn = document.querySelector("button");
+
+      // 화살표 함수 안의 this는 자신을 둘러싸고 있는 외부 환경을 가리킴
+      const myObj = {
+        name: "test",
+        test() {
+          btn.addEventListener("click", (event) => {
+            // 화살표함수로 이벤트 리스너 함수 만듦
+            console.log(this); // 화살표함수의 this는 외부환경을 가리킴
+            console.log(this.name); // 객체 내 name 프로퍼티
+          });
+        },
+      };
+
+      myObj.test(); // 함수의 키가 함수의 object가 되버림
+    </script>
+  </body>
+</html>
