@@ -10,5 +10,5 @@
 
 5. [자바스크립트 비동기 처리와 콜백 함수](https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/)
 
-6. [DOM은 정확히 무엇일까?](https://wit.nts-corp.com/2019/02/14/5522)
+6. ~~[DOM은 정확히 무엇일까?](https://wit.nts-corp.com/2019/02/14/5522)~~ (22.10.19)
 
