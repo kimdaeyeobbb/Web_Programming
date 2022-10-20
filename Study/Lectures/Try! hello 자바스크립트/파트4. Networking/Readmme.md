@@ -115,3 +115,7 @@ var obj = {
   },
 };
 ```
+
+## 4. AJAX + JSON
+
+- clonNode(true) => 자식 노드까지 복사
