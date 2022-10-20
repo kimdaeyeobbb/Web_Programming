@@ -46,3 +46,16 @@
 
 - `.nextElementSibling`
 - `.previousElementSibling`
+
+<br><br>
+
+## 단일 Element 선택
+
+### HTML 문서에 특정 요소를 DOM API를 사용해서 가져오기
+
+```js
+document.getElement;
+```
+
+- document의 메서드 중 getElement로 시작하는 메서드들이 이러한 기능을 수행함
+- 이러한 메서드의 element에 대한 조건을 인자로 전달하면 조건에 부합하는 element를 반환함
