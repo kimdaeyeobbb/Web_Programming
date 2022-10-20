@@ -181,3 +181,23 @@ t2.setAttribute("src", "http:~"); // -> 속성값 변경
 - `#`: name을 기반으로 선택
 - `.`: class를 기반으로 선택
 - `,`: 여러개의 셀렉터를 사용
+
+<br>
+
+## Element 추가 및 삭제
+
+### Document API
+
+- `document.createElement()`: 문자열 인자로 element tag를 입력하면 해당 엘리먼트가 생성되어 반환됨
+
+### Element API
+
+- `.appendChild(인자)`: 추가할 element를 인자로 받아서 호출된 element의 자식으로 인자를 추가함 (원하는 element의 자식들 중 가장 마지막에 추가)
+- `.removeChild(인자)`: 삭제할 element를 인자로 받아서 호출된 element의 자식중에서 해당 element를 삭제
+- `.insertBefore(인자1, 인자2)`: 인자1로 받은 element를 호출된 element의 자식중에서 인자2의 이전에 추가함
+- `.cloneNode()`: 호출된 element를 복사해서 반환함
+
+```js
+hr2 = hr.cloneNode();
+<hr>​
+```
