@@ -199,5 +199,4 @@ t2.setAttribute("src", "http:~"); // -> 속성값 변경
 
 ```js
 hr2 = hr.cloneNode();
-<hr>​
 ```
