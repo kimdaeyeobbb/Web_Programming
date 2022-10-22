@@ -58,6 +58,8 @@ async, defer 속성을 이용하면 스크립트의 실행과 문서의 로딩�
 - 콜스택에서는 해당 함수가 어떻게 호출되어 왔는지를 앟 수 있음
 - [예시 파일](index.html)에서 eventHandler 함수는 p태그의 onclick 이벤트 핸들러에서 호출이 되어서 이벤트 핸들러 함수로 오게 된 것이다
 
+<br><br>
+
 # 익명함수와 함수 즉시 호출
 
 - 기존의 언어는 반복적으로 실행되는 코드 블럭을 함수로 정의해서 사용하였다. 하지만 자바스크립트는 함수의 블록을 통해 변수의 scope가 제어되고, 인자로서 함수가 사용되는 경우가 많다. 따라서 반복적으로 사용되는 코드뿐만 아니라 일회성으로 사용되는 코드의 블럭을 함수로 정의하는 경우도 많다. 그리고 이를 효율적으로 지원하기 위해 익명함수 또는 함수정의와 동시에 호출을 할 수 있는 문법등을 제공한다.
@@ -153,3 +155,139 @@ setTimeout(function () {
   console.log("timeout");
 }, 5000);
 ```
+
+<br><br>
+
+# 예외처리
+
+- 프로그램을 실행하였을 떄, 의도치 않은 결과가 발생할 수 있다. 이러한 경우 프로그램은 에러처리를 하고 다음 실행사항을 잘 이행할 수 있어야 한다. 이러한 경우 에러 처리가 필요하다
+
+## throw ~ try catch
+
+- 자바스크립트는 throw 명령어를 통해 에러를 발생시키고, try-catch 구문을 통해 에러를 받아서 에러를 핸들링하고나서 다음의 코드를 실행시킬 수 있다.
+- 에러처리 구문은 try, catch, finally로 구성됨 (if, else if, else와 유사)
+
+## try, catch, finally
+
+- 기본 꼴
+
+```js
+try {
+  // 정상적으로 실행되는 경우 실행될 프로그램을 작성
+  // try 블록안에서 에러가 발생한 경우 catch 블록으로 이동
+} catch (e) {
+  // try 블록에서 에러가 발생한 경우
+  // 에러를 인자 e로 받아 에러를 처리하는 코드를 작성
+} finally {
+  // try, catch 구문이 실행되고 나서 실행될 코드
+}
+```
+
+- try 구문 안에서 호출한 함수 안에서 에러가 발생한 경우에도 catch로 이동해서 프로그램이 실행된다.
+
+## 에러 발생시키기
+
+- throw 명령 사용: return 구문과 비슷하게 에러를 나타낼 수 있는 인자를 사용
+  - 문자열, 숫자, 객체 등 javascript object를 자유롭게 활용하면 됨
+
+## 에러 처리 과정
+
+- throw 발생 시, catch 구문을 찾아서 이동하게 됨
+  - 현재의 블록에서 catch, finally 구문이 없다면 상위 블록, 상위 함수(호출된 함수)로 이동
+  - try, finally 구문만 존재할 경우, finally 구문은 실행되고 catch될 수 있는 구문을 찾아서 이동함
+  - catch 구문을 찾으면 에러가 처리되고, try ~ catch 구문 이후 코드가 실행됨
+
+## 예외처리 예시
+
+```js
+/* 정상적으로 동작할 때 실행되었으면 하는 것들을 기재 */
+try {
+  console.log("try - 1");
+
+  /* 더이상의 에러를 발생시키지 않고 에러를 핸들리 하고 싶을 경우 throw 사용
+    throw블록은 return 명령어와 비슷하게 catch 블록에 전달할 값을 하나 받음 
+    => 에러를 나타내는 숫자/문자등을 기재할 수 있음 */
+  throw "throw error";
+  console.log("try - 2"); // 출력되지 않음
+} catch (e) {
+  /* try 구문 내에서 에러가 발생하였을 떄, catch 구문에서 실행될 코드를 작성 */
+  // throw 뒤에 기재된 문자열이 e로써 블록안에서 활용됨
+  console.log("catch error: ", e);
+} finally {
+  /* try 구문이 정상적으로 실행되거나 
+try 구문이 실행되다가 에러가 발생해서 catch 블록이 실행되고 났을 떄등
+마지막으로 실행될 코드를 기재 */
+
+  // catch 구문이 모두 실행되고 나서 finally구문이 실행됨
+  console.log("finally - this code will always be executed");
+}
+```
+
+<br><br>
+
+# 예외처리 심화
+
+- throw 구문을 만나면 자바스크립트는 가장 가까운 catch 블록을 찾아감
+- arrow function 내에는 try catch 블록이 없기 때문에 해당 함수가 호출된 곳에서 다시 try와 catch를 찾게 됨. 이후 catch 블록으로 이동해서 코드가 실행됨
+
+## 예제1
+
+```js
+function errFunc() {
+  throw "error";
+  console.log("this code will not be executed");
+}
+
+function func() {
+  try {
+    console.log("try - 1");
+    errFunc();
+    console.log("try - 2"); // 실행되지 않음
+  } catch (e) {
+    console.log("catch error in function: ", e);
+  } finally {
+    console.log("finally in function - this code will always be executed");
+  }
+}
+
+try {
+  console.log("try - 1");
+  func();
+  console.log("try - 2");
+} catch (e) {
+  console.log("catch error: ", e); // 실행되지 않음
+} finally {
+  console.log("finally - this code will always be executed");
+}
+```
+
+## 예제 2
+
+```js
+function errFunc() {
+  throw "error";
+  console.log("this code will not be executed");
+}
+
+function func() {
+  try {
+    console.log("try - 1");
+    errFunc();
+    console.log("try - 2"); // 실행되지 않음
+  } finally {
+    console.log("finally in function - this code will always be executed");
+  }
+}
+
+try {
+  console.log("try - 1");
+  func();
+  console.log("try - 2");
+} catch (e) {
+  console.log("catch error: ", e); // 실행됨
+} finally {
+  console.log("finally - this code will always be executed");
+}
+```
+
+- 내부에서는 catch 구문이 없으므로 빠져나와서 밖에서 catch 구문을 찾아서 에러가 핸들링 되고 나서 finally가 실행됨
