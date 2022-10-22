@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="001.css" />
+    <script>
+      /* 시간 계산을하는 for문 */
+      function check(n) {
+        var sum = 0;
+        for (var i = 0; i < 2000000000; i++) {
+          sum += n;
+        }
+        alert(n);
+        console.log(n);
+        console.log(document.getElementsById("songwriter"));
+        console.log(document.getElementsByClassName("lyric"));
+      }
+      check(1);
+    </script>
+  </head>
+  <body>
+    <script>
+      check(2);
+    </script>
+    <h1>애국가</h1>
+
+    <p id="songwriter">작곡: 안익태</p>
+    <p id="lyricist" style="color: red">작사: 미상</p>
+
+    <script>
+      check(3);
+    </script>
+    <h2>1절</h2>
+    <p class="lyric">
+      동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세<br />
+      무궁화 삼천리 화려강산 대한사람, 대한으로 길이 보전하세
+    </p>
+    <script>
+      check(4);
+    </script>
+
+    <h2>2절</h2>
+    <p class="lyric">
+      남산 위에 저 소나무 철갑을 두른듯 바람서리 불변함은 우리 기상일세.<br />
+      무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세
+    </p>
+    <script>
+      check(5);
+    </script>
+  </body>
+</html>
