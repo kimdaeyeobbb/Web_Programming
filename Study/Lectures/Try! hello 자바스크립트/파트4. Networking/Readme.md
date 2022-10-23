@@ -17,7 +17,7 @@ var req = new XMLHttpRequest(); // HTTP 요청을 만들 수 있는 새로운 �
 ### 2. 요청의 방식과 URL 설정
 
 ```JS
-requ.open("GET","./data.txt");   // http request method와 URL 설정
+req.open("GET","./data.txt");   // http request method와 URL 설정
 ```
 
 ### 3. 요청 전송
