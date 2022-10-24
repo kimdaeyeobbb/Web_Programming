@@ -3,7 +3,7 @@
   box-sizing: border-box;
 }
 
-#mainform {
+#mainForm {
   width: 460px;
   margin: 0 auto;
   padding: 20px;
@@ -11,16 +11,16 @@
   background-color: #ff8787;
 }
 
-#mainform fieldset {
+#mainForm fieldset {
   border: none;
 }
 
-#mainform legend {
+#mainForm legend {
   font-size: 1.3em;
   text-align: center;
 }
 
-#mainform label {
+#mainForm label {
   display: block;
 }
 
@@ -35,11 +35,11 @@
 }
 
 /* 가상클래스 valid -> 'input이 받는값이 유효하다면'이라는 의미를 포함*/
-#mainform input:valid {
+#mainForm input:valid {
   background-color: #e5ebb2;
 }
 
-#mainform button {
+#mainForm button {
   /* 버튼을 오른쪽에 위치시킴 */
   float: right;
   padding: 10px;
@@ -50,6 +50,6 @@
   border: none;
 }
 
-#mainform progress {
+#mainForm progress {
   width: 100%;
 }

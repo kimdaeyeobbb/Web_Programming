@@ -20,6 +20,11 @@ mainForm.addEventListener('keyup', () => {
     });   // result에는 통과된 요소만 모아서 가지고 있음
 
     /* 아래의 코드를 이용해도 됨 */
+    // const result = [...inputs].filter((item) => {
+    //     return item.validity.valid
+    // })
+
+    /* 아래의 코드를 이용해도 됨 */
     // const result = Array.from(inputs).filter((item) => {
     //     return item.validity.valid
     // })
