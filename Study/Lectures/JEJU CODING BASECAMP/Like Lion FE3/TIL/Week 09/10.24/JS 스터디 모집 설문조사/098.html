@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 스터디 모집 설문조사</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form id="mainform">
+      <!-- fieldset:  form 내의 내용을 그룹화할 때 사용 -->
+      <fieldset>
+        <!-- legend: fieldset의 제목을 의미 -->
+        <legend>JS 스터디 모집 설문조사</legend>
+        <progress max="100" value="0" class="bar-progress"></progress>
+        <p class="message-notice">설문지를 작성해주세요!</p>
+        <!-- input을 설명하는 label(레이블) 요소 -->
+        <label for="q1">질문 1. 무엇을 가장 배우고 싶나요?</label>
+        <input type="text" id="q1" required />
+        <input type="text" id="q1" required />
+        <label for="q2">질문2. 시간은 언제가 적당한가요?</label>
+        <input type="text" id="q2" required />
+        <label for="q3">질문3. 몇 시간정도 예상하세요?</label>
+        <input type="text" id="q3" required />
+        <label for="q4">질문4. 난이도를 조정한다면?</label>
+        <input type="text" id="q4" required />
+        <label for="q5">질문5. 끝으로 하고싶은 말이 있나요?</label>
+        <input type="text" id="q5" required />
+
+        <button type="submit">제출하기</button>
+        <button type="reset">초기화</button>
+      </fieldset>
+      <script src="script.js"></script>
+    </form>
+  </body>
+</html>
