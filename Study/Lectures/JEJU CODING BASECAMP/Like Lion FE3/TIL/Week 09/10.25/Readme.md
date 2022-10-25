@@ -358,3 +358,29 @@ console.log(robot2.name); // 웨이드
   - 인스턴스에는 생성자 함수의 프로토타입을 참조하는 \_\_proto\_\_가 있다. 얘를 통해서 프로토타입에 접근이 가능하다.
 
 - 생성자 함수의 this는 인스턴스를 가리킴.
+
+- 프로토타입은 어떠한 공간을 가리키는 참조다.
+
+# 상속
+
+- [hasownproperty](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty)
+
+  - object 생성자함수의 prototype공간에 hasownproperty가 존재(?????????)
+  - object가 자신의 prototype 내에 가지고 있는 메서드
+
+- `arr = [1,2,3]`내에 존재하는 `[[Prototype]]` -> array 생성자 함수를 가리킴
+
+- 자기의 prototype이 없으면 자신의 상위에 존재하는 prototype을 찾아올라감
+
+- 함수는 \_\_proto\_\_와 prototype 둘다를 가지고 있음
+
+- 자바스크립트에서는 prototype을 이용한 상속을 지원함
+
+- Object는 최상위 객체이다
+
+## 오토박싱
+
+- 어떠한 결과를 얻기 위해 내부적으로 원시타입을 임시로 객체화하고 사라지는 것
+- 사용의 일관성을 위해 채택한 방식
+
+# 클래스

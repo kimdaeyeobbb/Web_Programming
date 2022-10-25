@@ -1,9 +1,9 @@
 const me = {
-    name: '한재현',
-    address: '제주도 제주시 인다 1길',
-    phoneNum: '010-8001-6536',
+    name: 'danny',
+    address: '한양',
+    phoneNum: '010-1234-5678',
     canWalk: function () {
-        console.log('재현이가 걷는다.');
+        console.log('danny가 걷는다.');
     },
     teaching: function (student) {   // 티칭 메서드
         student.levelUp();
@@ -24,3 +24,5 @@ console.log(student)   // 레벨이 2가 됨
 
 me.teaching(student)   // student 레벨업
 console.log(student)   // 레벨이 3이 됨
+
+console.log(student.level)
