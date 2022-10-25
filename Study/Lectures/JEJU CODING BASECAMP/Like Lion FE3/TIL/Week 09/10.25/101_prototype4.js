@@ -35,5 +35,7 @@ Student.prototype.levelUp = function () {
 const me3 = new Me('웨이드', '제주시', '010101003')
 const student = new Student(1);   // 새로운 student 인스턴스 생성
 
-me.teaching(student);
+me3.teaching(student);
 console.log(student);   // 레벨이 2로 증가
+me3.teaching(student)
+console.log(student) // 레벨이 3으로 증가
