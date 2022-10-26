@@ -33,7 +33,113 @@
 - call()은 이미 할당되어있는 다른 객체의 함수/메소드를 호출하는 해당 객체에 재할당할때 사용됨
 - this는 현재 객체(호출하는 객체)를 참조합니다. 메소드를 한번 작성하면 새 객체를 위한 메소드를 재작성할 필요 없이 call()을 이용해 다른 객체에 상속할 수 있습니다.
 
+## prototype
+
+- 예제
+
+```js
+/* Child의 prototype을 Parent의 prototype으로 연결시켜주고 있음 
+-> 앞으로 생성되는 Child의 인스턴스들은 모두 Parent의 prototype을 참조하게 됨 
+-> parent의 메서드들을 상속받아서 이용할 수 있게 됨 */
+// Object.create 실행시 Parent.prototype을 가지는 (참조하고 있는) 새로운 객체를 만들어서 새로운 prototype에 할당하는 것
+// Object.create -> Parent.prototype을 바라보는 객체를 만들어서 Child.prototype에 할당하는 것
+Child.prototype = Object.create(Parent.prototype);
+```
+
+## constructor 유무 비교
+
+### [[Prototype]] 내에 constructor 없음
+
+```js
+function Parent() {
+  this.name = "danny";
+}
+
+Parent.prototype.rename = function (name) {
+  this.name = name;
+};
+
+Parent.prototype.sayName = function () {
+  console.log(this.name);
+};
+
+const parent = new Parent();
+console.log(parent); // Parent {name: 'danny'} , [[Prototype]]: Object
+
+function Child() {
+  Parent.call(this);
+  // call을 통해서 this가 child와 parent가 연결되어 있으므로 parent내의 this.name을 child의 것처럼 사용할 수 있게 됨
+  // 그렇기 때문에 name을 가지게 된 것임
+}
+
+/* Child의 prototype을 Parent의 prototype으로 연결시켜주고 있음 
+-> 앞으로 생성되는 Child의 인스턴스들은 모두 Parent의 prototype을 참조하게 됨 
+-> parent의 메서드들을 상속받아서 이용할 수 있게 됨 */
+// Object.create 실행시 Parent.prototype을 가지는 (참조하고 있는) 새로운 객체를 만들어서 새로운 prototype에 할당하는 것
+// Object.create -> Parent.prototype을 바라보는 객체를 만들어서 Child.prototype에 할당하는 것
+Child.prototype = Object.create(Parent.prototype);
+
+Child.prototype.canWalk = function () {
+  console.log("now i can walk");
+};
+
+const child = new Child(); // 인스턴스 생성
+console.log(child); // Child {name: 'danny'}  , [[Prototype]]: Parent -> name 프로퍼티를 상속받음
+
+console.log(child.__proto__ === Child.prototype); // true
+```
+
 <br>
+
+### [[Prototype]] 내에 constructor 있음
+
+- 프로퍼티를 추가해줌으로서 생성자가 누구인지를 분명하게 나타내줌
+
+```js
+function Parent() {
+  this.name = "danny";
+}
+
+Parent.prototype.rename = function (name) {
+  this.name = name;
+};
+
+Parent.prototype.sayName = function () {
+  console.log(this.name);
+};
+
+function Child() {
+  Parent.call(this); //
+}
+
+/* Child의 prototype을 Parent의 prototype으로 연결시켜주고 있음 
+-> 앞으로 생성되는 Child의 인스턴스들은 모두 Parent의 prototype을 참조하게 됨 
+-> parent의 메서드들을 상속받아서 이용할 수 있게 됨 */
+Child.prototype = Object.create(Parent.prototype, {
+  /* 프로퍼티 서술자 객체 
+    -> Parent.prototype외에 추가로 던져주는 인자
+    -> 객체를 던지니까 내부의 프로퍼티를 같이 설정할 수 있음
+    -> 내장 속성을 설정할 수도 있음 */
+  constructor: {
+    // constructor를 객체로 표현해서 전달할 수 있음
+    /* 자바스크립트가 내부적으로 사용하는 프로퍼티를 설정해보자 */
+    configurable: true, // 프로퍼티 변경이 가능한가를 설정하는 속성 (false로 설정시 변경불가)
+    enumerable: true, // 전달하는 객체가 열거 가능한가? 를 결정할 수 있음
+    writable: true, // 프로퍼티의 값을 수정할 수 있는가? 를 결정할 수 있음
+    value: Child, // 전달해주는 인스턴스의 생성자를 Child라고 직접적으로 명시해줌
+  },
+});
+
+Child.prototype.canWalk = function () {
+  console.log("now i can walk");
+};
+
+const child2 = new Child();
+console.log(child2); // 프로퍼티 서술자객체를 설정함으로써 constructor가 누구인지 분명하게 알 수 있게됨
+// 프로퍼티 서술자객체가 없었던 child는 그냥 객체일 뿐이므로 constructor가 안나왔던 것임
+```
+
+<br><br>
 
 # 비공개 프로퍼티
 
