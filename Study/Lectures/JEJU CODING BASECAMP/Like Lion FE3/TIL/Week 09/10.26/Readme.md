@@ -104,3 +104,48 @@ console.log(personWithSecret.getAge);
 ```
 
 <br>
+
+
+# 질의응답
+
+- 왜 getLeftTodoCount()가 제대로 동작하지 않을까?
+
+```JS
+class Todo {
+        constructor(todo, finished) {
+          this.todo = todo;
+          this.finished = finished;
+        }
+        changeState() {
+          this.finished = !this.finished;
+          //   if (this.finished === true) {
+          //     this.finished = false;
+          //   } else {
+          //     this.finished = true;
+          //   }
+        }
+      }
+      class TodoManager {
+        constructor() {
+          this.todolist = [];
+        }
+        addItem(todo, finished = false) {
+          const addTodo = new Todo(todo, finished);
+          this.todolist.push(addTodo);
+        }
+        getItems() {
+          return this.todolist;
+          //   console.log(todolist);
+        }
+        getLeftTodoCount() {
+          return this.todolist.filter((item) => {
+            item.finished === false;
+          }).length;
+        }
+      }
+```
+
+## 화살표 함수에서 코드블럭을 사용하면 리턴문을 따로 써주어야 함
+![image](https://user-images.githubusercontent.com/68424403/197935635-858a5ba7-db7d-45c2-b2bc-8d8a2c0beebb.png)
+
+
