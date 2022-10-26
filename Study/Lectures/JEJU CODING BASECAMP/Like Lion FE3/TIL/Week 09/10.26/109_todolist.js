@@ -13,8 +13,10 @@ class Todo {
 }
 
 class TodoManager extends Todo {
-    constructor() {
-        this.todolist = [];
+    constructor(contents, state) {
+        super(contents, state)
+        let todolist = [];
+
     }
 
     /* 할 일 저장 */
