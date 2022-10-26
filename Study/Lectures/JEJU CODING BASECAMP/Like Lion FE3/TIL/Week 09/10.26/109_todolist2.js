@@ -8,11 +8,9 @@ class Todo {
     changeState() {
         this.finished = !(this.finished);
     }
-
 }
 
 class ToDoManager {
-    // todoList = [];    // 이처럼 전역으로 선언을 해주면 static이 되므로 생성된 인스턴스에서 접근이 불가능
     constructor() {
         this.todoList = [];
     }
