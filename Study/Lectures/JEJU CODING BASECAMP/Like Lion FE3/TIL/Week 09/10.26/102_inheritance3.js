@@ -15,7 +15,7 @@ class FireSausage extends Sausage {
 
     tasteLikeFire() {
         this.taste();
-        console.log("불맛 소시지에서 불맛이 납니다!!!!!!")
+        return ("불맛 소시지에서 불맛이 납니다!!!!!!")
     }
 }
 

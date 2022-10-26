@@ -8,15 +8,17 @@ class 소세지 {
     }
     taste() {
         let text = ""
-        text += `${this["맛"]}맛이 납니다.`
+        text += `${this.맛}맛이 납니다.`
         return text;
     }
 }
+
 class 불맛소세지 extends 소세지 {
     taste() {
-        let text = "불 맛도 나네요"
+        let text = " 불 맛도 나네요"
         console.log(super.taste() + text)
     }
 }
+
 const 내소세지 = new 불맛소세지("파,불고기,치즈")
 내소세지.taste()

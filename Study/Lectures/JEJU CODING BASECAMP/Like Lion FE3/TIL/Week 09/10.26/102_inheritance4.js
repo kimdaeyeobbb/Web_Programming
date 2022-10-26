@@ -7,7 +7,7 @@ class Sausage {
     }
 
     taste() {
-        console.log(`${this.inside1}맛과 ${this.inside2}맛이 난다!`)
+        return (`${this.inside1}맛과 ${this.inside2}맛이 난다!`)
     }
 }
 
@@ -23,7 +23,7 @@ class FireSausage extends Sausage {
 
     /* 메서드 오버라이드 */
     taste() {
-        console.log(`${this.inside1}맛과 ${this.inside2}맛, ${this.inside3}맛이 납니다!`)
+        return (`${this.inside1}맛과 ${this.inside2}맛, ${this.inside3}맛이 납니다!`)
     }
 }
 

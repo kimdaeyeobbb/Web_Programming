@@ -20,3 +20,4 @@ class FiresSausage extends MakingSausage {
     }
 }
 const sausage = new FiresSausage('소고기', '파', '불');
+sausage.taste()
