@@ -22,7 +22,6 @@ Child.prototype.canWalk = function () {
 const child = new Child();   // child인스턴스는 Child 생성자함수를 바라보게 함
 console.log(child.name);   // 부모의 프로퍼티를 가져와서 사용할 수 있게 됨
 
-
 child.rename('소울');
 console.log(child.sayName())   // 소울
 console.log(`child.name: ${child.name}`)
