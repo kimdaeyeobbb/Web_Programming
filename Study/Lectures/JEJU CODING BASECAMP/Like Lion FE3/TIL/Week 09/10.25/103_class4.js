@@ -30,5 +30,7 @@ me.canWalk();
 
 
 const student = new Student(1);
-student.levelUp();
-console.log(student)
+me.teaching(student)  // 2
+me.teaching(student)  // 3
+student.levelUp()   // 4
+console.log(student)   // 4
