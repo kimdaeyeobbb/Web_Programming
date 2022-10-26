@@ -148,6 +148,18 @@ class Todo {
 
 ![image](https://user-images.githubusercontent.com/68424403/197935635-858a5ba7-db7d-45c2-b2bc-8d8a2c0beebb.png)
 
+<br>
+
 # minifier
 
 - 원본은 보통 프로젝트에 남겨둔다. 배포할 때만 압축된 코드를 배포한다.
+
+<br>
+
+# [pagespeed insights](https://pagespeed.web.dev/)
+
+- 개인포트폴리오 초안 제작 후 -> 성능 측정 -> 이후 리팩토링해서 속도를 개선시켜서 -> 개선된점을 수치화해서 이력서에 기재할 것
+
+# fragment
+
+- 반복이 필요한 객체라면 fragement를 사용하는게 좋다
