@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main></main>
+
+    <script>
+      //         <article class="parent">
+      //     <figure>
+      //         <img class="figImg"
+      //             src="https://file.mk.co.kr/meet/neds/2021/07/image_readtop_2021_654175_16256093474708254.jpg"
+      //             alt="">
+      //         <figcaption class="figCap">
+      //             유재석씨가 수상식에서 환하게 웃고 있다.
+      //         </figcaption>
+      //     </figure>
+      // </article>
+
+      const frag = document.createDocumentFragment(); // frag 상수에 객체 저장
+
+      /* for문 내에서 queryselector 반복시 main을 또 찾아서 넣음 
+      -> queryselector는 무거운 요소이므로 최대한 적게 호출해야 성능이 향상됨 
+      -> 반복문 밖으로 빼서 사용*/
+      let parentEl = document.querySelector("main");
+      for (let i = 0; i < 10; i++) {
+        // let parentEl = document.querySelector("main"); // 부모찾기 &  메인안에 요소를 집어넣음
+        const article = document.createElement("article");
+        article.innerHTML = `
+           <article class="parent">
+            <figure>
+                <img class="figImg"
+                    src="https://file.mk.co.kr/meet/neds/2021/07/image_readtop_2021_654175_16256093474708254.jpg"
+                    alt="">
+                <figcaption class="figCap">
+                    유재석씨가 수상식에서 환하게 웃고 있다.
+                </figcaption>
+            </figure>
+        </article>
+          `;
+
+        // parentEl.appendChild(article); // article 객체 대신 frag에 저장
+        frag.appendChild(article); // 실제 존재하는 돔 트리가 아니라 메모리상 돔 트리에 frag라는 documentFragment 추가
+      }
+      // fragment 객체가 돔에 추가되는 순간 fragment 객체는 메모리상에서 삭제됨
+      parentEl.appendChild(frag); // 실제 존재하는 돔 트리에 fragment 추가시 fragment는 사라짐
+    </script>
+  </body>
+</html>
