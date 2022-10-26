@@ -28,6 +28,13 @@
 
 # 상속
 
+## [call](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
+
+- call()은 이미 할당되어있는 다른 객체의 함수/메소드를 호출하는 해당 객체에 재할당할때 사용됨
+- this는 현재 객체(호출하는 객체)를 참조합니다. 메소드를 한번 작성하면 새 객체를 위한 메소드를 재작성할 필요 없이 call()을 이용해 다른 객체에 상속할 수 있습니다.
+
+<br>
+
 # 비공개 프로퍼티
 
 - 객체를 만들어서 그 안에 프로퍼티를 선언할 떄, 다른 사람들이 쉽게 접근하지 못하게 만듦
