@@ -25,3 +25,4 @@ console.log(child.name);   // 부모의 프로퍼티를 가져와서 사용할 �
 
 child.rename('소울');
 console.log(child.sayName())   // 소울
+console.log(`child.name: ${child.name}`)
