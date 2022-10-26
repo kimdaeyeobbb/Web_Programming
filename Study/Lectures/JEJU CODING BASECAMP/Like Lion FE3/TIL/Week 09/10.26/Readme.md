@@ -263,6 +263,65 @@ class Todo {
 
 <br>
 
+# get, set
+
+- [참고자료 1](https://ko.javascript.info/property-accessors)
+- [참고자료 2](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/get)
+
+<br>
+
+# 프로퍼티 종류
+
+## 1. 데이터 프로퍼티 (data property)
+
+## 2. 접근자 프로퍼티 (accessor property)
+
+- 본질은 함수이다. (값을 획득(get)하고, 설정(set)하는 역할을 담당함)
+- 외부 코드에서는 함수가 아닌 일반적인 프로퍼티처럼 보임
+
+- 바깥쪽 코드에서 접근자 프로퍼티를 일반 프로퍼티처럼 사용할 수 있음
+- 접근자 프로퍼티를 사용하면 함수처럼 호출하지 않고, 일반 프로퍼티에서 값에 접근하는 것처럼 평범하게 user.fullName을 사용해서 프로퍼티 값을 얻을 수 있다.
+
+### 2-1. getter
+
+- 접근자 프로퍼티의 메서드 중 하나인 getter 메서드
+- 객체 리터럴 내에서 getter 메서드는 get으로 나타냄
+
+```js
+let obj = {
+  get propName() {
+    // getter
+    // obj.propName 실행시 나타는 코드
+  },
+};
+```
+
+- getter 메서드는 obj.propName을 사용해서 프로퍼티를 읽으려고 할 때 실행됨.
+
+- get: 인수가 없는 함수로, 프로퍼티를 읽을 때 동작함
+
+<br>
+
+### 2-2. setter
+
+- 접근자 프로퍼티의 메서드 중 하나인 setter 메서드
+- 객체 리터럴 내에서 setter 메서드는 set으로 나타낼 수 있음
+
+```js
+let obj = {
+  set propName() {
+    // setter
+    // obj.propName = value 실행시 실행되는 코드
+  }
+}
+```
+
+- setter 메서드는 obj.propName = value으로 프로퍼티에 값을 할당하려 할 때 실행됨
+
+- set: 인수가 하나인 함수로, 프로퍼티에 값을 쓸 때 호출됨
+
+<br>
+
 # minifier
 
 - 원본은 보통 프로젝트에 남겨둔다. 배포할 때만 압축된 코드를 배포한다.
