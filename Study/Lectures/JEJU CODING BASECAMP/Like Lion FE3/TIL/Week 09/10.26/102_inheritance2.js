@@ -26,9 +26,10 @@ Child.prototype = Object.create(Parent.prototype, {
     }
 })
 
+/* 여기를 맨 마지막에 볼 것 */
 const child2 = new Child();
 console.log(child2)   // 프로퍼티 서술자객체를 설정함으로써 constructor가 누구인지 분명하게 알 수 있게됨
-// 프로퍼티 서술자객체가 없었던 child1는 그냥 객체일 뿐이므로 constructor가 안나왔던 것임
+// 프로퍼티 서술자객체가 없었던 child는 그냥 객체일 뿐이므로 constructor가 안나왔던 것임
 
 
 Child.prototype.canWalk = function () {
@@ -43,7 +44,7 @@ console.log(child)
 function Test() { };
 const test = new Test();  // 생성자 함수의 인스턴스 생성
 
-console.log(test)  // prototype이 Object, constructor가 f Test()
+console.log(test)  // Test{} -> 뜯어보면  prototype이 Object, constructor가 f Test()
 
 const myObj = {};
 Test.prototype = myObj;  // 할당 가능. Test.prototype은 myObj라는 빈 객체의 공간을 가리킴 -> 이때 test와의 연결이 끊김 

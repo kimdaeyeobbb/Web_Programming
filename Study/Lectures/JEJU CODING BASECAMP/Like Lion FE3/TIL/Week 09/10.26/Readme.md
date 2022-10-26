@@ -105,7 +105,6 @@ console.log(personWithSecret.getAge);
 
 <br>
 
-
 # 질의응답
 
 - 왜 getLeftTodoCount()가 제대로 동작하지 않을까?
@@ -146,6 +145,9 @@ class Todo {
 ```
 
 ## 화살표 함수에서 코드블럭을 사용하면 리턴문을 따로 써주어야 함
+
 ![image](https://user-images.githubusercontent.com/68424403/197935635-858a5ba7-db7d-45c2-b2bc-8d8a2c0beebb.png)
 
+# minifier
 
+- 원본은 보통 프로젝트에 남겨둔다. 배포할 때만 압축된 코드를 배포한다.
