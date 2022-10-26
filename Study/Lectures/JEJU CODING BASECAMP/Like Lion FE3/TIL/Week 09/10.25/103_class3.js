@@ -4,7 +4,7 @@ class FoodPicker {
     }
 
     sayMenu() {
-        console.log(this.menu[Math.floor(Math.random() * (this.menu.length))]);
+        console.log(this.foodNames[Math.floor(Math.random() * (this.foodNames.length))]);
     }
 }
 
