@@ -131,3 +131,109 @@ const answer = Array(10000)
   .match(/8/g).length;
 console.log(answer);
 ```
+
+#### 활용할 수 있는 기본 개념 코드
+
+```js
+Number.MAX_SAFE_INTEGER;
+Number.MIN_SAFE_INTEGER;
+
+Infinity - Infinity(123.45).toFixed(); // 123
+(123.45).toFixed(1); // 123.4
+
+const arr = [1, 2, 3, 4, 5];
+const result = arr.reduce((acc, cur) => (acc += cur));
+```
+
+- flat
+
+```js
+// 모두를 평평하게 만들고 싶을 경우 Infinity 삽입
+
+[1, [2, [3, [4]]]].flat(Infinity); // [1,2,3,4]
+```
+
+- 빈 배열 만들기
+
+```js
+Array(10).fill(0);
+[...Array(10)].map((_, i) => i + 1);
+".".repeat(10).split("."); // 권장하지 않음
+".".repeat(9).split(".");
+"010-1234-5678".split("-"); // ['010','1234','5678']
+```
+
+- zip
+
+```js
+const zip = (a, b) => a.map((v, i) => [v, b[i]]);
+console.log(zip([1, 2, 3], ["b", "c", "d"])); //  [ [ 1, 'b' ], [ 2, 'c' ], [ 3, 'd' ] ]
+
+const zipLongest = (placeholder = undefined, ...arrays) => {
+  const length = Math.max(...arrays.map((arr) => arr.length));
+  return Array.from({ length }, (value, index) =>
+    arrays.map((array) =>
+      array.length - 1 >= index ? array[index] : placeholder
+    )
+  );
+};
+
+console.log(
+  zipLongest("hello", [1, 2, 3, 4, 5], "world", ["a", "b", "c", "d", "e"])
+);
+```
+
+### 1.3.2 워밍업 문제(daum)
+
+- [문제](https://codingdojang.com/scode/408)
+- 1차원 점들이 주어졌을 때 그 중 거리가 가장 짧은 것들의 쌍을 출력하는 함수를 작성하시오 (단, 점들의 배열은 모두 정렬되어있다고 가정)
+
+- 풀이1
+
+```js
+for (let i = 1; i < s.length; i++) {
+  arr.push(s[i] - s[i - 1]);
+}
+
+return Math.min(...arr);
+```
+
+- 풀이2
+
+```js
+const zip = (a, b) => a.map((v, i) => [v, b[i]]);
+let s = [1, 3, 4, 8, 13, 17, 20];
+
+let pairs = zip(s.slice(0, s.length - 1), s.slice(1));
+function 비교(a, b) {
+  if (a[1] - a[0] < b[1] - b[0]) {
+    return -1;
+  }
+  if (a[1] - a[0] > b[1] - b[0]) {
+    return 1;
+  }
+  return 0;
+}
+
+console.log(pairs.sort(비교));
+console.log(pairs.sort(비교)[0]);
+```
+
+- 풀이3
+
+```js
+const zip = (a, b) => a.map((v, i) => [v, b[i]]);
+let s = [1, 3, 4, 8, 13, 17, 20];
+
+let pairs = zip(s.slice(0, s.length - 1), s.slice(1));
+let 최솟값 = Infinity;
+let 최솟값쌍 = [];
+
+for ([i, j] of pairs) {
+  if (j - i < 최솟값) {
+    최솟값 = j - i;
+    최솟값쌍 = [i, j];
+  }
+}
+console.log(최솟값쌍);
+```
