@@ -883,3 +883,224 @@ l.append(10);
 l.append(20);
 l.append(30);
 ```
+
+7. step7 - (중요) toString을 순회로 구현
+
+```js
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    let init = new Node("init");
+    this.head = init;
+    this.tail = init;
+    this.length = 0;
+  }
+
+  // length() { //this.length가 덮어 씀
+  //     return this.length;
+  // }
+
+  toString() {
+    let 순회용현재노드 = this.head;
+
+    //처음 순회용 현재 노드가 init이기 때문에
+    순회용현재노드 = 순회용현재노드.next;
+
+    let 출력데이터 = "";
+    for (let i = 0; i < this.length; i++) {
+      출력데이터 += `${순회용현재노드.data}, `;
+      순회용현재노드 = 순회용현재노드.next;
+    }
+
+    //return 출력데이터;
+    return "[" + 출력데이터.slice(0, -2) + "]";
+  }
+
+  fullData() {
+    return JSON.parse(this.toString());
+  }
+
+  append(data) {
+    let 새로운노드 = new Node(data);
+    // 마지막 값(null)은 새로운 노드가 됨
+    this.tail.next = 새로운노드;
+    // 마지막 노드는 새로운 노드가 됨
+    this.tail = 새로운노드;
+    this.length += 1;
+  }
+}
+
+l = new LinkedList();
+l.append(1);
+l.append(2);
+l.append(3);
+l.append(10);
+l.append(20);
+l.append(30);
+```
+
+9. step9- linked list에 node 삽입하기
+
+```js
+class Node {
+  constructor;
+}
+```
+
+<br>
+
+10. Double Linked List의 기본 형태
+
+```js
+const list = {
+  head: null,
+};
+
+let list1 = { value: 12, next: null, pre: null };
+let list2 = { value: 99, next: null, pre: null };
+let list3 = { value: 37, next: null, pre: null };
+let list4 = { value: 2, next: null, pre: null };
+
+list1.next = list2;
+list2.next = list3;
+list3.next = list4;
+
+/* pre는 해당 노드를 가리킴 (해당 node의 value를 가리키는것이 아님) */
+list1.pre = list.head;
+list2.pre = list1;
+list3.pre = list2;
+list4.pre = list3;
+
+list1.next.next.value; // 37
+list3.pre.pre.value; // 12
+list4.pre.pre.pre.next.next.value; // 37
+```
+
+<br>
+<br>
+
+- Double linked list
+
+```js
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    let init = new Node("init");
+    this.head = init;
+    this.tail = init;
+    this.length = 0;
+  }
+
+  // length() { //this.length가 덮어 씀
+  //     return this.length;
+  // }
+
+  toString() {
+    let 순회용현재노드 = this.head;
+
+    //처음 순회용 현재 노드가 init이기 때문에
+    순회용현재노드 = 순회용현재노드.next;
+
+    let 출력데이터 = "";
+    for (let i = 0; i < this.length; i++) {
+      출력데이터 += `${순회용현재노드.data}, `;
+      순회용현재노드 = 순회용현재노드.next;
+    }
+
+    // return 출력데이터;
+    return "[" + 출력데이터.slice(0, -2) + "]";
+  }
+
+  fullData() {
+    return JSON.parse(this.toString());
+  }
+
+  append(data) {
+    let 새로운노드 = new Node(data);
+    // 마지막 값(null)은 새로운 노드가 됨
+    this.tail.next = 새로운노드;
+    // 마지막 노드는 새로운 노드가 됨
+    this.tail = 새로운노드;
+    this.length += 1;
+  }
+
+  insert(index, data) {
+    let 순회용현재노드 = this.head;
+    순회용현재노드 = 순회용현재노드.next;
+
+    for (let i = 0; i < index - 1; i++) {
+      순회용현재노드 = 순회용현재노드.next;
+    }
+
+    let 새로운노드 = new Node(data);
+    새로운노드.next = 순회용현재노드.next;
+    순회용현재노드.next = 새로운노드;
+    this.length += 1;
+  }
+}
+
+l = new LinkedList();
+l.append(1);
+l.append(2);
+l.append(3);
+l.append(10);
+l.append(20);
+l.append(30);
+```
+
+### 1.4.3 트리와 그래프
+
+### 1.4.4 정렬 알고리즘
+
+#### 1.4.4.1 선택정렬
+
+- step1
+
+```
+전 = [199, 22, 33, 12, 32, 64, 72, 222, 233]
+후 = []
+```
+
+- step2
+
+```
+전 = [199, 22, 33,  32, 64, 72, 222, 233]
+후 = [12]
+```
+
+- step3
+
+```
+전 = [199, 33,  32, 64, 72, 222, 233]
+후 = [12, 22]
+```
+
+- step4
+
+```
+전 = [199, 33, 64, 72, 222, 233]
+후 = [12, 22, 32]
+```
+
+- step5
+
+```
+전 = [199, 64, 72, 222, 233]
+후 = [12, 22, 32,  33]
+```
+
+#### 1.4.4.2 삽입정렬
+
+- step1
