@@ -1,0 +1,100 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:visited {
+  color: inherit;
+}
+li {
+  list-style-type: none;
+}
+
+body {
+  background-color: #778beb;
+}
+.ir-hidden {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  margin: 0;
+}
+
+.wrapper {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #f19066;
+  text-align: center;
+}
+.header #form-search {
+  display: flex;
+  width: 100%;
+  margin-top: 30px;
+}
+.header .input-search {
+  width: 100%;
+  height: 50px;
+  flex-grow: 1;
+}
+.header .btn-search {
+  width: 80px;
+  height: 50px;
+  background-color: #f19066;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#section-problem {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#section-problem .list-problem {
+  width: 100%;
+  background-color: #786fa6;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+}
+
+.list-problem li:nth-child(2) {
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+@media (max-width: 800px) {
+  html {
+    font-size: 13px;
+  }
+}
