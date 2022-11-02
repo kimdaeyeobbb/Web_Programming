@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <ul>
+      <li>hello world</li>
+      <li>hello world</li>
+      <li>hello world</li>
+      <li>hello world</li>
+      <li>hello world</li>
+      <li>hello world</li>
+      <li>hello world</li>
+      <li>hello world</li>
+      <li>hello world</li>
+      <li>hello world</li>
+    </ul>
+
+    <script>
+      $("li").eq(0).css("color", "red"); // li요소중 eq 0번쨰에 css상 color를 red로 변경
+      $("li").eq(3).css("color", "red");
+      $("li:eq(4)").css("color", "green");
+      $("li:gt(6)").css("color", "blue");
+      $("li:nth-child(3n)").css("color", "pink");
+      $("li:odd").css("color", "skyblue");
+      $("li:lt").css("color", "purple");
+    </script>
+  </body>
+</html>

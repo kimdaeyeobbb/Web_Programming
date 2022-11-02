@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>hello world</h1>
+    <h2 class="one">hallo korea!</h2>
+    <script>
+      function $(value) {
+        // $라는 함수명을 사용한 것 ($를 Func1으로 바꾸면 이해하기가 쉬울 것)
+        console.log(value);
+      }
+
+      $("hello world");
+
+      function $(선택자) {
+        return document.querySelector(선택자);
+      }
+
+      console.log($("h1"));
+      $(".one").innerHTML = "와우!!!!";
+    </script>
+  </body>
+</html>

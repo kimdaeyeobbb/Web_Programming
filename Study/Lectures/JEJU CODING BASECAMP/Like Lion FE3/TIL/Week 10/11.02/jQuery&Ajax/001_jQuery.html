@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>hello world</h1>
+    <p>hello</p>
+    <main>
+      <section>
+        <h2>hello</h2>
+        <p class="main-cont">hello</p>
+      </section>
+    </main>
+    <script>
+      $(".main-cont").hide(); // $(); => jQuery해당되는 함수를 호출한다는 뜻
+      $("h2").click(function () {
+        // h2에 클릭이벤트 등록
+        alert("클릭!");
+      });
+
+      $("h2").css("color", "red");
+      $(".main-cont").text("hello world!!");
+      $(".main-cont").html("<strong>hello</strong> world!");
+    </script>
+  </body>
+</html>
