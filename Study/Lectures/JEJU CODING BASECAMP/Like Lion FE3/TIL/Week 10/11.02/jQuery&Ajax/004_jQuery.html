@@ -17,6 +17,7 @@
       <label>
         <input type="radio" name="newsletter" value="Hot Fuzz" />
         <span>name?</span>
+        <span>머래 ㅋㅋㅋㅋ</span>
       </label>
     </div>
     <div>
@@ -47,10 +48,16 @@
 
     <script>
       $("input[value='Hot Fuzz']").next().text("Hot Fuzz");
+      // input이 Hot Fuzz라고 된것의 다음 요소의 텍스트는 Hot Fuzz로 바꿔주는 것
+      // 따라서 name?이 Hot Fuzz로 바뀌어서 나타남
+
+      $("input[value='Hot Fuzz']").next().next().text("!?!?!?");
+      // input이 Hot Fuzz라고 된것의 다다음 요소의 텍스트를 !?!?!?로 바꿔주는 것
 
       console.log($("p:contains(world)"));
 
       $("p:contains(world)").css("color", "red");
+      // p태그 중 world를 가진애의 색상을 red로 변경
 
       $("ul").has("li").addClass("full");
       // ul의 li에 full클래스를 넣어줌
