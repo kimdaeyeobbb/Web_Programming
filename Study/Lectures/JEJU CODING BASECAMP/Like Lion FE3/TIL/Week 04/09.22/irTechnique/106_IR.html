@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IR 테크닉</title>
+    <style>
+      /* ir기법 사용하기 위해 클래스명을 이렇게 짓도록 카카오 내에서 약속해놓음 */
+      .ir_pm {
+        display: block;
+        overflow: hidden;
+        font-size: 1px;
+        line-height: 0;
+        text-indent: -9999px;
+      }
+
+      button {
+        width: 100px;
+        height: 100px;
+        background: url("https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg")
+          0 0 / contain no-repeat;
+      }
+
+      .screen_out {
+        overflow: hidden;
+        position: absolute;
+        width: 0;
+        height: 0;
+        line-height: 0;
+        text-indent: -9999px;
+      }
+
+      .ir_wa {
+        display: block;
+        overflow: hidden;
+        position: relative;
+        /* z-index가 -1이면 부모요소보다 뒤에 배치됨 */
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+      }
+
+      .blind  {
+        position: absolute;
+        clip: rect(0 0 0 0);
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="ir_pm">중요합니다!</button>
+    <hr />
+    <button class="screen_out">
+      <!-- span태그를 사용하지 않으면 아예 화면에 존재하지 않게 됨 -->
+      <span>중요하지 !!!</span>
+    </button>
+    <hr />
+    <br />
+    <button>
+      <span class="ir_wa">요즘 많이 사용합니다</span>
+    </button>
+    <hr />
+    <br />
+    <button>
+      <span class="blind">네이버 방법</span>
+    </button>
+  </body>
+</html>
