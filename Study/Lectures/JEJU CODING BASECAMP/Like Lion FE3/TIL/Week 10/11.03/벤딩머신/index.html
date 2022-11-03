@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ColaCola</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./src/style/reset.css" />
+    <link rel="stylesheet" href="./src/style/style.css " />
+    <!-- 폰트 적용 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- 전체를 감싸는 article 요소 (하나의 어플리케이션이므로 article로 감싸주는 것이 시멘틱함) -->
+    <article id="app">
+      <h1 class="tit-app">
+        <!-- alt값에 이름을 넣어줌 -->
+        <img src="src/images/Logo_img.png" alt="ColaCola" class="img-item" />
+      </h1>
+      <!-- 첫번째 섹션 (벤딩머신 부분) -->
+      <section class="vending-machine">
+        <!-- ir: 화면에 보일 필요가 없으므로 ir 사용. ir기법 사용할 예정-->
+        <h2 class="ir">자판기 화면</h2>
+        <!-- li보다 ul에 클래스를 넣어줘야 클래스를 반복하지 않게 됨 -->
+        <ul class="list-item">
+          <li>
+            <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
+            <button type="button" class="btn-item" data-item="">
+              <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
+              <img
+                src="./src/images/Original_Cola.png"
+                alt=""
+                class="img-item"
+              />
+              <!-- 상품제목 강조하기위해 strong사용-->
+              <strong class="tit-item">Original_Cola</strong>
+              <span class="txt-price">1000원</span>
+            </button>
+          </li>
+          <li class="sold-out">
+            <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
+            <button type="button" class="btn-item" data-item="">
+              <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
+              <img
+                src="./src/images/Original_Cola.png"
+                alt=""
+                class="img-item"
+              />
+              <!-- 상품제목 강조하기위해 strong사용-->
+              <strong class="tit-item">Original_Cola</strong>
+              <span class="txt-price">1000원</span>
+            </button>
+          </li>
+          <li>
+            <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
+            <button type="button" class="btn-item" data-item="">
+              <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
+              <img
+                src="./src/images/Original_Cola.png"
+                alt=""
+                class="img-item"
+              />
+              <!-- 상품제목 강조하기위해 strong사용-->
+              <strong class="tit-item">Original_Cola</strong>
+              <span class="txt-price">1000원</span>
+            </button>
+          </li>
+          <li>
+            <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
+            <button type="button" class="btn-item" data-item="">
+              <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
+              <img
+                src="./src/images/Original_Cola.png"
+                alt=""
+                class="img-item"
+              />
+              <!-- 상품제목 강조하기위해 strong사용-->
+              <strong class="tit-item">Original_Cola</strong>
+              <span class="txt-price">1000원</span>
+            </button>
+          </li>
+          <li>
+            <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
+            <button type="button" class="btn-item" data-item="">
+              <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
+              <img
+                src="./src/images/Original_Cola.png"
+                alt=""
+                class="img-item"
+              />
+              <!-- 상품제목 강조하기위해 strong사용-->
+              <strong class="tit-item">Original_Cola</strong>
+              <span class="txt-price">1000원</span>
+            </button>
+          </li>
+          <li>
+            <!-- data: html의 간단한 정보를 저장하기 위해 사용. JSON으로 정보를 받아서 요안에 알맞은 정보를 넣어줄 예정 -->
+            <button type="button" class="btn-item" data-item="">
+              <!-- alt를 비워넣는 이유? => 비워놓지 않으면 스크린 리더가 파일명을 읽기 떄문-->
+              <img
+                src="./src/images/Original_Cola.png"
+                alt=""
+                class="img-item"
+              />
+              <!-- 상품제목 강조하기위해 strong사용-->
+              <strong class="tit-item">Original_Cola</strong>
+              <span class="txt-price">1000원</span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- 하나의 작은 섹션으로 묶음. h2단 아래의 섹션이므로 h3 사용 -->
+        <section class="cont-buy">
+          <!-- 클래스는 ir클래스를 써서 나중에 보이지 않게 만듦 -->
+          <h3 class="ir">구입 관련 정보</h3>
+          <!-- 단순 요소 표시이므로 div 사용 -->
+          <div class="info-balance">
+            잔액:
+            <!-- 잔액과 별개로 왼쪽에 붙어있으므로 span 사용 -->
+            <span class="txt-balance">원</span>
+          </div>
+          <!-- 거스름돈 반환 버튼 -->
+          <button type="button" class="btn-return">거스름돈 반환</button>
+          <!-- input은 input을 설명하는 짝인 label이 반드시 필요함 -->
+          <label for="inpPut" class="ir">입금할 금액을 입력합니다.</label>
+          <input
+            type="number"
+            id="inpPut"
+            class="inp-put"
+            placeholder="입금액 입력"
+          />
+          <button type="button" class="btn-put">입금</button>
+
+          <ul class="list-item-staged">
+            <li>
+              <button type="button" class="btn-staged" data-item="Cool Cola">
+                <img src="src/images/Cool_Cola.png" alt="" class="img-item" />
+                <!-- 제목 -->
+                <strong class="txt-item">Cool_Cola</strong>
+                <!-- 기본값 1을 집어넣음 -->
+                <span class="num-counter">1</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="btn-staged" data-item="Cool Cola">
+                <img src="src/images/Cool_Cola.png" alt="" class="img-item" />
+                <!-- 제목 -->
+                <strong class="txt-item">Cool_Cola</strong>
+                <!-- 기본값 1을 집어넣음 -->
+                <span class="num-counter">1</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="btn-staged" data-item="Cool Cola">
+                <img src="src/images/Cool_Cola.png" alt="" class="img-item" />
+                <!-- 제목 -->
+                <strong class="txt-item">Cool_Cola</strong>
+                <!-- 기본값 1을 집어넣음 -->
+                <span class="num-counter">1</span>
+              </button>
+            </li>
+          </ul>
+          <button type="button" class="btn-get">획득</button>
+        </section>
+      </section>
+
+      <!-- 두번째 섹션 (나의 정보 부분) -->
+      <section class="my-info">
+        <!-- ir: 화면에 보일 필요가 없으므로 ir 사용. ir기법 사용할 예정-->
+        <h2 class="ir">나의 정보</h2>
+        <div class="cont-mymoney">
+          <div class="info-mymoney">
+            소지금:
+            <span class="txt-mymoney">30,000원</span>
+          </div>
+        </div>
+
+        <!-- 획득한 음료 -->
+        <div class="cont-myitems">
+          <strong class="tit-myitem">획득한 음료</strong>
+          <ul class="list-item-staged">
+            <li>
+              <img src="src/images/Cool_Cola.png" alt="" class="img-item" />
+              <!-- 제목 -->
+              <strong class="txt-item">Cool_Cola</strong>
+              <!-- 기본값 1을 집어넣음 -->
+              <span class="num-counter">1</span>
+            </li>
+            <li>
+              <img src="src/images/Cool_Cola.png" alt="" class="img-item" />
+              <!-- 제목 -->
+              <strong class="txt-item">Cool_Cola</strong>
+              <!-- 기본값 1을 집어넣음 -->
+              <span class="num-counter">1</span>
+            </li>
+            <li>
+              <img src="src/images/Cool_Cola.png" alt="" class="img-item" />
+              <!-- 제목 -->
+              <strong class="txt-item">Cool_Cola</strong>
+              <!-- 기본값 1을 집어넣음 -->
+              <span class="num-counter">1</span>
+            </li>
+            <li>
+              <img src="src/images/Cool_Cola.png" alt="" class="img-item" />
+              <!-- 제목 -->
+              <strong class="txt-item">Cool_Cola</strong>
+              <!-- 기본값 1을 집어넣음 -->
+              <span class="num-counter">1</span>
+            </li>
+            <li>
+              <img src="src/images/Cool_Cola.png" alt="" class="img-item" />
+              <!-- 제목 -->
+              <strong class="txt-item">Cool_Cola</strong>
+              <!-- 기본값 1을 집어넣음 -->
+              <span class="num-counter">1</span>
+            </li>
+            <li>
+              <img src="src/images/Cool_Cola.png" alt="" class="img-item" />
+              <!-- 제목 -->
+              <strong class="txt-item">Cool_Cola</strong>
+              <!-- 기본값 1을 집어넣음 -->
+              <span class="num-counter">1</span>
+            </li>
+            <li>
+              <img src="src/images/Cool_Cola.png" alt="" class="img-item" />
+              <!-- 제목 -->
+              <strong class="txt-item">Cool_Cola</strong>
+              <!-- 기본값 1을 집어넣음 -->
+              <span class="num-counter">1</span>
+            </li>
+            <li>
+              <img src="src/images/Cool_Cola.png" alt="" class="img-item" />
+              <!-- 제목 -->
+              <strong class="txt-item">Cool_Cola</strong>
+              <!-- 기본값 1을 집어넣음 -->
+              <span class="num-counter">1</span>
+            </li>
+          </ul>
+          <strong class="txt-total">총금액: 0원</strong>
+        </div>
+      </section>
+    </article>
+    <!-- 모듈을 불러오기위해서는 type="module"을 명시해줘야 함-->
+    <script type="module" src="src/js/index.js"></script>
+  </body>
+</html>

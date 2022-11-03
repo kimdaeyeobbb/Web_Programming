@@ -1,0 +1,321 @@
+/* CSS가 기본적으로 UTF-8 방식으로 렌더링되게 함 */
+@charset 'utf-8';
+
+/* 유틸리티 스타일 (유틸리티성을 위한 구분) - 유틸리티: 공통적으로 많이 사용되는 겻. IR클래스등 */
+.ir {
+  position: absolute;
+  /* clip: rect(); 옛날문법임 */
+  clip-path: inset(50%); /* 네모 그리는 속성, 상하좌우 50%씩 잘라버림 */
+  width: 1px;
+  height: 1px;
+  overflow: hidden; /* 넘어가면 hidden처리 */
+}
+
+.img-item {
+  display: block; /* display: block을 설정하는 이유 => 베이스라인때문임. 이미지는 기본적으로 인라인 요소임. 이렇게 설정해주면 내부에 빈공백이 생기지 않음 */
+}
+
+/* 전체 레이아웃 (을 위한 스타일 작성) */
+body {
+  background-color: #eae8fe;
+}
+
+#app {
+  display: flex;
+  justify-content: center; /* justify-content는 주축을 기준으로 자식들을 움직이는 속성 */
+  flex-wrap: wrap;
+  gap: 0 28px; /* 오른쪽 섹션과 왼쪽 섹션의 간격을 28px로 설정 */
+  padding-top: 247px; /* 로고와 아래 2개의 섹션을 떨어뜨리기 위한 설정 */
+  font-family: "Noto Sans KR", sans-serif; /* 폰트 적용 */
+  font-weight: 500; /* reset.css에 inherit 설정 => 이 라인 아래애들이 이것을 상속받음 */
+}
+
+#app .tit-app {
+  position: absolute; /* 상단에 고정시키기 위해 absolute로 설정 */
+  width: 386px;
+  top: 0;
+  left: 50%; /* 왼쪽끝에서 화면의 50%만큼 밈 => 요소의 크기가 로고의 왼쪽 끝을 기준으로하므로 콜라들이 로고의 왼쪽으로 가게 됨 */
+  /* margin을 사용하려면 전체 넓이를 알아야 함 */
+  transform: translateX(-50%); /* 자기자신의 너비의 반만큼 당겨줌 */
+}
+
+/* app의 자식 */
+#app .vending-machine,
+#app .my-info {
+  flex-basis: 360px; /* flex에 넓이값 줄때 기본 속성*/
+}
+
+/* 이 작업을 해야 가운데로 옴 */
+#app .tit-app .img-item {
+  width: 100%;
+  /*
+  100% 안 줬을때 h1은 이미 이렇게 가운데 정렬 된 상태인데요! 
+  width:386px은 h1에 잡혀있지만 이미지는 원본 사이즈 그대로라서 넘친 상태라 가운데정렬처럼 안 보이고 있는 것입니당!! 
+
+여기서 img에 가로 100%을 준다면 
+이미지 사이즈를 직접 조작해서 조절한 게 아니라 부모인 h1에 가로사이즈를 주고 
+그 가로사이즈를 그대로(100%) 가져오는 구조라서 이미지에도 386px가 적용되고 
+가운데정렬된 부모요소와 사이즈가 따악 맞춰져서 시각적으로도 가운데로 오게 됩니다!!*/
+}
+
+/* 자판기 스타일 */
+#app .vending-machine {
+  padding: 31px 27px 28px; /* 경계와의 여백 설정 */
+  background-color: #fff;
+}
+
+.vending-machine .list-item {
+  display: grid; /* 그리드를 사용하면 레이아웃을 짤 때 편하다 (위와 아래의 레이아웃 구현의 통일성을 위해서 사용)*/
+  grid-template-columns: 1fr 1fr 1fr; /* 컬럼이 크게 3개로 나뉨 */
+  gap: 12px; /* 컬럼간의 gap */
+}
+
+.vending-machine .list-item li {
+  /* 앞에 경로를 구분할 수 있는 요소들이 2개정도 쓰이면 뒤에 요소 선택자를 써주어도 괜찮음 */
+  position: relative; /* li에 relative 주는 이유 => 아이템을 기준으로 품절ui의 위치를 찾기 위해서 */
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+}
+
+.vending-machine .list-item li.sold-out::before {
+  /* li가 sold-out 클래스를 가질 경우 */
+  display: block;
+  position: absolute;
+  content: ""; /* 컨텐츠는 빈 문자열*/
+  /* 사방으로 쫙 펼쳐주기 위해서 0,0,0,0 설정 */
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  /**/
+  z-index: 1;
+  /* li와 동일하게 10px 설정 */
+  border-radius: 10px;
+  background: no-repeat center/60px 46px url(../images/Sold-out.png)
+    rgba(0, 0, 0, 0.8); /* 반복안함, 이미지위치 가운데, */
+}
+
+/* 품절이 나타나면 더이상 누르면 안됨. li에 sold-out이 붙으면 클릭이벤트를 막는 속성을 등록*/
+.vending-machine .list-item li.sold-out {
+  pointer-events: none; /* 클릭을 막음 */
+}
+
+.vending-machine .btn-item {
+  width: 100%;
+  padding: 11px 12px 9px;
+}
+
+/* 클릭했을 때 표시되어아 한다고 판단했으므로 active 사용 (hover는 따로 추가해줘야하는게 발생) */
+.vending-machine .btn-item:active {
+  border-radius: 10px;
+
+  /* border처럼 사용, 클릭시 테두리가 생기게 만듦*/
+  outline: 3px solid #6327fe;
+}
+
+.vending-machine .list-item .img-item {
+  /* 이미지 크기를 줄임 */
+  width: 36px;
+  height: 65px;
+  /* 이미지를 가운데로 옮김*/
+  margin: 0 auto;
+}
+
+.vending-machine .tit-item {
+  /* 인라인은 마진값이 적용? => 좌,우는 되지만 상,하는 적용이 안됨 */
+  display: block;
+  margin: 6px 0 7px; /* 상,하 마진만 적용 */
+  font-size: 9px;
+}
+
+/* 벤딩머신의 자식인 텍스트 프라이스 */
+.vending-machine .txt-price {
+  /* 패딩은 인라인에서 먹지 않으므로 패딩속성이 적용되도록 블록설정 */
+  display: block;
+  /* 텍스트를 감싸는 padding이 필요함 */
+  padding: 5px 15px; /* 상,하:5, 좌,우:15 */
+  font-size: 12px;
+  background-color: #6327fe;
+  border-radius: 50px;
+  color: #fff;
+}
+
+/* 잔액, 입금, 획득 스타일 */
+.vending-machine .cont-buy {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 컬럼을 3개로 나눔 */
+  gap: 12px; /* 사이간격 - 12*/
+  margin-top: 20px;
+}
+
+/* 3개로 나뉜 컬럼을 2+1로 만들기 */
+.cont-buy .info-balance,
+.cont-buy .inp-put,
+.cont-buy .list-item-staged {
+  /* 컬럼을 ~로 만드는 css 속성*/
+  /* 위의 영역과 아래의 영역의 통일성을 위해 1fr 1fr 1fr 사용 (2fr 1fr 사용하면 통일성이 깨짐) => 세로라인이 맞지않을 수 있음*/
+  grid-column: 1/3; /* 시작하는 그리드라인 번호/끝나는 그리드라인 번호 */
+  border-radius: 5px;
+}
+
+.cont-buy .btn-return,
+.cont-buy .btn-put,
+.cont-buy .btn-get {
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  font-size: 13px;
+}
+
+.cont-buy .info-balance {
+  padding: 6px 10px;
+  background-color: #eae8fe;
+}
+
+.cont-buy .info-balance .txt-balance {
+  float: right; /* ~원 => 오른쪽 정렬 */
+}
+
+/* 입금액 부분 */
+.cont-buy .inp-put {
+  padding: 6px;
+  border: 1px solid #bdbdbd;
+}
+
+/* 선택된 아이템은 좌우가 동일하므로 앞에 위치되어있던 .cont-buy를 빼버림 */
+/* 높이값 설정 => 높이값을 설정 안해주면 부모의 크기만큼 설정됨. 넘어가면 스크롤로 하기위해 높이값을 설정해줌 */
+.list-item-staged {
+  height: 106px;
+  padding: 12px;
+  overflow-y: scroll; /* y축으로 overflow되었을 때 스크롤 */
+  border: 1px solid #bdbdbd;
+  background-color: #eae8fe;
+}
+
+/* cont-buy를 뺴는 이유 => 옆에 info에도 똑같이 사용할 공통적인 css 작업을 위해 */
+.list-item-staged li {
+  /* padding: 8px; */
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+/* 선택한 음료간의 간격 설정 -> li가 있을 경우에만 6px을 줌 */
+.list-item-staged li + li {
+  margin-top: 6px;
+}
+
+.list-item-staged .img-item,
+.list-item-staged .txt-item {
+  float: left;
+}
+
+.list-item-staged .btn-staged {
+  width: 100%;
+  padding: 8px;
+}
+
+.list-item-staged .txt-item {
+  margin-left: 10px;
+  line-height: 32px;
+  font-size: 9px;
+}
+
+.list-item-staged .num-counter {
+  float: right;
+
+  /* flex 처리 - 안에 있는 숫자 1을 가운데 정렬시키고 싶어서 flex준 것*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 컨텐츠가 추가될 가능성이 없으므로 너비와 높이를 고정값으로 줌 */
+  width: 30px;
+  height: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+}
+
+/* 선택된 콜라 그림 크기 */
+.list-item-staged .img-item {
+  width: 18px;
+  height: 32px;
+}
+
+/* 나의 정보 스타일 */
+.my-info .cont-mymoney {
+  padding: 9px 27px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+.my-info .info-mymoney {
+  padding: 6px 10px;
+  background-color: #eae8fe;
+  border-radius: 5px;
+}
+
+.info-mymoney .txt-mymoney {
+  float: right;
+  font-weight: 700;
+}
+
+.my-info .cont-myitems {
+  padding: 25px 27px 26px;
+  background-color: #fff;
+}
+
+.cont-myitems .tit-myitem {
+  /* 획득한 음료 글씨 가운데로 옮기기 => 블록으로 바꿔서 넣어주기  (display 공간이 늘어나므로 text-align 사용이 가능해짐) */
+  /* strong 태그의 기본 속성은 인라인레벨 => 블락으로 바꿔야 사용가능한 범위가 좌우 끝으로 늘어나기 때문에  txt-align : center를 적용시킬 수 있다 */
+  display: block;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 13px;
+  line-height: 20px;
+}
+
+.my-info .list-item-staged {
+  /* 획득한 음료 내역의 높이 설정 */
+  height: 368px;
+}
+
+.my-info .list-item-staged li {
+  overflow: hidden; /* 이 설정해줘서 혹득한 음료 내에 하얀 바탕 드러남 */
+  padding: 8px;
+}
+
+.my-info .txt-total {
+  display: block;
+  text-align: right;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+/* 스크롤바 */
+ul::-webkit-scrollbar {
+  width: 8px;
+}
+
+ul::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+/* 미디어쿼리 */
+/* only => 예전 버전 지원 */
+@media only screen and (min-width: 320px) and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* 320~480일때 모바일로 인식하고 스타일 적용 */
+  /* ~일떄만. (레티나 디스플레이에 대응하기 위함임)*/
+  body {
+    background-color: #fff;
+  }
+
+  #app {
+    padding-top: 96px;
+  }
+
+  #app .tit-app {
+    width: 166px;
+  }
+}
