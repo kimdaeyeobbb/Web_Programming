@@ -1,0 +1,92 @@
+@font-face {
+  font-family: "GmarketSansBold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2")
+      format("woff2"),
+    url("https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff")
+      format("woff"),
+    url("https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf")
+      format("opentype");
+}
+
+/* rotate 받아야하는 애가 이미지임. html상 <img class="img-rotate" src="img/loading.png" alt="" /> 된 것*/
+@keyframes rotate {
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.cont-result-loading {
+  display: none;
+}
+
+.cont-result {
+  display: none;
+}
+
+#modal {
+  display: none;
+}
+
+.img-rotate {
+  animation: rotate 1.1s infinite linear;
+}
+
+/* app */
+#app {
+  font-family: GmarketSansMedium;
+  background-color: #5b2385;
+  color: white;
+  text-align: center;
+  padding-bottom: 70px;
+}
+
+.tit-law {
+  display: inline-block;
+  position: relative;
+  margin-top: 194px;
+}
+
+.tit-law .img-tit {
+  /* position: relative; */
+  z-index: 10;
+}
+
+.tit-law::after {
+  display: block;
+  content: "";
+  /* position:absolute => ~한 부모를 기준으로 잡음 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 225px;
+  height: 225px;
+  margin: -112px 0 0 -112px;
+  background-image: url("../img/title_bg.png");
+  background-position: center;
+}
+
+.img-txt {
+  max-width: 486px;
+  margin: 125px auto 84px;
+}
