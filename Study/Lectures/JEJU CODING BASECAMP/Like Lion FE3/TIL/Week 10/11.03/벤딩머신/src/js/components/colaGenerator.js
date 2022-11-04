@@ -9,13 +9,15 @@ class ColaGenerator {
     }
 
     /* 내부 메서드를 실행시키는 함수 */
-    setup() {
-        this.loadData((json) => {   // 콜백함수 실행시킴 
+    // await 사용을 위해서 async를 붙여줌
+    async setup() {
+        /* 기다릴 수 있도록 앞에 await를 붙임 */
+        await this.loadData((json) => {   // 콜백함수 실행시킴 
             this.colaFactory(json);   // 콜백함수가 하는일 -> this.colaFactory()함수를 실행시킴
         });
     }
 
-    /* 옛날방식 */
+    /* 옛날방식 - AJAX 사용해서 데이터 불러옴*/
     // loadData(callback) {  // 콜백함수를 인자로 전달받음
     //     // AJAX - Asynchronous Javascript And XML
     //     // XMLHttpRequest() - 초기방법의 AJAX 사용
@@ -35,7 +37,7 @@ class ColaGenerator {
     //     requestObj.send(null);  // 잘 받았다고, 서버에 다시 전송해줌. 잘 받고나서 따로 전달해줄 데이터가 없으므로 null을 넣고 보내버리는 것 
     // }
 
-    /* 최근방식 - fetch*/
+    /* 최근방식 - fetch& async,await 사용해서 데이터 불러옴 */
     // fetch함수 => 비동기로 API를 받아옴. 데이터를 프로미스 객체에 저장함. fetch는 기본적으로 데이터를 2번 호출함 (1. 데이터를 받아올 때, 2. 받아온 데이터를 ~)
     async loadData(callback) {
         // async 함수 안에서만 await를 사용할 수 있음

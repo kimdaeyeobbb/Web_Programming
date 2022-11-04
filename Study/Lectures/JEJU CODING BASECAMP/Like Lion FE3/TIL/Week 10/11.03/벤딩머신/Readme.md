@@ -66,3 +66,14 @@
 - 우리가 만든 코드에서 AJAX로 받아서 뿌려줌
 
 - 서버로부터 데이터를 받아와서 작업을 한다는 가정하에 포폴을 만들고 싶으면 이처럼 json파일을 이용할 것
+
+# async & await
+
+- https://ko.javascript.info/async-await
+
+- [top level await](https://v8.dev/features/top-level-await)
+
+# 추가 내용
+
+- 접근성을 위해서는 이벤트 위임을 사용할 수 없다
+- AJAX를 중단하기 위해 async & await를 사용해야 한다

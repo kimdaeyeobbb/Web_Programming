@@ -166,6 +166,11 @@ body {
   font-size: 13px;
 }
 
+/* 획득 버튼 스타일링 */
+.cont-buy .btn-get {
+  background-color: #6327fe;
+}
+
 .cont-buy .info-balance {
   padding: 6px 10px;
   background-color: #eae8fe;
