@@ -90,3 +90,92 @@
   max-width: 486px;
   margin: 125px auto 84px;
 }
+
+.txt-desc {
+  position: relative;
+  max-width: 475px;
+  margin: 0 auto 96px;
+  line-height: 30px;
+  font-size: 18px;
+}
+
+.txt-desc .tit-desc {
+  position: relative;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.txt-desc::before,
+.txt-desc::after {
+  content: "";
+  position: absolute;
+  width: 37px;
+  height: 32px;
+}
+
+.txt-desc::before {
+  left: 0;
+  top: 25%;
+  background-image: url("../img/txt-left.png");
+}
+
+.txt-desc::after {
+  right: 0;
+  bottom: 25%;
+  background-image: url("../img/txt-right.png");
+}
+
+/* form */
+.cont-inp .txt-wannabe {
+  margin-bottom: 30px;
+}
+
+.cont-inp .txt-time {
+  margin-bottom: 116px;
+}
+
+/* 공통입력창 */
+.cont-inp .txt-wannabe input,
+.cont-inp .txt-time input {
+  width: 224px;
+  height: 53px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 20px;
+  vertical-align: 4px;
+  font-family: "GmarketSansMedium";
+}
+
+.btn-go,
+.btn-share,
+.btn-close {
+  margin-bottom: 0;
+}
+.cont-inp .btn-exc {
+  position: relative;
+}
+.cont-inp .btn-exc::after {
+  display: block;
+  position: absolute;
+  right: -72px;
+  bottom: -20px;
+  content: "";
+  width: 64px;
+  height: 72px;
+  background-image: url("../img/hand.png");
+}
+
+/* 모달 - 훈련하러가기 */
+#modal {
+  /* position: fixed; */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  /* top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999; */
+}
