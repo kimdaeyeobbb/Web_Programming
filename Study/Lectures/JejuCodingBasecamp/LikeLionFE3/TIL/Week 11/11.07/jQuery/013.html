@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 요소를 선택해서 기능을 주기 -->
+    <p id="text">1</p>
+    <div id="divOne" class="box">2</div>
+    <p class="textTwo">3</p>
+    <h1></h1>
+
+    <script>
+      $("#text").text("hello world");
+      $("#divOne").fadeIn(3000).fadeOut(4000);
+
+      /* $: 제이쿼리로 가져온 것을 뜻함 (제이쿼리임을 명시) */
+      const $contDesc = $("#text");
+      // $contDesc.text()   // 이렇게 사용 가능
+
+      /* $: 노드임을 명시하기 위해 사용 */
+      const $변수 = document.querySelector("#text");
+      // $contDesc.text()   // 이렇게 사용 불가
+      // $변수.innerText = 'hello'   // 이렇게 사용해야 함
+
+      /* html 문서들이 다 준비 되었을 때 실행하라는 뜻 */
+      $(function () {
+        $("div").click(function () {
+          //$.contDesc.hide()
+          $(this).hide();
+        });
+      });
+    </script>
+  </body>
+</html>

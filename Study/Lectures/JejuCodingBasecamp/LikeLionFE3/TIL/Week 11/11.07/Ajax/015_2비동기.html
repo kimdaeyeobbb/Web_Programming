@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <script>
+      //$.ajax({경로, 동기화 여부, 성공하면 할 일})
+      //$.ajax({url:'경로', async: true, success:function(result){}})
+      $.ajax({
+        //ajax를 실행시킴. 내부에 들어갈 값들은 지정이 되어있으므로 그대로 사용하면 됨
+        url: "http://test.api.weniv.co.kr/mall",
+        async: true,
+        // 동기화 여부: true(비동기처리 - 기본값), false는 동기처리(위에서 액션하는 것들을 순서대로 지켜가며 작동)
+        // false를 하게 되면 해당 코드를 다 실행한 다음 뒤에 코드를 실행함
+        // truue이면 통신이 다 완료되지 않아도 일단 뒤의 코드를 실행함
+        success: function (result) {
+          $("#data").text(result); // 버튼클릭시 Object 출력
+
+          for (const i of result) {
+            console.log(i);
+          }
+        },
+      });
+      console.log("hello");
+      console.log();
+    </script>
+  </body>
+</html>
