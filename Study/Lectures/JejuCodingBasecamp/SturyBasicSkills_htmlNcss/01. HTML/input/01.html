@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms - input 연습</title>
+  </head>
+  <body>
+    <!-- 문자의 개수 2~5개로 제한 -->
+    <!-- input은 form내부에 사용함 -->
+    <!-- action이 가리키는 웹 서버로 데이터를 전송하게 됨 -->
+    <form action="">
+      <input
+        type="text"
+        name="age"
+        maxlength="5"
+        minlength="2"
+        placeholder="입력해주세요"
+        pattern="/[a-z]/"
+      />
+      <input type="submit" />
+    </form>
+  </body>
+</html>
