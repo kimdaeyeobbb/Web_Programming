@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      const divRoot = document.getElementById("root");
+      const divContainer = document.createElement("div");
+      const heading1 = document.createElement("h1");
+      const sec = document.createElement("section");
+      const secTitle = document.createElement("h2");
+      const secImg = document.createElement("img");
+      const secCont = document.createElement("p");
+
+      divRoot.appendChild(divContainer);
+
+      divContainer.classList.add("container");
+      divContainer.appendChild(heading1);
+      divContainer.appendChild(sec);
+
+      heading1.classList.add("ir");
+      heading1.innerHTML = "테스트 페이지";
+
+      sec.innerHTML += '<h2 class="section-title">섹션제목</h2>';
+      sec.innerHTML +=
+        '<img class="section-img" src="img.jpg" alt="섹션이미지">';
+      sec.innerHTML += '<p class="section-contents">내용</p>';
+    </script>
+  </body>
+</html>
