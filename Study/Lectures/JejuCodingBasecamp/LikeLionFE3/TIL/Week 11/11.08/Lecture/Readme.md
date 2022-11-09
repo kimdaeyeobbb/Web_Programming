@@ -220,7 +220,7 @@ ReactDOM.render(app, domContainer);
 
 ## Vanilla JS를 이용한 SPA 웹페이지 만들기
 
-- 입사문제이지, 실제 기업내에서 이렇게 하는 겨웅는 없음
+- 입사문제이지, 실제 기업내에서 이렇게 하는 경우는 없음
 
 ## [API](http://test.api.weniv.co.kr/mall)
 
