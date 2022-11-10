@@ -243,3 +243,47 @@ ReactDOM.render(app, domContainer);
 
 - :two: 최신의 노드문법을 사용할 수 있다
 - :three: 리액트를 사용하면 리액트와 관련된 여러 상태관리 툴과 연계해서 사용할 수 있다. (확장성이 높아진다.)
+
+<br>
+
+# 추가내용
+
+## React Render HTML
+
+- [참고자료](https://www.w3schools.com/react/react_render.asp)
+
+- 예제
+
+```html
+<div id="root"></div>
+<script type="text/babel">
+  /* 함수로 만듦 */
+  function Hello() {
+    return <h1>hello world</h1>;
+  }
+
+  /* 변수로 만듦 */
+  const Hello2 = <h2>Hello world 2</h2>;
+
+  /* 넣을 데이터를 app으로 만듦 */
+  // {}안에는 js 코드가 사용 가능함
+  // <Hello2 />의 형태는 가능하지 않음
+  // hello()는 작동하지 않음
+  const app = (
+    <div>
+      <Hello />
+      <Hello />
+      <Hello />
+      {Hello2}
+    </div>
+  );
+
+  const domContainer = document.querySelector("#root");
+  ReactDOM.render(app, domContainer);
+</script>
+```
+
+- `ReactDOM.render()` 함수는 2가지 인자를 받는다. (HTML 코드, HTML 요소)
+- ReactDOM.render()함수를 호출해서 React가 HTML을 웹 페이지에 랜더링한다.
+- 지정된 HTML 요소 내부에 지정된 HTML 코드를 표시한다.
+- 결과는 querySelector에서 선택한 rood라는 id를 가진 요소에 표시됨
