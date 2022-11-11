@@ -2,6 +2,8 @@
 
 # 9. path 모듈
 
+- 실행시킬때 `node app.js` 처럼 명령어 입력 (node + 실행시키려는 파일명)
+
 # package.json
 
 - npm init --yes 명령어 입력
@@ -284,3 +286,22 @@
 - touch Header.js Form.js ResultLoading.js ResultCont.js Footer.js
 - 각각의 파일들을 클릭해가면서 rfc 스니펫을 이용해 코드 완성
 - 1만.html 파일에서 각각의 소스코드를 가지고 와서 삽입
+
+<br><br>
+
+# 추가내용
+
+## Node.js
+
+- Chrome V8 Javascript 엔진에 살을 붙여(file, path, os등) 실행시킬 수 있는 런타임을 만든 것
+- 빌드된 자바스크립트 런타임
+- 자바스크립트 실행기임
+- 자바스크립트는 원래 웹브라우저에서만 실행되지만 노드를 이용하면 컴퓨터에서 자바스크립트를 실행시킬 수 있도록 만듦
+
+### Node.js의 특징
+
+- Non Blocking I/O (비동기 I/O)
+
+  - 한번에 다 처리하지 않고 일단 전달함
+
+- 싱글 스레드

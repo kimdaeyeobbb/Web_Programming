@@ -80,4 +80,13 @@ function ProductList() {
 
 - 리액트를 바로 실행할 수 있도록 세팅까지해서 돌려줌
 
-# ㅁ
+<br><br>
+
+# 추가내용
+
+- [shell, bash, zbash의 간단 개념정리](https://ithub.tistory.com/205)
+- [[VIM] vim 유용한 단축키 정리](https://gmlwjd9405.github.io/2019/05/14/vim-shortkey.html)
+- [[AWS] 📚 아마존 웹 서비스 종류 & 용어 ☁️ 정리 (EC2 / RDB / S3 / SES / EBS ...)](https://inpa.tistory.com/entry/AWS-%F0%9F%93%9A-%EC%95%84%EB%A7%88%EC%A1%B4-%EC%9B%B9-%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%9A%A9%EC%96%B4-%EC%A2%85%EB%A5%98-%EC%A0%95%EB%A6%AC-EC2-EBS-RDB-S3-EBS-SES)
+- [Single Page Application & Routing](https://poiemaweb.com/js-spa)
+- [CommonJS와 ESM에 모두 대응하는 라이브러리 개발하기: exports field](https://toss.tech/article/commonjs-esm-exports-field)
+-
