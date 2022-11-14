@@ -82,9 +82,29 @@ root.render(<App />);
 
 <br><br>
 
-## aa
+# props
 
-- 사용되지 않는 props가 컴포넌트를 통과하고 있음. 2개가 아니라 수십개가 될 경우 사용하지도 않는 props를 계속해서 전달해야 하기 때문에 문제가 됨.
+- 컴포넌트에서 props값이 전달되면 될수록 복잡도가 올라가고, 불필요한 데이터들이 많이 상속된다.
+
+- [props drilling] 사용되지 않는 props가 컴포넌트를 통과하고 있음. 2개가 아니라 수십개가 될 경우 사용하지도 않는 props를 계속해서 전달해야 하기 때문에 문제가 됨.
+
+  - props drilling을 피하기 위해 나중에 Hook을 배울 것임
+
+- [참고자료 1](https://slog.website/post/13)
+- [참고자료 2](https://www.freecodecamp.org/news/avoid-prop-drilling-with-react-context-api/)
+
+<br><br>
+
+# components & pages
+
+## components
+
+- 하나하나가 조각들임
+- 버튼같은것은 컴포넌트에 구현해놓고 가져와서 쓰는 것임
+
+## pages
+
+- pages 폴더 내부의 각각의 폴더가 하나의 페이지임
 
 <br><br>
 
@@ -231,7 +251,7 @@ bye('John');   // Bye, John!
 
 <br>
 
-# <main>
+# \<main>
 
 - `<main>` 태그는 해당 문서의 `<body>`내 주요 컨텐츠를 정의할 때 사용함
 - 해당 요소 내 컨텐츠는 해당 문서의 중심 주제 또는 주요 기능과 직접적으로 관련되어 있거나 확장되는 컨텐츠로 구성되어야 한다.
@@ -266,3 +286,7 @@ bye('John');   // Bye, John!
   </article>
 </main>
 ```
+
+<br><br>
+
+#
