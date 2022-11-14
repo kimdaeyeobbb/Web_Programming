@@ -20,7 +20,7 @@ function App() {
       {/* 로그인이 성공한 경우 & 실패한 경우*/}
       {
         user.login ?
-          /* 로그인이 성공한 경우 - 정보를 받아옴*/
+          /* 로그인이 성공한 경우 - 유저의 정보를 받아옴*/
           < Homepage
             id={user.id}
             email={user.email}
