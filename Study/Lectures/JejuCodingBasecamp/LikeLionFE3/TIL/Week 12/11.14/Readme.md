@@ -116,7 +116,68 @@ export default class User {
 }
 ```
 
--
+- `export default`는 파일당 하나만 있으므로 이 개체를 가져오려는 모듈에서는 중괄호 없이도 어떤 개체를 가지고 올지 정확히 알 수 있다 (따라서 이름이 없어도 된다)
+
+  - 단, `default`를 붙이지 않았다면 개체에 이름이 없는 경우 에러가 발생한다.
+  - 예시
+
+  ```js
+  export class{  // 에러! (default export가 아닌 경우에는 이름이 꼭 필요함)
+    constructor(){}
+  }
+  ```
+
+<br>
+
+### 'default` name
+
+- `default` 키워드는 기본 내보내기를 참조하는 용도로 종종 사용함
+- 예시
+
+```js
+function sayHi(user) {
+  alert(`Hello, ${user}!`);
+}
+
+// 함수 선언부 앞에 'export default'를 붙여준것과 동일
+// 함수를 내보낼 때 함수 선언부와 떨어진 곳에서 default 키워드를 사용할 경우 해당 함수를 기본 내보내기 할 수 있음
+export { sayHi as default };
+```
+
+<br>
+
+### default export의 이름에 대한 규칙
+
+- named export는 내보냈을 때 사용한 이름 그대로 가져오므로 관련 정보를 파악하기 쉽다
+
+  - But 아래와 같이 내보내기를 할 경우, 이름과 가져오기 할 때 쓸 이름이 동일해야 한다는 제약이 있다.
+
+- name export 예시
+
+```js
+import { User } from "./user.js";
+// import {MyUser}는 사용할 수 없다. 반드시 {User}이어야 한다.
+```
+
+- default export 예시
+  - 어떤 이름이든 에러 없이 동작함
+
+```js
+import User from "./user.js"; // 동작함
+import MyUser from "./user.js"; // 동작함
+```
+
+#### 자유롭게 이름을 지어 생기는 혼란 방지
+
+- default export 한 것을 가져올 때에는 아래와 같이 파일 이름과 동일한 이름을 사용하도록 내부 규칙을 정하는것이 권장됨
+
+- 예시
+
+```js
+import User from "./user.js";
+import LoginForm from "./loginForm.js";
+import func from "/path/to/func.js";
+```
 
 <br>
 
@@ -155,3 +216,53 @@ bye('John');   // Bye, John!
 ```
 
 <br>
+
+### import React from 'react'
+
+- 브라우저는 HTML, CSS, javascript만 읽을 수 있으므로 우리가 작성한 React를 읽지 못한다. 따라서 React로 작성된 코드를 브라우저가 읽을 수 있도록 변환해주어야 한다.
+
+- 리액트에서는 JSX 문법을 사용하는데, 이 JSX 문법을 자바스크립트로 변환할 때
+  JSX transformer를 사용해서 JSX로 작성된 React 메서드를 변환시킨다. 이때 객체인 React를 가져오기 위해 `import React from 'react'`를 맨 위에 작성해서 React를 불러오게 되면 객체 react를 통해 React 메서드를 작성할 수 있게 된다.
+
+- 추가내용
+  - JSX는 React라는 객체의 메서드를 이용해서 구성요소들을 생성하기 때문에 문서의 위에 `import React from 'react'`를 작성해서 해당 JSX가 객체 React를 받아오고 추후 Babel이라는 웹팩을 통해서 React를 유효한 자바스크립트로 변환할 수 있게 해줌
+
+#### 결론: `import React from 'react'`는 브라우저가 읽을 수 있도록 jsx를 바꾸기 위해 사용함 (상위 컴포넌트에서 작성되었을 경우 하위 컴포넌트에서는 생략할 수 있음)
+
+<br>
+
+# <main>
+
+- `<main>` 태그는 해당 문서의 `<body>`내 주요 컨텐츠를 정의할 때 사용함
+- 해당 요소 내 컨텐츠는 해당 문서의 중심 주제 또는 주요 기능과 직접적으로 관련되어 있거나 확장되는 컨텐츠로 구성되어야 한다.
+- 사이드바, 탐색 링크, 저작권 정보, 사이트 로고, 검색 폼 등 여러 문서 전반에 걸쳐 반복되는 내용을 포함해서는 안된다.
+  (단, 검색 폼이 페이지의 주요 기능이라면 예외로 둘 수 있다)
+
+- 따라서 하나의 문서에는 단 하나의 `<main>`요소만이 존재해야 한다
+- `<main>`요소는 `<article>, <aside>, <footer>, <header>, <nav>`요소의 자손 요소가 되어서는 안된다.
+
+- 예시
+
+```html
+<main>
+  <h1>바나나</h1>
+  <p>
+    바나나는 바나나는 파초과 바나나 속에 속하는 숙근성 영년생 열대과수를
+    총칭한다.
+  </p>
+  <article>
+    <h2>다이어트 식품</h2>
+    <p>
+      바나나는 탄수화물이 약 27%이고 비타민 A와 C가 풍부하며, 100g당 87kcal의
+      열량을 갖는다.
+    </p>
+  </article>
+  <article>
+    <h2>다양한 섭취법</h2>
+    <p>
+      바나나는 열매를 주식으로 이용할 뿐 아니라 미성숙한 열매는 채소로 다양한
+      요리에 응용된다.
+    </p>
+  </article>
+</main>
+```
