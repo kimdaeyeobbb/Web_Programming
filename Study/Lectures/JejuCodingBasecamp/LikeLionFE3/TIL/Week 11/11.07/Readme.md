@@ -88,3 +88,17 @@ for (i of ss) {
 # jsonserver
 
 - update는 put
+
+
+<br><br>
+
+# 추가 내용정리
+
+## [Fetch API](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API)
+
+- `Fetch API`에는 네트워크 통신을 포함한 리소스 취득을 위한 인터페이스가 정의되어 있음
+- [XMLHttpRequest](https://developer.mozilla.org/ko/docs/Web/API/XMLHttpRequest)보다 강력하고 유연한 조작이 가능
+
+### 기본 개념 및 사용 방법
+
+- 
