@@ -1,53 +1,37 @@
-import { useState } from 'react';
-
-const Login = () => {
-  const [id, setId] = useState("");   // 아무것도 없는값으로 초기화
-  const [pw, setPw] = useState("");   // 아무것도 없는값으로 초기화
-
-  const handleLoginSubmit = (e) => {
-    console.log("로그인 버튼을 클릭하셨습니다. 로그인 정보가 들어왔습니다.")
-    e.preventDefault()   // 이벤트를 마아줌
-    console.log("이벤트가 막혔다!")
-    alert(`id: ${id}, pw: ${pw}`)
-  }   // e: 제출하는 이벤트
-
-  const handleIdInput = (e) => {
-    console.log('아이디가 수정되었습니다.')
-    // 실시간으로 정규표현식등을 사용해서 이상한  문자열이  포함되지는 않 았는지 체킹
-    console.log(e)
-    console.log(e.target)
-    console.log(e.target.value)
-
-    setId(e.target.value)
-  }
-
-  const handlePwInput = (e) => {
-    console.log('패스워드가 수정되었습니다.')
-    setPw(e.target.value)
-  }
-
-  return (
-    <form action="" onSubmit={handleLoginSubmit}>
-      <label>
-        아이디 :
-        <input type="text" onChange={handleIdInput} name="" id="" />
-      </label>
-      <label>
-        패스워드 :
-        <input type="password" onChange={handlePwInput} />
-      </label>
-      {/* 기본이 submit이라 설정안해도 되지만, 명시적으로 보기 위해 작성 */}
-      <button type="submit">로그인</button>
-    </form>
-  )
-}
+import './App.css';
 
 function App() {
   return (
-    <div>
-      <Login />
-    </div>
+    <Hello name="licat" />
   );
+}
+
+function Hello(props) {
+  const name = props.name;
+  const num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  /* i가 들어오면 return 값으로 <p>안녕, {name} {i}호</p> */
+  const numComponentsArray = num.map(i => <p>안녕, {name} {i}호</p>)
+  console.log(numComponentsArray)
+
+  return (
+    <div>
+      {/* 에러 발생, 컴포넌트 안에서 리스트를 랜더링할 때 하나의 문자열처럼 함쳐져서 나타남 (콤마를 없애고 요소를 밖으로 꺼내줌)
+      따라서 리스트로 랜더링 되었을 때에는 고유한 키값을 넣어줘야 함.
+      키값을 넣어주는 이유는 리액트에서 랜더링 작업을 진행했을 때 어떤 요소의 변동사항이 존재한다면 그 요소만 새로 그려주기 위함임.
+      key가 없다면 하나의 요소가 변경이 되어도 array에 담긴 요소를 모두 다시 그려 */}
+      <numComponentsArray />
+    //   <h1>안녕, {name} 1호</h1>
+    //   <h1>안녕, {name} 2호</h1>
+    //   <h1>안녕, {name} 3호</h1>
+    //   <h1>안녕, {name} 4호</h1>
+    //   <h1>안녕, {name} 5호</h1>
+    //   <h1>안녕, {name} 6호</h1>
+    //   <h1>안녕, {name} 7호</h1>
+    //   <h1>안녕, {name} 8호</h1>
+    //   <h1>안녕, {name} 9호</h1>
+    //   <h1>안녕, {name} 10호</h1>
+    </div>
+  )
 }
 
 export default App;

@@ -289,4 +289,125 @@ bye('John');   // Bye, John!
 
 <br><br>
 
-#
+# [Javascript] onclick
+
+- `onclick` 이벤트는 사용자가 요소를 클릭했을때 발생함
+
+## HTML 상에서의 onclick
+
+- 기본 꼴
+
+```html
+<element onclick="myScript"></element>
+```
+
+- 예시
+
+```html
+<p id="demo" onclick="myFunc()">Click mee.</p>
+<script>
+  function myFunct() {
+    document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+  }
+</script>
+```
+
+<br>
+
+## Javascript 상에서의 onclick
+
+- 기본 꼴
+
+```js
+object.onclick = function () {
+  myScript;
+};
+```
+
+- 예시
+
+```javascript
+<p id="demo">Click me</p>
+<script>
+  document.getElementById("demo").onclick = function(){myFunc()};
+
+  function myFunc(){
+    document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+  }
+</script>
+```
+
+## Javascript 상에서의 addEventListener 사용
+
+- 기본꼴
+
+```js
+object.addEventListener("click", myScript);
+```
+
+- 예시
+
+```js
+<p id="demo">Click me</p>
+<script>
+  document.getElementById("demo").addEventListener("click", myFunc);
+
+  function myFunc(){
+    document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+  }
+</script>
+```
+
+## 추가 예시
+
+### button 클릭시 날짜를 보여주기
+
+```html
+<button onclick = "getElementById("demo").innerHTML=Date()">What is the time?</button>
+<p id ="demo"></p>
+```
+
+### h3요소 클릭시 텍스트 컬러 변경하기
+
+```html
+<h3 id="demo" onclick="myFunc()">Click this text to change the color.</h3>
+<script>
+  function myFunc() {
+    document.getElementById("demo").style.color = "red";
+  }
+</script>
+```
+
+### 요소의 색상을 바꾸는 예제
+
+```html
+<h3 onclick="myFunc(this, 'red')>Click me to change my text color</h3>
+<script>
+  function myFunc(element, color){
+    element.style.color = color;
+  }
+</script>
+```
+
+### 클릭을 함으로써 input field에서 다른곳으로 텍스트를 복사하기
+
+```html
+<!-- Field1안의 값이 Field2에 복사되는 예제 -->
+<p>Field1: <input type="text" id="field1" value="Hello Korea!" /></p>
+<p>Field2: <input type="text" id="field2" /></p>
+
+<button onclick="myFunc()">Click to copy</button>
+
+<script>
+  function myFunc() {
+    document.getElementById("field2").value =
+      document.getElementById("field1").value;
+  }
+</script>
+```
+
+### window 객체에 "onclick" 이벤트 할당하기
+
+```html
+
+```
