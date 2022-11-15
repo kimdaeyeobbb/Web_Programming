@@ -429,3 +429,110 @@ object.addEventListener("click", myScript);
   </body>
 </html>
 ```
+
+#### DOM 트리에 접근하기
+
+- document 객체를 통해 HTML 문서에 접근이 가능하다. document는 브라우저가 불러온 웹페이지를 나타내며, DOM 트리의 진입점 역할을 수행한다.
+
+- 이용하기
+
+```JS
+document.getElementById();   // 해당하는 Id를 가진 요소에 접근
+
+document.getElementsByTagName();   // 해당하는 모든 요소에 접근하기
+
+document.getElementByClassName();   // 해당하는 클래스를 가진 모든 요소에 접근하기
+
+document.querySelector('selector');    // css 선택자로 단일 요소에 접근하기
+
+document.querySelectorAll('selector');   // css 선택자로 여러 요소에 접근하기
+```
+
+### 드롭다운을 만들기 위해서 onclick 사용하기
+
+```js
+document.getElementById("myBtn").onclick = function () {
+  myFunc();
+};
+
+function myFunc() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+```
+
+#### [Element.classList](https://developer.mozilla.org/ko/docs/Web/API/Element/classList)
+
+- 기본꼴
+
+```js
+const elementClasses = elementNodeReference.classList;
+
+// elementClasses는 elementNodeReference의 클래스 속성을 나타내는 DOMTokenList임
+// 속성이 설정되어 있지 않거나 비어있다면 elementClasses.lengt는 0을 반환함
+// element.classList 그 자체는 읽기 전용 프로퍼티이지만 add()와 remove() 메서드를 이용해서 변형할 수 있다
+```
+
+- 메서드
+
+1. add
+
+- 지정한 클래스의 값을 추가함.
+- 만약 추가하려는 클래스가 엘리먼트의 class 속성이 이미 존재한다면 무시함
+
+2. remove
+
+- 지정한 클래스의 값을 제거함
+
+3. item
+
+- 콜렉션의 인덱스를 이용하여 클래스의 값을 반환함
+
+4. toggle
+
+- 하나의 인수만 있을 때: 클래스의 값을 토글링함
+  (클래스가 존재한다면 제거하고 false를 반환하며, 존재하지 않으면 클래스를 추가하고 true를 반환함)
+
+- 두번째 인수가 있을 때: 두번째 인수가 true로 평가되면 지정한 클래스의 값을 추가하고 false로 평가되면 제거함
+
+#### DOM 제어 명령어- 클래스 제어
+
+- DOM api 요소를 통해 요소의 class 속성을 제어할 수 있다
+
+```js
+const myBtn = document.querySelector("button");
+myBtn.addEventListener("click", function () {
+  // 이벤트 삽입 => target.addEventListener(type, listener)의 문법 형태를 지님
+  // 이벤트의 타입에는 click, mouseover, mouseout, wheel 등 다양한 이벤트를 감지함
+  // listener 함수의 인수에는 이벤트에 대한 정보가 담겨있음
+  myBtn.classList.toggle("blue"); // 클래스를 토글함 (없으면 넣어주고, 있으면 제거함)
+});
+```
+
+##### DOM을 구성하는 노드 객체와 타입 5가지
+
+- DOM을 구성하는 노드 객체는 DOM API를 통해서 자신을 제어할 수 있다.
+
+###### DOM 타입들이 상속하는 노드 객체 타입
+
+1. 문서 노드 (document node)
+
+   - DOM 트리의 최상위에 존재하는 루트 노드로 돔 트리의 진입점이며, 브라우저가 렌더링한 HTML 문서 전체를 가리킴
+   - Document를 이용해서 웹 페이지를 동적으로 만드는 기능을 전역적으로 사용할 수 있다
+
+2. 요소 노드 (Element node)
+
+   - HTML 요소를 가리키는 객체로 요소 노드느느 부모-자식관계를 통해서 문서의 구조를 표현한다. Attribute node를 가질 수 있는 유일한 노드이다.
+   - Element 인터페이스는 Document 안의 다양한 객체가 부모로 갖는 기본 클래스로 `HTMLElement`, `SVGElement` 등 특정 요소를 더 잘 표현할 수 있는 클래스로 나뉜다
+   - Element의 속성에는 `classList`, `className`, `innerHTML` 등이 있으며, 메서드에는 대표적으로 `addEventListener` 등이 있다
+
+3. 어트리뷰트 노드 (Attribute node)
+
+   - 요소 노드와 연결되어 HTML 요소의 어트리뷰트를 가리키는 객체이다
+
+4. 텍스트 노드 (Text node)
+
+   - HTML 요소의 텍스트를 가리키는 객체로 문서의 정보를 나타낸다. 자식 노드가 없는 leaf node로 DOM 트리의 최종단 노드이다.
+
+5. 주석 노드 (comment node)
+
+   - 주석을 나타내주는 노드
