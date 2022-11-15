@@ -1,31 +1,35 @@
-import styled from 'styled-components'
+import React from "react";
+import styled, { css } from 'styled-components'
 
-const ContentsDivOne = styled.div`
-  color: red;
-`
+const OneButton = styled.button`
+    color: red;
+`;
 
-const ContentsDivTwo = styled.div`
-  color: green;
-`
+const TwoButton = styled(OneButton)`
+    font-size: 30px;
+`;
+//  얘는 red와 30px 둘다를 가지고 있음
 
-const ContentsDivThree = styled.div`
-  color: blue;
-`
 
-const SectionTitle = styled.h2`
-  color: dodgerblue;
-  font-size: 32px;
-`
-
-function App() {
-  return (
-    <>
-      <ContentsDivOne>hello world</ContentsDivOne>
-      <ContentsDivTwo>hello world</ContentsDivTwo>
-      <ContentsDivThree>hello world</ContentsDivThree>
-      <SectionTitle>hello world</SectionTitle>
-    </>
-  );
+// 일반 컴포넌트를 꾸며주기 위해서는 className = {props.className}을 작성해야 한다.
+const Hello = (props) => {
+  return <button className={props.className}>hello world</button>
 }
+
+const ThreeButton = styled(Hello)`
+    font-size: 30px;
+`;
+
+
+const App = () => {
+  return (
+    <div>
+      <OneButton>hello world</OneButton>
+      <TwoButton>hello world</TwoButton>
+      <Hello />
+      <ThreeButton />
+    </div>
+  );
+};
 
 export default App;
