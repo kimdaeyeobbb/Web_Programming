@@ -47,11 +47,12 @@
 
 <br><br>
 
-# 스타일드 컴포넌트
+# 리액트 스타일드 컴포넌트
 
 ## 장점
 
-- 클래스명을 고민하지 않고 바로 쓰면됨
+- cascading에 종속되지 않는다. (클래스명을 고민하지 않고 바로 쓰면됨)
+- 유지보수가 용이하다
 
 ## 사용
 
@@ -81,3 +82,236 @@ const ContentsDivThree = styled.div`
 
 - 보안떄문에 그렇다
 - 데이터를 가져오고 싶을 때 태그나 클래스로 가져오는 경우가 많다.
+- div를 이용해서 코딩만하면 SEO가 좋지 않음
+  - facebook, instagram등은 SEO를 지킬 이유가 딱히 없으므로 div태그로 뒤덮어 놓은 것이다.
+
+<br><br>
+
+# 복습
+
+- [중요] 컴포넌트 리스트 만들기
+
+## 컴포넌트 리스트 만들기
+
+- 키값을 인덱스로 주면 중복될 수 있으므로 유의할 것
+- 키값을 요소에 대한 내용으로 작성하는게 좋다
+- 들어간 키값은 확인할 수 없다
+- 키값은 문자열만 가능한것은 아니고 숫자도 가능하다
+
+### STEP1
+
+```JSX
+const arr = [10, 20, 30, 40, 50]
+
+function App() {
+  return (
+    <>
+      {/* js 코드이므로 중괄호로 감싸야 함 - 키값을 주지 않았으므로 에러 발생*/}
+      {/* {arr.map(v => <p>{v}</p>)} */}
+
+      {/* 키값을 줬으므로 에러 발생 X */}
+      {arr.map(v => <p key={v.toString()}>{v}</p>)}
+    </>
+  );
+}
+
+export default App;
+```
+
+### STEP2 - 조건부 렌더링
+
+- 조건에 따라 다른것을 렌더링함
+
+```JSX
+
+/* 조건부렌더링 */
+const value = 2
+
+function App() {
+  if (value === 1) {
+    return <h1>hello 1</h1>
+  } else if (value === 2) {
+    return <h1>hello 2</h1>
+  } else if (value === 3) {
+    return <h1>hello 3</h1>
+  }
+}
+
+export default App;
+```
+
+<br>
+
+## 11. 스타일 적용하기
+
+- reset은 글로벌 스타일로 한번만 사용함
+
+### step3
+
+- styled-components 설치하기
+
+```Bash
+npm install styled-components
+```
+
+- reset 설치하기
+
+```Bash
+npm i styled-reset
+```
+
+```jsx
+import reset from "styled-reset";
+import styled from "styled-components";
+
+const ResetStyleh2 = styled.div`
+  margin: 40px;
+`;
+
+// 리셋을 꼭 글로벌로 사용할 필요는 없다
+```
+
+### <></>
+
+- fragment
+- 예제
+
+```jsx
+import styled from "styled-components";
+
+const DivBlue = styled.div`
+  color: blue;
+`;
+
+const DivRed = styled.div`
+  color: red;
+`;
+
+function App() {
+  return (
+    <>
+      <DivBlue>hello</DivBlue>
+      <DivRed>hello</DivRed>
+    </>
+  );
+}
+
+export default App;
+```
+
+- 예제2
+
+```jsx
+const DivRed = styled.div`
+  color: red;
+  font-size: ${({ size }) => size + "px"};
+  border: ${({ border }) => border.join(" ")};
+`;
+
+export default function App() {
+  return (
+    <div>
+      <DivRed border={["1px", "solid", "blue"]} size={32}>
+        안녕
+      </DivRed>
+    </div>
+  );
+}
+```
+
+<br><br>
+
+# props에 따른 조건부 스타일
+
+- 교재에 있는 예제는 어려우므로 수업 때 한 에제를 잘 알아둘 것
+- [예제](./React/025/my-app/src/App%20copy%206.js)
+
+<br>
+
+# CSS 확장
+
+```JSX
+/* CSS 확장 */
+import styled, { css } from 'styled-components'
+
+const One = css`
+  color: red;
+`
+
+const Two = css`
+  font-size: 32px;
+`
+
+const Three = styled.div`
+  ${One}
+  ${Two}
+`
+
+
+function App() {
+  return (
+    <>
+      <Three>10</Three>
+    </>
+  )
+}
+
+export default App;
+```
+
+# module CSS
+
+- 예제가 어려우니 수업시간 예제를 잘 숙지할 것
+
+- 모듈로 만들어주면 서로 간섭을 안한다!
+
+- 독립적인 모듈형태로 만들어 주고 싶을 때 사용
+
+# 추가내용
+
+## node_modules
+
+- `npm i`명령어를 통해 얘만 설치할 수 있음
+
+## 제일 중요한 형태
+
+```jsx
+import styled from "styled-components";
+
+const ContentsDivOne = styled.div`
+  color: red;
+`;
+
+const ContentsDivTwo = styled.div`
+  color: green;
+`;
+
+const ContentsDivThree = styled.div`
+  color: blue;
+`;
+
+const SectionTitle = styled.h2`
+  color: dodgerblue;
+  font-size: 32px;
+`;
+
+function App() {
+  return (
+    <>
+      <ContentsDivOne>hello world</ContentsDivOne>
+      <ContentsDivTwo>hello world</ContentsDivTwo>
+      <ContentsDivThree>hello world</ContentsDivThree>
+      <SectionTitle>hello world</SectionTitle>
+    </>
+  );
+}
+
+export default App;
+```
+
+<br>
+
+# 합성 컴포넌트
+
+- `npm install styled-components`: styled components 설치
+- ㅁ

@@ -409,5 +409,23 @@ object.addEventListener("click", myScript);
 ### window 객체에 "onclick" 이벤트 할당하기
 
 ```html
+<html>
+  <body>
+    <h1>HTML DOM Events</h1>
+    <p>Click anywhere in this window to change the background color of body</p>
+    <script>
+      window.onclick = myFunc;
+      // window: 현재 스크립트가 작동 중인 창
+      // 윈도우 갳: 브라우저에서 열린 창
+      // 탭 기능이 있는 브라우저에서는 각각의 탭을 각각의 Window 객체로 나타냄
 
+      function myFunc() {
+        document.getElementByTagName("BODY")[0].style.backgroundcolor =
+          "yellow";
+      }
+
+      // getElementsByTagName: 엘리먼트의 HTMLCollection과 주어진 태그명을 반환함
+    </script>
+  </body>
+</html>
 ```
