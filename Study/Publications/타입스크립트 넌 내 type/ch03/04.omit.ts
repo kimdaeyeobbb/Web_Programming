@@ -1,12 +1,12 @@
 interface Student {
   name: string;
   grade: number;
-  isAdult: boolean;
-  gender: "male" | "female";
+  isAdult123: boolean;
+  gender123: "male" | "female";
 }
 
-let person: Omit<Student, "isAdult" | "gender"> = {
+let person123: Omit<Student, "isAdult" | "gender"> = {
   name: "danny",
   grade: 4,
-  isAdult: true, // error
+  isAdult123: true, // error
 };

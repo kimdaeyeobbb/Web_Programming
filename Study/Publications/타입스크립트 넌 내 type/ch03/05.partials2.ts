@@ -5,10 +5,10 @@ interface Student {
   gender: "male" | "female";
 }
 
-let personA: Partial<Student> = {
+let personA1111: Partial<Student> = {
   name: "danny",
   grade: 4,
 };
 
-console.log(personA.name);
-console.log(personA.grade);
+console.log(personA1111.name);
+console.log(personA1111.grade);
