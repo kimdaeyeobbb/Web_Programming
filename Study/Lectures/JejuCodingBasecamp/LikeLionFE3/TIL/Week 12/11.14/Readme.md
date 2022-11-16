@@ -536,3 +536,7 @@ myBtn.addEventListener("click", function () {
 5. 주석 노드 (comment node)
 
    - 주석을 나타내주는 노드
+
+<br><br>
+
+## 구조분해할당
