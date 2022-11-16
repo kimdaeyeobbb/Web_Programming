@@ -20,6 +20,10 @@
 # <ProductList/>와 <ProductList><ProductList/>의 차이점?
 
 - virtualDOM?
+- [Virtual DOM 참고자료 1](https://www.youtube.com/watch?v=1ojA5mLWts8&ab_channel=%EC%96%84%ED%8C%8D%ED%95%9C%EC%BD%94%EB%94%A9%EC%82%AC%EC%A0%84)
+- [Virtual DOM 참고자료 2](https://www.youtube.com/watch?v=PN_WmsgbQCo&ab_channel=%EC%9A%B0%EC%95%84%ED%95%9CTech)
+- [Virtual DOM 참고자료 3](https://www.youtube.com/watch?v=6rDBqVHSbgM&ab_channel=%EC%9A%B0%EC%95%84%ED%95%9CTech)
+- [Virtual DOM 참고자료 4](https://edu.goorm.io/learn/lecture/16422/%EA%B0%80%EC%9E%A5-%ED%95%AB%ED%95%9C-fe-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-react-%EA%B0%80%EC%A7%80%EA%B3%A0-%EB%86%80%EC%95%84%EB%B3%B4%EA%B8%B0/lesson/784014/react%EC%9D%98-%ED%8A%B9%EC%A7%95-%EB%B0%8F-%EC%9E%A5%EC%A0%90)
 
 # 참고자료
 
