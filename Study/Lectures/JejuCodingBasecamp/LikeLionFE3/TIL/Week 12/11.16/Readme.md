@@ -51,4 +51,66 @@
 - Virtual DOM: 경량화된 Object 자체
 
 - 리액트의 장점: 리액트는 경량화된 Object를 활용한다
--
+
+<br>
+
+# children으로 들어오지 않는 이유
+
+- ............보충 요망
+
+<br>
+
+# 030- 조언
+
+- 오늘처럼 이렇게 깊게 들어갈 이유가 없음 (리액트 알고리즘을 다 뜯어본것이므로)
+- 성능이슈가 생기면 그때 성능 이슈에 대한 해결책을 찾으면 되는것임
+- 교재 목차에도 없는걸 한것임
+
+<br>
+
+# 리액트의 정체
+
+- 경량화된 Object
+
+<br>
+
+# 028 부분 다시 복습함
+
+# 리액트 UI 라이브러리
+
+- [참고자료](https://usecode.pw/10-best-react-ui-library/)
+
+# 중요!!! 참고사이트
+
+- [참고자료](https://mui.com/material-ui/react-card/)
+
+# url
+
+- url은 대소문자를 가리지 않음
+
+# rest api
+
+- rest api를 지키면서 개발하는 회사는 거의 없다고 보면 됨
+
+# URL 구조
+
+## 프론트엔드의 URL 구조
+
+```
+// 아래의 것들은 하나의 페이지에서 이동함
+
+hojun.com/
+hojun.com/product/1
+hojun.com/cart
+hojun.com/buy
+```
+
+## 백엔드의 URL 구조
+
+```
+// 백엔드 라우팅
+// 들어오는 값에 따라서 어떤값을 넘겨줘야할지가 다름
+
+http://test.api.weniv.co.kr/mall   // 제품정보를 받아갈 수 있습니다
+http://test.api.weniv.co.kr/asset/img/1/thumbnailimg.jpg   // 여기서는 제품의 이미지를 받아갈 수 있습니다
+```
