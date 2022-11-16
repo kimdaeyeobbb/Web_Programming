@@ -1,61 +1,51 @@
-import styled from "styled-components";
+// 참고사이트: https://mui.com/material-ui/react-card/
+function Card(props) {
+  return (
+    <section>
+      <img src="http://test.api.weniv.co.kr/asset/img/1/thumbnailImg.jpg" alt="" />
+      <h2>One - TITLE</h2>
+      <h3>{props.title}</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore reprehenderit ipsam quas, temporibus eius est, porro ex repudiandae sed illum voluptatem, nemo dolorem corporis iusto sapiente facere! Illo, quae. Consequatur.</p>
+      {props.children}
+    </section>
+  )
 
-const CardDiv = styled.div`
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid #c4c4c4;
-  margin-bottom: 20px;
-  width: 200px;
-`;
+}
 
-const CardOne = (props) => {
+function One() {
   return (
     <>
-      <CardDiv>
-        <h3>챌린지 설정</h3>
-        <hr />
-        <button>초기화</button>
-        <button>저장하기</button>
-      </CardDiv>
+      <a href="#">SHARE </a>
+
+      <a href="#">LEARN MORE</a>
+      <hr />
     </>
-  );
-};
+  )
+}
 
-const CardDivTwo = styled.div`
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid #c4c4c4;
-  margin-bottom: 20px;
-  width: 400px;
-`;
+function Two() {
+  return (
+    <hr />
+  )
+}
 
-const CardTwo = (props) => {
+function Three() {
   return (
     <>
-      <CardDivTwo>
-        <h3>서비스 공유하기</h3>
-        <hr />
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque ut
-          eveniet, laudantium, deleniti autem sequi molestias magni quia,
-          aliquam et praesentium nostrum dolores culpa cupiditate unde
-          doloremque labore beatae accusamus.
-        </p>
-        <div>
-          <button>이미지 저장</button>
-          <button>트위터</button>
-          <button>페이스북</button>
-        </div>
-      </CardDivTwo>
+      <a href='#'>SHARE</a>
+      <hr />
     </>
-  );
-};
+  )
+}
+
 
 function App() {
   return (
     <>
-      <CardOne />
-      <CardTwo />
+      {/* 여기를 카드로 감싸는 것이 힌트 */}
+      <Card title="One (props이용)"><One /></Card>
+      <Card title="Two (props이용)"><Two /></Card>
+      <Card title="Three (props이용)"><Three /></Card>
     </>
   );
 }
