@@ -142,3 +142,7 @@ useEffect(()=>{
 
 - 컴포넌트의 태그에 직접 접근하고 싶을 때 사용<br>
   (querySelector, getElementById와 유사한 역할)<br>
+
+## useState
+
+- useState로 만든 변수는 랜더링 될 때 값이 변경됨
