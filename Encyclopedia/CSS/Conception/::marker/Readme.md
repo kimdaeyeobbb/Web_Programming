@@ -68,3 +68,15 @@ ul {
 }
 ```
 
+
+### 관련 자료
+
+- https://developer.mozilla.org/en-US/docs/Web/CSS/::marker
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul
+- https://www.w3schools.com/tags/tag_ul.asp
+- https://www.w3schools.com/tags/tag_li.asp
+
+
+
+
