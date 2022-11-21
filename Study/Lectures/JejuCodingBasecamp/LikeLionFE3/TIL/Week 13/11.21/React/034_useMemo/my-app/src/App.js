@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 // useRef를 사용하였으므로 컨트롤하는 요소가 있을 것임을 짐작할 수 있음
 
 export default function App() {
@@ -7,6 +7,7 @@ export default function App() {
   const [userInfo, setUserInfo] = useState([]); // 빈 배열로 초기화
   const [name, setName] = useState("");
   const [id, setId] = useState("");
+  const n = useMemo(() => getNum(userInfo), [userInfo]);
 
   function handleInputName(e) {
     //e: event
@@ -76,7 +77,7 @@ export default function App() {
       </ul>
 
       {/* getNum에서 부하가 걸리는 것 중 저장해둘 필요가 있을 것임 */}
-      <span>{getNum(userInfo)}</span>
+      <span>{n}</span>
     </>
   );
 }
