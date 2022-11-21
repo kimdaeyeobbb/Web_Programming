@@ -1,69 +1,38 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 
 function App() {
-  const [num, setNum] = useState(0);
-
-  const handleonClick = () => {
-    setNum(num + 1);
-  };
-
-  useLayoutEffect(() => {
-    console.log("useLayoutEffect 1");
-    return () => {
-      console.log("useLayoutEffect return_1");
-    };
-  }, []);
-
-  useLayoutEffect(() => {
-    console.log("useLayoutEffect 2");
-    return () => {
-      console.log("useLayoutEffect return_2");
-    };
-  });
-
-  useLayoutEffect(() => {
-    console.log("useLayoutEffect 3");
-    return () => {
-      console.log("useLayoutEffect return_3");
-    };
-  }, [num]);
+  const [value, setValue] = useState(100);
 
   useEffect(() => {
-    console.log("useEffect 1");
-    return () => {
-      console.log("useEffect return_1");
-    };
-  }, []);
+    // useEffect는 페인팅 된 다음 실행됨
+    if (value >= 1000) {
+      setValue(300);
+    }
+  }, [value]); // value를 감시하고 있음
 
-  useEffect(() => {
-    console.log("useEffect 2");
-    return () => {
-      console.log("useEffect return_2");
-    };
-  });
-
-  useEffect(() => {
-    console.log("useEffect 3");
-    return () => {
-      console.log("useEffect return_3");
-    };
-  }, [num]);
-
-  return <button onClick={handleonClick}>{num}</button>;
+  return (
+    // 여기가 먼저 깔리고 나서 useEffect가 실행되는 것임
+    <div>
+      {/* <div style={{ width: value, height: value, backgroundColor: 'blue', transition: '1s all' }}></div> */}
+      <div
+        style={{ width: value, height: value, backgroundColor: "blue" }}
+      ></div>
+      <button
+        onClick={() => {
+          setValue(1000);
+        }}
+      >
+        커져랏!
+      </button>
+      <button
+        onClick={() => {
+          setValue(200);
+        }}
+      >
+        작아져랏!
+      </button>
+    </div>
+  );
 }
 
-const Wrap = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const handleClick = () => setIsVisible(!isVisible);
-  return (
-    <>
-      <button onClick={handleClick}>
-        {isVisible ? "언마운트시키기" : "마운트시키기"}
-      </button>
-      <br></br>
-      {isVisible && <App />}
-    </>
-  );
-};
-
-export default Wrap;
+export default App;
