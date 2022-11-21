@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON 복습1</title>
+    <style>
+      table,
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        border: solid 1px black;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="renderTable(userData)">회원정보 로딩</button>
+    <table style="width: 100%" id="infoTable">
+      <thead>
+        <th onclick="sort('_id')" style="width: 15%">id</th>
+        <th onclick="sort('index')" style="width: 15%">index</th>
+        <th onclick="sort('guid')" style="width: 15%">guid</th>
+        <th onclick="sort('age')" style="width: 15%">age</th>
+        <th onclick="sort('name')" style="width: 15%">name</th>
+        <th onclick="sort('gender')" style="width: 15%">gender</th>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script>
+      let userData = [
+        {
+          _id: "637b73381cb4e72690a7427f",
+          index: 0,
+          guid: "7aff9487-ecaa-47da-95ce-dfdce208d66e",
+          age: 21,
+          name: "Cobb Lancaster",
+          gender: "male",
+        },
+        {
+          _id: "637b7338eb1f3f2b7b81d376",
+          index: 1,
+          guid: "af4a2ddf-aab0-4ebc-9089-7ca60b4cc095",
+          age: 31,
+          name: "Rivas Rodgers",
+          gender: "male",
+        },
+        {
+          _id: "637b73386d9d8da5de953617",
+          index: 2,
+          guid: "12fb025a-9481-44bf-b502-5c4b601f4a3e",
+          age: 24,
+          name: "Juanita Slater",
+          gender: "female",
+        },
+        {
+          _id: "637b7338c55b214c6f9b316c",
+          index: 3,
+          guid: "1c008cf1-c8e4-4cf8-ade7-2b3c8b0b5f1d",
+          age: 22,
+          name: "Greer Kerr",
+          gender: "male",
+        },
+        {
+          _id: "637b7338c19b24213927e469",
+          index: 4,
+          guid: "13fb38b7-780e-49ad-9583-0b75d06f7558",
+          age: 30,
+          name: "Sloan Browning",
+          gender: "male",
+        },
+        {
+          _id: "637b73387077ed7d572ca03e",
+          index: 5,
+          guid: "85976013-9200-4d3c-ae89-39190749e0dc",
+          age: 37,
+          name: "Frye Case",
+          gender: "male",
+        },
+        {
+          _id: "637b7338ae3a60c8caa932a4",
+          index: 6,
+          guid: "9ddd3c66-2d32-4353-8319-6726409bc747",
+          age: 32,
+          name: "Augusta Lang",
+          gender: "female",
+        },
+      ];
+
+      /* sort */
+      var click = true;
+
+      function sort(key) {
+        if (click) {
+          click = false;
+          let sortedData = userData.sort((a, b) =>
+            a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0
+          );
+          renderTable(sortedData);
+        } else {
+          click = true;
+          let sortedData = userData.sort((a, b) =>
+            a[key] > b[key] ? -1 : a[key] < b[key] ? 1 : 0
+          );
+          renderTable(sortedData);
+        }
+      }
+
+      /* renderTable */
+
+      function renderTable(userData) {
+        // console.log(userData[0]);
+        let tableBodyData = [];
+        for (const user of userData) {
+          // 템플릿 리터럴 사용
+          tableBodyData.push(`
+            <tr>
+              <td>${user._id}</td>
+              <td>${user.index}</td>
+              <td>${user.guid}</td>
+              <td>${user.age}</td>
+              <td>${user.name}</td>
+              <td>${user.gender}</td>
+            </tr> 
+          `);
+        }
+
+        console.log(tableBodyData.join("")); // 데이터가 제대로 들어왔나 확인
+        document.querySelector("#infoTable > tbody").innerHTML =
+          tableBodyData.join(""); //infoTable 하위의 tbody에게 데이터를 쏴줌줌
+      }
+    </script>
+  </body>
+</html>
