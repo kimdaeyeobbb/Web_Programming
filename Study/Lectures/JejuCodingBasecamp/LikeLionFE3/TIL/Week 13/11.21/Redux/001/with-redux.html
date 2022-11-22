@@ -1,61 +1,69 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.1/redux.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <style>
-        .container {
-            border: 5px solid black;
-            padding: 10px;
-        }
+      .container {
+        border: 5px solid black;
+        padding: 10px;
+      }
     </style>
     <div id="red"></div>
     <div id="blue"></div>
     <div id="green"></div>
+
+    <!-- 추가한 내용 -->
+    <div id="pink"></div>
+    <div id="grey"></div>
     <script>
-        // state는 현재 상태, action은 주문 받은 것! 
-        function reducer(state, action) {
-            console.log(state, action);
-            if (state === undefined) {
-                return { color: 'yellow' }
-            }
-            var newState;
-            if (action.type === 'CHANGE_COLOR') {
-                //복제해야 합니다. 그냥 {color:'red'}이런 식으로 리턴해줘도 되긴 하는데 리덕스의 고급기능을 쓰지 못합니다.
-                // Object.assign({}, 빈객체에 복제할 값1, 빈객체에 복제할 값2...);
-                console.log(state)
-                newState = Object.assign({}, state, { color: action.color });
-            }
-            return newState;
+      // state는 현재 상태, action은 주문 받은 것!
+      function reducer(state, action) {
+        // 처음에는 state는 초기화되지 않은 상태로 들어옴
+        console.log(state, action);
+        if (state === undefined) {
+          // 처음에 초기화되지 않은 상태로 들어오면 초기화를 시켜주는 과정
+          return { color: "yellow" };
         }
-        // Redux는 cdn으로 생깁니다.
-        var store = Redux.createStore(
-            reducer,
-            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // redux dev tools를 사용하기 위한 코드
-        );
-        function red() {
-            var state = store.getState();
-            //type은 반드시 있어야 합니다.
-            // 바뀔 때마다 console에 store.getState()를 실행해보세요.
-            document.querySelector('#red').innerHTML = `
+        var newState;
+        if (action.type === "CHANGE_COLOR") {
+          // 타입으로는 커피등으 '종류'가  들어옴
+          //복제해야 합니다. 그냥 {color:'red'}이런 식으로 리턴해줘도 되긴 하는데 리덕스의 고급기능을 쓰지 못합니다.
+          // Object.assign({}, 빈객체에 복제할 값1, 빈객체에 복제할 값2...);
+          console.log(state);
+          //   newState = Object.assign({}, state, { color: action.color });   // 구문법
+          newState = { ...state, color: action.color }; // 신문법. 리듀서에 의해 color가 action.color (입력받은 값)로 변경
+        }
+        return newState;
+      }
+      // Redux는 cdn으로 생깁니다.
+      var store = Redux.createStore(
+        reducer,
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__() // redux dev tools를 사용하기 위한 코드 (얘가 없다면 redux dev tools를 사용할 수 없음)
+      );
+      function red() {
+        var state = store.getState(); // getState로 state를 읽어올 수 있음
+        //type은 반드시 있어야 합니다.
+        // 바뀔 때마다 console에 store.getState()를 실행해보세요.
+        document.querySelector("#red").innerHTML = `
                 <div class="container" id="component_red" style="background-color:${state.color}">
                         <h1>red</h1>
                         <input type="button" value="fire" onclick="
-                            store.dispatch({type:'CHANGE_COLOR', color:'red'});
+                            store.dispatch({type:'CHANGE_COLOR', color:'red'});     // 리듀서에 들어가는 값 (action으로 들어감). 디스패치(점원)가 얘를 전달시켜 줌
                         ">
                 </div>
             `;
-        }
-        // 값이 바뀔 때마다 red 함수를 호출
-        store.subscribe(red);
-        red();
+      }
+      // 값이 바뀔 때마다 red 함수를 호출
+      store.subscribe(red); // store에 값이 바뀔때마다 subscribe한 컴포넌트인 red에 전달. store의 값만 변경되고 실행됨
+      red(); // 한번만 실행되고 끝나는 함수였으나 store.subscribe에 의해 값이 바뀔 때마다 red 함수를 호출함
 
-        function blue() {
-            var state = store.getState();
-            document.querySelector('#blue').innerHTML = `
+      function blue() {
+        var state = store.getState();
+        document.querySelector("#blue").innerHTML = `
                 <div class="container" id="component_blue" style="background-color:${state.color}">
                     <h1>blue</h1>
                     <input type="button" value="fire" onclick="
@@ -63,13 +71,13 @@
                     ">
                 </div>
             `;
-        }
-        store.subscribe(blue);
-        blue();
+      }
+      store.subscribe(blue);
+      blue();
 
-        function green() {
-            var state = store.getState();
-            document.querySelector('#green').innerHTML = `
+      function green() {
+        var state = store.getState();
+        document.querySelector("#green").innerHTML = `
                 <div class="container" id="component_green" style="background-color:${state.color}">
                     <h1>green</h1>
                     <input type="button" value="fire" onclick="
@@ -77,11 +85,38 @@
                     ">
                 </div>
             `;
-        }
-        store.subscribe(green);
-        green();
+      }
+      store.subscribe(green);
+      green();
 
+      // 추가한내용
+      function pink() {
+        var state = store.getState();
+        document.querySelector("#pink").innerHTML = `
+                <div class="container" id="component_pink" style="background-color:${state.color}">
+                    <h1>pink</h1>
+                    <input type="button" value="fire" onclick="
+                        store.dispatch({type:'CHANGE_COLOR', color:'pink'});
+                    ">
+                </div>
+            `;
+      }
+      store.subscribe(pink);
+      pink();
+
+      function grey() {
+        var state = store.getState();
+        document.querySelector("#grey").innerHTML = `
+                <div class="container" id="component_grey" style="background-color:${state.color}">
+                    <h1>grey</h1>
+                    <input type="button" value="fire" onclick="
+                        store.dispatch({type:'CHANGE_COLOR', color:'grey'});
+                    ">
+                </div>
+            `;
+      }
+      store.subscribe(grey);
+      grey();
     </script>
-</body>
-
+  </body>
 </html>
