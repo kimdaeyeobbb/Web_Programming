@@ -3,6 +3,13 @@ import axios from "axios";
 import { useEffect } from "react";
 
 export default function Product() {
+  // - HTTP 메서드 지원
+  // - axios.get(url, conf)
+  // - axios.delete(url, conf)
+  // - axios.post(url, data, conf)
+  // - axios.put(url, data, conf)
+  // - axios.patch(url, data, conf)
+
   //   최초의 한번만 실행하게 만듦
   // axios 방법
   useEffect(() => {
