@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로컬스토리지 예제1</title>
+  </head>
+  <body>
+    <script>
+      const memo = [];
+      memo.push("메모1");
+      memo.push("메모2");
+      localStorage.setItem("메모", memo);
+
+      const memo2 = {};
+      // 저장할 떄 문자열로 변환해서 저장해야 함
+      memo2["one"] = "메모1";
+      memo2["two"] = "메모2";
+      localStorage.setItem("메모 두번째 예제", memo2);
+
+      console.log(localStorage.getItem("메모"));
+      console.log(localStorage.getItem("메모").split(","));
+
+      localStorage.setItem("one", "하나");
+      localStorage.setItem("two", "둘");
+      console.log(localStorage.getItem("one"));
+      console.log(localStorage.getItem("two"));
+
+      /* stringify 예제 */
+      const memoEX3 = {};
+      memoEX3["first"] = "첫번째 메모";
+      memoEX3["second"] = "두번째 메모";
+      console.log(JSON.stringify(memoEX3));
+
+      localStorage.setItem("두번째 메모", JSON.stringify(memoEX3));
+      JSON.stringify(memoEX3);
+
+      /* JSON 형식 직렬화&역직렬화 */
+      console.log(JSON.parse(localStorage.getItem("두번째 메모")));
+    </script>
+  </body>
+</html>

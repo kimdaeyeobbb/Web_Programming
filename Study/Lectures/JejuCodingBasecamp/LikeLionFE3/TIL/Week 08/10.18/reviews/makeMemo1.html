@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메모장 만들기 - 로컬스토리지 이용</title>
+  </head>
+  <body>
+    <main>
+      <section>
+        <div>
+          <div>메모장 제목</div>
+          <input type="text" name="" id="title" />
+        </div>
+        <br />
+        <div>
+          <div>메모장 내용</div>
+          <textarea name="" id="content" cols="30" rows="10"></textarea>
+        </div>
+        <button onclick="saveNote()">메모</button>
+      </section>
+      <section id="display"></section>
+    </main>
+    <script>
+      let allMemo = JSON.parse(localStorage.getItem("allMemo"));
+      allMemo = allMemo ?? [];
+      render();
+
+      function saveNote() {
+        const title = document.getElementById("title").value;
+        const content = document.getElementById("content").value;
+
+        allMemo.push({ title, content, len: allMemo.length });
+
+        localStorage.setItem("allMemo", JSON.stringify(allMemo));
+        render();
+      }
+
+      // render는 모든 함수에 걸려있음
+      function render() {
+        const display = document.getElementById("display");
+        display.innerHTML = "";
+
+        for (const item of allMemo) {
+          const saveTitle = document.createElement("h2");
+          const saveContent = document.createElement("p");
+          const saveId = document.createElement("p"); // saveId를 구현해서 이것을 삭제할 수 있도록
+          const deleteMemoBtn = document.createElement("button");
+
+          saveTitle.textContent = item.title;
+          saveContent.textContent = item.content;
+          saveId.textContent = item.len + 1;
+          deleteMemoBtn.textContent = "삭제";
+          deleteMemoBtn.setAttribute("id", item.len); // id를 필터링 해서
+          deleteMemoBtn.setAttribute("onclick", "remove()");
+
+          display.appendChild(saveId);
+          display.appendChild(saveTitle);
+          display.appendChild(saveContent);
+          display.appendChild(deleteMemoBtn);
+        }
+      }
+
+      /* 아이디값을 찾아서 삭제 */
+      function remove() {
+        // remove에서 삭제할 수 있도록 함
+        // console.log(event.srcElement.id);
+        // console.log(allMemo)
+
+        const idx = allMemo.find((item) => item.len == event.srcElement.id);
+
+        if (idx) {
+          allMemo.splice(
+            // allMemo의 모든 요소를 순회
+            // item.len => id로 저장되었던 것을 넣음
+            // 삭제될 인덱스를 넣음. 1개.
+            allMemo.findIndex((item) => item.len == idx.len),
+            1
+          );
+        }
+
+        // 삭제된 것을 다시 로컬스토리지에 저장해놓음
+        localStorage.setItem("allMemo", JSON.stringify(allMemo));
+
+        // 다시 화면에 뿌려줌
+        render();
+      }
+    </script>
+  </body>
+</html>
