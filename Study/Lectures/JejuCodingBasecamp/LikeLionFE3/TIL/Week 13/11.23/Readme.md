@@ -98,4 +98,64 @@ npm i axios
   - success 메시지를 통해 제대로 전송이 되었는지만 확인이 가능함
 
 - 쿠폰 기능 추가하기
-  - ㅁ
+
+# 폴더구조
+
+- 폴더 내에 아무것도 없으면 깃허브에 올라가지 않음
+
+- `.keep` : 숨파일
+
+- `ls -al` : 숨김파일까지 확인
+
+# 업무 자동화
+
+- 회사에가서 자주 나오는 것을 세팅해서 업무 자동화 하면 이쁨받음.
+
+# mv
+
+- 파일 이름 바꾸는 명령어
+
+```bash
+$ mv Cart.css cart.css
+```
+
+# ~
+
+- 하나의 데이터마다 통신상에서 주고 받아야 하는 패킷이 있으므로~
+
+# 작업
+
+- 페이지 보면서 작업할 것
+
+# {...{}}
+
+- 예제1
+
+```js
+test = 'hello'
+test // 'hello'
+{test} //{test: 'hello'}
+{...test} // {0: 'h', 1: 'e', 2: 'l', 3: 'l', 4: 'o'}
+{...{test}} // {test: 'hello'}
+```
+
+- 예제2
+
+```js
+let thumbnailImg = 'asset/img/1/thumbnailImg.jpg'
+{thumbnailImg }   //{thumbnailImg: 'asset/img/1/thumbnailImg.jpg'}
+{...thumbnailImg}   //{0: 'a', 1: 's', 2: 's', 3: 'e', 4: 't', 5: '/', 6: 'i', 7: 'm', 8: 'g', 9: '/', 10: '1', 11: '/', 12: 't', 13: 'h', 14: 'u', 15: 'm', 16: 'b', 17: 'n', 18: 'a', 19: 'i', 20: 'l', 21: 'I', 22: 'm', 23: 'g', 24: '.', 25: 'j', 26: 'p', 27: 'g'}
+{...{thumbnailImg}}   //{thumbnailImg: 'asset/img/1/thumbnailImg.jpg'}
+```
+
+# e.currentTarget.classList
+
+- [참고자료](https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget)
+
+# 참고자료
+
+- [리액트 프로젝트 코드리뷰](https://paullabworkspace.notion.site/8f9d7e30fd6643da9e5123bf278127e8)
+- [아토믹 디자인을 활용한 디자인 시스템 도입기](https://fe-developers.kakaoent.com/2022/220505-how-page-part-use-atomic-design-system/)
+- [useEffect 완벽 가이드](https://overreacted.io/ko/a-complete-guide-to-useeffect/)
+- [React 디자인 패턴](https://woong-jae.com/react/220609-react-design-pattern)
+- [유용한 리액트 패턴](https://velog.io/@dnr6054/%EC%9C%A0%EC%9A%A9%ED%95%9C-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%8C%A8%ED%84%B4-5%EA%B0%80%EC%A7%80)
