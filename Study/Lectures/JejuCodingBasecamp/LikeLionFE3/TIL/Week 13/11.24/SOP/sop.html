@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOP- sop</title>
+  </head>
+  <body>
+    <h1>Hello sop</h1>
+
+    <!-- iframe으로 html불러올 수 있음 -->
+    <iframe src="./test.html" frameborder="0"></iframe>
+    <iframe
+      class="youtube"
+      width="1083"
+      height="609"
+      src="https://www.youtube.com/embed/4TWR90KJl84"
+      title="aespa 에스파 'Next Level' MV"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+
+    <script>
+      let x = document.querySelector(".test");
+      let y = document.querySelector(".youtube");
+
+      // x는 html. html이
+      x.addEventListener("load", () => {
+        console.log("same origin: ", x.contentDocument);
+        x.contentDocument.body.style.backgroundColor = "red";
+      });
+
+      // y는 유튜브 iframe
+      y.addEventListener("load", () => {
+        console.log("same origin: ", y.contentDocument);
+        y.contentDocument.body.style.backgroundColor = "red";
+      });
+    </script>
+  </body>
+</html>
