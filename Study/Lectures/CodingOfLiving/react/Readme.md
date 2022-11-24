@@ -606,3 +606,394 @@ export default function App(){
     const [mode, setMode] =
 }
 ```
+
+<br><br>
+
+# UPDATE
+
+- UPDATE = CREATE + READ
+
+- Update 기능은 상세보기 페이지로 들어갔을 때에만 노출이 되고, Welcome 페이지에서는 안보이는 것이 세련된 구성임
+
+```js
+let content = null; // 선언 및 초기화
+let contextControl = null; // 맥락적으로 노출이 되는 UI. READ 모드일 때에만 나오게 만들예정
+
+if (mode === "WELCOME") {
+  content = <Article title="Welcome" body="Hello, WEB MODE"></Article>;
+} else if (mode === "READ") {
+  let title,
+    body = null;
+  for (let i = 0; i < topics.length; i++) {
+    console.log(topics[i].id, id);
+    if (topics[i].id === id) {
+      title = topics[i].title;
+      body = topics[i].body;
+    }
+  }
+  content = <Article title={title} body={body}></Article>;
+  contextControl = (
+    <li>
+      <a href="/update">Update</a>
+    </li>
+  );
+  // contextControl이 READ 모드일때에만 나오게 만듦
+}
+```
+
+```js
+contextControl = (
+  <li>
+    <a href="/update">Update</a>
+  </li>
+);
+```
+
+- 얘를 READ 인 조건문 내에 삽입해서 contextControl이 READ 모드일때에만 나오게 만듦
+
+```js
+contextControl = (
+  <li>
+    <a href={"/update/" + id}>Update</a>
+  </li>
+);
+```
+
+- Update를 클릭 했을 때, Update의 고유한 아이디를 주소에 추가해줌
+- html 클릭시 url이 /update/1
+- css 클릭시 url이 /update/2
+- javascript 클릭시 url이 /update/3
+- 으로 바뀌게 만듦
+
+```js
+contextControl = (
+  <li>
+    <a
+      href={"/update/" + id}
+      onClick={(event) => {
+        event.preventDefault(); // 클릭을 막음
+        setMode("UPDATE"); // setMode로 업데이트로 이동하게 만듦
+      }}
+    >
+      Update
+    </a>
+  </li>
+);
+```
+
+- event.preventDefatul() : 클릭을 막음
+- setMode('UPDATE') : setMode로 업데이트로 이동하게 만듦
+
+```js
+content = <Article title={title} body={body}></Article>
+    contextControl = <li><a href={"/update/" + id} onClick={(event) => {
+      event.preventDefault();  // 클릭을 막음
+      setMode('UPDATE');  // setMode로 업데이트로 이동하게 만듦
+    }}>Update</a></li>
+    // contextControl이 READ 모드일때에만 나오게 만듦
+  } else if (mode === 'CREATE') {
+    content = <Create onCreate={(_title, _body) => {  // 컴포넌트를 이용하는 이용자가 생성버튼이 눌렸을 때 후속작업을 할 수 있는 인터페이스를 제공하고 싶음
+      // onCreate의 prop에 함수를 전달하면 create 버튼이 눌렸을 때 이 함수가 실행될 것이라고 사용자에게 고지
+      const newTopic = { id: nextId, title: _title, body: _body }
+      const newTopics = [...topics]   // 복제본 생성
+      newTopics.push(newTopic)
+      setTopics(newTopics)  // 원본 데이터인 topics와 새로 들어온 복제본이 같은지 판단을 해서 다르다면 컴포넌트를 다시 랜더링 해주게 됨
+      setMode('READ')   // 글의 상세페이지로 이동
+      setId(nextId);   // 지금 우리가 추가한 set아이디를 nextid로 지정
+      setNextId(nextId + 1);  // 다음에 글을 추가할 때를 대비
+    }}></Create>
+  } else if (mode === 'UPDATE'){ // 업데이트 모드일 경우
+    content = <Update></Update>// 업데이트 컴포넌트를 출력
+  }
+```
+
+- 업데이트 모드일 경우 업데이트 컴포넌트를 출력
+
+```js
+function Update(props) {
+  return (
+    <article>
+      <h2>Update</h2>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          const title = event.target.title.value;
+          const body = event.target.body.value;
+          props.onUpdate(title, body);
+        }}
+      >
+        <p>
+          <input type="text" name="title" placeholder="title" />
+        </p>
+        <p>
+          <textarea name="body" placeholder="body"></textarea>
+        </p>
+        <p>
+          <input type="submit" value="Update"></input>
+        </p>
+      </form>
+    </article>
+  );
+}
+```
+
+- 업데이트 컴포넌트
+- Update 컴포넌트를 사용할 때, onUpdate라는 prop을 전달해야 함.
+
+```js
+else if (mode === 'UPDATE') { // 업데이트 모드일 경우
+    let title, body = null;
+    for (let i = 0; i < topics.length; i++) {
+      // console.log(topics[i].id, id)
+      if (topics[i].id === id) {
+        title = topics[i].title;
+        body = topics[i].body;
+      }
+    }
+    content = <Update title={title} body={body} onUpdate={(title, body) => {
+      // 업데이트 컴포넌트로 title과 body의 값이 흘러들어감.
+    }}></Update>// 업데이트 컴포넌트를 출력
+  }
+```
+
+- 기본적으로 Update는 수정이므로 form에 기존의 내용을 가지고 있을 필요가 있음
+
+- `<Update title={} body={} onUpdate = {(title, body) => {}}>` : 기존의 내용을 가지고 있기 위해서는 Update 컴포넌트가 title과 body의 값을 기본적으로 가지고 있을 필요가 있음
+
+- Update 컴포넌트의 title과 body는 READmode일떄 알아 낼 수 있었음
+
+```js
+function Update(props) {
+  return (
+    <article>
+      <h2>Update</h2>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          const title = event.target.title.value;
+          const body = event.target.body.value;
+          props.onUpdate(title, body);
+        }}
+      >
+        {/* value ={props.title} => props를 통해 들어온 값을 title의 value값으로 넣음. */}
+        <p>
+          <input
+            type="text"
+            name="title"
+            placeholder="title"
+            value={props.title}
+          />
+        </p>
+        {/* body 값으로 props.body를 주면 본문이 나타남  */}
+        <p>
+          <textarea
+            name="body"
+            placeholder="body"
+            value={props.body}
+          ></textarea>
+        </p>
+        <p>
+          <input type="submit" value="Update"></input>
+        </p>
+      </form>
+    </article>
+  );
+}
+```
+
+- 리액트에서 props라는 값은 사용자가 컴포넌트로 전달하는 일종의 명령임.
+- 왕세시대의 `어명`같은 역할.
+- `<Update title={title}>`의 경우 {title}이 유저가 컴포넌트에 어명을 내리게 되는 것.
+
+- 값을 입력했다고 해서 우리가 입력한 값이 props의 title의 값을 바꾸고 있지 않음. => 따라서 input창 내에 값을 입력해도 아무값도 입력되지 않음
+
+```js
+function Update(props) {
+  const [title, setTitle] = useState(props.title); // props로 들어온 title을 state로 갈아탐
+  const [body, setBody] = useState(props.body);
+  return (
+    <article>
+      <h2>Update</h2>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          const title = event.target.title.value;
+          const body = event.target.body.value;
+          props.onUpdate(title, body);
+        }}
+      >
+        {/* value ={props.title} => props를 통해 들어온 값을 title의 value값으로 넣음. */}
+        <p>
+          <input type="text" name="title" placeholder="title" value={title} />
+        </p>
+        {/* body 값으로 props.body를 주면 본문이 나타남  */}
+        <p>
+          <textarea name="body" placeholder="body" value={body}></textarea>
+        </p>
+        <p>
+          <input type="submit" value="Update"></input>
+        </p>
+      </form>
+    </article>
+  );
+}
+```
+
+- 값이 입력되게 하기 위해서 prop을 state로 바꿀것
+- `prop` : 외부사용자가 내부로 전달하는 값
+- `state` : 내부자가 사용하는 데이터 => 컴포넌트 안에서 얼마든지 바꿀 수 있음
+
+- `onChange = {}`: input창에 값을 입력해도 값이 바뀌지 않음. input창에 연결되어있는 state가 바뀌지 않기 떄문임. 따라서 onChange 이벤트 사용해서 ~을 함. (html상: 마우스 포인터가 바깥쪽으로 빠져나갈 떄 onChange 호출. react상: 값을 입력할 때마다 onChange 호출.)
+
+```js
+function Update(props) {
+  const [title, setTitle] = useState(props.title); // props로 들어온 title을 state로 갈아탐
+  const [body, setBody] = useState(props.body);
+  return (
+    <article>
+      <h2>Update</h2>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          const title = event.target.title.value;
+          const body = event.target.body.value;
+          props.onUpdate(title, body);
+        }}
+      >
+        {/* value ={props.title} => props를 통해 들어온 값을 title의 value값으로 넣음. */}
+        <p>
+          <input
+            type="text"
+            name="title"
+            placeholder="title"
+            value={title}
+            onChange={(event) => {
+              console.log(event.target.value);
+              // 값을 입력 했을 때, 그 값이 무엇이냐를 알고 싶음.
+              // 이벤트 함수 안에서 trigger한 태그를 찾는 것은 tag이고 그것의 값은 value임.
+            }}
+          />
+        </p>
+        {/* body 값으로 props.body를 주면 본문이 나타남  */}
+        <p>
+          <textarea name="body" placeholder="body" value={body}></textarea>
+        </p>
+        <p>
+          <input type="submit" value="Update"></input>
+        </p>
+      </form>
+    </article>
+  );
+}
+```
+
+- ` const [title, setTitle] = useState(props.title);` : props로 들어온 title을 state로 갈아탐
+
+- `value = {title}` : 그리고 그 state를 value값으로 줬음
+
+- `onChange = {event => {}}` : state는 컴포넌트 안에서 바꿀 수 있음. 따라서 onChange에서 새로운 value로 키워드를 입력할 때마다, setTitle의 값을 지정함. 그러면 그떄마다 title의 값이 바뀌고 컴포넌트가 다시 렌더링 되면서 새로운 값이 value값으로 들어와서 바뀌게 됨.
+
+- `console.log(event.target.value)` : 값을 입력 했을 때, 그 값이 무엇이냐를 알고 싶음. 이벤트 함수 안에서 trigger한 태그를 찾는 것은 tag이고 그것의 값은 value임.
+
+```js
+<p>
+  <input
+    type="text"
+    name="title"
+    placeholder="title"
+    value={title}
+    onChange={(event) => {
+      // console.log(event.target.value)
+      // 값을 입력 했을 때, 그 값이 무엇이냐를 알고 싶음.
+      // 이벤트 함수 안에서 trigger한 태그를 찾는 것은 tag이고 그것의 값은 value임.
+      setTitle(event.target.value);
+    }}
+  />
+</p>
+```
+
+- `setTitle(event.targer.value)`: 우리가 획득한 방금 바뀐 값을 새로운 state로 바꿈.
+
+```js
+function Update(props) {
+  const [title, setTitle] = useState(props.title); // props로 들어온 title을 state로 갈아탐
+  const [body, setBody] = useState(props.body);
+  return (
+    <article>
+      <h2>Update</h2>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          const title = event.target.title.value;
+          const body = event.target.body.value;
+          props.onUpdate(title, body);
+        }}
+      >
+        {/* value ={props.title} => props를 통해 들어온 값을 title의 value값으로 넣음. */}
+        <p>
+          <input
+            type="text"
+            name="title"
+            placeholder="title"
+            value={title}
+            onChange={(event) => {
+              // console.log(event.target.value)
+              // 값을 입력 했을 때, 그 값이 무엇이냐를 알고 싶음.
+              // 이벤트 함수 안에서 trigger한 태그를 찾는 것은 tag이고 그것의 값은 value임.
+              setTitle(event.target.value);
+            }}
+          />
+        </p>
+        {/* body 값으로 props.body를 주면 본문이 나타남  */}
+        <p>
+          <textarea
+            name="body"
+            placeholder="body"
+            value={body}
+            onChange={(event) => {
+              setBody(event.target.value);
+            }}
+          ></textarea>
+        </p>
+        <p>
+          <input type="submit" value="Update"></input>
+        </p>
+      </form>
+    </article>
+  );
+}
+```
+
+```js
+<form onSubmit = {(event) => {
+  event.preventDefault();
+  const title = event.target.title.value;
+  const body = event.target.body.value;
+  props.onUpdate(title, body);
+}}>
+```
+
+- Update 버튼 클릭시 호출됨
+- 이후 title과 body값을 onUpdate로 전달함
+
+```js
+content = <Update title={title} body={body} onUpdate={(title, body) =>{
+  console.log(title, body);
+  const updatedTopic = {id: id, title: title, body: body}
+
+}}></Updaate>
+```
+
+- 새로운 title과 body의 변경된 값으로 topics를 변경하면 됨
+- READ를 하면 자연스럽게 id가 세팅되어 있을 것이므로 id state를 그대로 사용하면됨 (id: id 꼴로 사용)
+
+```js
+const newTopics = [...topics];
+```
+
+- 우리가 바꾸려고 하는 topics는 데이터가 객체이다. (배열이므로 그냥 수정하면 안되고 배열을 복제해서 사용할 것)
+
+## UPDATE 유의사항
+
+- 기존의 값이 value값으로 주입되었을 경우 prop에서 state로 갈아탄다.
+- 값이 바뀔때마다 바뀐 값을 state로 바꿔서 그 값을 다시 피드백 받아야 한다.

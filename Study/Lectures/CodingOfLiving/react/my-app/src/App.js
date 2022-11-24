@@ -78,6 +78,35 @@ function Create(props) {
   )
 }
 
+function Update(props) {
+  const [title, setTitle] = useState(props.title);   // props로 들어온 title을 state로 갈아탐
+  const [body, setBody] = useState(props.body);
+  return (
+    <article>
+      <h2>Update</h2>
+      <form onSubmit={(event) => {
+        event.preventDefault();
+        const title = event.target.title.value;
+        const body = event.target.body.value;
+        props.onUpdate(title, body);
+      }}>
+        {/* value ={props.title} => props를 통해 들어온 값을 title의 value값으로 넣음. */}
+        <p><input type="text" name="title" placeholder="title" value={title} onChange={(event) => {
+          // console.log(event.target.value)
+          // 값을 입력 했을 때, 그 값이 무엇이냐를 알고 싶음. 
+          // 이벤트 함수 안에서 trigger한 태그를 찾는 것은 tag이고 그것의 값은 value임. 
+          setTitle(event.target.value);
+        }} /></p>
+        {/* body 값으로 props.body를 주면 본문이 나타남  */}
+        <p><textarea name="body" placeholder="body" value={body} onChange={event => {
+          setBody(event.target.value);
+        }}></textarea></p>
+        <p><input type="submit" value="Update"></input></p>
+      </form>
+    </article>
+  )
+}
+
 
 export default function App() {
   // const _mode = useState('WELCOME');  // 상태가 리턴되게 만듦
@@ -93,19 +122,25 @@ export default function App() {
   ]);
 
   let content = null;   // 선언 및 초기화
+  let contextControl = null;   // 맥락적으로 노출이 되는 UI. READ 모드일 때에만 나오게 만들예정
 
   if (mode === 'WELCOME') {
     content = <Article title="Welcome" body="Hello, WEB MODE"></Article>
   } else if (mode === 'READ') {
     let title, body = null;
     for (let i = 0; i < topics.length; i++) {
-      console.log(topics[i].id, id)
+      // console.log(topics[i].id, id)
       if (topics[i].id === id) {
         title = topics[i].title;
         body = topics[i].body;
       }
     }
     content = <Article title={title} body={body}></Article>
+    contextControl = <li><a href={"/update/" + id} onClick={(event) => {
+      event.preventDefault();  // 클릭을 막음
+      setMode('UPDATE');  // setMode로 업데이트로 이동하게 만듦
+    }}>Update</a></li>
+    // contextControl이 READ 모드일때에만 나오게 만듦
   } else if (mode === 'CREATE') {
     content = <Create onCreate={(_title, _body) => {  // 컴포넌트를 이용하는 이용자가 생성버튼이 눌렸을 때 후속작업을 할 수 있는 인터페이스를 제공하고 싶음
       // onCreate의 prop에 함수를 전달하면 create 버튼이 눌렸을 때 이 함수가 실행될 것이라고 사용자에게 고지
@@ -117,6 +152,25 @@ export default function App() {
       setId(nextId);   // 지금 우리가 추가한 set아이디를 nextid로 지정 
       setNextId(nextId + 1);  // 다음에 글을 추가할 때를 대비 
     }}></Create>
+  } else if (mode === 'UPDATE') { // 업데이트 모드일 경우
+    let title, body = null;
+    for (let i = 0; i < topics.length; i++) {
+      // console.log(topics[i].id, id)
+      if (topics[i].id === id) {
+        title = topics[i].title;
+        body = topics[i].body;
+      }
+    }
+    content = <Update title={title} body={body} onUpdate={(title, body) => {
+      // 업데이트 컴포넌트로 title과 body의 값이 흘러들어감.
+      const newTopics = [...topics]
+      const updatedTopic = { id: id, title: title, body: body }
+      for (let i = 0; i < newTopics.length; i++) {  // 기존의 topics에서 아이디가 일치하는 것을 찾는 과정
+        newTopics[i] = updatedTopic;
+        break;
+      }
+      setTopics(newTopics)
+    }}></Update>// 업데이트 컴포넌트를 출력
   }
 
   return (
@@ -129,10 +183,15 @@ export default function App() {
         setId(_id)
       }} />
       {content}   {/* 내부의 값 */}
-      <a href="/create" onClick={event => {
-        event.preventDefault();
-        setMode('CREATE');
-      }}>Create</a> {/* 주소값을 create로 설정 */}
+      <ul>
+
+        <li><a href="/create" onClick={event => {
+          event.preventDefault();
+          setMode('CREATE');
+        }}>Create</a></li> {/* 주소값을 create로 설정 */}
+        {/* <li><a href="./update">Update</a></li> 얘 대신 아래에 contextControl 기재 */}
+        {contextControl}
+      </ul>
     </div>
   )
 }
