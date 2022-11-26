@@ -997,3 +997,55 @@ const newTopics = [...topics];
 
 - 기존의 값이 value값으로 주입되었을 경우 prop에서 state로 갈아탄다.
 - 값이 바뀔때마다 바뀐 값을 state로 바꿔서 그 값을 다시 피드백 받아야 한다.
+
+<br>
+
+# DELETE
+
+- Create, Update는 특정 페이지로 이동하기 때문에 link로 구성되어 있다
+- 반면에 DELETE는 게시글을 누르자마자 삭제할 것이므로, link를 쓰면 안되고 버튼을 사용해야 한다.
+
+- 리액트에서 태그를 다룰 때에는 하나의 태그 안에 있어야 한다. 그래서 제목이 없는 태그를 복수의 태그를 그룹화 하는 데 사용하기도 한다.
+
+```js
+contextControl = (
+  <>
+    <li>
+      <a
+        href={"/update/" + id}
+        onClick={(event) => {
+          event.preventDefault(); // 클릭을 막음
+          setMode("UPDATE"); // setMode로 업데이트로 이동하게 만듦
+        }}
+      >
+        Update
+      </a>
+    </li>
+  </>
+);
+```
+
+- 태그를 다룰 때에는 하나의 태그 안에 있어야 함
+- 복수의 태그를 그룹핑 할 목적으로 `<> </>`을 사용 => html코드상에서는 어떤 코드도 존재하지 않게 됨
+
+```js
+<li>
+  <input
+    type="button"
+    value="Delete"
+    onClick={() => {
+      const newTopics = [];
+      for (let i = 0; i < topics.length; i++) {
+        if (topics[i].id !== id) {
+          // topics[i]와 현재 선택된 id가 같지 않다면
+          newTopics.push(topics[i]);
+        }
+      }
+      setTopics(newTopics);
+      setMode(""); // 토픽을 삭제하고 나서는 상세보기로 갈 수 없음. welcome으로 가게 만듦듦
+    }}
+  />
+</li>
+```
+
+- 삭제할 대상은 topics 데이터임
