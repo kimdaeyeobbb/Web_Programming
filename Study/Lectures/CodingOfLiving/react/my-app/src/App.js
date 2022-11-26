@@ -136,10 +136,22 @@ export default function App() {
       }
     }
     content = <Article title={title} body={body}></Article>
-    contextControl = <li><a href={"/update/" + id} onClick={(event) => {
+    contextControl = <><li><a href={"/update/" + id} onClick={(event) => {
       event.preventDefault();  // 클릭을 막음
       setMode('UPDATE');  // setMode로 업데이트로 이동하게 만듦
     }}>Update</a></li>
+      <li><input type="button" value="Delete" onClick={() => {
+        const newTopics = []
+        for (let i = 0; i < topics.length; i++) {
+          if (topics[i].id !== id) {
+            // topics[i]와 현재 선택된 id가 같지 않다면
+            newTopics.push(topics[i])
+          }
+        }
+        setTopics(newTopics);
+        setMode('')  // 토픽을 삭제하고 나서는 상세보기로 갈 수 없음. welcome으로 가게 만듦듦
+      }} /></li>
+    </>
     // contextControl이 READ 모드일때에만 나오게 만듦
   } else if (mode === 'CREATE') {
     content = <Create onCreate={(_title, _body) => {  // 컴포넌트를 이용하는 이용자가 생성버튼이 눌렸을 때 후속작업을 할 수 있는 인터페이스를 제공하고 싶음
@@ -190,6 +202,8 @@ export default function App() {
           setMode('CREATE');
         }}>Create</a></li> {/* 주소값을 create로 설정 */}
         {/* <li><a href="./update">Update</a></li> 얘 대신 아래에 contextControl 기재 */}
+
+        {/* contextControl이라는 변수가 Read로 들어갔을 때 보여지는 UI가 담겨있음 */}
         {contextControl}
       </ul>
     </div>
