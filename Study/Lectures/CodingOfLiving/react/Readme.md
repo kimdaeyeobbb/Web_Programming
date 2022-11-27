@@ -37,7 +37,7 @@ reportWebVitals();
 - 코드 뜯어보기
   - `import App from "./App"` 에서 `App`은 `./App.js`에서 온것임 (.js라는 파일 확장자명이 생략된 것임)
   - `.`은 현재디렉토리를 의미함
-    - `ReactDOM` : 리액트 돔 패키지는 클라이언트단에서 앱을 초기화하는데 사용되는 클아이언트별 메서드를 제공함
+    - `ReactDOM` : 리액트 돔 패키지는 클라이언트단에서 앱을 초기화하는데 사용되는 클라이언트별 메서드를 제공함
     - `createRoot` : 제공된 컨테이너에 대한 React root를 생성하고 이를 반환함
 
 ## App.js
@@ -1049,3 +1049,26 @@ contextControl = (
 ```
 
 - 삭제할 대상은 topics 데이터임
+
+<br><br>
+
+# 추가 내용 정리
+
+## 리액트 규칙
+
+- 자바스크립트 값을 JSX 내부에서 사용할 때에는 중괄호로 감싸주어야 함
+
+```js
+function Nav() {
+  const 자바스크립트값은 = "이렇게 보여줘";
+  return <nav>{자바스크립트값은}</nav>;
+}
+
+export default function App() {
+  return (
+    <>
+      <Nav />
+    </>
+  );
+}
+```
