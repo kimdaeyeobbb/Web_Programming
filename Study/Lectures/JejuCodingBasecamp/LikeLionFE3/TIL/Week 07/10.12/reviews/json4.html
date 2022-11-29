@@ -1,0 +1,39 @@
+<!-- 참고사이트: https://test.api.weniv.co.kr/mall -->
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON 연습</title>
+    <link rel="stylesheet" href="./json4.css"
+  </head>
+  <body>
+    <table id="infoTable">
+      <thead>
+        <tr>
+          <th colspan="3">The table header</th>
+        </tr>
+        <tr class="sub">
+          <td>그림</td>
+          <td>제목</td>
+          <td>금액</td>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+
+    <br />
+    <div class="btn">
+      <button onclick="renderTable(apiData)">API 정보 로딩</button>
+    </div>
+    <br />
+    <br />
+    <hr />
+    <br />
+
+    <div id="main"></div>
+    <script src="./json4.js"></script>
+  </body>
+</html>
