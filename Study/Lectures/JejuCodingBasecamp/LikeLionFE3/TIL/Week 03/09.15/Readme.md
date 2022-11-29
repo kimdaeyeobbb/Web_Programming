@@ -4,7 +4,7 @@
 
 ```css
 /* 1) */
-div[class~='weniv'] {
+div[class~="weniv"] {
   color: red;
 }
 
@@ -80,12 +80,12 @@ $: 끝<br>
     <title>Document</title>
     <style>
       p::before {
-        content: '이번달 월급은 ';
+        content: "이번달 월급은 ";
       }
 
       /* p뒤에 요소를 넣을 거다 */
       p::after {
-        content: '만원';
+        content: "만원";
       }
     </style>
   </head>
@@ -122,9 +122,63 @@ $: 끝<br>
 
 ## flex
 
-- display 속성
+- 새로운 display 속성
 - 1차원 배열의 경우 flex를 먼저, 2차원 배열의 경우 grid를 먼저 고려하는게 좋다
 
 - 프로젝트에서 익스플로러를 몇 버전까지 호환할 것인지에 대해 PM과 논의해보아야 함
 
-- ㅁ
+- 블록 레벨 요소의 성질을 가지며 주로 부모의 속성을 통해 자식을 컨트롤 함<br>
+  (flex 적용이 된 부모 요소를 `flex-container`, 컨테이너 내부의 영향을 받는 자식들을 `flex-item` 라고 부름)
+
+- 직계자식까지만 영향을 미침
+
+### flex의 종류
+
+#### 1️⃣ display: flex
+
+- block level 요소의 성질을 지님
+- display: block과 같이 한 라인을 모두 점유하는 성질을 지님
+
+```css
+display: flex;
+```
+
+##### 예시
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <style>
+      ul {
+        display: flex;
+      }
+      li {
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </body>
+</html>
+```
+
+- body의 영역만큼 ul이 영역을 차지하고 있음
+- li도 block의 성질을 지니므로 flex를 해제하면 한 라인씩 차지하게 됨
+
+<br>
+
+#### :two: display: inline-flex;
+
+- `display: inline-flex`는 `display: inline-block` 처럼 컨테이너가 가지고 있는 자식들의 넓이 만큼만 넓이를 가짐
+
+```css
+display: inline-flex;
+```
