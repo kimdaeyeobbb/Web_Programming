@@ -1,4 +1,4 @@
-let userData = [
+const userData =
     [
         {
             "_id": "6383fcd64e4ac00671149c7c",
@@ -46,4 +46,41 @@ let userData = [
             "_pw": "<ReferenceError: object is not defined>"
         }
     ]
-]
+
+/* sort process */
+let click = true;
+function sort(key, jsonData) {
+    console.log(`jsonData: ${jsonData}`)
+    if (click) {
+        click = false;
+        let sortedData = jsonData.sort((a, b) => (a[key] < b[key] ? -1 : (a[key] > b[key] ? 1 : 0)))
+        renderTable(sortedData);
+    } else {
+        click = true;
+        let sortedData = jsonData.sort((a, b) => (a[key] > b[key] ? -1 : (a[key] < b[key] ? 1 : 0)))
+        renderTable(sortedData);
+    }
+}
+
+
+function renderTable(userData) {
+    // console.log(userData[0])
+    let tableBodyData = [];
+
+    for (const user of userData) {
+        // push 하고 싶은 데이터를 미리 넣어둠
+        tableBodyData.push(`
+        <tr>
+            <td>${user._id}</td>
+            <td>${user.index}</td>
+            <td>${user.guid}</td>
+            <td>${user.age}</td>
+            <td>${user.name}</td>
+            <td>${user.gender}</td>
+            <td>${user._pw}</td>
+        </tr>
+        `)
+    }
+    // console.log(tableBodyData.join(''))
+    document.querySelector('#infoTable > tbody').innerHTML = tableBodyData.join('')
+}
