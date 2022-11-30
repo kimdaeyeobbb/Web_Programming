@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANTI TDD</title>
+    <style>
+      article {
+        display: inline-block;
+        border: 3px solid black;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      .viewer {
+        font-size: 24px;
+        color: green;
+        margin: 50px 0;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <h2 class="viewer">hello!</h2>
+      <input type="text" class="inp-txt" />
+
+      <button class="btn-push" onclick="push()">적용</button>
+    </article>
+    <script>
+      let txt = "hello Lions!";
+      const viewer = document.querySelector(".viewer");
+      viewer.textContent = txt; // viewer의 기본컨텐츠가 hello lions!로 바뀜
+
+      function push() {
+        const inpTxt = document.querySelector(".inp-txt"); // 버튼을 누르면 inp-txt에 접근을 해서
+        viewer.textContent = inpTxt.value;
+      }
+
+      // 테스트가 가능하려면
+      /*
+      1. js코드가 ui에서 완전히 분리 되어야 함
+      2. 자바스크립트를 js파일로 분리합니다. (js파일을 기능별로 쪼개놓으면 테스트하기 편하)
+      3. 모든 기능은 함수로 구현함.
+      */
+    </script>
+  </body>
+</html>

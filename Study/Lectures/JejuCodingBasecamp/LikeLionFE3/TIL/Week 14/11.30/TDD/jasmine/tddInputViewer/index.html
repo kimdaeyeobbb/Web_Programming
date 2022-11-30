@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tddinputViewer</title>
+    <style>
+      article {
+        display: inline-block;
+        border: 3px solid black;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      .viewer {
+        font-size: 24px;
+        color: green;
+        margin: 50px 0;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <!-- 3가지 요소를 인스턴스 만들때 ~에 전달해야 함-->
+      <h2 class="viewer"></h2>
+      <input type="text" class="inp-txt" />
+      <button class="btn-push">적용</button>
+    </article>
+    <script src="textManager.js"></script>
+    <script src="viewManager.js"></script>
+    <script>
+      (() => {
+        // 전역공간에 나와있지 않도록 즉시 실행함수로 감싸줌
+
+        /* 우리가 필요로하는 요소들을 직접 선택 */
+        const viewerEl = document.querySelector(".viewer");
+        const inpTxt = document.querySelector(".inp-txt");
+        const btnEl = document.querySelector(".btn-push");
+
+        /* 선택 후 객체로 전달 */
+        // 객체 프로퍼티 약식 표기법 - key를 생략할 수 있음
+        // 원래는 이렇게 전달해야 함 const viewManager = new ViewManager(textManager, {viewerEl: viwerEl, inpTxt: inpTxt, btnEl: btnEl,});
+        const textManager = new TextManager();
+        const viewManager = new ViewManager(textManager, {
+          viewerEl,
+          inpTxt,
+          btnEl,
+        });
+
+        viewManager.updateView(); // 변경시킨값을 적용시킴. 텍스트 컨텐츠의 노드로 할당함
+      })();
+    </script>
+  </body>
+</html>
