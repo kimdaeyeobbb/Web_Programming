@@ -204,6 +204,112 @@ class ViewManager {
 
 ## textManager의 테스트 코드 작성
 
+<br><br>
+
 # 제스트
 
 - 리액트에서 가장 흔하게 사용하는 라이브러리
+
+- 이미 리액트 자체가 객체지향적으로 구성되어 있으므로 자스민보다 이용하기 편리함
+
+## Watch mode
+
+## 테스트
+
+- `npm test` 명령어 입력해서 테스트 진행
+
+### App.test.js 기본내용
+
+```js
+import { render, screen } from "@testing-library/react"; // 리액트 테스팅 라이브러리에서 render, screen을 불러옴
+import App from "./App";
+
+// test => 자스민의 describe와 같은 역할
+test("renders learn react link", () => {
+  /* 기본내용 */
+  render(<App />); // render -> jsx를 인자로 받음. 이를 받아서 렌더함수에 돌리면 가상돔을 생성함.
+  const linkElement = screen.getByText(/learn react/i); // screen => 생성된 가상돔에 (랜더함수로 그려준 것에) 접근하기 위한 객체
+  expect(linkElement).toBeInTheDocument(); // document안에 있어야함을 기대함. linkElement - 앵커 (App.js 참고)
+});
+```
+
+### App.js 기본내용
+
+```js
+import logo from "./logo.svg";
+import "./App.css";
+
+function App() {
+  return (
+    // 이런 dom이 화면을 ~
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### ARIA IN HTML
+
+- [참고자료](https://www.w3.org/TR/html-aria/#docconformance)
+
+### jest matcher dom
+
+- [참고자료](https://github.com/testing-library/jest-dom)
+
+### 질문
+
+- 텍스트에 접근하는 프로퍼티 키 => name으로 지정되어있음 (일종의 약속)
+- 내부의 표현식은 중괄호를 통해 넣어줌
+
+### 기능
+
+```jsx
+function App() {
+  const [buttonColor, setColor] = useState('red');
+  const newColor = buttonColor === 'red' ? 'blue' : 'red';
+
+  return (
+    <div>
+      {/* <button style={{ backgroundColor: 'red' }}>change to blue !</button> */}
+      <button style={{ backgroundColor: buttonColor }} onClick={() => setColor(newColor)}>change to {newColor}</button>
+    </div>
+}
+```
+
+- 얘네는 html태그가 아닌, react문법인 jsx이므로. 결국 자바스크립트 이므로 이렇게 사용해도 된다 (자스민에서 html과 js코드를 뒤섞어서 사용하면 안된다는 개념이 여기에서는 적용되지 않는다!)
+
+<br>
+
+# TDD 참고자료
+
+- [테스트 코드와 TDD](https://www.youtube.com/watch?v=Npi21gLIEZM&ab_channel=%EB%93%9C%EB%A6%BC%EC%BD%94%EB%94%A9)
+
+<br>
+
+# FE 면접 질문
+
+## 클로저는 무엇이며, 어떻게/왜 사용하는지 설명해주세요
+
+### 재현님 정답
+
+- 클로져는 값을 은닉하기 위해 사용하는 테크닉으로, 함수안에 자식 함수를 만들고 밖으로 빼내어 외부에서 부모 함수의 스코프에 접근 할수 있도록 합니다.<br>
+
+(외부에서 사용할 수 없는 비공개 프로퍼티.)<br>
+(비공개 프로퍼티를 사용하므로 클로저 공간에 있는 메모리는 사용자가 직접 해제 해주어야 한다. 그렇지 않으면 사용하지 않은 변수가 메모리를 계속 차지하므로 메모리 누수현상이 발생한다. => 추가 답변으로 하면 좋은 인상을 남길 수 있음)<br>
+(클로저는 현상이라기보다는 자바스크립트의 현상을 이용한 '테크닉'이다. )<br>
