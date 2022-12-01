@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>native_pattern</title>
+    <style>
+      label {
+        display: block;
+        margin-top: 20px;
+      }
+
+      input:invalid {
+        border: 3px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="">
+      <!-- 이 label은 반드시 사과만 입력할 수 있어야 하도록 만듦 -->
+      <label for="">사과를 입력하세요</label>
+      <input type="text" pattern="사과" />
+      <button>제출</button>
+
+      <!-- or연산자를 사용해서 사과와 배 중 하나를 입력하도록 강제 -->
+      <label for="">사과 혹은 배 중 하나를 입력하세요</label>
+      <input type="text" pattern="사과|배" />
+      <button>제출</button>
+
+      <!-- pattern="..."을 이용해서 세글자만 입력할 수 있도록 강제함 -->
+      <!-- .은 모든 숫자와 문자를 의미함 -->
+      <label for="">세글자만 입력할 수 있습니다.</label>
+      <input type="text" pattern="..." />
+      <button>제출</button>
+
+      <!-- .은 모든 숫자와 문자를 의미합니다. -->
+      <!-- 괄호2개라면 처음에 들어가는 것이 첫문자, 두번쨰로 들어가는것이 두번쨰 문자를 지정해주는 것임-->
+      <label for=""
+        >첫번째 문자는 사,과,배, 두번째 문자는 1,2,3만 입력할 수
+        있습니다.</label
+      >
+      <input type="text" pattern="[사과배][123]" />
+      <button>제출</button>
+
+      <!-- []은 선택할 수 있는 문자의 종류를 지정할 수 있음-->
+      <!-- 한글이 유니코드에 등록된 때에는 3부분(첫,중간,끝소리)으로 나뉘어서 등록되어 있음. -->
+      <!-- 지금은 대괄호를 하나만 썼으므로 1가지만 입력이 가능한 상태임 -->
+      <label for="">한글만 입력이 가능해야합니다.</label>
+      <input type="text" pattern="[ㄱ-ㅎ가-힣]" />
+      <!-- <input type="text" pattern="[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]" /> -->
+      <button>제출</button>
+
+      <!-- *은 글자의 수를 제한하지 않는다. -->
+      <label for="">한글과 숫자만 글자 수 제한없이 입력이 가능해야 함</label>
+      <input type="text" pattern="[ㄱ-ㅎ ㅏ-ㅣ 가-힣 0-9]*" />
+      <button>버튼</button>
+
+      <!-- 중괄호 내에 숫자를 쓰면 그 횟수만큼 제한 -->
+      <label for="">한글 세글자만 가능함</label>
+      <input type="text" pattern="[ㄱ-ㅎ ㅏ-ㅣ 가-힣]{3}" />
+      <button>버튼</button>
+
+      <!-- 주민등록번호를 입력하세요 -->
+      <label for="">주민등록번호를 입력하세요.(-으로 구분)</label>
+      <!-- {}은 글자의 수를 제한할 수 있습니다. -->
+      <input type="text" pattern="[0-9]{6}[-][0-9]{7}" />
+      <button>버튼</button>
+
+      <!-- {}은 글자의 수를 제한할 수 있음 -->
+      <!-- +수량자: 앞에 문자가 1개~n개, *수량자: 앞에 문자가 0개~n개 -->
+      <label for="">이메일을 입력하세요</label>
+      <input
+        type="email"
+        pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*"
+      />
+      <button>버튼</button>
+
+      <!-- 소괄호: 그룹을 묶어줄 때 사용 -->
+      <!-- 대괄호는 선택할 수 있는 문자의 종류를 지정 -->
+      <label for="">전화번호를 입력하세요</label>
+      <input type="tel" pattern="(010|016|011)-[0-9]{3,4}-[0-9]{4}" />
+      <button>버튼</button>
+    </form>
+  </body>
+</html>
