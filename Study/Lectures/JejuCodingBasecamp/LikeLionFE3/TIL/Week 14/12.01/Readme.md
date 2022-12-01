@@ -205,7 +205,141 @@
 ## 여러가지 input의 validation 검사
 
 - 중복된 리소스를 다운받으면 안된다
+- preventDefault를 주면 click 이벤트가 취소됨 => [참고자료](https://developer.mozilla.org/ko/docs/Web/API/Event/cancelable)
+
+## 퀴즈 (프로젝트 때도 반드시 진행해야하는 사항)
+
+- 사용자가 입력한 비밀번호를 벨리데이션하는 폼을 만들어 봅시다.
+  input은 비밀번호, 비밀번호 확인 두 가지가 있어야하며
+
+이때 만약
+
+1. input에 아무것도 입력하지 않았거나
+2. 비밀번호 input과 비밀번호 확인 input의 값이 동일하지 않거나,
+3. 비밀번호의 패턴이 정규표현식과 일치하지 않은 경우
+
+에러메시지를 출력하도록 만들어보세요
+
+- 기본 패턴 (대문자와 특수기호 포함 8글자 이상을 입력해야함)
+
+```html
+pattern="(?=.*[!@#$%^&*()_+=-])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}"
+```
+
+## id & pw validation
+
+- [참고자료](https://www.w3schools.com/howto/howto_js_password_validation.asp)
+
+- [pw reg exp](https://regexr.com/3bfsi)
+
+- id와 pw를 pattern이용하지 않고 script 단에서 처리해주는 것은 효율적이지 않은건가요?
+
+  - script단에서 처리하는 것보다 native방법을 사용하는 것이 조금 더 빠름.
+
+- required가 빠지면 필수 입력사항이 아니므로 굳이 예외처리 해줄 필요가 없음
+
+- [참고자료](https://lynmp.com/ko/article/nr5181b3333a2824ae)
+- [회원가입 페이지](https://joooing.tistory.com/entry/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B2%80%EC%82%AC)
+- [클론코딩](https://gajua.github.io/UI-UX/passwordValidation/)
+- [자료](https://www.w3resource.com/javascript/form/password-validation.php)
+- [자료](https://www.javatpoint.com/confirm-password-validation-in-javascript)
+- [자료](https://www.studytonight.com/javascript-howtos/password-validation-in-javascript)
+- [자료](https://www.studytonight.com/javascript-howtos/password-validation-in-javascript)
+- [자료](https://www.w3schools.com/howto/howto_js_password_validation.asp)
+
+### 디자이너 요청
+
+- validation 메시지가 마음에 안든다!고 하면 => js단에서 validation 처리하고, 마크업을 메시지에 가져다 붙이는 형식으로 해결
+
+## [Validity State](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#dom-validitystate-typemismatch)
 
 <br>
 
-# webpack
+# [webpack](https://paullabworkspace.notion.site/22a86c048f4643a2bc6f17c8531c6100)
+
+- [참고자료]
+- 모든 자바스크립트 애플리케이션을 위한 모듈 번들러임
+- 모듈 번들러: 웹 애플리케이션을 구성하는 자원 (HTML, CSS, JS, image 등)을 모두 각각의 모듈로 보고 이들을 조합해서 하나의 결과물로 만드는 도구
+
+## CDN
+
+- 웹에 해당 코드가 있는 것.
+
+## npm을 왜 사용하나요?
+
+- 패키지를 쉽게 설치하고 버전관리를 위해서 사용
+
+## 웹팩
+
+- 브라우저의 성능이 높아지고 js 어플리케이션이 점점 고도화 되면서 유지보수의 난이도가 높아졌음. 이를 해결하기 위해 js를 기능 단위로 분리해서 사용하는 코드의 모듈화가 필요했음
+- 여러가지 파일을 모듈화 했다가 웹팩이라는 번들러를 통해서 깨끗해서 정리해줄 수 있음.
+- TDD할떄 기능구현을 하면 여러 클래스를 생성해서 JS를 분리했다 -> 이를 합칠때 번들러를 이용할 수 있다
+- js파일 뿐만아니라 img파일 등을 모두 불러올 수 있음
+
+### 실전 예제 (웹팩아님)
+
+- export, import 기능이 웹팩 기능 중 일부분임.
+- script 의 type에 module을 명시할 것
+
+- index.html
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웹팩</title>
+  </head>
+  <body>
+    <!-- 파일이 분리되어 있으므로 얘를 주석처리하면 plus에 접근할 수 없다는 에러메시지 확인가능 -->
+    <!-- <script src="plus.js"></script> -->
+
+    <!-- import, export를 이용 + script type을 module이라고 명시해줘서 모듈 시스템을 이용하고 있음을 명시 -->
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
+```
+
+- app.js
+
+```js
+import { plus } from "./plus.js";
+
+// 함수의 결과를 콘솔로 찍는 역할
+console.log(plus(3, 7));
+```
+
+- plus.js
+
+```js
+export function plus(a, b) {
+  return a + b;
+}
+```
+
+### 웹팩 설치
+
+- `-D`: 개발용 환경을 구성. 이렇게 설치된 패키지들은 package.json내에 기록됨. but 실제 배포할때는 빼고 사용
+- 디팬던시를 기록하는 이유
+
+  - 용량을 작게 만들어줌. gitignore과 비슷한 역할
+
+- package.json
+  - 여기에 디팬던시가 추가된것을 통해 웹팩이 설치된것을 확인할 수 있음
+
+```json
+  "devDependencies": {
+    "webpack": "^5.75.0"
+  }
+
+```
+
+### 웹팩 참고자료
+
+- [자료](https://tecoble.techcourse.co.kr/post/2021-06-30-webpack-intro/)
+- [자료2](https://tecoble.techcourse.co.kr/post/2021-07-10-webpack-exercise/)
+- [웹팩 핸드북](https://joshua1988.github.io/webpack-guide/guide.html)
+- [김정환 블로그](https://jeonghwan-kim.github.io/series/2019/12/10/frontend-dev-env-webpack-basic.html)
+- [제로초](https://www.zerocho.com/category/Webpack/post/58ac2d6f2e437800181c1657)
