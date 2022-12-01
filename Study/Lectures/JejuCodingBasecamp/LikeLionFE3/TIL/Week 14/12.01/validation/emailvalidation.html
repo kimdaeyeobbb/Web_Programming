@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Validation</title>
+  </head>
+  <body>
+    <!-- {}은 글자의 수를 제한할 수 있음 -->
+    <!-- +수량자: 앞에 문자가 1개~n개, *수량자: 앞에 문자가 0개~n개 -->
+    <form action="">
+      <label for="mail">이메일을 입력하세요</label>
+      <input
+        type="email"
+        required
+        pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*"
+        id="mail"
+      />
+      <button>제출 !</button>
+    </form>
+
+    <script>
+      const inp = document.querySelector("mail");
+      console.log(inp);
+      console.log(inp.validity);
+      inp.addEventListener("input", () => {
+        console.log(inp.validity);
+      });
+      inp.setCusomValidity("알맞은 양식의 이메일 주소를 입력하세요");
+    </script>
+  </body>
+</html>
