@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>classList</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: antiquewhite;
+      }
+
+      .red {
+        color: red;
+      }
+
+      .blue {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box red">Hello world</div>
+    <script>
+      const $box = document.querySelector(".box");
+      // $ -> 이름이나 변수와 동일한 방식으로 개체를 식별한다는 의미
+      // .box 요소의 class attribute 정보를 담은 DOMTokenlist 객체를 취득
+      // classList가 반환하는 DOMTokenList 객체는 HTMLCollection과 NodeList와 같이
+      // 노드 객체의 상태 변화를 실시간으로 반영하는 살아 있는(live) 객체이다.
+      console.log($box.classList);
+      console.log(DOMTokenList);
+      $box.classList.replace("red", "blue");
+      console.log($box.classList);
+
+      /* DOMTokenList 메서드 - add */
+      // add 메서드는 인수로 전달한 1개 이상의 문자열을 class ㅁ
+      $box.classList.add("foo");
+      console.log($box.classList);
+
+      $box.classList.add("bar", "zoo");
+      console.log($box.classList);
+
+      /* DOMTokenList 메서드 - remove */
+      // 인수로 전달한 1개 이상의 문자열과 일치하는 클래스를 class Attribute에서 삭제함
+      // 인수로 전달할 문자열과 일치하는 클래스가 class attribute에 없으면 에러 없이 무시됨
+      $box.classList.remove("foo");
+      console.log($box.classList);
+
+      $box.classList.remove("zoo", "bar");
+      console.log($box.classList);
+
+      /* DOMTokenList 메서드 - item(index) */
+      // item 메서드 - 인수로 전달한 index에 해당하는 클래스를 class attribute에서 반환함
+      // 예를 들어, index가 0이면 첫 번째 클래스를 반환하고 index가 1이면 두번째 클래스를 반환함
+      console.log($box.classList.item(0)); // box
+
+      /* DOMTokenList 메서드 - contains(className) */
+      // 인수로 전달한 문자열과 일치하는 클래스가 class attribute에 포함되어 있는지 확인함
+      console.log($box.classList.contains("box")); // true
+      console.log($box.classList.contains("dan")); // false
+
+      /* DOMTokenList 메서드 - replace(oldClassName. newClassName) */
+      // class attribtue에서 첫 번째 인수로 전달한 문자열을 두 번째 인수로 전달한 문자열로 변경함
+      console.log($box.classList);
+      $box.classList.replace("blue", "skyblue");
+      console.log($box.classList);
+
+      /* toggle(className[, force]) */
+      // toggle 메서드 - class attribute에 인수로 전달한 문자열과 일치하는 클래스가 존재하면 제거하고, 존재하지 않으면 추가함
+      $box.classList.toggle("zoo"); // 추가
+      console.log($box.classList);
+
+      $box.classList.toggle("zoo"); // 제거
+      console.log($box.classList);
+
+      // 두번째 인수로 불리언 값으로 평가되는 조건식을 전달할 수 있다.
+      // 조건식의 평가 결과가 true이면 class attribute에 강제로 첫 번째 인수로 전달받은 문자열을 추가하고, false이면 class attribute에서 강제로 첫 번째 인수로 전달받은 문자열을 제거함
+      $box.classList.toggle("zoo", true);
+    </script>
+  </body>
+</html>
