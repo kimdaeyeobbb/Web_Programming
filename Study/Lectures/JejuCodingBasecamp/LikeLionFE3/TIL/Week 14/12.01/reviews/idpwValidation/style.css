@@ -1,0 +1,145 @@
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #080710;
+}
+
+/* step 2 */
+.background {
+  width: 630px;
+  height: 520px;
+  /* position: absolute; */
+  position: relative;
+  z-index: -1;
+  margin: 200px auto 0;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+.background .shape {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+/* step 2-2 */
+.shape:first-child {
+  background: linear-gradient(#1845ad, #23a2f6);
+}
+.shape:last-child {
+  background: linear-gradient(to right, #ff512f, #f09819);
+}
+
+/* step 3*/
+form {
+  /* height: 520px; */
+  display: flex;
+  flex-direction: column;
+  flex-basis: auto;
+  background-color: rgba(255, 255, 255, 0.13);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 50px 35px;
+}
+
+form * {
+  font-family: "Poppins", sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+}
+
+/* step 4 */
+form h3 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 42px;
+  text-align: center;
+}
+
+/* step 5 */
+label {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+input {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+input::placeholder {
+  color: #e5e5e5;
+}
+
+/* step 6 */
+button {
+  margin-top: 50px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #080710;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 메세지 박스는 사용자가 패스워드 영역을 클릭하고 나서 보이게 만들기 */
+#message {
+  /* display: none; */
+  /* position: relative; */
+  /* transform: translate(38%, 230%); */
+  padding: 20px;
+  margin-top: 10px;
+  color: white;
+}
+
+#message p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
+/* 요구사항 충족시 초록색 텍스트 색상 체크마크 추가*/
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  /* content: "&#10004;"; */
+  content: "✔";
+}
+
+/* 요구사항 미충족시 붉은색 X 표시 추가 */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  /* content: "&#10006;"; */
+  content: "✖";
+}
