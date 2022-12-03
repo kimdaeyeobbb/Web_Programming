@@ -343,3 +343,84 @@ export function plus(a, b) {
 - [웹팩 핸드북](https://joshua1988.github.io/webpack-guide/guide.html)
 - [김정환 블로그](https://jeonghwan-kim.github.io/series/2019/12/10/frontend-dev-env-webpack-basic.html)
 - [제로초](https://www.zerocho.com/category/Webpack/post/58ac2d6f2e437800181c1657)
+
+<br><hr>
+
+# 복습
+
+## Style display Property
+
+### 정의 및 사용법
+
+- display property는 요소의 표시 유형을 설정하거나 반환함.
+
+- Tip> block element는 float 속성을 사용해서 표시 유형을 변경할 수 있음
+
+### 예시
+
+```js
+document.getElementById("myDIV").style.display = "none";
+```
+
+- `display: none` => 요소 전체를 숨김
+- `visibility: hidden` => 요소의 내용이 보이지 않지만 요소의 원래 위치와 크기를 유지함
+
+### 구문
+
+- display 속성을 반환
+
+```js
+object.style.display;
+```
+
+- display 속성을 설정
+
+```js
+object.style.display = value;
+```
+
+### property values
+
+- `object.style.display = block`
+
+  - 요소가 블록 레벨 요소로 렌더링됨
+
+- `object.style.display = compact`
+
+  - 상황에 따라 다르게 블록 레벨 요소 또는 인라인 레벨 요소로 렌더링됨
+
+- `object.style.display = none`
+
+  - 요소들이 보이지 않음
+
+- `object.style.display = list-item`
+
+  - 요소가 리스트로서 렌더링됨
+
+- `object.style.display = marker`
+
+  - 상자 앞 또는 뒤의 내용을 마커로 설정함 (:before, :after 가상요소와 함께 사용. 그렇지 않다면 이 값은 '인라인'과 동일함)
+
+- `object.style.display = run-in`
+  - 상황에 따라 블록 레벨 요소 또는 인라인 레벨 요소로 렌더링됨
+
+<br>
+
+## div
+
+- 다른 HTML 요소들을 하나로 묶는 데 사용되는 대표적인 블록(block)요소
+- 주로 여러 요소들의 스타일을 한 번에 적용하기 위해 사용됨
+- div 태그는 HTML 문서에서 특정 영역(division)이나 구획을 정의할 때 사용
+- div 요소는 여러 HTML 요소들은 하나로 묶어주며 CSS로 스타일을 변경하거나 자바스크립트를 특정 작업을 수행하기 위한 일종의 컨테이너(container)로 자주 사용합니다. 또한, CSS와 함께 웹 페이지의 레이아웃을 설정하는데도 종종 사용됨
+
+<br>
+
+## classList
+
+- `Element.prototype.classList` 프로퍼티는 class attribute의 정보를 담은 DOMTokenList 객체를 반환함.
+
+## DOMTokenList
+
+- `DOMTokenList` 객체는 class attribute의 정보를 나타내는 컬렉션 객체로서 유사 배열 객체이면서 iterable임.
+
+-
