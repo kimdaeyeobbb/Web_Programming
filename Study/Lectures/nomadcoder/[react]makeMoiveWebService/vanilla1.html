@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>바닐라JS로 웹 서비스 만들기</title>
+  </head>
+  <body>
+    <span>Total clicks: 0</span>
+    <button id="btn">버튼 클릭 !</button>
+    <script>
+      let counter = 0;
+      const button = document.getElementById("btn");
+      const span = document.querySelector("span");
+      function handleClick() {
+        console.log("I have been clicked !");
+        counter += 1;
+        span.innerText = `Total clicks: ${counter}`; // 클릭했다 하더라도 내부의 글씨가 사라지지 않게 만드는 작업
+        // span.innerText = counter;
+      }
+      button.addEventListener("click", handleClick); // 이벤트 등록 & 클릭 이벤트 감지
+    </script>
+  </body>
+</html>
