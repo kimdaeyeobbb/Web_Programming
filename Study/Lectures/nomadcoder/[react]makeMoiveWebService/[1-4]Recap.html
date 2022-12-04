@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>리액트 - 쉬운버전</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script>
+      const root = document.getElementById("root");
+      const h3 = React.createElement(
+        "h3",
+        {
+          id: "id 붙이기 연습용",
+          onMouseEnter: () => {
+            console.log("Mouse Enter !");
+          }, // 이벤트 리스너 등록
+        },
+        "Hello I'm a h3"
+      );
+      const btn = React.createElement(
+        "button",
+        {
+          onClick: () => {
+            console.log("I'm Clicked"); // 버튼 클릭할 떄마다 호출될 함수
+          },
+          style: {
+            backgroundColor: "tomato",
+          },
+        }, //   버튼에 eventListener 등록하기
+        "Click me"
+      );
+      // html 태그의 이름을 내부에 기재
+      // button의 property: null로 설정
+      ReactDOM.render(btn, root);
+      // 버튼을 랜더링 (root안에 btn을 render)
+
+      /* span과 button 모두를 랜더링하기 */
+      const container = React.createElement("div", null, [h3, btn]); // property에 배열을 생성하고 내부에 span, btn을 두기 (2개의 컴포넌트를 가지는 component를 생성한 것)
+      ReactDOM.render(container, root); // div를 랜더링
+    </script>
+  </body>
+</html>
