@@ -1,7 +1,7 @@
 # ReactJS로 영화 웹 서비스 만들기
 
 - [ReactJS로 영화 웹 서비스 만들기](#reactjs로-영화-웹-서비스-만들기)
-- [2. THE BASIC OF REACT](#2-the-basic-of-react)
+- [1. THE BASIC OF REACT](#1-the-basic-of-react)
   - [Interactive UI를 바닐라JS로 만들기](#interactive-ui를-바닐라js로-만들기)
     - [:one: HTML 생성](#one-html-생성)
     - [:TWO: 자바스크립트에서 BUTTON 가져옴](#two-자바스크립트에서-button-가져옴)
@@ -22,8 +22,19 @@
       - [JSX를 이용해서 위 코드와 동일한 컴포넌트 생성](#jsx를-이용해서-위-코드와-동일한-컴포넌트-생성)
         - [Babel](#babel)
           - [babel을 통해 변환되어 head에 담겨져 있는 코드](#babel을-통해-변환되어-head에-담겨져-있는-코드)
+  - [1-6) JSX2](#1-6-jsx2)
+- [2. STATE](#2-state)
+  - [2-0) Understanding State](#2-0-understanding-state)
+    - [state](#state)
+    - [Recap](#recap)
+    - [클릭 횟수 나타내는 버튼 생성하기](#클릭-횟수-나타내는-버튼-생성하기)
+      - [작동순서 파악](#작동순서-파악)
+      - [리팩토링한것으로 다시 작동순서 파악](#리팩토링한것으로-다시-작동순서-파악)
+      - [3차 수정본](#3차-수정본)
+    - [VanillaJS VS ReactJS](#vanillajs-vs-reactjs)
+  - [2-1) setState 1](#2-1-setstate-1)
 
-# 2. THE BASIC OF REACT
+# 1. THE BASIC OF REACT
 
 ## Interactive UI를 바닐라JS로 만들기
 
@@ -639,3 +650,310 @@ a
   </head>
 </html>
 ```
+
+## 1-6) JSX2
+
+- createElement대신 ~을 사용하기
+
+```html
+
+```
+
+```jsx
+const Container = (
+  <div>
+    <Button />
+  </div>
+);
+```
+
+- 컴포넌트의 첫 글자는 대문자여야 함
+
+  - 만약에 소문자라면 React랑 JSX는 HTML button이라고 생각하게될 수 있다
+  - 따라서 우리가 만든 요소는 모두 대문자여야 함 (html요소는 소문자)
+
+- JSX는 애플리케이션을 여러 가지 작은 요소로 나누어서 관리할 수 있게 해줌
+
+  - +) 보기쉽게 코드를 분리한 다음 함께 랜더링한다
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1-6) JSX2</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      function Title() {
+        return (
+          <h3 id="title" onMouseEnter={() => console.log("mouse enter!")}>
+            Hello I'm a title
+          </h3>
+        );
+      }
+      const Button = () => (
+        <button
+          style={{ backgroundColor: "tomato" }}
+          onClick={() => {
+            console.log("I'm clicked");
+          }}
+        >
+          Click me
+        </button>
+      );
+      const Container = () => (
+        <div>
+          <Title />
+          <Button />
+        </div>
+      );
+      ReactDOM.render(<Container />, root);
+    </script>
+  </body>
+</html>
+```
+
+- Button옆의 `= () => (` 부분은 function하고 괄호를 연 다음 return을 하는것과 같은 의미이다
+  - `= () => ()`는 `function과 return문`을 포함하고 있다
+
+<br><br>
+
+# 2. STATE
+
+## 2-0) Understanding State
+
+### state
+
+- 데이터가 저장되는 곳
+
+### Recap
+
+- React element를 함수 내에 담으면 원하는 만큼 사용할 수 있다
+
+```jsx
+const Button = () => (
+  <button
+    style={{ backgroundColor: "tomato" }}
+    onClick={() => {
+      console.log("I'm clicked");
+    }}
+  >
+    Click me
+  </button>
+);
+```
+
+- 이 함수는 button react element를 반환하고 있다
+
+```jsx
+const Container = () => (
+  <div>
+    <Button />
+    <Button />
+    <Button />
+    <Button />
+    <Button />
+  </div>
+);
+```
+
+- (react element를 함수 내에 담았으므로) 우리가 원하는 만큼 사용할 수 있게 된다.
+- 함수의 형태이므로 동일한 코드를 재사용할 수 있다.
+
+### 클릭 횟수 나타내는 버튼 생성하기
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-0) understanding state</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      let counter = 0;
+      function countUp() {
+        counter += 1;
+      }
+      const Container = () => (
+        <div>
+          <h3>Total clicks: {counter}</h3>
+          <button onClick={countUp}>Click me</button>
+        </div>
+      );
+      ReactDOM.render(<Container />, root);
+    </script>
+  </body>
+</html>
+```
+
+- 여기있는 코드 어디에서도 UI를 새로고침 해주고 있지 않다
+- 단지 Container를 한번 렌더링해줄뿐이다
+
+  - 우리가 바라는 결과값을 보여주는 리랜더링이 구동되지 않고 있다
+
+- 우리가 countUp을 호출할 때마다 `ReactDOM.render(<Container/>, root)`를 다시 호출하고 싶은 것이다.
+
+```jsx
+function countUp() {
+  counter += 1;
+  ReactDOM.render(<Container />, root);
+}
+```
+
+- 이와 같이 countUp함수를 수정한다면 Container를 리랜더링 해주므로 counter가 증가한다
+
+#### 작동순서 파악
+
+```html
+<div id="root"></div>
+<!-- react import (리액트 세팅) -->
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<!-- react-dom import (리액트 돔 세팅) -->
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  const root = document.getElementById("root");
+  let counter = 0;
+  function countUp() {
+    counter += 1;
+    ReactDOM.render(<Container />, root);
+  }
+  const Container = () => (
+    <div>
+      <h3>Total clicks: {counter}</h3>
+      <button onClick={countUp}>Click me</button>
+    </div>
+  );
+  ReactDOM.render(<Container />, root); // 1)
+</script>
+```
+
+- 1. 어플리케이션이 시작 될 때 Container를 렌더링. Container를 렌더링할 때, counter는 0임
+- 2. `onClick={counUp}` : 이벤트 리스너를 더해주고 클릭하면 counter를 증가시킴
+- 3. `ReactDOM.render(<Container/>, root)` : Container를 리렌더링함 (Container를 다시 리렌더링 해주면 함수가 다시 호출될 것이고 counter는 1만큼 증가하게 된다)
+
+#### 리팩토링한것으로 다시 작동순서 파악
+
+```html
+<body>
+  <div id="root"></div>
+  <!-- react import (리액트 세팅) -->
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <!-- react-dom import (리액트 돔 세팅) -->
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    let counter = 0;
+    function countUp() {
+      counter += 1;
+      render();
+    }
+    function render() {
+      ReactDOM.render(<Container />, root);
+    }
+    const Container = () => (
+      <div>
+        <h3>Total clicks: {counter}</h3>
+        <button onClick={countUp}>Click me</button>
+      </div>
+    );
+    render();
+  </script>
+</body>
+```
+
+1. 애플리케이션이 시작되면 counter는 0임
+2. render()함수를 실행시킴
+3. render 함수는 Container 컴포넌트를 root에 담아둠
+4. 애플리케이션이 막 시작되었을 때의 Container는 Total click을 가지고 있고, counter와 연결되어 있다
+5. counter의 초기값은 0이다. (사용자에게 비춰지는 녀석임)
+6. `<button onClick={countUp}>Click me</button>` : 이벤트리스너를 여기에 등록해주면 버튼을 클릭할 때마다 countUp 함수가 호출될 것이다.
+7. countUp은 counter를 증가시키고 다시 render를 호출해줄것이다.
+8. render()함수가 호출되면 동일한 방법을 반복한다.
+9. 하지만 이번에는 우리가 Container를 사용할 경우 Container 컴포넌트는 업데이트 된 counter를 가지고 있을 것이다
+
+#### 3차 수정본
+
+```html
+<body>
+  <div id="root"></div>
+  <!-- react import (리액트 세팅) -->
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <!-- react-dom import (리액트 돔 세팅) -->
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    let counter = 0;
+    function countUp() {
+      counter += 1;
+      render();
+    }
+    function render() {
+      ReactDOM.render(<Container />, root);
+    }
+    function Container() {
+      return (
+        <div>
+          <h3>Total clicks: {counter}</h3>
+          <button onClick={countUp}>Click me</button>
+        </div>
+      );
+    }
+
+    render();
+  </script>
+</body>
+```
+
+- 이 코드는 목표를 달성하기 위해 최적의 코드는 아니다.
+- 우리가 값을 바꿀때마다 리랜더링하는 것을 잊으면 안되기 떄문이다.
+
+<br>
+
+### VanillaJS VS ReactJS
+
+- VanillaJS
+
+  - 바닐라 자바스크립트에서 요소를 검사해보면 구글 크롬등이 요소들이 업데이트 되고 있는 것을 바로바로 보여준다 (body, span 등이 업데이트되고 있는것을 확인할 수 있음)
+
+- ReactJS
+  - 리액트는 이와달리 파일 검사탭을 열고 버튼을 클릭해보면 h3, button, div들은 업데이트되지 않는것을 확인할 수 있다
+  - ReactJS는 UI에서 바뀐 부분만 업데이트를 해주고 있다
+  - ReactJS는 이전에 렌더링된 컴포넌트가 어떤것이었는지를 확인하고 있다
+  - 그리고 그 다음에 렌더링될 컴포넌트는 어떤지를 보고, ReactJS는 다른 부분만 파악한다. (우리가 바꾼부분)
+  - 다시 Total clicks를 생성할 필요가 없고, button을 다시 생성할 필요도 없으며 오로지 바뀐 부분만 업데이트 해주면 된다
+  - 즉, ReactJS를 이용해서 interactive한 애플리케이션을 만들 수 있게 된다.
+  - 우리가 여러가지 요소를 리렌더링하려고 하더라도 전부 다 새로 생성되지는 않을 것이며 바뀐 부분만 생성될 것이다
+
+## 2-1) setState 1
+
+- 리렌더링을 발생시킬 가장 좋은 방법은 데이터를 바꾸고 다시 렌더링해주는 것이다.
+- 우리가 리렌더링을 하면 기존의 컴포넌트들도 바뀐 데이터를 가지고 재생성될 것이다.
+- 하지만 리액트를 이용하기 떄문에 우리가 리렌더링 하고자하는 것만 리렌더링할 수 있다 (ReactJS를 사용하는 이유)
