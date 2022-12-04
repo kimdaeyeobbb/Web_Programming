@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1-6) JSX2</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      function Title() {
+        return (
+          <h3 id="title" onMouseEnter={() => console.log("mouse enter!")}>
+            Hello I'm a title
+          </h3>
+        );
+      }
+      const Button = () => (
+        <button
+          style={{ backgroundColor: "tomato" }}
+          onClick={() => {
+            console.log("I'm clicked");
+          }}
+        >
+          Click me
+        </button>
+      );
+      const Container = () => (
+        <div>
+          <Title />
+          <Button />
+          <Button />
+          <Button />
+        </div>
+      );
+      ReactDOM.render(<Container />, root);
+    </script>
+  </body>
+</html>
