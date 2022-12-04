@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>리액트</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script>
+      /* 3. root 가져오기 */
+      const root = document.getElementById("root");
+
+      /* 1. ReactJs로 element 생성하기 */
+      const span = React.createElement(
+        "span",
+        { id: "sexy-span", style: { color: "blue" } },
+        "Hello, I'm a span"
+      );
+      // createElement function을 가진 React object에 접근할 수 있게 만듦
+      // createElement의 내부에 적는것은 생성하고자 하는 HTML 태그와 똑같은 이름이어야 함
+      // id가 sexy-span은 span 태그를 생성
+      // createElement: 세번쨰 인자는 span의 content(내용)
+
+      /* 2. span을 페이지에 두기 */
+      // 웹 페이지를 새로고침하면 우리의 body는 비어있으므로
+      // span은 이미 생성되었고, 페이지에 올라오지 않은 상태이므로 body에 넣는 작업이 필요
+      ReactDOM.render(span, root);
+      // ~은 ReactDOM에게 span을 어디에 배치해야하는지에 대한 정보를 제공
+      // span을 root안에 render 해달라고 ReactDOM에게 말해줌
+    </script>
+  </body>
+</html>
