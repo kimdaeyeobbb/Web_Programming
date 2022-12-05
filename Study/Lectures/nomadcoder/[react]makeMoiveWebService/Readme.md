@@ -33,6 +33,15 @@
       - [3차 수정본](#3차-수정본)
     - [VanillaJS VS ReactJS](#vanillajs-vs-reactjs)
   - [2-1) setState 1](#2-1-setstate-1)
+    - [2-0의 코드 개선작업](#2-0의-코드-개선작업)
+      - [배열에서 요소를 꺼내서 이름 부여하기](#배열에서-요소를-꺼내서-이름-부여하기)
+  - [2-2) state2](#2-2-state2)
+    - [usestate](#usestate)
+    - [코드 작성과정](#코드-작성과정)
+    - [렌더링](#렌더링)
+      - [기존코드](#기존코드)
+      - [개선된 코드](#개선된-코드)
+      - [React \& useState를 이용해서 개선한 최종 코드](#react--usestate를-이용해서-개선한-최종-코드)
 
 # 1. THE BASIC OF REACT
 
@@ -957,3 +966,297 @@ function countUp() {
 - 리렌더링을 발생시킬 가장 좋은 방법은 데이터를 바꾸고 다시 렌더링해주는 것이다.
 - 우리가 리렌더링을 하면 기존의 컴포넌트들도 바뀐 데이터를 가지고 재생성될 것이다.
 - 하지만 리액트를 이용하기 떄문에 우리가 리렌더링 하고자하는 것만 리렌더링할 수 있다 (ReactJS를 사용하는 이유)
+
+- 컴포넌트나 JSX를 변수에 추가하고 싶은 경우, 다음과 같이 사용한다
+
+```JSX
+function Container() {
+  return (
+    <div>
+      <h3>Total clicks: {counter}</h3>
+      <button onClick={countUp}>Click me</button>
+    </div>
+  )
+}
+
+render()
+```
+
+- UI를 업데이트해서 변화된 부분을 사용자에게 보여주고 싶은경우, render함수를 다시 호출하면 된다
+- 우리는 render함수를 만들어서 애플리케이션이 처음 실행될 때 호출해주었다
+- `render()`가 호출될 때 render함수는 Container 컴포넌트를 root div에 담아둘 것이다
+- `ReactDOM.render()` 가 최초로 호출되면 Container함수가 호출되고 Container함수가 호출되면 React element가 반환될 것이다
+
+```jsx
+function render() {
+  ReactDOM.render(<Container />, root);
+}
+
+function Container() {
+  return (
+    <div>
+      <h3>Total clicks: {counter}</h3>
+      <button onClick={countUp}>Click me</button> {/* event listener 등록 */}
+    </div>
+  );
+}
+
+render();
+```
+
+- 사용자에게 바뀐 데이터를 보여주기 위해 다시 render()함수 호출
+- render함수는 Container 컴포넌트를 root에 담아둔다
+
+```js
+const root = document.getElementById("root");
+let counter = 0;
+function countUp() {
+  counter = counter + 1;
+  render();
+}
+
+function render() {
+  ReactDOM.render(<Container />, root);
+}
+```
+
+- ReactJS는 매우 똑똑하기 때문에 우리가 리렌더링하더라도 전부를 재생성할 필요가 없이, 바뀐부분만 재생성할 수 있도록 도와준다
+
+### 2-0의 코드 개선작업
+
+- ReactJS 어플 내에서 데이터를 보관하고 자동으로 리렌더링을 일으킬 수 있는 방법을 사용해보자 (렌더링함수를 계속해서 호출할 필요가 없게끔 만들어보자!)
+- 만약 사용자에게 업데이트 된것을 보여주고 싶다면, 새로운 정보를 가지고 컴포넌트를 리렌더링 해주어야 한다.
+
+#### 배열에서 요소를 꺼내서 이름 부여하기
+
+- 방법1
+
+```js
+const food = ["tomato", "potato"];
+const tomato = food[0];
+const potato = food[1];
+```
+
+- 방법2
+
+```js
+const food = ["tomato", "potato"];
+const [myFavFood, mySecondFavFood] = food;
+myFavFood; // 'tomato'
+mySecondFavFood; // 'potato'
+```
+
+## 2-2) state2
+
+### usestate
+
+- usestate는 array를 return
+
+### 코드 작성과정
+
+- 작성한 함수를 사용하려면 이벤트 등록을 해야한다.
+
+```jsx
+const root = document.getElementById("root");
+function App() {
+  const [counter, modifier] = React.useState(0);
+  const onClick = () => {
+    // 사용하려면 이벤트 등록을 해주어야 함
+    counter += 1;
+    console.log(counter);
+  };
+  console.log(data);
+  return (
+    <div>
+      <h3>Total Clicks: {counter}</h3>
+      <button onClick={onClick}>Click me</button>
+      {/* 클릭 이벤트 등록 */}
+    </div>
+  );
+}
+```
+
+### 렌더링
+
+- 기존의 값을 가지고 리렌더링하는 것은 굉장히 귀찮은 과정이다
+- `getElementById`, `ReactDOM` 등을 리렌더링이 필요한 부분마다 써주어야 하기 때문이다.
+- 따라서 새로운 값으로 렌더링해주도록 코드를 개선해보자
+
+#### 기존코드
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-2</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      function App() {
+        let [counter, modifier] = React.useState(0);
+        const onClick = () => {
+          // 사용하려면 이벤트 등록을 해주어야 함
+          counter += 1;
+          console.log(counter);
+        };
+
+        return (
+          <div>
+            <h3>Total Clicks: {counter}</h3>
+            <button onClick={onClick}>Click me</button>
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+#### 개선된 코드
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-2</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      function App() {
+        const [counter, modifier] = React.useState(0);
+        const onClick = () => {
+          // 사용하려면 이벤트 등록을 해주어야 함
+          modifier(139478314);
+        };
+
+        return (
+          <div>
+            <h3>Total Clicks: {counter}</h3>
+            <button onClick={onClick}>Click me</button> {/* 이벤트 등록 */}
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+- 어떤값을 부여하건 modifier 함수는 그 값으로 업데이트하고 리렌더링을 일으킬 것이다 (이 모든 작업은 modifier 함수 내에서 일어난다)
+- 우리가 직접 modifier에 해당하는 부분을 직접 호출하면서 리렌더링을 해줄 필요가 없게된다.
+
+- `const [counter, modifier] = React.useState(0);` 만으로 React.useState 함수는 counter와 같은 데이터를 숫자형 데이터로 건네줄 것이고, 그 데이터값을 변환시킬 함수또한 같이 전달할 것이다.
+
+- 그리고 (데이터 값을 변환시킬 이)함수를 이용해서 데이터를 바꾸었을 때 데이터 값이 바뀌고 컴포넌트또한 리렌더링 될 것이다.
+
+- 리렌더링 되는 부분
+  - 이 부분의 업데이트가 완료되는 것이다.
+
+```jsx
+return (
+  <div>
+    <h3>Total clicks: {counter}</h3>
+    <button onClick={onClick}>Click me</button>
+  </div>
+);
+```
+
+- modifier는 modifier라고 적어주는 것이 아니라 set+데이터명으로 기재한다.
+
+```jsx
+const root = document.getElementById("root");
+function App() {
+  const [counter, setCounter] = React.useState(0);
+  const onClick = () => {
+    // 사용하려면 이벤트 등록을 해주어야 함
+    setCounter(counter + 1);
+  };
+```
+
+- 사용자가 보게 될 컴포넌트
+
+```jsx
+return (
+  <div>
+    <h3>Total clicks: {counter}</h3>
+    <button onClick={onClick}>Click me</button>
+  </div>
+);
+```
+
+#### React & useState를 이용해서 개선한 최종 코드
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-2</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      function App() {
+        const [counter, setCounter] = React.useState(0);
+
+        const onClick = () => {
+          // 사용하려면 이벤트 등록을 해주어야 함
+          setCounter(counter + 1);
+          // 버튼 클릭시 counter값을 바꿔줄 함수를 호출
+          // counter의 새로운 값을 가지고 해당 함수를 호출해줌
+          // 그 새로운 값은 현재 counter값+1이 된다.
+        };
+
+        return (
+          <div>
+            <h3>Total Clicks: {counter}</h3>
+            <button onClick={onClick}>Click me</button>
+            {/* 이벤트 등록 */}
+            {/* 버튼이 클릭되면 */}
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+- 리액트는 오로지 바뀐 부분만을 업데이트 해줌
+- 리액트는 업데이트 사이사이마다 정확히 어떤것이 업데이트 되었는지 파악해서 HTML에서 그 부분만 고친다
+- 진행과정
+  - 변수를 컴포넌트에 연결해서
+  - 변수에 데이터를 담은 다음 해당 변수에 담긴 값을 바꿈
+  - ㅁ
