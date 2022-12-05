@@ -42,6 +42,13 @@
       - [기존코드](#기존코드)
       - [개선된 코드](#개선된-코드)
       - [React \& useState를 이용해서 개선한 최종 코드](#react--usestate를-이용해서-개선한-최종-코드)
+  - [2-3) recap](#2-3-recap)
+    - [코드 뜯어보기](#코드-뜯어보기)
+  - [2-4) State Functions](#2-4-state-functions)
+    - [앱의 state 바꾸기](#앱의-state-바꾸기)
+      - [문제점](#문제점)
+      - [state를 바꾸는 방법 1 - setCounter (직접 값을 설정해서 넣어주기)](#state를-바꾸는-방법-1---setcounter-직접-값을-설정해서-넣어주기)
+      - [state를 바꾸는 방법 2 - 이전값을 이용해서 현재값 계산](#state를-바꾸는-방법-2---이전값을-이용해서-현재값-계산)
 
 # 1. THE BASIC OF REACT
 
@@ -1259,4 +1266,213 @@ return (
 - 진행과정
   - 변수를 컴포넌트에 연결해서
   - 변수에 데이터를 담은 다음 해당 변수에 담긴 값을 바꿈
-  - ㅁ
+
+## 2-3) recap
+
+### 코드 뜯어보기
+
+- 기준코드
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-3</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      function App() {
+        const [counter, setCounter] = React.useState(0);
+
+        const onClick = () => {
+          // 사용하려면 이벤트 등록을 해주어야 함
+          setCounter(counter + 1);
+          // setCounter: 리렌더링을 일으킴
+          // 버튼 클릭시 counter값을 바꿔줄 함수를 호출
+          // counter의 새로운 값을 가지고 해당 함수를 호출해줌
+          // 그 새로운 값은 현재 counter값+1이 된다.
+        };
+        console.log("rendered");
+        console.log(counter);
+        return (
+          <div>
+            <h3>Total Clicks: {counter}</h3>
+            <button onClick={onClick}>Click me</button>
+            {/* 이벤트 등록 */}
+            {/* 버튼이 클릭되면 */}
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+- refresh
+
+  - 리렌더링에 해당됨
+  - modifier 함수를 사용해서 state(어플리케이션의 데이터)를 바꿀 때 (즉, modifier 함수를 이용해서 컴포넌트의 state를 바꿀 때) 컴포넌트는 새로운 값을 가지고 다시 렌더링이 됨
+  - modifier 함수를 가지고 state를 변경할 때 컴포넌트가 재생성됨. 새로운 값을 가지고 리렌더링을 하는 것임.
+
+- ReactJS가 제공하는 가장 중요한 부분
+
+  - 데이터가 바뀔때마다 컴포넌트를 리렌더링하고 UI를 refresh함
+  - ReactJS는 똑똑하기 때문에 화면 전체를 바꾸는 것이 아니라 우리가 바꾸고 있는 부분만 변경한다
+
+- 즉, modifier 함수를 사용해서 state(애플리케이션의 데이터)를 바꿀 때 컴포넌트 전체가 새로운 값을 가지고 재생성될 것이다
+- modifier 함수를 가지고 state를 바꾼다면 App() 컴포넌트가 재생성되고, 함수 코드전체가 다시 한번 실행될 것이다. return 또한 재실행될 것이지만 새로운 값을 가지고 실행될 것이다.
+
+- 가장 중요한 것
+
+  - state가 바뀌면 리렌더링이 일어난다
+
+- ReactJS는 똑똑하기 때문에 컴포넌트가 리렌더링될 때 두 번째 이벤트 리스너가 등록되거나 Total click을 새로 만드는 것이 아니라, 오로지 달라지는 부분은 화면에 보이는 부분뿐이다.
+
+- 이렇게 ReactJS를 이용하면
+
+  - HTML 요소를 생성하거나 찾을 필요가 없다(document.getElementById사용, document.querySelector등을 사용할 필요가 없음)
+  - 이벤트리스너를 더해줄 필요가 없다 (button.addEventListener('click', handleclick)등을 사용할 필요가 없다.)
+  - ui를 업데이트 해줄 필요가 없다 (span.innerText =`` 등을 사용할 필요가 없다.)
+
+```jsx
+function App() {
+  const [counter, setCounter] = React.useState(0);
+  const onClick = () => {
+    setCounter(counter + 1);
+  };
+  return (
+    <div>
+      <h3>Total clicks: {counter}</h3>
+      <button onClick={onClick}>Click me</button>
+    </div>
+  );
+}
+```
+
+- 바로 HTML을 만들고 곧바로 이벤트리스너를 더해주고 UI를 업데이트하면 자동으로 리렌더링된다.
+- 마지막으로 state가 바뀌면 react가 컴포넌트를 refresh 해준다
+
+## 2-4) State Functions
+
+- 사용자들은 input을 어떻게 얻을까?
+- form을 만들었을 때 state는 어떤식으로 작용할까?
+
+### 앱의 state 바꾸기
+
+#### 문제점
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-3</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      function App() {
+        const [counter, setCounter] = React.useState(0);
+
+        const onClick = () => {
+          // 사용하려면 이벤트 등록을 해주어야 함
+          setCounter(counter + 1);
+          // setCounter: 리렌더링을 일으킴
+          // 버튼 클릭시 counter값을 바꿔줄 함수를 호출
+          // counter의 새로운 값을 가지고 해당 함수를 호출해줌
+          // 그 새로운 값은 현재 counter값+1이 된다.
+        };
+        console.log("rendered");
+        console.log(counter);
+        return (
+          <div>
+            <h3>Total Clicks: {counter}</h3>
+            <button onClick={onClick}>Click me</button>
+            {/* 이벤트 등록 */}
+            {/* 버튼이 클릭되면 */}
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+- counter라고 설정한 현재 state를 이용해서 다음 state를 위한 계산을 해주고 있다
+- counter state를 이용해서 새로운 counter state를 구하고 있는 것이다.
+- 하지만 counter는 다른 곳에서 update되어서 우리가 생각했던 값이 아닐 수 있기 때문에 본 방법은 좋지 않다.
+- 이전 단계의 state를 이용해서 현재 state를 바꾸려고 했으나 결과가 예상과 달리 나올수 있는 것이다.
+
+#### state를 바꾸는 방법 1 - setCounter (직접 값을 설정해서 넣어주기)
+
+- setCounter를 이용해서 우리가 원하는 값을 넣어줄 수 있다
+
+- 우리가 원하는 값으로 변경되기는 하지만 다음클릭부터는 값이 바뀌지 않는다
+
+```jsx
+const [counter, setCounter] = React.useState(0);
+
+const onClick = () => {
+  setCounter(777);
+};
+```
+
+#### state를 바꾸는 방법 2 - 이전값을 이용해서 현재값 계산
+
+- 코드 개선전
+  - 현재의 counter값을 가지고 계산하고 있음
+
+```jsx
+const [counter, setCounter] = React.useState(0);
+
+const onClick = () => {
+  // 사용하려면 이벤트 등록을 해주어야 함
+  setCounter(counter + 1);
+  // setCounter: 리렌더링을 일으킴
+  // 버튼 클릭시 counter값을 바꿔줄 함수를 호출
+  // counter의 새로운 값을 가지고 해당 함수를 호출해줌
+  // 그 새로운 값은 현재 counter값+1이 된다.
+};
+```
+
+- 코드 개선 이후
+
+  - 현재 값을 가지고 계산을 해야한다면 setCounter 내에 함수를 넣을 수도 있다.
+  - 이 함수의 첫번쨰 인자값은 현재값이다. 함수의 리턴값은 새로운 state가 된다.
+  - 이제 이 함수가 무엇을 리턴하던간에 리턴값이 새로운 state가 되는 것이다.
+  - 이와 같이 함수를 작성했을 때 이 current가 확실하게 현재의 값임을 보장하고 있다 (우리가 정확히 원하는 값으로 계산할 수 있도록 말이다!)
+
+- 즉, 현재의 state 기반으로 계산을 하고 싶다면 함수를 이용하도록 하자
+  - 다음 state값이 현재의 값을 바탕으로 나올 수 있도록 말이다!
+  - 이는 예상치 못한 업데이트가 어디선가 일어난다고 해도 혼동을 주는것을 방지한다!
+
+```jsx
+const [counter, setCounter] = React.useState(0);
+
+const onClick = () => {
+  // setCounter(counter + 1)
+  setCounter((current) => counter + 1); // 위와 동일하게 현재의 state로 새로운 값을 계산함. but 더 안전.
+};
+```
