@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-2</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+      function App() {
+        const [counter, setCounter] = React.useState(0);
+
+        const onClick = () => {
+          // 사용하려면 이벤트 등록을 해주어야 함
+          setCounter(counter + 1);
+          // 버튼 클릭시 counter값을 바꿔줄 함수를 호출
+          // counter의 새로운 값을 가지고 해당 함수를 호출해줌
+          // 그 새로운 값은 현재 counter값+1이 된다.
+        };
+
+        return (
+          <div>
+            <h3>Total Clicks: {counter}</h3>
+            <button onClick={onClick}>Click me</button>
+            {/* 이벤트 등록 */}
+            {/* 버튼이 클릭되면 */}
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
