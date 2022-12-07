@@ -11,12 +11,19 @@
   - [Branch](#branch)
     - [충돌이 나는 경우](#충돌이-나는-경우)
     - [branch 명령어](#branch-명령어)
-    - [upstream](#upstream)
-      - [upstream 저장소 추가하기](#upstream-저장소-추가하기)
-      - [Remote 저장소 목록 확인](#remote-저장소-목록-확인)
-      - [Upstream 저장소의 변경 내역 반영하기](#upstream-저장소의-변경-내역-반영하기)
   - [About protected branches](#about-protected-branches)
-  - [ㅁ](#ㅁ)
+  - [branch 복구](#branch-복구)
+  - [commit](#commit)
+  - [amend](#amend)
+  - [upstream](#upstream)
+    - [upstream 저장소 추가하기](#upstream-저장소-추가하기)
+    - [Remote 저장소 목록 확인](#remote-저장소-목록-확인)
+    - [Upstream 저장소의 변경 내역 반영하기](#upstream-저장소의-변경-내역-반영하기)
+  - [upstream \& downstream](#upstream--downstream)
+    - [origin](#origin)
+    - [orgin \& local과 upstream \& downstream](#orgin--local과-upstream--downstream)
+    - [origin \& local 흐름](#origin--local-흐름)
+    - [git push -u origin main](#git-push--u-origin-main)
 
 # 파이어베이스
 
@@ -117,9 +124,29 @@ git push --set-upstream origin a   #
 echo '# hello world b' >> 'hello2.txt'
 ```
 
-- a
+<br><br>
 
-### upstream
+## About protected branches
+
+- [참고자료](https://docs.github.com/ko/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches#about-branch-protection-rules)
+
+## branch 복구
+
+- 브랜치를 삭제하고 터미널을 닫아도 커밋에 대한 hash값만 알면 복구를 할 수 있다
+- `.git`폴더를 제거한 경우 복구를 시킬 수 없음
+
+## commit
+
+- 기능 단위로 커밋할 것
+
+## amend
+
+- 이전제 있는 커밋에 내가 수정한 내용을 합치고 싶을 때 사용<br>
+  (커밋은 하나의 기능을 만들 때 변경사항을 저장해주는 것이 좋다. 하나의 기능을 만들고 커밋을 할 때 실수로 커밋하지 못한 파일이나 수정된 파일이 있을 수도 있다. 이때, 최신 커밋에 누락된 파일을 추가하고 싶을 때 )
+
+<br><br>
+
+## upstream
 
 - 다른 사람의 깃헙을 포크한 경우 내 깃헙이 origin이 됨.
 - 이때 우리가 처음 fork를 시도한 저장소를 upstream이라고 함. (origin과 upstream 모두 remote 저장소임)
@@ -134,19 +161,19 @@ echo '# hello world b' >> 'hello2.txt'
 git push --set-upstream A B
 ```
 
-#### upstream 저장소 추가하기
+### upstream 저장소 추가하기
 
 ```bash
 git remote add upstream https://www.proj.com/proj
 ```
 
-#### Remote 저장소 목록 확인
+### Remote 저장소 목록 확인
 
 ```bash
 git remote -v
 ```
 
-#### Upstream 저장소의 변경 내역 반영하기
+### Upstream 저장소의 변경 내역 반영하기
 
 - upstream의 저장소로부터 fetch
 
@@ -161,14 +188,46 @@ git checkout master
 git merge upstream/master
 ```
 
-- 자신의 원격저장소인 origin에 반영하려면 git pus 수행
+- 자신의 원격저장소인 origin에 반영하려면 git push 수행
 
 ```bash
 git push
 ```
 
-## About protected branches
+## upstream & downstream
 
-- [참고자료](https://docs.github.com/ko/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches#about-branch-protection-rules)
+### origin
 
-## ㅁ
+- 깃허브에 존재하는 repository를 뜻함
+- remote를 뜻하는 단어가 origin임
+
+### orgin & local과 upstream & downstream
+
+- upstream과 downstream은 상대적인 개념이므로 origin & local을 기준으로 생각하면 편하다
+- `origin` : upstream
+- `local` : downstream
+- `push`와 `pull`을 기준으로 생각했을 때 `origin`으로부터 `local`로 흐르는 관계가 형성된다
+
+### origin & local 흐름
+
+- local에서 origin으로 `push`
+- origin에서 local로 `pull`
+
+### git push -u origin main
+
+- `-u`
+  - `--set-upstream`의 줄임말
+  - upstream을 설정한다는 뜻
+- upstream을 한 번 설정하고 나면 다음부터는 `git push`또는 `git pull`이라는 명령어만 입력해도 자동으로 origin(upstream)의 main 브랜치로부터 push와 pull을 진행함
+
+  - upstream(origin)옵션을 통해 해당 브랜치에서 upstream과 downstream 관계를 설정했기 때문임
+
+- 예시
+
+```bash
+git push --set-upstream A B
+```
+
+- set: 세팅하다
+- `--set-upstream` : upstream으로 세팅하다
+- `--set-upstream A B` : 내가 B에서 작업한 것을 A로 쏴줄 것으로 세팅한다. (B브랜치를 로컬에서 만들었으므로 REMOTE에 존재하는 A브랜치로 연결하는 작업을 수행할 것이다.)
