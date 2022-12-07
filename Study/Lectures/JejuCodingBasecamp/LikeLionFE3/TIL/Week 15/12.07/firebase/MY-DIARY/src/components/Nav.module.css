@@ -1,0 +1,30 @@
+.nav {
+  background-color: royalblue;
+  padding: 20px 50px;
+}
+
+.list_nav {
+  display: flex;
+  justify-content: right;
+  gap: 16px;
+}
+
+.tit {
+  color: red;
+}
+
+.nav a {
+  color: white;
+  /* a태그 밑줄제거 */
+  text-decoration: none;
+}
+
+.nav button {
+  margin-left: 20px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background-color: teal;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
