@@ -15,6 +15,8 @@
       - [upstream 저장소 추가하기](#upstream-저장소-추가하기)
       - [Remote 저장소 목록 확인](#remote-저장소-목록-확인)
       - [Upstream 저장소의 변경 내역 반영하기](#upstream-저장소의-변경-내역-반영하기)
+  - [About protected branches](#about-protected-branches)
+  - [ㅁ](#ㅁ)
 
 # 파이어베이스
 
@@ -165,4 +167,8 @@ git merge upstream/master
 git push
 ```
 
-- ㅁ
+## About protected branches
+
+- [참고자료](https://docs.github.com/ko/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches#about-branch-protection-rules)
+
+## ㅁ
