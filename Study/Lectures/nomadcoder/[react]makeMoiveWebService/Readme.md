@@ -49,6 +49,21 @@
       - [문제점](#문제점)
       - [state를 바꾸는 방법 1 - setCounter (직접 값을 설정해서 넣어주기)](#state를-바꾸는-방법-1---setcounter-직접-값을-설정해서-넣어주기)
       - [state를 바꾸는 방법 2 - 이전값을 이용해서 현재값 계산](#state를-바꾸는-방법-2---이전값을-이용해서-현재값-계산)
+  - [2-5) inputs and state](#2-5-inputs-and-state)
+    - [label](#label)
+    - [문제점 발생](#문제점-발생)
+    - [문제점 해결](#문제점-해결)
+    - [useState](#usestate-1)
+    - [native Event](#native-event)
+      - [target](#target)
+    - [setState](#setstate)
+  - [2-6) state practice1](#2-6-state-practice1)
+    - [1. state 생성](#1-state-생성)
+    - [2. input value를 state로 수정](#2-input-value를-state로-수정)
+    - [3. onChange 함수 생성](#3-onchange-함수-생성)
+    - [hours](#hours)
+    - [결과코드](#결과코드)
+  - [2-7) state practice2](#2-7-state-practice2)
 
 # 1. THE BASIC OF REACT
 
@@ -1476,3 +1491,374 @@ const onClick = () => {
   setCounter((current) => counter + 1); // 위와 동일하게 현재의 state로 새로운 값을 계산함. but 더 안전.
 };
 ```
+
+<br>
+
+## 2-5) inputs and state
+
+- unit conversion app (단위 변환 앱) 제작하기
+
+### label
+
+- input 옆에 써줌
+- label옆의 글씨를 누르면 그 옆의 input이 선택됨
+- label을 input에 연결해주기 위해서 input에 id를 달아주자 + label의 for 속성값을 input의 id값과 같게 설정하자
+
+### 문제점 발생
+
+- HTML상의 label & input을 사용한 예시
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-5</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function App() {
+        return (
+          <div>
+            <h1>Super Converter</h1>
+            <label for="minutes">Minutes</label>
+            <input id="minutes" placeholder="Minutes" type="number" />
+            <label for="hours">Hours</label>
+            <input id="hours" placeholder="Hours" type="number" />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+- production.min.js
+
+  - 얘를 `development.min.js`로 수정한다면 유효하지 않은 DOM property 'for'이 있다는 에러메시지를 확인할 수 있다
+  - for는 j용어이므로 이미 선점된 단어이다.
+
+- 유의사항
+
+1. class를 사용하면 안됨
+2. for를 사용하면 안됨
+
+- 결론
+  - 우리는 html을 사용하고 있으므로 html에 맞게 수정해주어야 한다.
+  - `for` => `htmlFor` 로 수정
+  - `class` => `className` 으로 수정
+
+### 문제점 해결
+
+- 문제 해결한 코드
+- 이렇게 고쳐야 모든것이 정상적인 HTML코드로 변환된 것을 확인할 수 있다
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-5</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function App() {
+        const [minutes, setMinutes] = React.useState(); // react에서 가져온 useState를 사용
+        const onChange = () => {
+          console.log("somebody wrote");
+        };
+        return (
+          <div>
+            <h1 className="hi">Super Converter</h1>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              // input의 value가 state의 value와 같아짐
+              value={minutes}
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={onChange}
+            />
+            <label htmlFor="hours">Hours</label>
+            <input id="hours" placeholder="Hours" type="number" />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+### useState
+
+- array를 제공함
+- 첫 번째 요소 : 현재의 값. state로서의 값
+- 두 번째 요소 : 첫번쨰 요소를 수정하고 컴포넌트를 새로고침할 때 사용하는 modifier 함수.
+
+```jsx
+const [minutes, setMinutes] = React.useState();
+```
+
+- 얘를 설정하고 나서 input에 value를 줄 수 있다
+
+```html
+<script>
+  function App() {
+          const [minutes, setMinutes] = React.useState();  // react에서 가져온 useState를 사용
+          const onChange = () => {
+              console.log("somebody wrote")
+          }
+          return (
+            <div>
+              <h1 className="hi">Super Converter</h1>
+              <label htmlFor="minutes">Minutes</label>
+              <input
+                value={minutes}
+                id="minutes"
+                placeholder="Minutes"
+                type="number"
+                onChange = {}
+              />
+              <label htmlFor="hours">Hours</label>
+              <input id="hours" placeholder="Hours" type="number" />
+            </div>
+          );
+        }
+        const root = document.getElementById("root");
+        ReactDOM.render(<App />, root);
+</script>
+```
+
+- input의 value가 state의 value와 같아짐
+
+### native Event
+
+- 콘솔창에서 SyntheticBaseEvent (합성 이벤트)를 확인할 수 있다. => ReactJS가 발생시킨 가짜 event임 (얘네는 event를 최적화 시키기 위한 목적으로 가짜 event를 발생시킴)
+
+- 원래의 이벤트를 알고싶다면 `native Event`를 확인하면 된다. => 얘가 native javascript event임
+
+#### target
+
+- native Event내에 존재
+- 여기서 target은 방금 바뀐 input을 뜻함
+- 우리는 어떤 변화가 일어났는지를 쫓아가야 하므로 `event.target.value` 순으로 적어주면 된다
+- 이를 이용함으로써 `document.getElement ~ 어쩌고저쩌고`를 적을 필요가 없어짐
+
+### setState
+
+- 데이터를 업데이트하기 위해서 사용
+- 다음 예시 => 우리가 입력한 input의 value를 바탕으로 component를 업데이트 해주고 있음
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-5</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function App() {
+        const [minutes, setMinutes] = React.useState(); // react에서 가져온 useState를 사용
+        const onChange = (event) => {
+          setMinutes(event.target.value);
+          //   console.log(event.target.value); // document.getElement ~ 어쩌고저쩌고를 적을 필요가 없어짐
+        };
+        return (
+          <div>
+            <h1 className="hi">Super Converter</h1>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              // input의 value가 state의 value와 같아짐
+              value={minutes}
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={onChange}
+            />
+            <h4>You want to convert {minutes}</h4>
+            {/* 확인용 문구 */}
+            <label htmlFor="hours">Hours</label>
+            <input id="hours" placeholder="Hours" type="number" />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+<br><br>
+
+## 2-6) state practice1
+
+### 1. state 생성
+
+```jsx
+const [minutes, setMinutes] = React.useState(0);
+```
+
+- state의 결과는 array
+- 첫 번쨰 요소: 데이터
+- 두 번째 요소: 데이터를 수정하기 위한 함수
+
+### 2. input value를 state로 수정
+
+```jsx
+<input
+  value={minutes}
+  id="minutes"
+  placeholder="Minutes"
+  type="number"
+  onChange={onChange}
+/>
+```
+
+- 이렇게 수정하게되면 어디서든 input의 value를 수정해줄 수 있으므로 아주 유용하다
+
+### 3. onChange 함수 생성
+
+```jsx
+const onChange = (event) => {
+  setMinutes(event.target.value);
+};
+
+<input
+  value={minutes}
+  id="minutes"
+  placeholder="Minutes"
+  type="number"
+  onChange={onChange}
+/>;
+```
+
+- input에서 listening하는 데이터를 업로드 해주는 함수 (데이터를 업데이트 해주는 함수)
+- 이로인해 input은 스스로 업데이트를 함
+- change 이벤트가 발생했을 때 (사용자가 input에 뭔가를 써 넣었을 때) onChange 함수가 실행되고 input value인 `event.target.value`를 얻게됨
+- input의 value와 연결시켜줌으로써 input의 값을 외부에서도 수정할 수 있게 된다
+- onChange 함수를 지운다면 input이 키보드 이벤트를 감지하고 있다 하더라도 값의 수정이 불가능하다 (업데이트가 불가능하다)
+
+### hours
+
+```jsx
+<div>
+  <label htmlFor="hours">Hours</label>
+  <input value={minutes} id="hours" placeholder="Hours" type="number" />
+</div>
+```
+
+- minutes를 수정하면 hours가 같이 고쳐진다
+- 하지만 hours를 수정하면 minutes가 같이 고쳐지지 않는다. 왜냐하면 onChange event를 달아놓지 않았기 때문이다
+
+### 결과코드
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-6</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function App() {
+        const [minutes, setMinutes] = React.useState(0);
+        const onChange = (event) => {
+          setMinutes(event.target.value);
+          // state를 여기서 바꿔주고 있으므로 바뀐값을 가지고 return쪽에서 리렌더링 하는 것
+          // 이로인해 모든 코드가 리렌더링이 일어남
+        };
+
+        const reset = (event) => {
+          setMinutes(0);
+        };
+        return (
+          <div>
+            <div>
+              <h1>Super Converter</h1>
+              <label htmlFor="minutes">Minutes</label>
+              <input
+                value={minutes}
+                id="minutes"
+                placeholder="Minutes"
+                type="number"
+                onChange={onChange}
+              />
+            </div>
+            {/* 확인용 문구 */}
+            <h4>You want to convert {minutes}</h4>
+
+            <div>
+              <label htmlFor="hours">Hours</label>
+              <input
+                value={Math.round(minutes / 60)}
+                id="hours"
+                placeholder="Hours"
+                type="number"
+                disabled
+              />
+            </div>
+            <button onClick={reset}>Reset</button>
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+- 우리는 ReactJS를 이용하고 있으므로 전부 다 새로 그려져서 모두 리렌더링 되는 것이 아닌 딱 하나의 value만 리렌더링 된다.
+
+- reset
+  - state를 리스닝하거나 연결한 모든 것들이 0으로 되돌아감
+
+<br><br>
+
+## 2-7) state practice2
+
+- flip 만들기
+-
