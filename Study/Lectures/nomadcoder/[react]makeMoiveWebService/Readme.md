@@ -64,6 +64,7 @@
     - [hours](#hours)
     - [결과코드](#결과코드)
   - [2-7) state practice2](#2-7-state-practice2)
+    - [flip](#flip)
 
 # 1. THE BASIC OF REACT
 
@@ -1861,4 +1862,34 @@ const onChange = (event) => {
 ## 2-7) state practice2
 
 - flip 만들기
--
+
+### flip
+
+- [bad case] onFlip 함수
+
+```jsx
+const [flipped, setFlipped] = React.useState(false);
+
+/* 현재 state를 바탕으로 새로운 state 계산 */
+const onFlip = () => {
+  setFlipped(!flipped);
+};
+```
+
+- flipped이 false이면 true로, true면 false로 만들어줌
+- 다음 state의 계산을 `const [flipped, setFlipped] = React.useState(false)`를 바탕으로 하는것은 좋지 않다.
+- 따라서 onFlip 함수는 현재 state값을 넣고 결과는 그 반대를 도출하도록 명령이 구성되어야 한다.
+
+<br>
+
+- [great case] onFlip 함수
+- 현재 state의 값을 통해 반대의 결과를 도출하도록 만듦
+
+```jsx
+const [flipped, setFlipped] = React.useState(false);
+
+/* 현재 state를 바탕으로 새로운 state 계산 */
+const onFlip = () => {
+  setFlipped((current) => !current);
+};
+```
