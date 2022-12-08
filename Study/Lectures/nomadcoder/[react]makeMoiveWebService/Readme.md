@@ -65,6 +65,10 @@
     - [결과코드](#결과코드)
   - [2-7) state practice2](#2-7-state-practice2)
     - [flip](#flip)
+    - [disabled](#disabled)
+    - [hours input의 change event를 listening 하기](#hours-input의-change-event를-listening-하기)
+    - [flip할 때마다 값이 바뀌어 들어가는 것을 방지하기](#flip할-때마다-값이-바뀌어-들어가는-것을-방지하기)
+  - [2-8) recap](#2-8-recap)
 
 # 1. THE BASIC OF REACT
 
@@ -1894,7 +1898,41 @@ const onFlip = () => {
 };
 ```
 
-
 ### disabled
 
 - flip의 기본값이 false로 설정되었으므로 flipped가 false이면 내 hours는 disabled가 되어야 하고 disabled는 true가 되어야 한다.
+
+### hours input의 change event를 listening 하기
+
+- flip하고나서 hours에 숫자를 기재하려고하면 기입이 되기 않는 문제점이 존재
+- 이를 해결하기 위해서 onChange를 적용시켜줘야함 => minutes에 썼던것을 그대로 쓰면 원하는대로 기재되지 않음.
+- 단위변환이 내가 원하는대로 일어나게 만들기 위해서는 삼항연산자를 사용해보자
+
+- `hour에 적용하기` :flipped 상태(minutes)라면 그대로 보여주고 아니라면(hours) 변환해서 보여주기
+
+```jsx
+<input value={flipped ? amount : Math.round(amount / 60)>
+```
+
+- `minute에 적용하기`: flipped 상태(hours)라면 그대로 보여주고 아니라면 (minutes) 변환해서 보여주기
+
+```jsx
+<input value={flipped ? amount*60 : amount }>
+```
+
+### flip할 때마다 값이 바뀌어 들어가는 것을 방지하기
+
+- onFlip 함수에다가 reset을 적용해야함
+
+```jsx
+const onFlip = () => {
+  reset();
+  setFlipped((current) => !current); // true면 false로, false면 true로 반환
+};
+```
+
+<br>
+
+## 2-8) recap
+
+- ㅁ
