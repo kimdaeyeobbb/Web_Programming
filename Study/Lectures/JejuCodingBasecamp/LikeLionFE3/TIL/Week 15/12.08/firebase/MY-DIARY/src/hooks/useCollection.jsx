@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { appFireStore } from "../firebase/config";
 
-export const useCollection = (transaction) => {
+export const useCollection = (transaction, myQuery) => {
   const [documents, setDocuments] = useState(null); // 문서의 상태 관리, documents 수정 함수
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    let q;
+    if (myQuery) {
+      q = query(collection(appFireStore, transaction), where(...myQuery));
+    }
     const unsubscribe = onSnapshot(
-      collection(appFireStore, transaction),
+      myQuery ? q : collection(appFireStore, transaction),
       (snapshot) => {
         //
         // snapshot내의 내용을 순환하면서 데이터를 뽑아내는 과정
