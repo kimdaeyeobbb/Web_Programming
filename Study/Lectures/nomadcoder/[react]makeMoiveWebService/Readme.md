@@ -1893,3 +1893,8 @@ const onFlip = () => {
   setFlipped((current) => !current);
 };
 ```
+
+
+### disabled
+
+- flip의 기본값이 false로 설정되었으므로 flipped가 false이면 내 hours는 disabled가 되어야 하고 disabled는 true가 되어야 한다.
