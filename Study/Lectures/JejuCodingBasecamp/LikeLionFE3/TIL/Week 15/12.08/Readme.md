@@ -14,6 +14,7 @@
     - [stash](#stash)
     - [push 강제하기](#push-강제하기)
     - [revert](#revert)
+    - [cherry-pick](#cherry-pick)
 
 # Firebase
 
@@ -70,4 +71,6 @@ git push -f origin main
 - 여러 명이 원격 저장소를 다루는 협업에서 reset 사용은 지양하는 것이 좋다.
 - 따라서 에러를 방지하며 push된 commit 이력을 되돌리고 싶은 경우 revert를 사용함. revert는 특정 커밋 이력을 되돌리는 작업도 하나의 커밋으로 간주하여 기존의 히스토리는 남긴채로 새로운 커밋 히스토리를 추가함
 
--
+### cherry-pick
+
+- ㅁ
