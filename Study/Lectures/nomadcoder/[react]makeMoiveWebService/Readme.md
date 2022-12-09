@@ -69,6 +69,10 @@
     - [hours input의 change event를 listening 하기](#hours-input의-change-event를-listening-하기)
     - [flip할 때마다 값이 바뀌어 들어가는 것을 방지하기](#flip할-때마다-값이-바뀌어-들어가는-것을-방지하기)
   - [2-8) recap](#2-8-recap)
+  - [2-9) Final Practice](#2-9-final-practice)
+    - [분할정복 이용하기](#분할정복-이용하기)
+    - [원하는 단위변환을 선택할 수 있도록 select 함수 만들기](#원하는-단위변환을-선택할-수-있도록-select-함수-만들기)
+      - [select](#select)
 
 # 1. THE BASIC OF REACT
 
@@ -1935,4 +1939,148 @@ const onFlip = () => {
 
 ## 2-8) recap
 
-- ㅁ
+- flip : hours <-> minutes 간의 단위변환을 목적으로 만듦
+- amount: 현재 state에 있는 숫자값. flipped에 따라서 다른 값이 보여짐
+
+- state에 따라서 보여지는 UI를 달라지게 만들기
+
+```jsx
+<button onClick={onFlip}>{flipped ? "Turn back" : "flipped"}</button>
+```
+
+<br>
+
+## 2-9) Final Practice
+
+- 컴포넌트는 내부에서 또 다른 컴포넌트를 렌더링할 수 있다
+
+```jsx
+function MinutesToHours() {}
+
+function App() {
+  return (
+    <div>
+      <MinutesToHours />
+    </div>
+  );
+}
+const root = document.getElementById("root");
+ReactDOMM.render(<App />, root);
+```
+
+### 분할정복 이용하기
+
+- 분할과 정복을 이용한 코드
+- 분할: 작은 컴포넌트들로 나누는 작업
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-9</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function MinutesToHours() {
+        const [amount, setAmount] = React.useState(0);
+        const [flipped, setFlipped] = React.useState(false); //useState의 결과물은 array
+        const onChange = (event) => {
+          setAmount(event.target.value);
+          // state를 여기서 바꿔주고 있으므로 바뀐값을 가지고 return쪽에서 리렌더링 하는 것
+          // 이로인해 모든 코드가 리렌더링이 일어남
+        };
+
+        const reset = (event) => {
+          setAmount(0);
+        };
+
+        /* 현재 state를 바탕으로 새로운 state 계산 */
+        // 현재의 값을 받아서 반대의 값을 내놓음
+        const onFlip = () => {
+          reset();
+          setFlipped((current) => !current); // true면 false로, false면 true로 반환
+        };
+        return (
+          <div>
+            <div>
+              <label htmlFor="minutes">Minutes</label>
+              <input
+                value={flipped ? amount * 60 : amount}
+                id="minutes"
+                placeholder="Minutes"
+                type="number"
+                onChange={onChange}
+                disabled={flipped}
+                // disabled={flipped === true}
+                // flipped가 true라면 minutes가 disabled
+              />
+            </div>
+            {/* 확인용 문구 */}
+            <h4>You want to convert {amount}</h4>
+
+            <div>
+              <label htmlFor="hours">Hours</label>
+              <input
+                value={flipped ? amount : Math.round(amount / 60)}
+                id="hours"
+                placeholder="Hours"
+                type="number"
+                disabled={!flipped}
+                // disabled={flipped === false} //위와 같은 코드
+                // flipped가 false라면 hours가 disabled 된다는 뜻
+                onChange={onChange}
+              />
+            </div>
+            <button onClick={reset}>Reset</button>
+            <button onClick={onFlip}>
+              {flipped ? "Turn back" : "flipped"}
+            </button>
+          </div>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <div>
+              <h1>Super Converter</h1>
+              <MinutesToHours />
+            </div>
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+### 원하는 단위변환을 선택할 수 있도록 select 함수 만들기
+
+- App 컴포넌트가 state를 가지도록 해주기
+
+```jsx
+function App() {
+  const [index, setIndex] = React.useState(0);
+  // 첫번째 아이템: 데이터, 두번째 아이템: 데이터를 수정하는 함수
+  // 데이터가 함수에 의해 수정되면 ReactJS가 UI를 새로고침해줄 것임
+}
+```
+
+#### select
+
+- js가 아닌 html
+- 옵션을 가짐 (내가 설정해주고 싶은것 - minutes & hours)
+
+- `<select>`태그는
