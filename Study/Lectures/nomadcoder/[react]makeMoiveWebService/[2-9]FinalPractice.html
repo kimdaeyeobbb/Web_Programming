@@ -77,16 +77,32 @@
         return <h3>KM 2 M</h3>;
       }
       function App() {
-        /* App 컴포넌트가 state를 가지도록 해주기 */
-        const [index, setIndex] = React.useState(0);
+        /* App 컴포넌트가 state를 가지도록 해주기 - state로 어떤 변환기를 보고 싶은지 체킹 */
+        const [index, setIndex] = React.useState("xx");
         // 첫번째 아이템: 데이터, 두번째 아이템: 데이터를 수정하는 함수
         // 데이터가 함수에 의해 수정되면 ReactJS가 UI를 새로고침해줄 것임
+
+        const onSelect = (event) => {
+          // console.log(event.target.value);
+          setIndex(event.target.value);
+        };
+        console.log("render w/", index);
 
         return (
           <div>
             <div>
               <h1>Super Converter</h1>
-              <MinutesToHours />
+              {/* select에 value 삽입(향후 값을 수정할 경우를 대비) & 이벤트 리스너 추가 */}
+              <select value={index} onChange={onSelect}>
+                <option value="xx">Select you units</option>
+                <option value="0">Minutes & Hours</option>
+                <option value="1">Km & Miles</option>
+              </select>
+              <hr />
+              {/* 인덱스간 변화를 리스닝 */}
+              {index === "xx" ? "Please select your units" : null}
+              {index === "0" ? <MinutesToHours /> : null}
+              {index === "1" ? <KmToMiles /> : null}
             </div>
           </div>
         );
