@@ -73,6 +73,9 @@
     - [분할정복 이용하기](#분할정복-이용하기)
     - [원하는 단위변환을 선택할 수 있도록 select 함수 만들기](#원하는-단위변환을-선택할-수-있도록-select-함수-만들기)
       - [select](#select)
+    - [두개의 컴포넌트 중 어떤걸 보여줄지 선택하기](#두개의-컴포넌트-중-어떤걸-보여줄지-선택하기)
+    - [결과물](#결과물)
+  - [3-0)](#3-0)
 
 # 1. THE BASIC OF REACT
 
@@ -2072,6 +2075,7 @@ ReactDOMM.render(<App />, root);
 
 ```jsx
 function App() {
+  /* App 컴포넌트가 state를 가지도록 해주기 - state로 어떤 변환기를 보고 싶은지 체킹 */
   const [index, setIndex] = React.useState(0);
   // 첫번째 아이템: 데이터, 두번째 아이템: 데이터를 수정하는 함수
   // 데이터가 함수에 의해 수정되면 ReactJS가 UI를 새로고침해줄 것임
@@ -2080,7 +2084,246 @@ function App() {
 
 #### select
 
-- js가 아닌 html
-- 옵션을 가짐 (내가 설정해주고 싶은것 - minutes & hours)
+- select는 ReactJS에 속한 것이 아니며 단지 HTML일 뿐임
+- select는 내부에 옵션을 가짐 (내가 설정해주고 싶은것 - minutes & hours)
 
-- `<select>`태그는
+- `<select>`태그는 옵션 메뉴를 제공하는 드롭다운 리스트를 정의할 때 사용함
+- 내부의 `<option>` 요소는 드롭다운 리스트에서 사용되는 각각의 옵션을 지정함
+
+```jsx
+function App() {
+  /* App 컴포넌트가 state를 가지도록 해주기 - state로 어떤 변환기를 보고 싶은지 체킹 */
+  const [index, setIndex] = React.useState(0);
+  // 첫번째 아이템: 데이터, 두번째 아이템: 데이터를 수정하는 함수
+  // 데이터가 함수에 의해 수정되면 ReactJS가 UI를 새로고침해줄 것임
+
+  const onSelect = (event) => {
+    // console.log(event.target.value);
+    setIndex(event.target.value);
+  };
+
+  return (
+    <div>
+      <div>
+        <h1>Super Converter</h1>
+        {/* select에 value 삽입(향후 값을 수정할 경우를 대비) & 이벤트 리스너 추가 */}
+        <select value={index} onChange={onSelect}>
+          <option value="0">Minutes & Hours</option>
+          <option value="1">Km & Miles</option>
+        </select>
+      </div>
+    </div>
+  );
+}
+```
+
+### 두개의 컴포넌트 중 어떤걸 보여줄지 선택하기
+
+- 사용자가 원하는 값은 `value=0` 또는 `value=1`이다
+- index내에 있는 값에따라 `MinutesToHours` 컴포넌트와 `KmToMiles` 컴포넌트 중 무엇을 그려줄지를 결정할 것임
+
+- 유의사항 (내부에 if문을 바로 써주면 text로 인식함)
+
+```jsx
+return (
+  <div>
+    <div>
+      <h1>Super Converter</h1>
+      {/* select에 value 삽입(향후 값을 수정할 경우를 대비) & 이벤트 리스너 추가 */}
+      <select value={index} onChange={onSelect}>
+        <option value="0">Minutes & Hours</option>
+        <option value="1">Km & Miles</option>
+      </select>
+      if()
+    </div>
+  </div>
+);
+```
+
+- (따라서 text로 인식하지 않게 만들기 위해서) 중괄호를 사용.
+
+  - 중괄호 안에는 js를 사용할 수 있다 (중괄호가 없다면 text로 인식함)
+
+- 하단의 예시: 인덱스간 변화를 리스닝하는 중
+  - input이 있고, 그 안의 값이 바뀜
+  - 변화가 일어나면 state가 업데이트 됨 => 컴포넌트가 보이는 것처럼 바뀜
+
+```jsx
+function App() {
+  /* App 컴포넌트가 state를 가지도록 해주기 - state로 어떤 변환기를 보고 싶은지 체킹 */
+  const [index, setIndex] = React.useState("0");
+  // 첫번째 아이템: 데이터, 두번째 아이템: 데이터를 수정하는 함수
+  // 데이터가 함수에 의해 수정되면 ReactJS가 UI를 새로고침해줄 것임
+
+  const onSelect = (event) => {
+    // console.log(event.target.value);
+    setIndex(event.target.value); // 변화가 일어나면 state가 업데이트 됨
+  };
+  return (
+    <div>
+      <div>
+        <h1>Super Converter</h1>
+        {/* select에 value 삽입(향후 값을 수정할 경우를 대비) & 이벤트 리스너 추가 */}
+        <select value={index} onChange={onSelect}>
+          <option value="0">Minutes & Hours</option>
+          <option value="1">Km & Miles</option>
+        </select>
+        {/* 인덱스간 변화를 리스닝 */}
+        {index === "0" ? <MinutesToHours /> : null}
+        {index === "1" ? <KmToMiles /> : null}
+      </div>
+    </div>
+  );
+}
+```
+
+- select의 change event를 리스닝해주는 예시
+  - 사용자가 번호(value에 해당하는 것)를 선택하면 setIndex를 사용해서 그 숫자를 state안에 집어넣음
+  - 만약 데이터를 수정하기 위해서 modifier함수를 사용한다면 해당 함수를 사용할 때 컴포넌트는 새로운 데이터와 함께 랜더링 될 것임
+  - 예) select 박스의 option중 하나인 Minutes & Hours를 클릭하면 value가 "0"으로 바뀔것이고, 이 변화가 리렌더링을 유발할 것이다. 이로인해서 Minutes & Hours 컴포넌트의 내용이 보이는 것이다.
+
+```jsx
+<select value={index} onChange={onSelect}>
+  <option value="0">Minutes & Hours</option>
+  <option value="1">Km & Miles</option>
+</select>;
+{
+  /* 인덱스간 변화를 리스닝 */
+}
+{
+  index === "0" ? <MinutesToHours /> : null;
+}
+{
+  index === "1" ? <KmToMiles /> : null;
+}
+```
+
+### 결과물
+
+- 우리가 state를 변화시킬 때 모든것이 새로고침된다.
+- ReactJS는 리랜더링이 필요한 모든것들을 리랜더링할 것이다.
+- 그리고 우리가 state를 변화시키면 (어떤 데이터를 input에 넣었든간에 상관없이)새로운 데이터와 함께 return 부분이 다시 실행될 것이다
+
+- modifier 함수를 실행시키면 모든 컴포넌트들이 다시 렌더링된다.
+
+```jsx
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2-9</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function MinutesToHours() {
+        const [amount, setAmount] = React.useState(0);
+        const [flipped, setFlipped] = React.useState(false); //useState의 결과물은 array
+        const onChange = (event) => {
+          setAmount(event.target.value);
+          // state를 여기서 바꿔주고 있으므로 바뀐값을 가지고 return쪽에서 리렌더링 하는 것
+          // 이로인해 모든 코드가 리렌더링이 일어남
+        };
+
+        const reset = (event) => {
+          setAmount(0);
+        };
+
+        /* 현재 state를 바탕으로 새로운 state 계산 */
+        // 현재의 값을 받아서 반대의 값을 내놓음
+        const onFlip = () => {
+          reset();
+          setFlipped((current) => !current); // true면 false로, false면 true로 반환
+        };
+        return (
+          <div>
+            <div>
+              <label htmlFor="minutes">Minutes</label>
+              <input
+                value={flipped ? amount * 60 : amount}
+                id="minutes"
+                placeholder="Minutes"
+                type="number"
+                onChange={onChange}
+                disabled={flipped}
+                // disabled={flipped === true}
+                // flipped가 true라면 minutes가 disabled
+              />
+            </div>
+            {/* 확인용 문구 */}
+            <h4>You want to convert {amount}</h4>
+
+            <div>
+              <label htmlFor="hours">Hours</label>
+              <input
+                value={flipped ? amount : Math.round(amount / 60)}
+                id="hours"
+                placeholder="Hours"
+                type="number"
+                disabled={!flipped}
+                // disabled={flipped === false} //위와 같은 코드
+                // flipped가 false라면 hours가 disabled 된다는 뜻
+                onChange={onChange}
+              />
+            </div>
+            <button onClick={reset}>Reset</button>
+            <button onClick={onFlip}>
+              {flipped ? "Turn back" : "flipped"}
+            </button>
+          </div>
+        );
+      }
+
+      function KmToMiles() {
+        return <h3>KM 2 M</h3>;
+      }
+      function App() {
+        /* App 컴포넌트가 state를 가지도록 해주기 - state로 어떤 변환기를 보고 싶은지 체킹 */
+        const [index, setIndex] = React.useState("xx");
+        // 첫번째 아이템: 데이터, 두번째 아이템: 데이터를 수정하는 함수
+        // 데이터가 함수에 의해 수정되면 ReactJS가 UI를 새로고침해줄 것임
+
+        const onSelect = (event) => {
+          // console.log(event.target.value);
+          setIndex(event.target.value);
+        };
+        console.log("render w/", index);
+
+        return (
+          <div>
+            <div>
+              <h1>Super Converter</h1>
+              {/* select에 value 삽입(향후 값을 수정할 경우를 대비) & 이벤트 리스너 추가 */}
+              <select value={index} onChange={onSelect}>
+                <option value="xx">Select you units</option>
+                <option value="0">Minutes & Hours</option>
+                <option value="1">Km & Miles</option>
+              </select>
+              <hr />
+              {/* 인덱스간 변화를 리스닝 */}
+              {index === "xx" ? "Please select your units" : null}
+              {index === "0" ? <MinutesToHours /> : null}
+              {index === "1" ? <KmToMiles /> : null}
+            </div>
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+
+```
+
+<br><br>
+
+## 3-0)
