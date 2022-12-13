@@ -317,6 +317,67 @@ export default App;
 
 # 추가내용
 
+## 조건부 랜더링
+
+```jsx
+import { useState } from "react";
+import One from "./components/One";
+import Two from "./components/Two";
+import Three from "./components/Three";
+
+function ContentsContainer({ listName }) {
+  if (listName === "one") {
+    return <One />;
+  } else if (listName === "two") {
+    return <Two />;
+  } else if (listName === "three") {
+    return <Three />;
+  }
+}
+
+function App() {
+  const [listName, setListName] = useState("one");
+  const handleCheckId = (e) => {
+    setListName(e.target.id); // listName의 값을 e.target.id로 변경
+  };
+
+  return (
+    <>
+      <nav>
+        <ul>
+          <li
+            id="one"
+            style={listName === "one" ? { color: "red" } : { color: "black" }}
+            onClick={handleCheckId}
+          >
+            One
+          </li>
+          <li
+            id="two"
+            style={listName === "two" ? { color: "red" } : { color: "black" }}
+            onClick={handleCheckId}
+          >
+            Two
+          </li>
+          <li
+            id="three"
+            style={listName === "three" ? { color: "red" } : { color: "black" }}
+            onClick={handleCheckId}
+          >
+            Three
+          </li>
+        </ul>
+      </nav>
+      <ContentsContainer listName={listName}></ContentsContainer>
+    </>
+  );
+}
+
+export default App;
+```
+
+<br><br>
+
 ## 스타일드 컴포넌트
 
 ### ES6 문법내용 - tagged template literal 문법
@@ -495,3 +556,5 @@ export default App;
 - 따라서 여기서 설정해준 변수는 다른 컴포넌트에 영향을 미치지 않는다는 뜻이다. (겹침 여부를 고민할 필요가 없다.)
 - js 파일 하나만으로 관리하면서 js 문법으로 처리할 수 있다.
 - props처럼 조건부 스타일을 적용할 수 있다.
+
+<br><br>
