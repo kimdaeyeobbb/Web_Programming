@@ -114,3 +114,40 @@ hojun.com/buy
 http://test.api.weniv.co.kr/mall   // 제품정보를 받아갈 수 있습니다
 http://test.api.weniv.co.kr/asset/img/1/thumbnailimg.jpg   // 여기서는 제품의 이미지를 받아갈 수 있습니다
 ```
+
+<br><br>
+
+# 보충
+
+## React Router
+
+### Component props 전달하기
+
+```jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+function App() {
+  return (
+    <BrowserRouter>
+      {/* 라우트를 감싸줍니다 */}
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/one" element={<One name="licat" />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function Index() {
+  return <h1>hello world</h1>;
+}
+
+function One() {
+  return;
+}
+
+export default App;
+```
+
+- One 컴포넌트에 name='licat'이라는 props를 전달함
+- ㅁ
