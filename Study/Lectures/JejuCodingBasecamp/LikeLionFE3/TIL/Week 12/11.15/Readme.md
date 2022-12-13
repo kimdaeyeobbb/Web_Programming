@@ -36,8 +36,6 @@
 
 # :nine: 컴포넌트 리스트 만들기
 
-- ㅁ
-
 # [HTTP 응답코드](https://ko.wikipedia.org/wiki/HTTP_%EC%83%81%ED%83%9C_%EC%BD%94%EB%93%9C)
 
 - 서버에서 번호를 주기 때문에 가짜 코드를 줄 가능성이 높다.
@@ -314,4 +312,186 @@ export default App;
 # 합성 컴포넌트
 
 - `npm install styled-components`: styled components 설치
-- ㅁ
+
+<br><br>
+
+# 추가내용
+
+## 스타일드 컴포넌트
+
+### ES6 문법내용 - tagged template literal 문법
+
+```js
+const name = "Danny";
+
+const age = 10;
+
+function 인사(문구, 이름, 나이) {
+  console.log(문구);
+}
+
+const 인사문구 = 인사`이름은 ${name}이고 나이는 ${age + age}입니다.`;
+// ['이름은 ', '이고 나이는 ', '입니다.', raw: Array(3)]
+```
+
+- `${}`을 기준으로 앞뒤로 split해서 문구로 들어간것.
+- `${name}`은 `이름`으로, `${age+age}`는 `나이`로 들어감
+
+<br>
+
+```js
+const name = "Danny";
+
+const age = 10;
+
+function 인사2(문구, 이름, 나이) {
+  console.log(문구, 이름, 나이);
+}
+
+const 인사문구 = 인사2`이름은 ${name}이고 나이는 ${age + age}입니다.`;
+// ['이름은 ', '이고 나이는 ', '입니다.', raw: Array(3)] 'Danny' 20
+```
+
+<br>
+
+```js
+const name = "Danny";
+
+const age = 10;
+
+function 인사3(문구, 이름, 나이) {
+  console.log(문구, 이름, 나이);
+  return `${문구[0]}${이름}${문구[1]}${나이 + 나이}${문구[2]}`;
+}
+
+const 인사문구 = 인사3`이름은 ${name}이고 나이는 ${age + age}입니다.`;
+console.log(인사문구); // 이름은 Danny이고 나이는 40입니다.
+```
+
+- 이 내용을 스타일드 컴포넌트에 적용시켜 보자
+
+```jsx
+const GlobalStyle = createGlobalStyle`
+span{
+  color: red;
+  font-size: 12px;
+}
+`;
+
+function App() {
+  return (
+    <>
+      <GlobalStyle />
+      <h1>hello world 1</h1>
+      <span>hello world 2</span>
+    </>
+  );
+}
+```
+
+- 여기서 createGlobalStyle은 함수에 해당된다.
+- 이 함수를 어떠한 변수에 담아주고 나서 변수 `GlobalStyle`을 컴포넌트로 사용하는 것이다.
+
+### Reset css
+
+- styled-reset 패키지를 다운받아서 reset을 Global css에 적용시키자
+
+```bash
+npm i styled-reset
+```
+
+- reset css 적용 예시
+
+```jsx
+import reset from "styled-reset";
+
+const GlobalStyle = createGlobalStyle`
+/* reset css 적용 */
+
+${reset}
+  span{
+    color: red;
+    font-size: 12px;
+  }
+`;
+```
+
+<br>
+
+### 스타일드 컴포넌트를 사용해서 스타일 적용시키기
+
+- 적용 기본꼴
+  - 태그명에 해당 styled을 적용하겠다는 뜻
+
+```js
+const 변수명 = styled.태그명`
+  background-color: red;
+`;
+```
+
+- 예시
+
+```jsx
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
+import styled from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  /* reset css 적용 */
+  ${reset}
+  span {
+    color: red;
+    font-size: 12px;
+    }
+
+    a{
+        text-decoration : none;
+        color : inherit;
+    }
+
+    button{
+        border : none;
+        cursor : pointer;
+    }
+
+    * {
+    box-sizing: border-box;
+    }
+`;
+
+/* 스타일드 컴포넌트를 이용해서 스타일 적용하기 */
+
+const ContentDiv = styled.div`
+  // 전체를 감싸는 컨테이너의 스타일
+  margin: 40px;
+  border: 1px solid black;
+`;
+
+const ContentH2 = styled.h2`
+  color: ${(props) => (props.name === "hello" ? "red" : "black")}
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+`;
+
+function App() {
+  return (
+    <ContentDiv>
+      <ContentH2>Q&A</ContentH2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
+        excepturi eius omnis beatae reiciendis a, placeat sed explicabo qui
+        similique aspernatur maxime mollitia aliquam libero voluptates?
+        Laboriosam rem nobis modi.
+      </p>
+    </ContentDiv>
+  );
+}
+export default App;
+```
+
+- 스타일드 컴포넌트를 사용하면 변수명, 클래스명등을 고민하지 않아도 된다.
+- 개발자 도구를 보면 우리가 설정해주지 않은 클래스명이 들어가 있는것이 확인가능하다.
+- 따라서 여기서 설정해준 변수는 다른 컴포넌트에 영향을 미치지 않는다는 뜻이다. (겹침 여부를 고민할 필요가 없다.)
+- js 파일 하나만으로 관리하면서 js 문법으로 처리할 수 있다.
+- props처럼 조건부 스타일을 적용할 수 있다.
