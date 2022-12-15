@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @keyframes yoon {
+        from {
+          transform: translate(100px, 0);
+        }
+        to {
+          transform: translate(300px, 0);
+        }
+      }
+      div {
+        position: absolute;
+        margin: 50px;
+        width: 100px;
+        height: 100px;
+        background-color: #ff0000;
+
+        /* 애니메이션 이름 */
+        animation-name: yoon;
+      }
+      /* [ 재생시간이 0인 경우 ] */
+      .duration_0s {
+        top: 20px;
+        animation-duration: 0;
+      }
+      /* [ 재생시간이 음수인 경우 ] */
+      .duration_minus {
+        top: 130px;
+        animation-duration: -3s;
+      }
+      /* [ 재생시간이 양수인 경우 ] */
+      .duration_plus {
+        top: 240px;
+        animation-duration: 3s;
+      }
+      /* [ 1초 이하의 재생시간을 입력할 경우 ] */
+      .duration_ms {
+        top: 350px;
+        animation-duration: 500ms;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="duration_0s">0s</div>
+    <div class="duration_minus">minus</div>
+    <div class="duration_plus">plus</div>
+    <div class="duration_ms">ms</div>
+  </body>
+</html>
