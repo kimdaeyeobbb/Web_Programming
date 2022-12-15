@@ -331,9 +331,9 @@ flex-basis: 300px(아이템들의 기본 컨텐츠 크기) */
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-areas:
-          'header header header'
-          'main main aside'
-          'footer footer footer';
+          "header header header"
+          "main main aside"
+          "footer footer footer";
       }
 
       header {
@@ -390,10 +390,10 @@ flex-basis: 300px(아이템들의 기본 컨텐츠 크기) */
                     4. main 넓이를 많이 주어야 할 때에는 아래처럼 구성할 수 있습니다.
                 */
         grid-template-areas:
-          '.       .       .       time'
-          'header  header  header  header'
-          'aside-a main    main    aside-b'
-          'footer  footer  footer  footer';
+          ".       .       .       time"
+          "header  header  header  header"
+          "aside-a main    main    aside-b"
+          "footer  footer  footer  footer";
       }
 
       header {
@@ -501,7 +501,7 @@ flex-basis: 300px(아이템들의 기본 컨텐츠 크기) */
       }
 
       .one::before {
-        content: '가상요소야!';
+        content: "가상요소야!";
         display: block;
         width: 100px;
         height: 100px;
@@ -510,7 +510,7 @@ flex-basis: 300px(아이템들의 기본 컨텐츠 크기) */
       }
 
       .one:hover::before {
-        content: '가상요소야!';
+        content: "가상요소야!";
         display: block;
         width: 200px;
         height: 200px;
@@ -584,7 +584,6 @@ flex-basis: 300px(아이템들의 기본 컨텐츠 크기) */
 1. 파싱
 
    - 브라우저는 우선 HTML파일을 DOM으로 변환(파싱)함
-   - ㅁ
 
 2. 스타일 계산
 
@@ -595,6 +594,69 @@ flex-basis: 300px(아이템들의 기본 컨텐츠 크기) */
 - 추가 내용 서술
 
 - GPU: 한번에 다중 연산 수행
-- ㅁ
 
-## a
+<br><br>
+
+# 추가 내용
+
+## 웹페이지 렌더링
+
+- 브라우저가 html 파일을 화면에 그려내는 과정
+
+### 1. 파싱
+
+- 브라우저가 HTML 파일을 DOM으로 파싱(변환)함
+- 오타나 잘못된 문법을 사용했을 경우 예외처리
+- `<link>`, `<img>`와 같은 태그를 만나면 리소스를 다운로드함
+- `<script>` 태그를 만날 경우 DOM 파싱을 중단하고 자바스크립트를 해석함
+
+### 2. 스타일 계산
+
+- CSS를 파싱해서 CSSOM으로 변환함
+- CSSOM 정보를 통해서 노드에 대한 스타일을 결정함
+- 결정된 스타일은 크롬 개발자 도구의 compute 항목에서 확인 가능함
+
+### 3. 레이아웃
+
+- CSSOM 정보를 토대로 레이아웃 트리(렌더 트리)를 생성함
+- 돔과 계산된 스타일을 따라가며 요소의 크기나 좌표와 같은 정보를 담은 레이아웃 트리를 생성함
+- 화면에 표현되는 정보만 트리에 담기게 됨 (display:none (X), 가상요소(O))
+
+### 4. 페인트
+
+- 레이아웃 트리(렌더 트리)가 생성되면 이 트리를 따라 페인트 기록이 생성됨
+- 페인트 기록에는 요소를 렌더링하는 순서가 저장됨 & 지금까지의 정보를 바탕으로 한 페이지를 여러개의 레이어로 나눈다음 그 위에 텍스트/색/이미지/border/그림자 등의 모든 시각적인 부분을 그리는 작업이 진행됨
+
+### 5. 컴포지팅
+
+- 각각의 레이어를 스크린에 픽셀로 표현하고(레스터링) 나누었던 레이어를 합성해서 페이지를 그리는 작업
+
+## 페이지 리플로우 & 리페인팅
+
+- 브라우저는 HTML 구조상의 변화나 스타일의 변화가 있을 때 relow, repaint라는 과정을 거친다
+- 브라우저의 각 단계별 렌더링 과정들은 반드시 전 단계의 데이터가 필요하다.
+- 따라서 전 단계에서 변화가 일어나면 다음 단꼐에도 영향을 미칠 수 밖에 없다.
+
+### reflow
+
+- 레이아웃(너비, 높이 등)변경 시 영향을 받는 모든 노드(자식, 부모)의 수치를 다시 계산하여 렌더 트리를 재생성하는 작업
+  - 렌더 트리: 브라우저가 HTML을 분석하여 트리형태의 구조로 재해석한 것
+
+### repaint
+
+- reflow 과정이 끝난 다음 재생성된 렌더 트리를 다시 그리는 작업
+- 수치와 상관없는 스타일 변경시에는 reflow 과정을 생략한 repaint 과정만 수행함
+- 만약 CSS를 통해 레이아웃이 바뀌는 애니메이션을 구현할 경우 브라우는 매 프레임마다 reflow, repaint 과정을 수행해야 한다.
+- reflow & repaint 현상은 브라우저에 상당한 부담이 된다.
+
+### transform
+
+- 정적인 사이트에서 요소의 위치를 단순히 배치하는 작업의 경우 `position`을 사용해도 괜찮다
+- 그러나 애니메이션이나 동적으로 요소의 위치를 이동해야하는 경우, `transform`속성을 사용하는 것이 성능에 좋다
+
+<br>
+
+## keyframe
+
+- `@keyframe`은 CSS의 스타일 변화 과정을 나타낼 때 사용함
+- `@transition`보다 정밀한 효과를 구현할 수 있음
