@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>transition-property all예제</title>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        -webkit-transition-property: all; /* safari */
+        -webkit-transition-duration: 2s; /* safari */
+        transition-property: width, height;
+        transition-duration: 2s;
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 100px;
+      }
+
+      div:hover {
+        background-color: blue;
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>all</div>
+  </body>
+</html>
