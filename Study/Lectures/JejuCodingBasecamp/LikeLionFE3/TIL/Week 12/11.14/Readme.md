@@ -540,3 +540,83 @@ myBtn.addEventListener("click", function () {
 <br><br>
 
 ## 구조분해할당
+
+<br><br>
+
+# 추가 학습
+
+## props
+
+- props는 컴포넌트를 만들 때 넣어줄 수 있는 속성의 집합이다
+- 리액트 컴포넌트는 JS의 함수와 유사하며, 컴포넌트는 props라는 임의의 입력을 받아 리액트 요소들을 화면에 어떻게 표시할지를 기술할 수 있다
+
+### defaultProps로 기본값 설정
+
+```jsx
+function Hello({ name, color }) {
+  return (
+    <div>
+      <h2>안녕</h2>
+      <div style={{ color }}>안녕하세요 {name}</div>
+      <div>비구조화 할당 문법사용했어요 {name}님</div>
+    </div>
+  );
+}
+
+Hello.defaultProps = {
+  name: "이름없음",
+};
+
+function App() {
+  return (
+    <>
+      <Hello name="React" color="blue" />
+      <Hello color="pink" />
+    </>
+  );
+}
+
+export default App;
+```
+
+<br>
+
+### props.children
+
+- 컴포넌트 태그 사이에 넣은값을 조회하기 위해서는 `props.children`을 조회하면 됨
+
+```jsx
+function Hello({ name, color }) {
+  return (
+    <div>
+      <h2>안녕</h2>
+      <div style={{ color }}>안녕하세요 {name}</div>
+      <div>비구조화 할당 문법사용했어요 {name}님</div>
+    </div>
+  );
+}
+
+Hello.defaultProps = {
+  name: "이름없음",
+};
+
+function Wrapper({ children }) {
+  const style = {
+    border: "2px solid yellow",
+    padding: "16px",
+  };
+
+  return <div style={style}>{children}</div>;
+}
+
+function App() {
+  return (
+    <Wrapper>
+      <Hello name="React" color="blue" />
+      <Hello color="pink" />
+    </Wrapper>
+  );
+}
+
+export default App;
+```
