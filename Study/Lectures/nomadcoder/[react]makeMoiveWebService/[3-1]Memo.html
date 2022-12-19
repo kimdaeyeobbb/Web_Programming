@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memo</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Btn({ text, kikiki }) {
+        console.log(text, " was rendered");
+        return (
+          <button
+            onClick={kikiki}
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+              fontSize: 16,
+            }}
+          >
+            {text}
+          </button>
+        );
+      }
+
+      // MemorizedBtn은 memorized version의 Btn이 될것이다.
+      // Btn을 MemorizedBtn으로 교체하는 과정
+      const MemorizedBtn = React.memo(Btn);
+
+      function App() {
+        const [value, setValue] = React.useState("save Changes");
+        const changeValue = () => setValue("Revert Changes"); // 값을 재설정
+        return (
+          <div>
+            <MemorizedBtn text={value} kikiki={changeValue} />
+            <MemorizedBtn text="Continue" />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
