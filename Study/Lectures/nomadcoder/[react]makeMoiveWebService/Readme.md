@@ -75,7 +75,22 @@
       - [select](#select)
     - [두개의 컴포넌트 중 어떤걸 보여줄지 선택하기](#두개의-컴포넌트-중-어떤걸-보여줄지-선택하기)
     - [결과물](#결과물)
-  - [3-0)](#3-0)
+  - [3-0) Props](#3-0-props)
+    - [부모 컴포넌트로부터 자식 컴포넌트로 데이터를 보내는 예시](#부모-컴포넌트로부터-자식-컴포넌트로-데이터를-보내는-예시)
+      - [버튼을 2개 만들지 말고 재활용해도록 해보자](#버튼을-2개-만들지-말고-재활용해도록-해보자)
+      - [style 재사용 및 텍스트를 설정하고 변경하기](#style-재사용-및-텍스트를-설정하고-변경하기)
+        - [props](#props)
+      - [이제 banana를 사용하도록 해보자](#이제-banana를-사용하도록-해보자)
+      - [props 대신 사용하는 지름길](#props-대신-사용하는-지름길)
+      - [props의 확장성](#props의-확장성)
+  - [3-1) Memo](#3-1-memo)
+    - [props에 무엇을 넣을 수 있는지 확인해보자](#props에-무엇을-넣을-수-있는지-확인해보자)
+    - [Btn을 렌더링하는 컴포넌트가 어떻게 되는지 알아보도록 하자](#btn을-렌더링하는-컴포넌트가-어떻게-되는지-알아보도록-하자)
+    - [부모 컴포넌트가 state(상태)를 변경할 때 어떤일이 일어나는지 살펴보도록 하자](#부모-컴포넌트가-state상태를-변경할-때-어떤일이-일어나는지-살펴보도록-하자)
+    - [prop의 이름을 바꿔서 적용하기](#prop의-이름을-바꿔서-적용하기)
+    - [알아두면 좋은 개념 - render](#알아두면-좋은-개념---render)
+    - [React Memo](#react-memo)
+  - [3-2) Prop Types](#3-2-prop-types)
 
 # 1. THE BASIC OF REACT
 
@@ -2326,4 +2341,763 @@ function App() {
 
 <br><br>
 
-## 3-0)
+## 3-0) Props
+
+- 로직들을 고립시켜서 분리된 컴포넌트로 만들어보자
+- 리액트로 어플리케이션을 만들어 가면서 컴포넌트를 만들 수 있다
+- props는 부모 컴포넌트로부터 자식 컴포넌트에 데이터를 보낼 수 있는 방법이다
+
+- MinutesToHours와 KmToMiles. 두 컴포넌트들은 부모 컴포넌트(App)의 데이터를 필요로 하지 않으며, 독립적으로 존재할 수 있다
+
+### 부모 컴포넌트로부터 자식 컴포넌트로 데이터를 보내는 예시
+
+- props의 필요성을 깨닫기 위해서 props로 해결가능한 문제들을 먼저 겪어보자
+
+- 우선적으로 버튼마다 컴포넌트를 만들어보자
+
+- 컴포넌트?
+
+  - 어떤 JSX를 반환하는 함수이다
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function SaveBtn() {
+        return <button>Save Change</button>;
+      }
+
+      function ConfirmBtn() {
+        return <button>Confirm</button>;
+      }
+
+      function App() {
+        return (
+          <div>
+            <SaveBtn />
+            <ConfirmBtn />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+- 컴포넌트
+
+```jsx
+function SaveBtn() {
+  return <button>Save Change</button>;
+}
+
+function ConfirmBtn() {
+  return <button>Confirm</button>;
+}
+```
+
+- JSX의 내부
+
+```jsx
+<div>
+  <SaveBtn />
+  <ConfirmBtn />
+</div>
+```
+
+#### 버튼을 2개 만들지 말고 재활용해도록 해보자
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Btn() {
+        return (
+          <button
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+            }}
+          >
+            Save Change
+          </button>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <Btn />
+            <Btn />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+#### style 재사용 및 텍스트를 설정하고 변경하기
+
+- syntax를 커스텀 컴포넌트에 똑같이 적용시켜보자
+
+  - 이것이 데이터를 전달하고 컴포넌트를 재사용할 수 있는 방법이다
+
+- 새로운 정보를 Btn 컴포넌트에 전송하기
+  - text 대신 potato, banana등 자기 마음대로 지정해서 전달해도 된다
+
+```jsx
+function App() {
+  return (
+    <div>
+      <Btn text="" />
+      <Btn text="" />
+    </div>
+  );
+}
+```
+
+<br>
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Btn(props) {
+        return (
+          <button
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+            }}
+          >
+            Save Change
+          </button>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <Btn banana="Save Changes" />
+            <Btn banana="Continue" />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+- 이 코드의 결과물을 보면 달라진것이 없다.
+- 왜냐하면 우리가 banana를 Btn에 보냈는데 Btn은 banana를 사용하고 있지 않기 때문이다
+- 우리가 만드는 모든 컴포넌트들은 `()`내부에 인자를 받는다. 인자의 이름은 우리가 임의로 지정해줄 수 있다. 보통 `props`로 사용한다. 이는 Btn으로부터 전달받는 property이다.
+
+- 이는 다음과 같다.
+  - Btn 함수를 불러서 banana 라는 인자를 객체의 형식으로 보내는 것과 동일하다
+- 어떤 prop이든 Btn 컴포넌트에 보내면 그것들은 Btn 함수의 첫번째 인자로 들어간다
+
+```jsx
+function App() {
+  return (
+    <div>
+      Btn({banana: "save changes"})
+      <Btn banana="Save Changes" />
+      <Btn banana="Continue" />
+    </div>
+  );
+}
+```
+
+- ReactJS는 우리가 함수의 인자로 전달하는 모든 props들을 자동으로 객체 안에 집어넣는다
+  - 그리고 이 객체들은 컴포넌트의 첫번째 인자로 주어진다
+  - props는 컴포넌트의 인자로 전달되는 첫번째이자 유일한 인자이다
+  - 두번쨰 인자는 없다
+  - props는 object이며, 우리가 컴포넌트쪽으로 보낸 모든것들을 갖는 object이다.
+
+```jsx
+function App() {
+  return (
+    <div>
+      Btn({banana: "save changes"})
+      <Btn banana="Save Changes" />
+      Btn({banana: "Continue"})
+      <Btn banana="Continue" />
+    </div>
+  );
+}
+```
+
+##### props
+
+- props는 컴포넌트의 인자로 전달되는 첫번째이자 유일한 인자이다
+- 두번쨰 인자는 없다
+- props는 object이며, 우리가 컴포넌트쪽으로 보낸 모든것들을 갖는 object이다.
+
+#### 이제 banana를 사용하도록 해보자
+
+- 이는 우리가 object를 받고있음을 알고 있기 때문에 가능하다
+- props라는 object는 banana라는 이름의 key를 가지고 있다
+- 아래 예시는 같은 Btn 컴포넌트를 사용하지만 이 버튼들은 App 컴포넌트에 의해 설정되고 있다
+  - 단 하나의 Btn 컴포넌트가 있지만, UI는 다르다 (재사용하고 있음을 확인할 수 있다!)
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Btn(props) {
+        console.log(props);
+        return (
+          <button
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+            }}
+          >
+            {props.banana}
+          </button>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <Btn banana="Save Changes" x={false} />
+            <Btn banana="Continue" y={7} />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+#### props 대신 사용하는 지름길
+
+- object로부터 property를 꺼내는 것이 지름길이다.
+
+- props는 object이므로 (`{banana}`처럼)중괄호를 열어서 데이터를 내부에 인자로 전달하면 props.banana로 접근할 필요없이 banana라고만 적으면 해당 데이터를 바로 사용할 수 있다
+
+- Btn 함수 컴포넌트의 첫번째 인자인 props라는 object로부터 banana를 받아내고 있는 것이다
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Btn({ banana }) {
+        // console.log(props);
+        return (
+          <button
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+            }}
+          >
+            {banana}
+          </button>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <Btn banana="Save Changes" x={false} />
+            <Btn banana="Continue" y={7} />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+#### props의 확장성
+
+- props를 더 많은 곳에서 사용할 수도 있다
+
+- 다음 예시에서 첫번째 Btn의 big은 true가 되고, 두번째 Btn의 big은 undefined가 된다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Btn({ text, big }) {
+        // console.log(props);
+        return (
+          <button
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+            }}
+          >
+            {text}
+          </button>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <Btn text="Save Changes" big={true} />
+            <Btn text="Continue" />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+<br><br>
+
+## 3-1) Memo
+
+### props에 무엇을 넣을 수 있는지 확인해보자
+
+### Btn을 렌더링하는 컴포넌트가 어떻게 되는지 알아보도록 하자
+
+### 부모 컴포넌트가 state(상태)를 변경할 때 어떤일이 일어나는지 살펴보도록 하자
+
+- onClick 함수를 이용해서 App컴포넌트상 무엇인가의 state를 바꿔보도록 하자
+
+- 이 onClick 함수는 Btn으로 들어가는 prop이다. 따라서 실제 EventListener가 아니다.
+  - 이것들은 prop의 이름일 뿐이고, Btn 안으로 전달되고 있다.
+- 아래와 같이 onClick을 커스텀 컴포넌트안에다가 넣는다면 그것은 이벤트 리스너가 아니고 단지 하나의 prop일뿐이다.
+
+```jsx
+function App() {
+  const [value, setValue] = React.useState("save Changes");
+  const changeValue = () => setValue("Revert Changes"); // 값을 재설정
+  return (
+    <div>
+      {/* 이 onClick은 단지 하나의 prop일 뿐이다. */}
+      <Btn text={value} onClick={changeValue} />
+      <Btn text="Continue" />
+    </div>
+  );
+}
+```
+
+- 만약 onClick을 html 요소안에 넣었더라면 그것이야말로 이벤트리스너인것이다.
+
+```html
+<button onClick="{}"></button>
+```
+
+- 컴포넌트에 직접 style을 설정한다고 해도 적용되지 않는다. 왜냐하면 이 style들은 직접적으로 버튼에 달리지 않기 때문이다.
+
+```html
+function App() { const [value, setValue] = React.useState("save Changes"); const
+changeValue = () => setValue("Revert Changes"); // 값을 재설정 return (
+<div>
+  {/* 이 onClick은 단지 하나의 prop일 뿐이다. */}
+  <Btn style="{}" text="{value}" onClick="{changeValue}" />
+  <Btn text="Continue" />
+</div>
+); }
+```
+
+- style을 적용하기 위해서는 컴포넌트에 직접 style을 적용하는것이 아니라 우리가 직접 props들을 가져와서 적용시켜야만 한다.
+- 동일한 이유에서 우리가 달아준 onClick 이벤트는 어디에도 없을것이다. (해당 이벤트는 button으로 들어가는 무엇인가가 아니고, Btn 컴포넌트로 들어가는 무언가이다.) (button 태그를 위한 이벤트 리스너가 아니다.)
+- 따라서 onClick을 직접 Btn 함수의 인자로 받아와서 button 태그내에 직접 onClick 설정을 해주어야 한다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Btn({ text, onClick }) {
+        return (
+          <button
+            onClick={onClick}
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+              fontSize: 16,
+            }}
+          >
+            {text}
+          </button>
+        );
+      }
+
+      function App() {
+        const [value, setValue] = React.useState("save Changes");
+        const changeValue = () => setValue("Revert Changes"); // 값을 재설정
+        return (
+          <div>
+            <Btn text={value} onClick={changeValue} />
+            <Btn text="Continue" />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+- 강조> 컴포넌트에는 뭘 넣든지 간에 상관없이 들어간 것들은 단지 prop이 될 뿐이다.
+
+  - 이것들은 결코 실제 HTML 태그 내에 들어가지 않는다.
+
+- 커스텀 컴포넌트의 prop으로 원하는 뭐든지 사용할 수 있다.
+  - 하지만 prop들은 직접적으로 return문 안에 들어가지 않고 우리가 직접 함수에 prop을 넣어야 한다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Btn({ text, changeValue }) {
+        return (
+          <button
+            onClick={changeValue}
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+              fontSize: 16,
+            }}
+          >
+            {text}
+          </button>
+        );
+      }
+
+      function App() {
+        const [value, setValue] = React.useState("save Changes");
+        const changeValue = () => setValue("Revert Changes"); // 값을 재설정
+        return (
+          <div>
+            <Btn text={value} changeValue={changeValue} />
+            <Btn text="Continue" />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+- 뭐든 컴포넌트 안에 prop으로 넣는다면 그건 절대 자동적으로 App의 return 내부로 들어가지 않을 것이다.
+  - 우리가 직접 해당 함수의 인자로 넣어주어야 한다.
+
+### prop의 이름을 바꿔서 적용하기
+
+- prop의 이름을 kikiki로 바꾸어서 적용시킨 예시
+- kikiki라는 이름의 prop을 사용하고 있음 => 이 prop은 button 태그가 갖고 있는 onClick의 이벤트리스너로서 사용되고 있다
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memo</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Btn({ text, kikiki }) {
+        return (
+          <button
+            onClick={kikiki}
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+              fontSize: 16,
+            }}
+          >
+            {text}
+          </button>
+        );
+      }
+
+      function App() {
+        const [value, setValue] = React.useState("save Changes");
+        const changeValue = () => setValue("Revert Changes"); // 값을 재설정
+        return (
+          <div>
+            <Btn text={value} kikiki={changeValue} />
+            <Btn text="Continue" />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+### 알아두면 좋은 개념 - render
+
+- onClick 함수가 call될 때, 이 value가 재설정딘다.
+- 그리고 value가 바뀔 떄, 데이터를 수정하는 함수가 불려질 때 다시 그려진다 (re-render)
+- 부모 컴포넌트(App)는 이 때 state(상태)변경을 겪는다.
+- 그리고 상태가 변경될 때 App 컴포넌트 내부의 return문이 새로 그려진다.
+
+- 즉, 리액트의 규칙에 따라 컴포넌트가 상태를 바꾼다면 다시 render한다.
+
+- 아래 예시는 부모가 state를 바꾸고 있고, 내부의 모든 것들이 다시 그려진다. (Btn과 Continue 모두 말이다.)
+
+```jsx
+function App() {
+  const [value, setValue] = React.useState("Save Changes");
+  const changeValue = () => setValue("Revert Changes");
+  return (
+    <div>
+      <Btn text={value} onClick={changeValue} />
+      <Btn text="Continue" />
+    </div>
+  );
+}
+const root = document.getElementById("root");
+ReactDOM.render(<App />, root);
+```
+
+- 이 경우 ReactMemo라는 것을 사용해서 컴포넌트가 다시 그려지는 것을 원하지 않는다고 리액트에게 말해줄 수 있다
+- prop가 변경되지 않는다면 우리는 컴포넌트를 그릴지 여부를 결정할 수 있다
+- prop이 변경되지 않는 한에서 첫 번쨰 버튼의 props는 바뀐다. (첫번째 버튼의 props는 state와 연결되어 있기 때문이다)
+- 따라서 state가 변경된다면 return문 내의 것들도 바뀌어야한다. (왜냐하면 props가 바뀌고 있기 때문이다: value가 Save Changes로부터 Revert Changes로 말이다!)
+
+```jsx
+<Btn text={value} onClick={changeValue} />
+```
+
+### React Memo
+
+- 하지만 아래의 props는 절대 바뀌지 않는다
+
+```jsx
+<Btn text="Continue" />
+```
+
+- 따라서 우리는 리액트에게 이 Btn의 리랜더링을 멈춰달라고 말할 수 있다. (이 props들이 바뀌지 않는다면 말이다!.) (첫 번쨰 Btn은 바뀌지만 두번째 Btn은 바뀌지 않는다.)
+
+- 이 경우 React Memo를 사용해보자.
+- Btn을 MemorizedBtn으로 교체하는 과정
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memo</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Btn({ text, kikiki }) {
+        console.log(text, " was rendered");
+        return (
+          <button
+            onClick={kikiki}
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+              fontSize: 16,
+            }}
+          >
+            {text}
+          </button>
+        );
+      }
+
+      // MemorizedBtn은 memorized version의 Btn이 될것이다.
+      // Btn을 MemorizedBtn으로 교체하는 과정
+      const MemorizedBtn = React.memo(Btn);
+
+      function App() {
+        const [value, setValue] = React.useState("save Changes");
+        const changeValue = () => setValue("Revert Changes"); // 값을 재설정
+        return (
+          <div>
+            <MemorizedBtn text={value} kikiki={changeValue} />
+            <MemorizedBtn text="Continue" />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+- 부모(App)가 어떤 state의 변경이 발생한다면 모든 자식들 (내부의 return문 등)은 리렌더링이 발생한다.
+- 그리고 이로인해 어플리케이션이 느려질 수 있다
+- 하나의 컴포넌트가 내부의 천개의 컴포넌트를 그린다고 상상해보라! 얼마나 끔찍한가 !
+
+<br><br>
+
+## 3-2) Prop Types
+
+- ㅁ
