@@ -91,6 +91,10 @@
     - [알아두면 좋은 개념 - render](#알아두면-좋은-개념---render)
     - [React Memo](#react-memo)
   - [3-2) Prop Types](#3-2-prop-types)
+    - [코드상 에러](#코드상-에러)
+    - [prop types](#prop-types)
+      - [PropTypes을 이용해서 각기 다른 타입을 검사하기](#proptypes을-이용해서-각기-다른-타입을-검사하기)
+      - [값이 존재하지 않을 경우 default value 설정](#값이-존재하지-않을-경우-default-value-설정)
 
 # 1. THE BASIC OF REACT
 
@@ -3100,4 +3104,207 @@ ReactDOM.render(<App />, root);
 
 ## 3-2) Prop Types
 
-- ㅁ
+- prop을 이용해서 컴포넌트 환경을 우리가 원하는만큼 설정할 수 있다
+- 많은 props들을 가지는 컴포넌트를 가질 때 문제가 발생함
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>propTypes</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Btn({ text, fontSize }) {
+        return (
+          <button
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+              fontSize: fontSize,
+            }}
+          >
+            {text}
+          </button>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <Btn text={"띠요옹"} fontSize={18} />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+### 코드상 에러
+
+- text prop에 string 타입을 보내는 대신에 숫자를 넘겨주거나 fontSize에 text를 보내는 실수를 하는 경우가 있을 수 있다
+- 이는 코드 상에서 에러이며, 틀린 코드는 아니다.
+- 하지만 우리가 사용하고 있는 컴포넌트 방식 내에서는 에러이다.
+- 리액트는 이를 알아차리지 못하므로 PropTypes라는 패키지를 이용해서 어떤 타입을 prop을 받고있는지를 체크해보자
+
+### prop types
+
+- 리액트에게 우리 prop들의 타입이 무엇인지 알려주기위해 PropTypes를 설치하기
+
+```html
+<!-- Prop Types -->
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+
+Btn.propTypes ={ }
+```
+
+- 이제 props의 타입이 뭐고 어떤 모양이어야 하는지를 우리가 설명해줄 수 있다
+- +) propTypes라는 객체에 접근이 가능해진다
+- PropTypes는 각기 다른 타입들을 검사하는게 가능하다
+
+```
+{array: ƒ, bool: ƒ, func: ƒ, number: ƒ, object: ƒ, …}
+```
+
+#### PropTypes을 이용해서 각기 다른 타입을 검사하기
+
+- prop명과 type을 기재
+- 이 상황에서는 text가 string이 되기를 바란다
+- text는 required로, number는 optional로 설정함
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>propTypes</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Prop Types -->
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+    <script type="text/babel">
+      function Btn({ text, fontSize }) {
+        return (
+          <button
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+              fontSize: fontSize,
+            }}
+          >
+            {text}
+          </button>
+        );
+      }
+
+      Btn.propTypes = {
+        text: PropTypes.string.isRequired,
+        fontSize: PropTypes.number,
+      };
+
+      function App() {
+        return (
+          <div>
+            <Btn text={"띠요옹"} fontSize={18} />
+            <Btn fontSize={18} />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+#### 값이 존재하지 않을 경우 default value 설정
+
+- 정의되지 않은 변수에 관한 기본값을 줄 수 있다
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>propTypes</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- react import (리액트 세팅) -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <!-- react-dom import (리액트 돔 세팅) -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel - 느린방식. 지금은 배움의 단계이므로 이렇게 사용하는 것  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Prop Types -->
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+    <script type="text/babel">
+      function Btn({ text, fontSize = 25 }) {
+        return (
+          <button
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+              fontSize: fontSize,
+            }}
+          >
+            {text}
+          </button>
+        );
+      }
+
+      Btn.propTypes = {
+        text: PropTypes.string.isRequired,
+        fontSize: PropTypes.number,
+      };
+
+      function App() {
+        return (
+          <div>
+            <Btn text={"띠요옹"} fontSize={18} />
+            <Btn fontSize={18} />
+            <Btn text={"버튼"} />
+          </div>
+        );
+      }
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+```
+
+-
