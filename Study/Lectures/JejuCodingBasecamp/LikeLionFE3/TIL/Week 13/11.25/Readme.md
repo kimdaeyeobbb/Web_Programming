@@ -402,4 +402,243 @@ GET /user/searchuser/?keyword=keyword
 - keyword에는 accountname, username을 검색할 수 있습니다.
 - 요청하는 부분이 `user/searchuser/?keyword=keyword`와 같은 문자열로 fetch해서 결과가 나오는 것임
 
-## 팔로워 리스트
+## 실전연습
+
+- html 태그 내 `accept="image/*"` : 이미지 형식의 파일만 확인할 수 있다는 뜻
+
+## 회원가입
+
+### 작업순서
+
+- API 명세 분석
+- SCRIPT로 구현할 때
+
+1. input창에 있는 것을 제일 큰 단위로 데이터를 모아야 함 (submit을 하기 위해 필요한 데이터 읽고 만들기)
+   - javascript로 서버에 직접 요청을 할 때에는 type=submit이 아닌 type=button을 사용
+   1. submit 버튼을 클릭했을 때 잘 클릭이 되는지를 확인할 것
+      1. 버튼 선택하기
+      2. 버튼 선택이 잘 되었는지 확인하기
+   2. 클릭했을 때 체크해주는 기능 만들기
+   3. 이벤트 등록하기
+   4. 버튼을 클릭했을 때 데이터를 받아오도록 하고 싶음.
+
+### 개념정리
+
+- document: 브라우저가 켜졌을 때의 화면
+- DOM: Document를 object 형태로 나타낸 것
+- document.querySelector : 내 화면에 명령을 해서 선택하는 것.
+- querySelector: 하나만 선택함
+- 노드리스트는 reduce가 없으므로 reduce를 사용하고 싶은 경우 spread 기법을 이용할 것 ([...변수명].reduce() 꼴로 사용)
+  - reduce는 return 해주는 것을 기반으로 값을 바꿔줌
+
+## 비동기처리
+
+```js
+const userData = { user: data };
+/* 비동기 처리 */
+fetch("https://mandarin.api.weniv.co.kr/user", {
+  method: "POST",
+  headers: {
+    "Content-type": "application/json",
+  },
+  body: userData,
+}).then((res) => console.log(res));
+```
+
+- then: 결과물을 확인.
+- 결과물 예시
+
+```js
+Response {type: 'cors', url: 'https://mandarin.api.weniv.co.kr/user',
+redirected: false, status: 200, ok: true, …}
+```
+
+### 페이로드
+
+- 자바스크립트 객체를 문자열 객체로 바꿔주는 과정이 필요하다
+- 이 과정에서 JSON.stringify를 이용한다
+
+### 데이터 만들기
+
+```js
+/* 데이터 만들기 */
+const data = [...inputs].reduce((data, inputEl) => {
+  if (inputEl.name == "profile-img") {
+    return data;
+  }
+}, {});
+console.log(data);
+```
+
+### 회원가입 요청 api 명세 맞춰서 데이터 가공하기
+
+```js
+const userData = { user: data };
+console.log(userData.toString());
+console.log("do (JSON.stringify(userData): ", JSON.stringify(userData));
+```
+
+### 데이터 요청하기
+
+```js
+/* 비동기 처리 - 드디어 요청하기 */
+fetch("https://mandarin.api.weniv.co.kr/user", {
+  method: "POST",
+  headers: {
+    "Content-type": "application/json",
+  },
+  body: JSON.stringify(userData),
+})
+  .then((res) => res.json())
+  .then((json) => console.log(json));
+```
+
+## 감귤마켓 예시페이지 주소로 바꿔서 진행
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title></head
+  ><!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=\, initial-scale=1.0" />
+      <title>회원가입</title>
+    </head>
+    <body>
+      <div id="root">
+        <section class="email-pw">
+          <h2 class="main-title">이메일로 회원가입</h2>
+          <div class="input-container">
+            <label for="emailInput">이메일</label>
+            <input
+              type="email"
+              id="emailInput"
+              name="email"
+              data-state="0"
+              placeholder="이메일 주소를 알려주세요."
+            />
+          </div>
+          <div class="input-container input-container-pw">
+            <label for="passwordInput">비밀번호</label>
+            <input
+              type="password"
+              name="password"
+              id="passwordInput"
+              data-state="0"
+              placeholder="비밀번호를 설정해 주세요."
+            />
+          </div>
+          <button type="button" class="next-btn">다음</button>
+        </section>
+
+        <section class="profile">
+          <h2 class="main-title join-profile-title">프로필 설정</h2>
+          <p class="profile-info-txt">나중에 언제든지 변경할 수 있습니다.</p>
+          <label for="profileImg">
+            <img
+              src="https://mandarin.api.weniv.co.kr/Ellipse.png"
+              alt=""
+              srcset=""
+              id="imagePre"
+            />
+          </label>
+          <input
+            type="file"
+            id="profileImg"
+            name="image"
+            accept="image/*"
+            class="ir"
+          />
+          <div class="input-container">
+            <label for="userNameInput">사용자 이름</label>
+            <input
+              type="text"
+              id="userNameInput"
+              name="username"
+              data-state="0"
+              placeholder="2~10자 이내여야 합니다."
+            />
+          </div>
+          <div class="input-container">
+            <label for="userIdInput">계정 ID</label>
+            <input
+              type="text"
+              id="userIdInput"
+              name="accountname"
+              data-state="0"
+              placeholder="영문, 숫자, 특수문자(,), (_)만 사용 가능합니다."
+            />
+          </div>
+          <div class="input-container input-container-intro">
+            <label for="userIntroInput">소개</label>
+            <input
+              type="text"
+              id="userIntroInput"
+              name="intro"
+              data-state="1"
+              placeholder="자신과 판매할 상품에 대해 소개해 주세요."
+            />
+          </div>
+          <button type="button" class="submit-btn">감귤마켓 시작하기</button>
+        </section>
+      </div>
+    </body>
+    <script>
+      const submitBtn = document.querySelector(".submit-btn");
+      const emailInput = document.querySelector("#emailInput");
+      const passwordInput = document.querySelector("#passwordInput");
+      const userNameInput = document.querySelector("#userNameInput");
+      const userIdInput = document.querySelector("#userIdInput");
+      const userIntroInput = document.querySelector("#userIntroInput");
+
+      const onClick = () => {
+        console.log("선택 되었습니다.");
+        const inputs = document.querySelectorAll("#root input");
+
+        /* 데이터 만들기 */
+        const data = [...inputs].reduce((data, inputEl) => {
+          if (inputEl.name == "profile-img") {
+            return data;
+          }
+        }, {});
+        console.log(data);
+
+        /* 회원가입 요청 api 명세 맞춰서 데이터 가공하기 */
+        const userData = { user: data };
+        console.log(userData.toString());
+        console.log("do (JSON.stringify(userData): ", JSON.stringify(userData));
+
+        /* 비동기 처리 - 드디어 요청하기 */
+        fetch("http://146.56.183.55:5050/user", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        })
+          .then((res) => res.json())
+          .then((json) => console.log(json));
+      };
+
+      submitBtn.addEventListener("click", onClick);
+    </script>
+  </html>
+</html>
+```
+
+## fetch
+
+- 서버에다가 fetch 내부에 입력한 주소로 요청하는 것.
+- 서버에다가 일을 시키는 것
+- mehotd: post, get, delete 등 기재
+- header: header 채우기
+- body: body data를 문자열형태로 넣기
+- then: 전화를 건다
+- then이후: 전화를받음. 전화를 잘못받았다고 알려주는게
