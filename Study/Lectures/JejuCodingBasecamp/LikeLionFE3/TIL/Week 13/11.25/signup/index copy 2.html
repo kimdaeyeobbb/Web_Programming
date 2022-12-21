@@ -94,41 +94,65 @@
     </body>
     <script>
       const submitBtn = document.querySelector(".submit-btn");
-      const emailInput = document.querySelector("#emailInput");
-      const passwordInput = document.querySelector("#passwordInput");
-      const userNameInput = document.querySelector("#userNameInput");
-      const userIdInput = document.querySelector("#userIdInput");
-      const userIntroInput = document.querySelector("#userIntroInput");
-
-      const onClick = () => {
-        console.log("선택 되었습니다.");
+      const onClick = async () => {
         const inputs = document.querySelectorAll("#root input");
-
-        /* 데이터 만들기 */
+        // 데이터 만들기
         const data = [...inputs].reduce((data, inputEl) => {
           if (inputEl.name == "profile-img") {
             return data;
           }
+          data[inputEl.name] = inputEl.value;
+          return data;
         }, {});
-        console.log(data);
+        // 데이터에 이미지 추가하기
+        const imagePre = document.querySelector("#imagePre");
+        data["image"] = imagePre.src;
 
-        /* 회원가입 요청 api 명세 맞춰서 데이터 가공하기 */
+        // 회원가입 요청 api 명세맞춰서 데이터 가공하기!
         const userData = { user: data };
-        console.log(userData.toString());
-        console.log("do (JSON.stringify(userData): ", JSON.stringify(userData));
-
-        /* 비동기 처리 - 드디어 요청하기 */
-        fetch("http://146.56.183.55:5050/user", {
+        const res = await fetch("http://146.56.183.55:5050/user", {
           method: "POST",
           headers: {
             "Content-type": "application/json",
           },
           body: JSON.stringify(userData),
-        })
-          .then((res) => res.json())
-          .then((json) => console.log(json));
+        });
+
+        const json = await res.json();
+        console.log(json);
       };
 
+      //이미지 업로드 함수 만들기
+      // 아직 회원가입할때 이미지를 만들수가 없어요 ㅠㅠ
+      // 1. file이 change 되었을때 바뀐 파일을 업로드하고 반환된 주소를 이용하자.
+      // 2. 회원가입 요청시 file을업로드하자! 그리고 반환받은 주소를 이용하자.
+      // 1번이 더 쉽다는데? 1번으로 ㄱ
+      const fileOnChange = async (e) => {
+        // 파일 하나 꺼내오기
+        const imageFile = e.target.files[0];
+        // 폼데이터 만들기
+        const formData = new FormData();
+        // 폼데이터에 내 데이터 추가하기
+        // 폼데이터.append("키","값")
+        formData.append("image", imageFile);
+        // 요청하기
+        const res = await fetch("http://146.56.183.55:5050/image/uploadfile", {
+          method: "POST",
+          body: formData,
+        });
+        // json꺼내기
+        const json = await res.json();
+        // 이미지 미리보기 요소선택
+        const imagePre = document.querySelector("#imagePre");
+        // 이미지 미리보기 요소에 src변경
+        imagePre.src = "http://146.56.183.55:5050/" + json.filename;
+      };
+      const imgInput = document.querySelector("#profileImg");
+      imgInput.addEventListener("change", fileOnChange);
+
+      const imageUpload = () => {};
+
+      // 이벤트 등록하기
       submitBtn.addEventListener("click", onClick);
     </script>
   </html>
