@@ -635,10 +635,22 @@ fetch("https://mandarin.api.weniv.co.kr/user", {
 
 ## fetch
 
-- 서버에다가 fetch 내부에 입력한 주소로 요청하는 것.
+- 서버에다가 fetch 내부에 입력한 주소로 요청하는 것. ()
 - 서버에다가 일을 시키는 것
-- mehotd: post, get, delete 등 기재
+- method: post, get, delete 등 기재
 - header: header 채우기
 - body: body data를 문자열형태로 넣기
 - then: 전화를 건다
 - then이후: 전화를받음. 전화를 잘못받았다고 알려주는게
+
+- '전화 잘못 받았습니다.'라고 알려주는 행위
+
+```js
+.then((res) => res.json()))
+```
+
+
+- 이것을 문서 형태로 보여주는 것
+```js
+
+```
