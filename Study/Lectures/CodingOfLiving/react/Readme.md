@@ -1246,3 +1246,20 @@ const Timer = (props) => {
 
 export default Timer;
 ```
+
+<br><br>
+
+# useRef
+
+```jsx
+const ref = useRef(value);
+```
+
+- 함수형컴포넌트에서 useRef를 부르면 ref 객체를 반환해줌
+- ref object는 다음과 같이 생겼다
+
+```js
+{
+  current: value;
+}
+```
