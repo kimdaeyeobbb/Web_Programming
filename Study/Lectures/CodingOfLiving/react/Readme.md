@@ -1168,3 +1168,81 @@ useEffect(() => {
   // 맨처음 랜더링될 때 & 마운트될때에만 실행됨
 }, []);
 ```
+
+## 타이머 예시
+
+- App.jsx
+
+```jsx
+import React, { useState, useEffect } from "react";
+import Timer from "./components/Timer";
+
+export default function App() {
+  const [showTimer, setShowTimer] = useState(false);
+
+  return (
+    <div>
+      {/* showTimer가 true일 경우에만 Timer를 보여줌 */}
+      {showTimer && <Timer />}
+      <button onClick={() => setShowTimer(!showTimer)}>Toggle Timer</button>
+    </div>
+  );
+}
+```
+
+- Timer.jsx
+
+```jsx
+import React, { useEffect } from "react";
+
+const Timer = (props) => {
+  useEffect(() => {
+    const timer = setInterval(() => {
+      console.log("타이머 돌아가는중...");
+    }, 1000);
+  }, []);
+
+  return (
+    <div>
+      <span>타이머를 시작합니다. 콘솔을 보세요!</span>
+    </div>
+  );
+};
+
+export default Timer;
+```
+
+- Toggle Timer를 누르면 Timer컴포넌트가 마운트됨 (첫 랜더링) => 이때 useEffect함수가 실행됨 => 내부의 setInterval 함수가 실행됨
+
+### setInterval로 타이머를 만들고나서 정리하는 작업
+
+- Timer를 다 쓰고나서 종료되게 만들어보자
+  - useEffect의 정리값으로 함수를 넣어주고, 함수 안에서 정리작업을 처리해주면 된다.
+  - 정리작업은 타이머 컴포넌트가 언마운트(화면에서 사라질때) 실행됨
+
+```jsx
+import React, { useEffect } from "react";
+
+const Timer = (props) => {
+  useEffect(() => {
+    const timer = setInterval(() => {
+      console.log("타이머 돌아가는중...");
+    }, 1000);
+
+    /* 타이머 정리 작업 */
+
+    return () => {
+      clearInterval(timer);
+      console.log("타이머가 종료되었습니다.");
+    };
+  }, []);
+
+  return (
+    <div>
+      <span>타이머를 시작합니다. 콘솔을 보세요!</span>
+    </div>
+  );
+};
+
+export default Timer;
+```
