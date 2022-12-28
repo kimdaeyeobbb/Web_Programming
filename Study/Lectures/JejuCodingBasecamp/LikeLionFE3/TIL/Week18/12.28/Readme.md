@@ -280,3 +280,130 @@ footer {
   </body>
 </html>
 ```
+
+- https://july249.tistory.com/entry/HTML-aria-label%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* a {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-image: url('./images/logo_naver.png');
+            background-size: cover;
+        } */
+
+      span {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        vertical-align: -5px;
+        background-image: url("images/css_sprites.png");
+        background-position: -52px -10px;
+      }
+
+      span[aria-checked="true"] {
+        background-image: url("images/css_sprites.png");
+        background-position: -10px -10px;
+      }
+
+      /* .txt-hide {
+            position: absolute;
+            clip: rect(0 0 0 0);
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+        } */
+
+      /* .labl-hold::before {
+            display: inline-block;
+            content: '';
+            width: 22px;
+            height: 22px;
+            vertical-align: -5px;
+            background-image: url("images/css_sprites.png");
+            background-position: -52px -10px;
+        }
+
+        .inp-hold:checked+.labl-hold::before {
+            background-image: url("images/css_sprites.png");
+            background-position: -10px -10px;
+        }
+
+        .inp-hold:focus+.labl-hold::before {
+            outline: 2px solid #000;
+            outline-offset: 5px;
+            border-radius: 50%;
+            box-sizing: border-box;
+        } */
+
+      /* @media screen and (-webkit-min-device-pixel-ratio: 2) {
+            .labl-hold::before {
+                background-image: url("images/css_sprites_retina.png");
+                background-position: -52px -10px;
+                background-size: 84px 42px;
+            }
+
+            .inp-hold:checked+.labl-hold::before {
+                background-image: url("images/css_sprites_retina.png");
+                background-position: -10px -10px;
+            }
+        } */
+    </style>
+  </head>
+
+  <body>
+    <!-- <input type="checkbox" id="inpHold" class="inp-hold txt-hide"> -->
+    <!-- role : 접근성 보조기술에 요속의 실질적인 역할이 무엇인지 알려줍니다. -->
+    <!-- aria-label : 요소에 대한 설명을 제공합니다. -->
+
+    <!-- <a href="https://www.naver.com" target="_blank" aria-label="네이버로 이동합니다. 새창에서 열립니다."></a> -->
+
+    <span
+      role="checkbox"
+      aria-checked="false"
+      aria-labelledby="inpHold"
+      tabindex="0"
+    ></span>
+
+    <label id="inpHold" class="labl-hold" tabindex="0">선택해주세요</label>
+
+    <script>
+      const item = document.querySelector("span");
+      const itemLabel = document.querySelector("label");
+
+      // item.addEventListener('click', changeCheckbox);
+      // item.addEventListener('keydown', changeCheckbox);
+      // itemLabel.addEventListener('click', changeCheckbox);
+      // itemLabel.addEventListener('keydown', changeCheckbox);
+
+      [item, itemLabel].forEach((item) => {
+        ["click", "keydown"].forEach((eventType) => {
+          item.addEventListener(eventType, changeCheckbox);
+        });
+      });
+
+      function changeCheckbox(event) {
+        const spaceBar = 32;
+        const checked = item.getAttribute("aria-checked");
+
+        if (event.keyCode && event.keyCode !== spaceBar) {
+          return;
+        } else if (checked === "true") {
+          item.setAttribute("aria-checked", "false");
+        } else {
+          item.setAttribute("aria-checked", "true");
+        }
+      }
+    </script>
+  </body>
+</html>
+```
