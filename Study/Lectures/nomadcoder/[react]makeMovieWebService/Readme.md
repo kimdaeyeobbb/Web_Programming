@@ -97,7 +97,11 @@
       - [값이 존재하지 않을 경우 default value 설정](#값이-존재하지-않을-경우-default-value-설정)
   - [3-3) recap](#3-3-recap)
     - [props](#props-1)
-    - [a](#a)
+  - [4-0) introduce](#4-0-introduce)
+  - [4-1) Tour of CRA](#4-1-tour-of-cra)
+  - [5-0) Introduction](#5-0-introduction)
+    - [console창에 render가 두번씩 뜨는 현상](#console창에-render가-두번씩-뜨는-현상)
+    - [useEffect](#useeffect)
 
 # 1. THE BASIC OF REACT
 
@@ -3330,4 +3334,31 @@ Btn.propTypes ={ }
 
 - 전달하는 prop의 이름과 받아서 사용할 떄의 이름은 동일해야 함
 
-### a
+<br><br>
+
+## 4-0) introduce
+
+- `create-react-app`은 우리의 어플리케이션을 index.html 안에 넣어줌
+
+<br>
+
+## 4-1) Tour of CRA
+
+- `create-react-app` : CSS 코드를 javascript object로 변환시켜줌
+- `create-react-app`은 랜덤한 class를 가진다
+
+<br>
+
+## 5-0) Introduction
+
+### console창에 render가 두번씩 뜨는 현상
+
+- index.jsx의 React.StrictMode를 제거하면 됨
+- StrictMode는 create-react-app으로 설치를 하면 기본적으로 생성이 되어있는 태그인데, 해당 태그로 감싸져 있는 경우에는 코드의 문제를 감지하고 경고하기 위해 구성 요소를 두 번 랜더링 함
+  <br>(개발용이 아닌 프로덕션용임)
+
+### useEffect
+
+- 리렌더링 할때마다 반복적으로 실행되어도 괜찮은 코드들도 있을 것이지만 컴포넌트가 처음 render 될 때에만 코드가 실행되기를 원할 수도 있다.
+  예를 들어, API로 외부 데이터를 가져올 때 컴포넌트가 처음 렌더링되는 그 순간에만 API 요청을 하고 이후 state가 변화할 때는 해당 API에서 똑같은 정보를 가져오고 싶지는 않을 것이다.
+  이러하듯 특정 코드들이 첫번쨰 component render에서만 실행되게 만들고 싶을 때 useEffect를 사용한다
