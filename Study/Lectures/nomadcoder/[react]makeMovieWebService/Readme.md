@@ -100,8 +100,17 @@
   - [4-0) introduce](#4-0-introduce)
   - [4-1) Tour of CRA](#4-1-tour-of-cra)
   - [5-0) Introduction](#5-0-introduction)
+    - [useState](#usestate-2)
     - [console창에 render가 두번씩 뜨는 현상](#console창에-render가-두번씩-뜨는-현상)
     - [useEffect](#useeffect)
+  - [5-1) useEffect](#5-1-useeffect)
+    - [useEffect](#useeffect-1)
+  - [5-2) Deps](#5-2-deps)
+    - [기준 코드](#기준-코드)
+    - [코드 변화시키기](#코드-변화시키기)
+    - [react memo VS useEffect](#react-memo-vs-useeffect)
+      - [Memo](#memo)
+      - [useEffect](#useeffect-2)
 
 # 1. THE BASIC OF REACT
 
@@ -3351,6 +3360,16 @@ Btn.propTypes ={ }
 
 ## 5-0) Introduction
 
+### useState
+
+- 반환값: array
+
+  - 첫번째 반환값: value
+  - 두번째 반환값: modifier function
+
+- value를 받아오고, value를 수정하기 위해 function을 받아옴
+- 이를 더 이용하기 위해 이전 state를 받은 뒤 값을 변화시켜서 return 하는 함수를 만들 수 있음
+
 ### console창에 render가 두번씩 뜨는 현상
 
 - index.jsx의 React.StrictMode를 제거하면 됨
@@ -3362,3 +3381,180 @@ Btn.propTypes ={ }
 - 리렌더링 할때마다 반복적으로 실행되어도 괜찮은 코드들도 있을 것이지만 컴포넌트가 처음 render 될 때에만 코드가 실행되기를 원할 수도 있다.
   예를 들어, API로 외부 데이터를 가져올 때 컴포넌트가 처음 렌더링되는 그 순간에만 API 요청을 하고 이후 state가 변화할 때는 해당 API에서 똑같은 정보를 가져오고 싶지는 않을 것이다.
   이러하듯 특정 코드들이 첫번쨰 component render에서만 실행되게 만들고 싶을 때 useEffect를 사용한다
+
+<br>
+
+## 5-1) useEffect
+
+- state가 변할때 사용자의 모든 component는 다시 실행된다.
+
+  - 하지만 API를 호출하거나 특정 중요업무는 반복없이 한번만 사용하는 것이 좋다.
+
+- 컴포넌트가 처음 랜더링될때에만 특정 코드가 실행되도록 제한하고 싶을 경우에 `useEffect`를 사용함
+
+### useEffect
+
+- `useEffect`는 코드가 딱 한번만 실행될 수 있도록 보호해준다.
+
+- `useEffect`는 두가지 인자를 가진다.
+  - 첫번째: 우리가 딱 한번만 실행하고 싶은 코드
+  - 두번쨰: dependendcyList
+
+```jsx
+import { useEffect } from "react";
+import { useState } from "react";
+
+function App() {
+  const [counter, setValue] = useState(0);
+  const onClick = () => {
+    setValue((prev) => prev + 1);
+  };
+
+  console.log("render");
+
+  const iRunOnlyOnce = () => {
+    console.log("I run only Once");
+  };
+
+  useEffect(iRunOnlyOnce, []);
+  useEffect(() => {
+    console.log("CALL THE API");
+  }, []);
+
+  return (
+    <div>
+      <h1>{counter}</h1>
+      <button onClick={onClick}>click me</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+- useEffect에 포함되지 않은 것은 state가 변할때마다 매번 실행된다.
+- 반면에 useEffect에 포함된 요소는 한번만 실행이 된다.
+
+<br>
+
+## 5-2) Deps
+
+### 기준 코드
+
+```jsx
+import { useEffect } from "react";
+import { useState } from "react";
+
+function App() {
+  const [counter, setValue] = useState(0);
+  const [keyword, setKeyword] = useState(""); // keyword: state, setKeyword: function
+
+  const onClick = () => {
+    setValue((prev) => prev + 1);
+  };
+
+  const onChange = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  console.log("render");
+
+  const iRunOnlyOnce = () => {
+    console.log("I run only Once");
+  };
+
+  useEffect(iRunOnlyOnce, []);
+  useEffect(() => {
+    console.log("CALL THE API");
+  }, []);
+
+  /* 키워드가 변할때에만 코드를 실행하도록 만듦 - movie state가 변할때에만 user가 원하는 영화를 검색하도록 만들고 싶음 */
+  useEffect(() => {
+    if (keyword !== "" && keyword.length > 5) {
+      console.log("SEARCH FOR", keyword);
+    }
+  }, [keyword]);
+
+  return (
+    <div>
+      <input
+        value={keyword}
+        onChange={onChange}
+        type="text"
+        placeholder="Search here..."
+      />
+      <h1>{counter}</h1>
+      <button onClick={onClick}>click me</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### 코드 변화시키기
+
+- keyword와 counter는 모두 우리 state내에 포함되어 있다.
+
+```jsx
+import { useEffect } from "react";
+import { useState } from "react";
+
+function App() {
+  const [counter, setValue] = useState(0);
+  const [keyword, setKeyword] = useState(""); // keyword: state, setKeyword: function
+
+  const onClick = () => {
+    setValue((prev) => prev + 1);
+  };
+
+  const onChange = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  useEffect(() => {
+    console.log("I run only once");
+  }, []);
+
+  useEffect(() => {
+    console.log("I run when 'keyword' changes.");
+  }, [keyword]);
+
+  useEffect(() => {
+    console.log("I run when 'counter' changes.");
+  }, [counter]);
+
+  return (
+    <div>
+      <input
+        value={keyword}
+        onChange={onChange}
+        type="text"
+        placeholder="Search here..."
+      />
+      <h1>{counter}</h1>
+      <button onClick={onClick}>click me</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+- 이 코드는 한번만 실행됨 ([] -> react가 아무것도 쳐다보지 않기 때문이다)
+
+```jsx
+useEffect(() => {
+  console.log("I run only once");
+}, []);
+```
+
+### react memo VS useEffect
+
+#### Memo
+
+- 만약 props가 변하지 않는다면 컴포넌트가 리랜더링되는것을 막는다
+
+#### useEffect
+
+- props가 변하거나 컴포넌트의 라이프사키을 시작/끝 지점일 경우 함수를 실행시킨다.
