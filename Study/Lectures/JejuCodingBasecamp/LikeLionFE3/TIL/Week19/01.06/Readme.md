@@ -81,3 +81,171 @@
 - description 메타 태그에 쓰여진 내용을 페이지의 스니펫으로 사용할 수 있음
 
 - 스니팻: 화면에 보여지는 템플릿. 구글에서 만들어 놓음. 어떤 특정 기업을 검색했을 때 특정한 형태대로 보여지게 함.
+
+#
+
+### site 연산자 사용하기
+
+- naver.com 내에서 쇼핑이라는 키워드를 찾음
+
+```
+쇼핑 site:naver.com
+```
+
+- 구글에서 사용가능한 유용한 검색 연산자
+
+1. OR
+2.
+3. related
+4. -
+
+<br>
+
+## 3. 제목 태그(h1 ~ h6)를 사용해서 중요한 텍스트 강조하기
+
+- 의미 있는 제목을 사용해서 중요한 주제를 표시하고 컨텐츠의 계층 구조를 만들어서 사용자가 쉽게 탐색할 수 있도록 함
+
+- HeadingMaps (포트폴리오 꾸밀 때 헤딩태그들이 구조적으로 잘 위치하고 있는지 파악해야 함)
+
+1. 개요를 작성한다는 가정하에 제목을 정함
+   - 페이지 중
+2. 꼭 필요한 부분에만 헤딩태그 사용하기
+
+<br>
+
+## 4. 의미있는 링크 텍스트 작성하기
+
+### 1) 텍스트를 통한 설명 제공
+
+### 2) 텍스트는 간결하고 한 눈에 들어오도록 작성해야 함
+
+### 3) 링크를 쉽게 발견할 수 있도록 스타일을 설정함
+
+- 웹 접근성 고려
+- 시각장애인분들을 위해 다르게 스타일링하는게 중요함
+
+### 4) 웹 페이지 내부에서 사용 가능한 링크 텍스트를 사용해야 함
+
+- 내부 링크로 사이트를 탐색할 수 있도록 만든것
+  - skip navigation (이를 이용하면 SEO에 도움을 줄 수 있다)
+
+<br>
+
+## The Open Graph protocol
+
+- [참고자료](https://ogp.me/)
+
+- 페이스북에서 제작함.
+
+- 구글은 A페이지에서 B페이지로 이동하는 링크가 있으면 그 링크를 일종의 투표로 생각함.
+- 많이 투표된 페이지 즉, 많은 링크들이 가리키는 페이지는 중요한 페이지로 판단되며, 중요한 페이지로 판단되면 페이지 순위가 높아짐
+
+- 연결이 많이 되어있을 수록 중요도가 높다?
+
+  - 자바스크립트에서의 메모리 관리. 참조가 많이될수록 가비지 컬렉션의 컬렉팅의 대상에서 제외됨.
+
+- 외부에서 들어오는 유입이 많을수록 SEO에서 차지는 비율이 높음
+
+<br>
+
+## Twitter
+
+- 트위터를 위한 카드 형태의 공유 프로토콜
+
+```html
+<meta name="twitter:card" content="카드의 타입" />
+<meta name="twitter:title" content="카드의 제목" />
+<meta name="twitter:description" content="카드 설명" />
+<meta name="twitter:image" content="카드 썸네일 이미지 주소" />
+```
+
+<br>
+
+## 카카오
+
+- [참고자료](https://developers.kakao.com/docs/latest/ko/message/message-template#location)
+
+<br><br>
+
+# Recoil
+
+- 공식홈페이지의 무료 영상강의는 불친절함
+
+- recoil root는 상태관리하고자하는 것의 부모요소에 배치하는게 좋다 (하단의 예시 참고)
+
+```jsx
+const root = ReactDOM.createRoot();
+root.render(
+  <>
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
+  </>
+);
+```
+
+## 순수함수
+
+- 동일한 인자를 전달받으면 동일한 결과값을 반환하는 함수
+- 인자를 전달하는 외부 값도 동일하게 유지하고 있음
+- 순수함수가 아닌 함수의 경우
+
+```js
+let myNumber = 3;
+function pure(num) {
+  return 2 + num;
+}
+
+console.log(myNumber);
+console.log(pure(myNumber));
+```
+
+- 순수하지 않은 함수
+  - 외부의 값이 바뀌고 있음
+  - 함수의 값이 바뀌고 있음
+  - 순수함수로 고치기 위해서는 return 값을 전개구문으로 고쳐주자
+
+```js
+let myArray = [1, 2, 3];
+function notPure(arr, num) {
+  return arr.push(num);
+}
+
+console.log(myArray);
+console.log(notPure(myArray, 4));
+```
+
+- 순수함수로 고친 결과
+  - 동일한 인자에 동일한 결과값을 도출함
+  - 모든 결과값이 동일함
+  - 외부에서 전달하는 값 또한 바뀌지 않음
+
+```js
+let myArray = [1, 2, 3];
+function notPure(arr, num) {
+  return [...myArray, num];
+}
+
+console.log(myArray);
+console.log(notPure(myArray, 4));
+
+console.log(myArray);
+console.log(notPure(myArray, 4));
+
+console.log(myArray);
+console.log(notPure(myArray, 4));
+```
+
+## selector
+
+- atom값을 가공함
+- 함수이므로 함수로 작성
+- 고유한 키값이 필요함
+- get은 get이라는 recoil에서 사용하는 함수를 받음
+- select가 atom 내부의 값을 필터링 해야함
+- get이라는 함수를 인자로 받아와야함
+- atom 값을 가져와서 가공하는 중간기지의 역할
+- atom값에 영향을 미치면 안되기 때문에 pure function임
+- atom 내부의 값이 하나이면 selector가 불필요하지만 객체등일 경우 selector를 이용해서 필터링을 할 수 있음
+- atom값이 변경되면 selector 들이 자동으로 실행됨 => 필터링도 자동으로 실행됨 => 값을 새로 추가되었을 때에도 실시간으로 추가할 수 있음
+- atom 값이 추가되었을때 selector함수가 자동으로 실행되므로 유용한 함수이다
