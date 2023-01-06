@@ -249,3 +249,18 @@ console.log(notPure(myArray, 4));
 - atom 내부의 값이 하나이면 selector가 불필요하지만 객체등일 경우 selector를 이용해서 필터링을 할 수 있음
 - atom값이 변경되면 selector 들이 자동으로 실행됨 => 필터링도 자동으로 실행됨 => 값을 새로 추가되었을 때에도 실시간으로 추가할 수 있음
 - atom 값이 추가되었을때 selector함수가 자동으로 실행되므로 유용한 함수이다
+
+## 참고자료
+
+- https://auth.udacity.com/sign-in?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated
+
+- https://survey.stackoverflow.co/2022/#overview
+
+- https://mrgamza.tistory.com/634
+
+- https://app.sideguide.dev/recoil/tutorial/
+
+- https://jsbin.com/niqukaqavo/edit?js,console
+- https://npmtrends.com/@reduxjs/toolkit-vs-jotai-vs-mobx-vs-recoil-vs-redux-vs-xstate-vs-zustand
+- https://www.youtube.com/watch?v=P95DuIBwnqw&ab_channel=JackHerrington
+- https://blog.openreplay.com/
