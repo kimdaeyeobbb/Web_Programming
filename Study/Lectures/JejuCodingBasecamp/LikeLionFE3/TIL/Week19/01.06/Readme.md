@@ -264,3 +264,153 @@ console.log(notPure(myArray, 4));
 - https://npmtrends.com/@reduxjs/toolkit-vs-jotai-vs-mobx-vs-recoil-vs-redux-vs-xstate-vs-zustand
 - https://www.youtube.com/watch?v=P95DuIBwnqw&ab_channel=JackHerrington
 - https://blog.openreplay.com/
+
+<hr>
+<br>
+
+## 013
+
+- label 클릭시 input창이 활성화 됨
+
+## 019
+
+- tbody를 쓰고싶다면 thead를 꼭 써줘야함. js로 push할때 thead가 없다면 에러가 발생할 수 있음
+
+### block level VS inline level
+
+- 블록 레벨 요소는 width, height, margin, padding이 적용되지만, 인라인 요소는 width, hegith가 지정되지 않고 좌우 margin padding만 가능하다
+- 인라인: 좌우 마진만 가지고, 상하 마진을 가지지 않는다.
+
+- block은 width와 height로 컨트롤 할 수 있음
+
+### toast UI
+
+- [참고자료](https://ui.toast.com/)
+
+<br>
+
+## 자손/형제/직계선택자
+
+- 자손 선택자
+
+```css
+div p {
+  color: red;
+}
+```
+
+- 형제
+
+```css
+div + p {
+  color: red;
+}
+```
+
+- 직계
+
+```css
+div > p {
+  color: red;
+}
+```
+
+<br>
+
+## 가상요소 vs 가상클래스
+
+- 가상 클래스 선택자 : 클래스가 없는데 있는 것처럼 처리(콜론이 1개입니다.)
+- 가상 요소 선택자 : 요소가 없는데 있는 것처럼 처리(콜론이 2개입니다.)
+
+<br>
+
+## justify content & align center
+
+## flex & grid
+
+- grid-template-areas
+
+```css
+body {
+  grid-template-areas:
+    "header header header"
+    ""
+    "";
+}
+```
+
+## sweetalert
+
+## summernote
+
+- 구식버전이라 잘 사용하지 않음
+
+## toastUI
+
+- 진짜 좋음. 역시 머기업!
+
+## tailwind
+
+- space-y-8 : 0.25\*8임
+
+## Scss
+
+- 회사에서 면접보기 전에 무슨 스킬 쓰는지 물어보고 Scss쓴다고 하면 nesting , mixin등을 미리 공부해서 갈것
+
+## JavaScript
+
+### sort
+
+- 원본을 만지지 않고 싶을 경우 spread 또는 slice를 같이 사용함
+
+```js
+let s = [1, 10, 2, 4, 3];
+```
+
+### null 비교
+
+### forEach
+
+### reduce
+
+- 검색하지 않고 사용할 수 있는 정도로 외워놔야 함<br>
+  (map도 마찬가지이다)
+
+### 파선아실
+
+### 클래스
+
+- `#`을 붙이면 private field
+
+### 예외처리
+
+### 정규표현식
+
+- `?`: 있거나 없거나
+- `*`:
+- `.`:
+
+- 그룹분리
+
+<br>
+
+## React
+
+### useMemo
+
+### context
+
+- redux와 context는 병렬적으로 가져갈 수 있다. 다만 목적은 다르다. redux를 사용하면 context를 사용할 필요가 없어진다.
+
+<br>
+
+## 코딩 컨벤션 참고자료
+
+- https://www.notion.so/paullabworkspace/c5095036bda84fe4b1c600e2e8818aaf
+- https://paullabworkspace.notion.site/c5095036bda84fe4b1c600e2e8818aaf
+
+<br>
+
+## Redux
+
+- ㅁ
