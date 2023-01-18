@@ -111,6 +111,11 @@
     - [react memo VS useEffect](#react-memo-vs-useeffect)
       - [Memo](#memo)
       - [useEffect](#useeffect-2)
+  - [5-3) Recap](#5-3-recap)
+    - [useEffect](#useeffect-3)
+      - [예시 (아무것도 지켜보지 않음)](#예시-아무것도-지켜보지-않음)
+      - [예시2 (한 개의 아이템만 지켜봄)  (시작할때와 keyword가 변화할 때에만 실행하라)](#예시2-한-개의-아이템만-지켜봄--시작할때와-keyword가-변화할-때에만-실행하라)
+      - [예시3 (아이템 중 하나가 실행될 때 코드를 실행시킴)  (시작할때와 keyword \& counter 둘 중 하나가 변화할 때 실행하라)](#예시3-아이템-중-하나가-실행될-때-코드를-실행시킴--시작할때와-keyword--counter-둘-중-하나가-변화할-때-실행하라)
 
 # 1. THE BASIC OF REACT
 
@@ -3558,3 +3563,109 @@ useEffect(() => {
 #### useEffect
 
 - props가 변하거나 컴포넌트의 라이프사키을 시작/끝 지점일 경우 함수를 실행시킨다.
+
+<br>
+
+## 5-3) Recap
+
+- React의 멋있는 점
+
+  - 새로운 데이터가 들어올 때 마다 컴포넌트/UI를 새로고침(refresh)함 (우리가 직접 refresh해주지 않아도 됨)
+
+- 문제점
+  - 컴포넌트 안에 딱 한번만 실행시키고 싶은 코드가 있을수도 있다
+  - 컴포넌트 안에 특정 데이터가 변화할 때 실행 해야할 수도 있다
+
+### useEffect
+
+- 2개의 인자(argument)를 가지는 함수임
+
+  - 첫번쨰 인자: 우리가 실행시키고 싶은 코드
+  - 두번째 인자: dependencies (react.js가 두번쨰 인자를 지켜보면서 변화할때마다 첫번째 인자인 코드를 실행시킴)
+
+- (react 동작 관점에서) useEffect는 방어막이다.
+
+- `dependency`가 존재하면 해당 리스트의 값이 변할때만 실행된다.
+
+#### 예시 (아무것도 지켜보지 않음)
+
+- 현재 dependency가 없는 상태임
+- 지켜볼 코드가 없다는 뜻이므로 코드가 한번만 실행될 것임을 의미함
+
+```jsx
+useEffect(() => {
+  console.log("I run only once.");
+}, []);
+```
+
+#### 예시2 (한 개의 아이템만 지켜봄) <br> (시작할때와 keyword가 변화할 때에만 실행하라)
+
+- keyword가 변화할 때마다 브라우저에 console.log를 찍음
+- keyword는 state에 있는 것임
+- keyword는 setKeyword라는 함수로 인해 변화됨
+- keyword는 onChange함수에 의해 호출됨
+- onChange는 사용자 input이 바뀔때마다 호출됨
+
+```jsx
+const [counter, setValue] = useState(0);
+const [keyword, setKeyword] = useState("");
+const onClick = () => setValue((prev) => prev + 1);
+const onChange = (event) => setKeyword(event.target.value);
+
+useEffect(() => {
+  console.log("I run when 'keyword' changes.");
+}, [keyword]);
+
+return (
+  <div>
+    <input
+      value={keyword}
+      onChange={onChange}
+      type="text"
+      placeholder="Search here..."
+    />
+    <h1>{counter}</h1>
+    <button onClick={onClick}>click me</button>
+  </div>
+);
+```
+
+#### 예시3 (아이템 중 하나가 실행될 때 코드를 실행시킴) <br> (시작할때와 keyword & counter 둘 중 하나가 변화할 때 실행하라)
+
+- dependency에 counter만 써줬기 때문에, counter가 변화할 때에만 실행됨
+- `[keyword, counter]`부분은 array이므로 원하는것을 여러개 넣을 수 있음 (이는 keyword와 counter 모두를 지켜보다가 둘 중 하나라도 변화하면 코드를 실행하는 것)
+
+```jsx
+const []
+const [keyword, setKeyword] = useState("");
+const onClick = () => setValue((prev) => prev + 1);
+const onChange = (event) => setKeyword(event.target.value);
+
+useEffect(() => {
+  console.log("I run when 'counter' changes.");
+}, [counter]);
+
+useEffect(() => {
+  console.log("I run when keyword & counter change");
+}, [keyword, counter]);
+
+return (
+  <div>
+    <input
+      value={keyword}
+      onChange={onChange}
+      type="text"
+      placeholder="Search here..."
+    />
+    <h1>{counter}</h1>
+    <button onClick={onClick}>click me</button>
+  </div>
+);
+```
+
+- react.js는 간단한 방법으로 동작한다
+  - state를 변화시킬 때, component를 재실행시킨다. (모든 코드가 재실행된다)
+    - 이는 UI관점에서 볼때 새로운 데이터가 들어올 때마다 자동으로 새로고침되므로 좋지만, 문제가 존재한다.
+      - 문제는, 특정 코드들은 이렇게 계속 실행되면 안되는 경우도 있다.
+      - 따라서 이러한 문제를 방지하기 위해 `useEffect`를 사용하는 것이다.<br>
+        (`useEffect`를 사용해서 우리는 언제 코드를 실행할지에 대한 선택권을 가질 수 있다)
