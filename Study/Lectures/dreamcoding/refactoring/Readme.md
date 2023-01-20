@@ -742,3 +742,293 @@ let owner = {
 ## 6-17) 함수 쪼개기 포인트 정리
 
 <br>
+
+# 7 캡슐화
+
+## 7-1)
+
+- 내부 구현사항을 숨기고 필요한 사항만 공개함
+- 모듈/클래스 형태로 캡슐화를 할 것
+- 데이터를 변경하고 사용하는 코드를 감시할 수 있는 유일한 통로임
+
+### 함수 단위로 캡슐화 구현
+
+- 함수의 이름을 통해 역할 파악, 매개변수명을 통해 전달해야 하는 값을 파악
+
+### 캡슐화의 원칙
+
+- 함수 하나당 하나의 역할을 담당해야 함
+- 모듈/클래스 => 한 개당 하나의 책밍을 가지도록 만들어야 함
+- 모듈 하나당 하나의 도메인(학생, 주문, 전화번호 등)을 가지도록 해야 함
+
+<br>
+
+## 7-2) 불변성 포인트 정리
+
+### 불변성 (Immutability)
+
+- 불변성은 병렬 프로그래밍을 하지 않아도 프로그래밍 전반적으로 중요함
+- 변경될 수 없는 성질
+- Mutable (변할 수 있음) (=> 키로 인해 값을 변경시킬 수 있는 값) 과 반대되는 말
+- 한번 만들어진 객체나 컬렉션을 변경시킬 수 없고 업데이트 시킬 수 없음을 뜻함
+- 가능하면 불변성을 가질 수 있도록 프로그래밍하는 것이 중요함
+
+### Mutable
+
+- 버그,오류의 상징
+- 가능하면 변할 수 없는 전역변수, 컬렉션, 레코드로 만드는게 중요함
+
+<br>
+
+## 7-3) 레코드 캡슐화하기
+
+### 레코드
+
+- 보통 key & value로 구성
+- js에서는 객체 리터럴({})을 이용해서 ~
+- key & value로 구성된 map이나 딕셔너리도 레코드로 볼 수 있음
+- 레코드로 모듈이나 클래스로 캡슐화해두고 어떤 api가 있는지는 필요에 따라 인터페이스를 통해 외부에 공개
+
+```js
+const organization = { name: "Acme Gooseberries", country: "GB" };
+
+organization.name = "Dream Coding";
+console.log(organization.name); // 속성에 접근
+console.log(organization.country); // 속성에 접근
+```
+
+- 프로그래밍 언어에서는 데이터에 바로 접근하기보다 캡슐화를 통해 어떤것들에 접근할 수 있는지를 명시해주는게 좋음
+
+```js
+class Organization {
+  #name;
+  #country; // 외부에서 두 변수를 읽을 수 없도록 만듦
+
+  constructor(data) {
+    // 필요한 인자를 생성자에서 받음
+    this.#data = data;
+    this.#name = data.name;
+    this.#country = data.country;
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  set name(value) {
+    this.#name = value;
+  }
+
+  // getter와 setter를 통해서 읽고 쓰도록 만듦
+
+  get country() {
+    return this.#country;
+  }
+
+  set country(value) {
+    // if (value=== ~) // 주어진 value에 따라 달라지도록 감시할 수 있는 통로를 만들수도 있음
+    this.#country = value;
+  }
+
+  get rawData() {
+    return { name: this.name, country: this.country }; // 요구사항에 따라서 다르게 반환.
+    // return { ...this.#data }; // 불변성 유지 (단, 얕은 복사가 이뤄지므로 데이터를 빙글빙글 돌면서 중첩된 객체도 새로운 객체로 만들지를 원한다면 rawData에서 제공하는 cloneDB를 이용하면 불변성을 이용해서 값을 가지고 있으나 완전히 새로운 객체를 반환해주면서 불변성을 유지해줄 수 있음)
+  }
+}
+
+const organization = new Organization("Acme Gooseberries", "GB");
+
+// 기존의 일반적인 object 사용
+const organization = new Organization({
+  name: "Acme Gooseberries",
+  country: "GB",
+});
+
+organization.name = "Dream Coding";
+console.log(organization.name); // 속성에 접근
+console.log(organization.country); // 속성에 접근
+```
+
+- 백엔드와 통신할 경우 JSON 형태로 통신을 함
+- 외부 모듈 라이브러리에서 객체 데이터형태로 반환하는 경우 한 단계 감싸서 캡슐화를 해야하는 경우 생성자에서 인자를 받을 수 도 있음 혹은 data 형태로 받고 따로 값을 name, country처럼 할당해도 됨.
+- getter, setter 처럼 값을 외부에 그대로 반환해야하는 경우 rawdata를 생성해서 반환해도 됨
+
+<br>
+
+## 7-4) 컬렉션 캡슐화하기
+
+### 컬렉션
+
+- 복합적인 데이터를 담고 있는 것
+- 코드 베이스에서 바로 접근해서 사용하는게 아님. 컬렉션을 캡슐화해서 컬렉션을 담고 있는 클래스 또는 모듈을 만들고 컬렉션을 외부로 공개할 수 있는 인터페이스를 외부에 공개함. 나머지는 비공개.
+
+- before 코드
+
+```js
+export class Person {
+  #name;
+  #courses;
+  constructor(name) {
+    this.#name = name;
+    this.#courses = [];
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  get courses() {
+    return this.#courses;
+  }
+
+  set courses(courses) {
+    this.#courses = courses;
+  }
+}
+
+export class Course {
+  #name;
+  #isAdvanced;
+  constructor(name, isAdvanced) {
+    this.#name = name;
+    this.#isAdvanced = isAdvanced;
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  get isAdvanced() {
+    return this.#isAdvanced;
+  }
+}
+
+const ellie = new Person("엘리");
+ellie.courses.push(new Course("리팩토링", true));
+// 읽어온 컬렉션 자체에 직접 push
+// 외부에서 마음대로 배열을 조작하는 것은 좋지않다
+
+console.log(ellie.courses.length);
+```
+
+- 코드안에서 컬렉션을 사용한다면 이 자료구조를 사용하도록 노출시키는 것은 위험하므로 캡슐화해서 할 수 있는것만 외부에 노출하는것이 중요하다
+
+- course는 읽을 수는 있으나 업데이트 할 수 없도록 만드는게 좋다
+- slice API나 spread용법을 통해 새로운 배열을 만들어서 전달하는게 좋다
+- 읽을 떄에는 읽기전용 새로운 컬렉션을 리턴하게끔 만드는게 좋음
+
+```js
+addCourse(course){
+  this.#courses.push(course);
+}
+
+removeCourse(course){
+  const index = this.#courses.indexOf(course);
+  if (index === -1){
+    return;
+  }  else {
+    this.#courses.
+  }
+}
+```
+
+## 7-5) 기본형을 객체로 바꾸기
+
+- 소스코드 (7-3.js)
+
+```js
+export class Order {
+  constructor(data) {
+    this.priority = data.priority;
+  }
+}
+
+const orders = [
+  new Order({ priority: "normal" }),
+  new Order({ priority: "high" }),
+  new Order({ priority: "rush" }),
+];
+
+const highPriorityCount = orders.filter(
+  (o) => "high" === o.priority || "rush" === o.priority
+).length;
+```
+
+- 소스코드 변경 (기본형 대신 캡슐화하는 유용성)
+
+```js
+class Telephone {
+  constructor(number, countryCode) {}
+}
+const telephone = "010-888-6666";
+const gTelephone = "+82" + "010-888-6666";
+```
+
+### 서적상의 예시 수정
+
+```js
+export class Order {
+  constructor(data) {
+    this.priority = data.priority;
+  }
+}
+
+const orders = [
+  new Order({ priority: "normal" }),
+  new Order({ priority: "high" }),
+  new Order({ priority: "rush" }),
+];
+
+const highPriorityCount = orders.filter(
+  (o) => "high" === o.priority || "rush" === o.priority
+).length;
+```
+
+- 문제가 무엇일까?
+  - 외부에서 필터링하는 로직
+  - 우선순위를 정하는 로직이 외부에 존재
+
+```js
+export class Order {
+  constructor(data) {
+    this.priority = data.priority;
+  }
+
+  isHighPriority() {
+    return "high" === this.priority || "rush" === this.priority;
+  }
+}
+
+class Priority {
+  #value;
+  constructor(value) {
+    if (Priority.legalValues().includes(value)) {
+      this.#value = value;
+    } else {
+      throw new Error(`${value} is invalid for Priority`);
+    }
+  }
+
+  static legalValues() {
+    return ["low", "normal", "high", "rush"];
+  }
+}
+
+const orders = [
+  new Order({ priority: "normal" }),
+  new Order({ priority: "high" }),
+  new Order({ priority: "rush" }),
+];
+
+const highPriorityCount = orders.filter((o) => o.isHighPriority()).length;
+```
+
+- 생성자 안에서 에러를 던지는 것은 보안에 취약한 단점이 존재
+- 타입이 있는 언어라면 다음과 같이 작성하는 것도 좋다
+
+```ts
+class Priority {
+  static Low = new Priority("low", 0);
+  static NORMAL = new Priority();
+}
+```
