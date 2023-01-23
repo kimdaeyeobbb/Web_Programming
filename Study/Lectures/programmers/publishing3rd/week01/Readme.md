@@ -1152,4 +1152,55 @@ grid-column: span 3 / auto;
 
 # Flexbox CSS 살펴보기
 
-- ㅁ
+## Flex 1
+
+```html
+<div class="flex">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+```
+
+- flex라는 애가 flexbox가 되어야 내부의 item들이 flex item이 되는것임
+
+### 부모 크기만큼 자식들이 높이가 꽉 차게 된다?
+
+- flexbox는 가로축을 정렬하는 기능인 `justify-content`와 세로축을 정렬하는 기능인 `align-items`가 있음 (기본값: `justify-content: flex-start` -> 왼쪽정렬. 내부의 아이템들이 왼쪽에 쭉 붙음)
+
+- `align-items`의 기본속성은 `stretch`이다 (부모크기만큼 높이를 지정하지 않아도 flex item들이 꽉 차게 만듦)
+- 따라서 부모크기가 바뀌면 그 크기에 맞춰서 변한다.
+
+<br>
+
+## Flex2 - [X축] 기본 플렉스박스
+
+<br>
+
+## Flex3 - [Y축] 기본 플렉스박스
+
+<br>
+
+## Flex4 - 가로(x축) 정렬
+
+- `space-between`: 첫번쨰와 마지막에 있는애들이 양끝으로 붙은다음, 내부의 친구들이 동일한 여백을 가져가면서 정렬이 되는 것
+
+- `space-around`: 한 칸(flex item)의 좌우 여백을 동일하게 가져가면서, 나머지 아이템과 좌우여백을 같은 크기로 유지함.
+
+- `space-evenly`: 아이템 크기에 맞춰서 나머지 전체 여백이 있을 것인데, 이 전체 여백들의 크기가 동일하게 맞춰지는 것임.
+
+- 주로 `space-between`을 많이 사용함. 나머지 2개는 잘 사용하지 않음
+
+<br>
+
+## Flex5 - 세로(y축) 정렬
+
+- `baseline`
+
+  - 폰트에 line-height가 있다. 이 line-height의 속성에 따라서, 폰트의 크기가 아무리 달라진다 하더라도 글자가 가진 font의 baseline에 따라서 정렬하는것이다.
+
+- `flex-start`
+  - stretch를 만들고싶지 않을 때 사용함
+  - stretch를 사용하면 부모의 크기가 커져버리기 때문에 그럴필요가 없다면 flex-start를 사용하는 것이다.
+
+## 실무에서의 flex 사용
