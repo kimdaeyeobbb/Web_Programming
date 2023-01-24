@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flex 1</title>
+    <title>Flex 2</title>
     <link rel="stylesheet" href="./common.css" />
     <style>
       body {
@@ -41,7 +41,7 @@
         align-items: flex-start;
 
         /* 축 변경 */
-        flex-direction: column;
+        /* flex-direction: column; */
 
         /* 자식의 개행 여부 */
         flex-wrap: wrap;
@@ -50,11 +50,22 @@
       .item {
         background-color: #ddd;
         padding: 20px;
+
+        /*  0은 false에 해당되며 기본값임. 1은 true임 */
+        flex-grow: 0;
+
+        /* 줄어드는것을 허용 */
+        flex-shrink: 1;
+
+        /**/
+        flex-basis: 300px;
+
+        flex: 0 0 auto;
       }
 
       /* 폰트 크기를 변경하고 세로 축 정렬을 바꿔보세요 */
       .item:nth-child(1) {
-        font-style: 50px;
+        /* font-style: 50px; */
       }
 
       .item:nth-child(2) {
@@ -76,16 +87,6 @@
     <div class="flex">
       <div class="item">1</div>
       <div class="item">2</div>
-      <div class="item">3</div>
-      <div class="item">3</div>
-      <div class="item">3</div>
-      <div class="item">3</div>
-      <div class="item">3</div>
-      <div class="item">3</div>
-      <div class="item">3</div>
-      <div class="item">3</div>
-      <div class="item">3</div>
-      <div class="item">3</div>
       <div class="item">3</div>
     </div>
   </body>
