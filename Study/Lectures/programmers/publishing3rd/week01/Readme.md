@@ -1307,14 +1307,563 @@ grid-column: span 3 / auto;
 
 - PC에서 Grid를 쓰다가 모바일에서 Grid를 그만쓰고 싶은 경우 `display:block`으로 바꿔주면 됨.  
 
+  
+  
 ### @media
 
 - `@media` css 규칙은 스타일 시트의 일부를 하나 이상의 미디어 쿼리 결과에 따라 적용할 때 사용할 수 있다.
-- a
 
+- `@media`를 사용해서 미디어 쿼리를 지정하면 해당 쿼리를 만족하는 장치에서만 CSS 블록을 적용할 수 있다.   
+  
+### 미디어 쿼리
 
-## 미디어 쿼리
-
+- `미디어 쿼리`는 특정 조건(단말기의 유형, 화면 해상도, 뷰포트의 너비 등)에서 특정 스타일만 적용되도록 만들어주는 기능임
+  
 - `CSS Media Query`는 예를 들어 "뷰포트가 480 픽셀보다 넓다."라고 사용자가 지정한 규칙에 브라우저 및 장치 환경이 일치하는 경우에만 CSS를 적용할 수 있는 방법을 제공함.
 
-- ㅁ
+
+### 축정렬시 값이 바뀐다면?
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex 1</title>
+    <link rel="stylesheet" href="./common.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        width: 100vh;
+        min-height: 100vh;
+      }
+
+      .flex {
+        width: 1000px;
+        height: 500px;
+        background-color: #fff;
+        border: 1px solid #000;
+        gap: 16px;
+
+        /* display 변경 */
+        display: flex;
+
+        /* 가로 축 정렬 */
+        justify-content: flex-start;
+        /* justify-content: flex-end;
+        justify-content: center;
+        justify-content: space-between;
+        justify-content: space-around;
+        justify-content: space-evenly; */
+
+        /* 세로 축 정렬 */
+        /* align-items: center; */
+        /* align-items: stretch;
+        align-items: baseline; */
+        align-items: flex-start;
+
+        /* 축 변경 */
+        flex-direction: column;
+      }
+
+      .item {
+        background-color: #ddd;
+        padding: 20px;
+      }
+
+      /* 폰트 크기를 변경하고 세로 축 정렬을 바꿔보세요 */
+      .item:nth-child(1) {
+        font-style: 50px;
+      }
+
+      .item:nth-child(2) {
+        background-color: #ffdada;
+      }
+
+      .item:nth-child(3) {
+        font-style: 25px;
+      }
+
+      @media (max-width: 1000px) {
+        .flex {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </body>
+</html>
+  
+```
+
+- `flex-direction: column` -> 축이 바뀌는것에 따라서 위치가 바뀐다 (얘를 생성했다가 주석처리했다가 하면서 변화를 관찰할 것)
+  
+  
+### 자식요소 내 flex-item들이 늘어난다면?
+  
+- 부모크기를 뚫고 나간다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex 1</title>
+    <link rel="stylesheet" href="./common.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        width: 100vh;
+        min-height: 100vh;
+      }
+
+      .flex {
+        width: 1000px;
+        height: 500px;
+        background-color: #fff;
+        border: 1px solid #000;
+        gap: 16px;
+
+        /* display 변경 */
+        display: flex;
+
+        /* 가로 축 정렬 */
+        justify-content: flex-start;
+        /* justify-content: flex-end;
+        justify-content: center;
+        justify-content: space-between;
+        justify-content: space-around;
+        justify-content: space-evenly; */
+
+        /* 세로 축 정렬 */
+        /* align-items: center; */
+        /* align-items: stretch;
+        align-items: baseline; */
+        align-items: flex-start;
+
+        /* 축 변경 */
+        flex-direction: column;
+
+        /* 자식의 개행 여부 */
+        flex-wrap: wrap;
+      }
+
+      .item {
+        background-color: #ddd;
+        padding: 20px;
+      }
+
+      /* 폰트 크기를 변경하고 세로 축 정렬을 바꿔보세요 */
+      .item:nth-child(1) {
+        font-style: 50px;
+      }
+
+      .item:nth-child(2) {
+        background-color: #ffdada;
+      }
+
+      .item:nth-child(3) {
+        font-style: 25px;
+      }
+
+      @media (max-width: 1000px) {
+        .flex {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+    </div>
+  </body>
+</html>
+  
+```  
+  
+- 부모크기를 뚫고 나가지 않게하려면 `flex-wrap: wrap`으로 설정해주어야 한다. (이 설정을 해주면 자식의 개행을 허용하기 때문에 자식이 부모를 뚫고 나가지 않게됨 => flex의 기본속성은 크기가 커지면 축으로 뚫고 나가는 경향이 있기 때문에 이러한 상황을 막아주는 역할을 한다.)
+    
+  
+### 부모요소에서 선언할 수 있는 속성이 있다면 자식 요소에도 선언할 수 있는 속성이 있다
+  
+- 꼭 알아두면 좋은 3가지
+1. `flex-grow`
+2. `flex-shrink`
+3. `flex-basis`
+  
+#### 1. flex-grow
+  
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex 2</title>
+    <link rel="stylesheet" href="./common.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        width: 100vh;
+        min-height: 100vh;
+      }
+
+      .flex {
+        width: 1000px;
+        height: 500px;
+        background-color: #fff;
+        border: 1px solid #000;
+        gap: 16px;
+
+        /* display 변경 */
+        display: flex;
+
+        /* 가로 축 정렬 */
+        justify-content: flex-start;
+        /* justify-content: flex-end;
+        justify-content: center;
+        justify-content: space-between;
+        justify-content: space-around;
+        justify-content: space-evenly; */
+
+        /* 세로 축 정렬 */
+        /* align-items: center; */
+        /* align-items: stretch;
+        align-items: baseline; */
+        align-items: flex-start;
+
+        /* 축 변경 */
+        /* flex-direction: column; */
+
+        /* 자식의 개행 여부 */
+        flex-wrap: wrap;
+      }
+
+      .item {
+        background-color: #ddd;
+        padding: 20px;
+
+        /*  0은 false에 해당되며 기본값임. 1은 true임 */
+        flex-grow: 1;
+      }
+
+      /* 폰트 크기를 변경하고 세로 축 정렬을 바꿔보세요 */
+      .item:nth-child(1) {
+        font-style: 50px;
+      }
+
+      .item:nth-child(2) {
+        background-color: #ffdada;
+      }
+
+      .item:nth-child(3) {
+        font-style: 25px;
+      }
+
+      @media (max-width: 1000px) {
+        .flex {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </body>
+</html>
+  
+```  
+  
+```css
+.item {
+  background-color: #ddd;
+  padding: 20px;
+
+  /*  0은 false에 해당되며 기본값임. 1은 true임 */
+  flex-grow: 1;
+}
+```
+
+- 늘어나는것을 허용해줌
+
+- 부모 크기만큼 커지며, 나머지를 자식들이 알아서 나눠가짐
+  
+#### 2. flex-shrink
+  
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex 2</title>
+    <link rel="stylesheet" href="./common.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        width: 100vh;
+        min-height: 100vh;
+      }
+
+      .flex {
+        width: 1000px;
+        height: 500px;
+        background-color: #fff;
+        border: 1px solid #000;
+        gap: 16px;
+
+        /* display 변경 */
+        display: flex;
+
+        /* 가로 축 정렬 */
+        justify-content: flex-start;
+        /* justify-content: flex-end;
+        justify-content: center;
+        justify-content: space-between;
+        justify-content: space-around;
+        justify-content: space-evenly; */
+
+        /* 세로 축 정렬 */
+        /* align-items: center; */
+        /* align-items: stretch;
+        align-items: baseline; */
+        align-items: flex-start;
+
+        /* 축 변경 */
+        /* flex-direction: column; */
+
+        /* 자식의 개행 여부 */
+        flex-wrap: wrap;
+      }
+
+      .item {
+        background-color: #ddd;
+        padding: 20px;
+
+        /*  0은 false에 해당되며 기본값임. 1은 true임 */
+        flex-grow: 1;
+
+        /* 줄어드는것을 허용 */
+        flex-shrink: 1;
+      }
+
+      /* 폰트 크기를 변경하고 세로 축 정렬을 바꿔보세요 */
+      .item:nth-child(1) {
+        font-style: 50px;
+      }
+
+      .item:nth-child(2) {
+        background-color: #ffdada;
+      }
+
+      .item:nth-child(3) {
+        font-style: 25px;
+      }
+
+      @media (max-width: 1000px) {
+        .flex {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </body>
+</html>
+
+  
+```  
+  
+- 1이 기본값이며 브라우저를 줄일 때,  부모크기가 줄어들면 `shrink`라는 속성에 의해 내부의 자식 속성들도 유연하게 크기가 변경됨
+    
+  
+#### 3. flex-basis
+  
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex 2</title>
+    <link rel="stylesheet" href="./common.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        width: 100vh;
+        min-height: 100vh;
+      }
+
+      .flex {
+        width: 1000px;
+        height: 500px;
+        background-color: #fff;
+        border: 1px solid #000;
+        gap: 16px;
+
+        /* display 변경 */
+        display: flex;
+
+        /* 가로 축 정렬 */
+        justify-content: flex-start;
+        /* justify-content: flex-end;
+        justify-content: center;
+        justify-content: space-between;
+        justify-content: space-around;
+        justify-content: space-evenly; */
+
+        /* 세로 축 정렬 */
+        /* align-items: center; */
+        /* align-items: stretch;
+        align-items: baseline; */
+        align-items: flex-start;
+
+        /* 축 변경 */
+        /* flex-direction: column; */
+
+        /* 자식의 개행 여부 */
+        flex-wrap: wrap;
+      }
+
+      .item {
+        background-color: #ddd;
+        padding: 20px;
+
+        /*  0은 false에 해당되며 기본값임. 1은 true임 */
+        flex-grow: 0;
+
+        /* 줄어드는것을 허용 */
+        flex-shrink: 1;
+
+        /**/
+        flex-basis: 300px;
+      }
+
+      /* 폰트 크기를 변경하고 세로 축 정렬을 바꿔보세요 */
+      .item:nth-child(1) {
+        /* font-style: 50px; */
+      }
+
+      .item:nth-child(2) {
+        background-color: #ffdada;
+      }
+
+      .item:nth-child(3) {
+        font-style: 25px;
+      }
+
+      @media (max-width: 1000px) {
+        .flex {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </body>
+</html>
+  
+```  
+  
+- 축이 바뀌면 크기가 동일하게 같이 바뀐다 
+  
+- 부모를 flex로 선언했으면 자식요소들에게 `flex-grow`, `flex-shrink`, `flex-basis` 이 3개를 무조건 선언해서 사용하는게 좋다. (혹은 `flex: 0 0 auto`꼴로 사용하기도 한다.)
+  
+<br>
+<br>
+  
+  
+# MISSION - 기본 레이아웃 만들기
+
+## 개발조건
+  
+1. HTML5의 시멘틱 마크업을 사용하고 각 요소에 알맞은 heading 태그를 넣어서 문서를 구조를 지켜주세요
+2. CSS3의 Grid, Flex를 자유롭게 사용해서 UI를 배치해주세요.
+3. 그 밖의 박스 크기, 폰트 사이즈, 내/외부 여백등은 시안과 일치시켜주세요.
+  
+ 
+## 반응형 기준 안내
+  
+- Desktop: 1024px 이상의 브라우저는 데스크톱으로 봅니다.
+- 1023px 이하부터 태블릿 구간입니다.
+- 767px 이하부터 모바일 구간입니다.
+- 해상도 320px의 디바이스까지 정상 지원해야합니다. (참고로 아이폰SE가 320px임)
+ 
+## 멘토님 팁
+  
+- 가로너비를 width로 고정값을 넣기보다 max-width로 최대값 넣는것을 선호하심<br>
+(피그마상 가로너비가 960px일 경우 `width: 960px`로 고정해주는것이 아니라 `max-width: 960px`로 설정해줌)<br>
+=> 장점: 브라우저가 줄어들 때 크기가 제대로 줄어들지 않는 경우를 방지할 수 있다. (max-width 설정시 부드럽게 크기 조절이 가능하다. 고정너비를 설정하는 것보다 이 방법을 사용하는게 좋다)
+
+
+<br>
+  
+# MISSION - 레이아웃 구조 분석하기
+  
+## 문제조건
+  
+1. 평소에 궁금했던 사이트를 2개 이상 선정해주세요 (PR 날릴 때 캡쳐본 혹은 파일을 첨부해서 보낼 것)
+2. 아래 예시와 같이 PC화면을 캡쳐하고 분석한 시멘틱 영역과 그 태그를 입력해주세요
+3. 시멘틱 마크업 내에 적합한 Heading 태그를 사용해주세요
+4. 헤딩태그까지 완료되면 본인이 분석한 outline을 그릴것
+  
+## 제출 안내
+  
+![image](https://user-images.githubusercontent.com/68424403/214213065-dfc48637-7ce8-4733-bd9b-988acefef36c.png)
+
+- 궁금한 사이트가 있을 경우 PR에 남겨주시면 추가로 분석해서 어떻게 설계할 것인지에 대한 답변을 남겨드리겠습니다.
