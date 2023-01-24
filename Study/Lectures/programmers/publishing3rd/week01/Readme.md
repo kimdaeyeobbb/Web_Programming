@@ -119,6 +119,7 @@
 - 헤더내의 날씨표시는 시멘틱한 마크없이 없으므로 `div`로 감싸줘서 사용하면 됨
 
 <br>
+
 ### 다음페이지 옆 날씨 & 날짜
 
 - 큰 의미가 없으므로 `div`로 사용
@@ -1183,6 +1184,8 @@ grid-column: span 3 / auto;
 
 ## Flex4 - 가로(x축) 정렬
 
+![image](https://user-images.githubusercontent.com/68424403/213969404-85165c40-1053-4640-8082-90c0d1d70a9c.png)
+
 - `space-between`: 첫번쨰와 마지막에 있는애들이 양끝으로 붙은다음, 내부의 친구들이 동일한 여백을 가져가면서 정렬이 되는 것
 
 - `space-around`: 한 칸(flex item)의 좌우 여백을 동일하게 가져가면서, 나머지 아이템과 좌우여백을 같은 크기로 유지함.
@@ -1203,4 +1206,115 @@ grid-column: span 3 / auto;
   - stretch를 만들고싶지 않을 때 사용함
   - stretch를 사용하면 부모의 크기가 커져버리기 때문에 그럴필요가 없다면 flex-start를 사용하는 것이다.
 
-## 실무에서의 flex 사용
+## 실무에서의 flex & grid 사용
+
+![image](https://user-images.githubusercontent.com/68424403/213969457-b7d8eaf3-ac8c-4e25-a314-da5f8e345a7e.png)
+
+- div를 적게사용하기 위해서 수강후기를 grid로 만듦
+- 웹화면에서 모바일로 만들 때 `order`속성을 사용해서 인터뷰 전문 보기를 밑으로 내려줌.
+- 마크업 순서
+  - 웹 화면: 수강생 -> 인터뷰  -> 내용
+  - 모바일: 수강생 -> 내용 -> 인터뷰 (order를 사용해서 시각적으로만 위치를 바꿔줌)
+  
+  
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex 1</title>
+    <link rel="stylesheet" href="./common.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        width: 100vh;
+        min-height: 100vh;
+      }
+
+      .flex {
+        width: 1000px;
+        height: 500px;
+        background-color: #fff;
+        border: 1px solid #000;
+        gap: 16px;
+
+        /* display 변경 */
+        display: flex;
+
+        /* 가로 축 정렬 */
+        justify-content: flex-start;
+        justify-content: flex-end;
+        justify-content: center;
+        justify-content: space-between;
+        justify-content: space-around;
+        justify-content: space-evenly;
+
+        /* 세로 축 정렬 */
+        /* align-items: center; */
+        align-items: stretch;
+        align-items: baseline;
+      }
+
+      .item {
+        background-color: #ddd;
+        padding: 20px;
+      }
+
+      /* 폰트 크기를 변경하고 세로 축 정렬을 바꿔보세요 */
+      .item:nth-child(1) {
+        font-style: 50px;
+      }
+
+      .item:nth-child(2) {
+        background-color: #ffdada;
+      }
+
+      .item:nth-child(3) {
+        font-style: 25px;
+      }
+
+      @media (max-width: 1000px) {
+        .flex {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </body>
+</html>
+
+```
+  
+  
+```css
+@media (max-width: 1000px) {
+  .flex {
+    display: block;
+  }
+}
+```
+
+- PC에서 Grid를 쓰다가 모바일에서 Grid를 그만쓰고 싶은 경우 `display:block`으로 바꿔주면 됨.  
+
+### @media
+
+- `@media` css 규칙은 스타일 시트의 일부를 하나 이상의 미디어 쿼리 결과에 따라 적용할 때 사용할 수 있다.
+- a
+
+
+## 미디어 쿼리
+
+- `CSS Media Query`는 예를 들어 "뷰포트가 480 픽셀보다 넓다."라고 사용자가 지정한 규칙에 브라우저 및 장치 환경이 일치하는 경우에만 CSS를 적용할 수 있는 방법을 제공함.
+
+- ㅁ
