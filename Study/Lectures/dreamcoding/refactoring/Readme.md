@@ -1032,3 +1032,452 @@ class Priority {
   static NORMAL = new Priority();
 }
 ```
+
+<br>
+
+## 7-6) 임시 변수를 질의 함수로 바꾸기
+
+```js
+class Order {
+  #quantity;
+  #item;
+  constructor(quantity, item) {
+    this.#quantity = quantity;
+    this.#item = item;
+  }
+
+  get price() {
+    const basePrice = this.#quantity * this.#item.price;
+    const discountFactor = 0.98;
+    if (basePrice > 1000) discountFactor -= 0.03;
+    return basePrice * discountFactor;
+  }
+}
+```
+
+<br>
+
+## 7-7) 클래스 추출하기
+
+```js
+class Person {
+  #name;
+  #officeAreaCode;
+  #officeNumber;
+  constructor(name, areaCode, number) {
+    this.#name = name;
+    this.#officeAreaCode = areaCode;
+    this.#officeNumber = number;
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  set name(arg) {
+    this.#name = arg;
+  }
+
+  get telephoneNumber() {
+    return `(${this.officeAreaCode}) ${this.officeNumber}`;
+  }
+
+  get officeAreaCode() {
+    return this.#officeAreaCode;
+  }
+
+  set officeAreaCode(arg) {
+    this.#officeAreaCode = arg;
+  }
+
+  get officeNumber() {
+    return this.#officeNumber;
+  }
+
+  set officeNumber(arg) {
+    this.#officeNumber = arg;
+  }
+}
+
+const person = new Person("엘리", "010", "12345678");
+console.log(person.name);
+console.log(person.officeAreaCode);
+console.log(person.officeNumber);
+console.log(person.telephoneNumber);
+```
+
+- 클래스 하나당 하나의 역할/하나의 책임/하나의 도메인을 가지는게 좋다
+- 여러가지 행동이 섞여있는 경우 다른 클래스로 추출하는게 어떨까. 하고 생각해보는게 좋다.
+
+<br>
+
+## 7-8) 클래스 인라인하기
+
+```js
+export class TrackingInformation {
+  #shippingCompany;
+  #trackingNumber;
+  constructor(trackingNumber, shippingCompany) {
+    this.#trackingNumber = trackingNumber;
+    this.#shippingCompany = shippingCompany;
+  }
+
+  get shippingCompany() {
+    return this.#shippingCompany;
+  }
+
+  set shippingCompany(arg) {
+    this.#shippingCompany = arg;
+  }
+
+  get trackingNumber() {
+    return this.#trackingNumber;
+  }
+
+  set trackingNumber(arg) {
+    this.#trackingNumber = arg;
+  }
+
+  get display() {
+    return `${this.shippingCompany}: ${this.trackingNumber}`;
+  }
+}
+
+export class Shipment {
+  #trackingInformation;
+  constructor(trackingInformation) {
+    this.#trackingInformation = trackingInformation;
+  }
+
+  get trackingInfo() {
+    return this.#trackingInformation.display;
+  }
+
+  get trackingInformation() {
+    return this.#trackingInformation;
+  }
+
+  set trackingInformation(trackingInformation) {
+    this.#trackingInformation = trackingInformation;
+  }
+}
+
+const shipment = new Shipment(new TrackingInformation(999, "Maersk"));
+console.log(shipment.trackingInfo);
+
+shipment.trackingInformation.shippingCompany = "COSCO";
+console.log(shipment.trackingInfo);
+```
+
+- 역할이 있는것 같지 않은데 분리해두었으므로, 바로접근하지 않고 전달을 거듭하는 형태이므로 일부분을 합칠필요가 있다. (그래야 깔끔하다)
+
+## 7-9) 위임하기
+
+```js
+class Person {
+  #name;
+  #department;
+  constructor(name, department) {
+    this.#name = name;
+    this.#department = department;
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  get department() {
+    return this.#department;
+  }
+
+  set department(arg) {
+    this.#department = arg;
+  }
+}
+
+export class Department {
+  #manager;
+  #chargeCode;
+  constructor(manager, chargeCode) {
+    this.#manager = manager;
+    this.#chargeCode = chargeCode;
+  }
+
+  get chargeCode() {
+    return this.#chargeCode;
+  }
+
+  set chargeCode(arg) {
+    this.#chargeCode = arg;
+  }
+
+  get manager() {
+    return this.#manager;
+  }
+
+  set manager(arg) {
+    this.#manager = arg;
+  }
+}
+
+const person = new Person("Tom", new Department("aManager", "999"));
+console.log(person.name);
+console.log(person.department.manager);
+console.log(person.department.chargeCode);
+```
+
+```js
+class Person {
+  #name;
+  #department;
+  constructor(name, department) {
+    this.#name = name;
+    this.#department = department;
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  get manager() {
+    return this.#department.manager;
+  }
+
+  get department() {
+    return this.#department;
+  }
+
+  set department(arg) {
+    this.#department = arg;
+  }
+}
+
+export class Department {
+  #manager;
+  #chargeCode;
+  constructor(manager, chargeCode) {
+    this.#manager = manager;
+    this.#chargeCode = chargeCode;
+  }
+
+  get chargeCode() {
+    return this.#chargeCode;
+  }
+
+  set chargeCode(arg) {
+    this.#chargeCode = arg;
+  }
+
+  get manager() {
+    return this.#manager;
+  }
+
+  set manager(arg) {
+    this.#manager = arg;
+  }
+}
+
+const person = new Person("Tom", new Department("aManager", "999"));
+console.log(person.name);
+console.log(person.department.manager);
+console.log(person.department.chargeCode);
+```
+
+## 7-10) 중개자 제거하기
+
+- `composition` : 클래스 A안에서 내부적으로 B라는 클래스를 composition하라고 함.
+
+```js
+
+```
+
+## 7-11) 알고리즘 ~하기
+
+```js
+function foundPerson(people) {
+  for (let i = 0; i < people.length; i++) {
+    if (people[i] === "Don") {
+      return "Don";
+    }
+    if (people[i] === "John") {
+      return "John";
+    }
+    if (people[i] === "Kent") {
+      return "Kent";
+    }
+  }
+  return "";
+}
+
+console.log(foundPerson(["John"]));
+console.log(foundPerson(["Don", "John"]));
+console.log(foundPerson(["Kent", "Don", "John"]));
+console.log(foundPerson(["Lisa", "Don", "Tom"]));
+```
+
+```js
+function foundPerson(people) {
+  const candidates = ["Don", "John", "Kent"];
+  return people.find((p) => candidates.includes(p)) || ""; // 아무것도 못찾으면 빈 문자열 반환
+}
+
+console.log(foundPerson(["John"]));
+console.log(foundPerson(["Don", "John"]));
+console.log(foundPerson(["Kent", "Don", "John"]));
+console.log(foundPerson(["Lisa", "Don", "Tom"]));
+```
+
+- 캡슐화된 내용을 세분화해서 나타냄
+
+<br>
+
+## 8-0) 응집도
+
+- Cohesion
+- 무엇인가가 연결되어 뭉쳐있는 것
+- 서로 밀접하게 연관 있는 속성(data)과 행동(method)이 함께 뭉쳐있는 정도 (뭉쳐있는 것 - 모듈, 클래스, 함수 등)
+
+- 모듈 내 응집도는 낮고, 외부 모듈간 결합도가 높은것은 좋지 않다.
+
+### 좋은 예제
+
+- 외부와의 연결은 최소한으로 하는게 좋다.
+- 모듈은 응집도가 높고 외부의 영향을 적게 받는것이 재사용성이 좋다.
+- 함수 하나당 하나의 일을 수행하도록 하자
+- 모듈/클래스 하나당 하나의 책임 및 도메인을 가지도록 하자
+
+<br>
+
+## 8-1) 함수 옮기기
+
+```js
+export function trackSummary(points) {
+  const totalTime = calculateTime();
+  const totalDistance = calculateDistance();
+  const pace = totalTime / 60 / totalDistance;
+  return {
+    time: totalTime,
+    distance: totalDistance,
+    pace: pace,
+  };
+
+  function calculateDistance() {
+    let result = 0;
+    for (let i = 1; i < points.length; i++) {
+      result += distance(points[i - 1], points[i]);
+    }
+    return result;
+  }
+
+  function distance(p1, p2) {
+    // 포뮬라: http://www.movable-type.co.uk/scripts/latlong.html
+    const EARTH_RADIUS = 3959; // in miles
+    const dLat = radians(p2.lat) - radians(p1.lat);
+    const dLon = radians(p2.lon) - radians(p1.lon);
+    const a =
+      Math.pow(Math.sin(dLat / 2), 2) +
+      Math.cos(radians(p2.lat)) *
+        Math.cos(radians(p1.lat)) *
+        Math.pow(Math.sin(dLon / 2), 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return EARTH_RADIUS * c;
+  }
+
+  function radians(degrees) {
+    return (degrees * Math.PI) / 180;
+  }
+
+  function calculateTime() {
+    return 10000;
+  }
+}
+
+const newYork = {
+  lat: 40.73061,
+  lon: -73.935242,
+};
+
+const tokyo = {
+  lat: 35.652832,
+  lon: 139.839478,
+};
+
+const summary = trackSummary([newYork, tokyo]);
+console.log(summary);
+```
+
+- 캡슗화를 위한 중첩함수라면 행동이 속성을 필요로 해서 계산 및 수정하는 등 밀접하게 사용하고 연관되어 묶여있는 등의 상태여야 ~임
+
+- distance -> 정확히 내부의 내용은 모르겠지만 p1,p2와 같은 점들을 받아서 처리함
+
+<br>
+
+## 8-2) 필드 옮기기
+
+```js
+export class Customer {
+  #name;
+  #contract;
+  constructor(name, discountRate) {
+    this.#name = name;
+    this.#discountRate = discountRate;
+    this.#contract = new CustomerContract(this.dateToday(), discountRate);
+  }
+
+  becomePreferred() {
+    this.contract.#discountRate += 0.03;
+    // 다른 코드들이 있음...
+  }
+
+  applyDiscount(amount) {
+    return amount.subtract(amount.multiply(this.#contract.discountRate));
+  }
+
+  dateToday() {
+    return new Date();
+  }
+}
+
+class CustomerContract {
+  #startDate;
+  #discountRate;
+  constructor(startDate, discountRate) {
+    this.#startDate = startDate;
+    this.#discountRate = discountRate;
+  }
+
+  get discountRate() {
+    return this.#discountRate;
+  }
+
+  set discountRate(value) {
+    this.#discountRate = value;
+  }
+}
+```
+
+- 필드를 더 가까운곳으로 옮겨주는게 좋다 (위치한곳에 있을 경우 의미를 잘 나타내도록!)
+- 나중에 변경되면 다른곳으로 옮기면 된다.
+
+```js
+class Account {
+  constructor(number, type) {
+    this._number = number;
+    this._type = type;
+  }
+
+  get interestRate() {
+    return this._type.interestRate;
+  }
+}
+
+class AccountType {
+  constructor(nameString, interestRate) {
+    this._name = nameString;
+    this._interestRate = interestRate;
+  }
+  get interestRate() {
+    this._interestRate = interestRate;
+  }
+}
+```
