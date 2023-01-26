@@ -1481,3 +1481,166 @@ class AccountType {
   }
 }
 ```
+
+<br>
+
+## 8-4) 문장을 호출한 곳으로 옮기기
+
+```js
+function renderPerson(outStream, person) {
+  outStream.write(`<p>${person.name}</p>\n`);
+  renderPhoto(outStream, person.photo);
+  emitPhotoData(outStream, person.photo);
+}
+
+function listRecentPhotos(outStream, photos) {
+  photos
+    .filter((p) => p.date > recentDateCutoff())
+    .forEach((p) => {
+      outStream.write("<div>\n");
+      emitPhotoData(outStream, p);
+      outStream.write("</div>\n");
+    });
+}
+
+function emitPhotoData(outStream, photo) {
+  outStream.write(`<p>title: ${photo.title}</p>\n`);
+  outStream.write(`<p>date: ${photo.date.toDateString()}</p>\n`);
+  outStream.write(`<p>location: ${photo.location}</p>\n`);
+}
+
+function renderPhoto(outStream, aPhoto) {
+  outStream.write("");
+}
+
+function recentDateCutoff() {
+  //7 days ago.
+  return new Date().setDate(new Date().getDate() - 7);
+}
+```
+
+- after
+
+```js
+function renderPerson(outStream, person) {
+  outStream.write(`<p>${person.name}</p>\n`);
+  renderPhoto(outStream, person.photo);
+  emitPhotoData(outStream, person.photo);
+}
+
+function listRecentPhotos(outStream, photos) {
+  photos
+    .filter((p) => p.date > recentDateCutoff())
+    .forEach((p) => {
+      outStream.write("<div>\n");
+      emitPhotoData(outStream, p);
+      outStream.write("</div>\n");
+    });
+}
+
+function emitPhotoData(outStream, photo) {
+  outStream.write(`<p>title: ${photo.title}</p>\n`);
+  outStream.write(`<p>date: ${photo.date.toDateString()}</p>\n`);
+  outStream.write(`<p>location: ${photo.location}</p>\n`);
+}
+
+function renderPhoto(outStream, aPhoto) {
+  outStream.write("");
+}
+
+function recentDateCutoff() {
+  //7 days ago.
+  return new Date().setDate(new Date().getDate() - 7);
+}
+```
+
+<br>
+
+## 8-5) 인라인 코드
+
+```js
+let appliesToMass = false;
+for (const s of states) {
+  if (s === "MA") appliesToMass = true;
+}
+```
+
+- 배열API를 사용하면 더 간단하게 구현가능
+
+```js
+let appliesToMass = states.includes("MA");
+```
+
+- 유능한 개발자는 내가 사용하는 툴을 정말 잘 사용한다.
+
+<br>
+
+## 8-6) 문장 슬라이드하기
+
+```js
+// 예제 1
+const pricingPlan = retrievePricingPlan();
+const order = retreiveOrder();
+let charge;
+const chargePerUnit = pricingPlan.unit;
+
+// 예제 2
+function someFunc() {
+  let result;
+  if (availableResources.length === 0) {
+    result = createResource();
+    allocatedResources.push(result);
+  } else {
+    result = availableResources.pop();
+    allocatedResources.push(result);
+  }
+  return result;
+}
+```
+
+```js
+// 예제 1
+const pricingPlan = retrievePricingPlan();
+const chargePerUnit = pricingPlan.unit;
+const order = retreiveOrder();
+
+// 예제 2
+function someFunc() {
+  const result =
+    avaliableResources.length === 0
+      ? createResources()
+      : availablesResources.pop();
+
+  allocatedResources.push(result);
+  return result;
+}
+```
+
+- result는 한번 할당한 다음 바뀌면 안되니까 `const`를 사용함
+
+<br>
+
+## 8-7) ㅁ
+
+```js
+export function reportYoungestAgeAndTotalSalary(people) {
+  let youngest = people[0] ? people[0].age : Infinity;
+  let totalSalary = 0;
+  for (const p of people) {
+    if (p.age < youngest) youngest = p.age;
+    totalSalary += p.salary;
+  }
+
+  return `youngestAge: ${youngest}, totalSalary: ${totalSalary}`;
+}
+```
+
+- 성능이 걱정되면 측정 후 문제가 될 경우에 개선해라
+
+<br>
+
+## 8-8) 반복문을 파이프라인으로 바꾸기
+
+```js
+``;
+```
