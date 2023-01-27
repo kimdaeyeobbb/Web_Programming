@@ -1644,3 +1644,340 @@ export function reportYoungestAgeAndTotalSalary(people) {
 ```js
 ``;
 ```
+
+<br><br>
+
+# ch10
+
+- 조건부 로직 간소화
+  - 코드의 의도(목적)를 나타내자
+    - 함수의 이름, 표현식의 이름을 지어주면서 이걸 왜 나타내는지에 대한 고찰을하자
+    - 이 코드가 무엇을 하는지보다 `왜` 이렇게 하는지에 대한 고민을 하는게 좋음
+
+## 10.1 조건문 분해하기
+
+### 전
+
+```js
+function calculateCharge(date, quantity, plan) {
+  let charge = 0;
+  if (!date.isBefore(plan.summerStart) && !date.isAfter(plan.summerEnd))
+    charge = quantity * plan.summerRate;
+  else charge = quantity * plan.regularRate + plan.regularServiceCharge;
+  return charge;
+}
+```
+
+- 함수 내부에 조건문이 하나밖에 없지만, 조금 복잡해서 의도를 바로 알아차리기 어렵다.
+
+- 어떤것을 계산하고 어떤 로직에 근거해서 작성된것인지 코드 한줄 한줄을 다 읽어 보아야 한다.
+
+- 의도
+  - 주어진날짜가 여름이라면, charge를 여름 비율을 부과하는것. 여름이 아니라면 일반가격으로 계산 (비수기, 성수기 얘기인듯)
+
+### 후
+
+```js
+function calculateCharge(date, quantity, plan) {
+  return isSummer() ? summerCharge() : regularCharge();
+
+  function isSummer() {
+    return !date.isBefore(plan.summerStart) && !date.isAfter(plan.summerEnd);
+  }
+
+  function summerCharge() {
+    return quantity * plan.summerRate;
+  }
+
+  function regularCharge() {
+    return quantity * plan.regularRate + plan.regularServiceCharge;
+  }
+}
+```
+
+<br>
+
+## 10.2 조건식 통합하기
+
+### 전
+
+```js
+function disabilityAmount(employee) {
+  if (employee.seniority < 2) return 0;
+  if (employee.monthsDisabled > 12) return 0;
+  if (employee.isPartTime) return 0;
+  return 1;
+}
+```
+
+### 후
+
+```js
+
+```
+
+<br>
+
+## 10.3 중첩 조건문을 보호 구문으로 바꾸기
+
+### 전
+
+```js
+export function payAmount(employee) {
+  let result;
+  if (employee.isSeparated) {
+    result = { amount: 0, reasonCode: "SEP" };
+  } else {
+    if (employee.isRetired) {
+      result = { amount: 0, reasonCode: "RET" };
+    } else {
+      // lorem.ipsum(dolor.sitAmet);
+      // consectetur(adipiscing).elit();
+      // sed.do.eiusmod = tempor.incididunt.ut(labore) && dolore(magna.aliqua);
+      // ut.enim.ad(minim.veniam);
+      result = someFinalComputation();
+      return result;
+    }
+  }
+  return result;
+}
+
+function someFinalComputation() {
+  return { amount: 999, reasonCode: "UNICORN" };
+}
+```
+
+- if~else문을 남발하기 보다 특정한 로직들을 처리하고 나서 빠져나가도록 만들자
+
+### 후
+
+```js
+export function payAmount(employee) {
+  if (employee.isSeparated) {
+    return { amount: 0, reasonCode: "SEP" };
+  }
+  if (employee.isRetired) {
+    return { amount: 0, reasonCode: "RET" };
+  }
+  // lorem.ipsum(dolor.sitAmet);
+  // consectetur(adipiscing).elit();
+  // sed.do.eiusmod = tempor.incididunt.ut(labore) && dolore(magna.aliqua);
+  // ut.enim.ad(minim.veniam);
+  return someFinalComputation();
+}
+
+function someFinalComputation() {
+  return { amount: 999, reasonCode: "UNICORN" };
+}
+```
+
+<br>
+
+### 전2
+
+```js
+export function adjustedCapital(instrument) {
+  let result = 0;
+  if (instrument.capital > 0) {
+    if (instrument.interestRate > 0 && instrument.duration > 0) {
+      result =
+        (instrument.income / instrument.duration) *
+        anInstrument.adjustmentFactor;
+    }
+  }
+  return result;
+}
+```
+
+### 후2
+
+```js
+export function adjustedCapital(instrument) {
+  if (!isEligibleForAdjustedCapital(instrument)) {
+    return 0;
+  }
+
+  return (
+    (instrument.income / instrument.duration) * anInstrument.adjustmentFactor
+  );
+}
+
+function isEligibleForAdjustedCapital(instrument) {
+  return (
+    instrument.capital > 0 &&
+    instrument.interestRate > 0 &&
+    instrument.duration > 0
+  );
+}
+```
+
+- 중첩구문을 보호구문으로 뺀 것
+
+<br>
+
+## 10.4 조건부 로직을 다형성으로 바꾸기
+
+### 전
+
+```js
+export function plumages(birds) {
+  let map = birds.map((b) => [b.name, plumage(b)]);
+  let map1 = new Map(map);
+  return map1;
+}
+export function speeds(birds) {
+  return new Map(birds.map((b) => [b.name, airSpeedVelocity(b)]));
+}
+export function plumage(bird) {
+  switch (bird.type) {
+    case "EuropeanSwallow":
+      return "average";
+    case "AfricanSwallow":
+      return bird.numberOfCoconuts > 2 ? "tired" : "average";
+    case "NorwegianBlueParrot":
+      return bird.voltage > 100 ? "scorched" : "beautiful";
+    default:
+      return "unknown";
+  }
+}
+export function airSpeedVelocity(bird) {
+  switch (bird.type) {
+    case "EuropeanSwallow":
+      return 35;
+    case "AfricanSwallow":
+      return 40 - 2 * bird.numberOfCoconuts;
+    case "NorwegianBlueParrot":
+      return bird.isNailed ? 0 : 10 + bird.voltage / 10;
+    default:
+      return null;
+  }
+}
+```
+
+- 추상화 레벨
+
+  - 객체지향 프로그래밍을 일컫음. 어떻게 모듈화하고 모듈화된 것들간의 설계를 어떻게 상호작용을 코딩화해야할지에 대해 논의해감
+
+- 이 코드는 유지보수성이 좋지않다. 이를 피하기 위해서는 switch를 남발하지말자. 클래스를 통한 다형성을 이용하는게 좋다. (객체 지향화할것)
+
+### 후
+
+```js
+export function plumages(birds) {
+  let map = birds.map((b) => [b.name, b.plumage]);
+  let map1 = new Map(map);
+  return map1;
+}
+export function speeds(birds) {
+  return new Map(birds.map((b) => [b.name, b.airSpeedVelocity]));
+}
+
+class Bird {
+  #name; // private field
+  constructor(name) {
+    this.#name = name;
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  get plumage() {
+    return "unknown";
+  }
+
+  get airSpeedVelocity() {
+    return null;
+  }
+}
+
+// 새를 나타내는 부모 클래스
+// 세부적인 새 클래스
+class EuropeanSwallow extends Bird {
+  constructor() {
+    super("EuropeanSwallow"); // 새의 이름을 알려줌
+  }
+
+  get plumage() {
+    return "average";
+  }
+
+  get airSpeedVelocity() {
+    return 35;
+  }
+}
+
+class AfricanSwallow extends Bird {
+  constructor() {
+    super("AfricanSwallow");
+  }
+
+  get plumage() {
+    return this.numberOfCoconuts > 2 ? "tired" : "average";
+  }
+
+  get airSpeedVelocity() {
+    return 40 - 2 * this.numberOfCoconuts;
+  }
+}
+
+class NorwegianBlueParrot extends Bird {
+  constructor() {
+    super("AfricanSwallow");
+  }
+
+  get plumage() {
+    return this.voltage > 100 ? "scorched" : "";
+  }
+
+  get airSpeedVelocity() {
+    return 40 - 2 * this.numberOfCoconuts;
+  }
+}
+
+const result = plumages([new NorwegianBlueParrot(), new AfricanSwallow()]);
+
+console.log("result: ", result);
+
+export function plumage(bird) {
+  switch (bird.type) {
+    case "EuropeanSwallow":
+      return "average";
+    case "AfricanSwallow":
+      return bird.numberOfCoconuts > 2 ? "tired" : "average";
+    case "NorwegianBlueParrot":
+      return bird.voltage > 100 ? "scorched" : "beautiful";
+    default:
+      return "unknown";
+  }
+}
+
+export function airSpeedVelocity(bird) {
+  switch (bird.type) {
+    case "EuropeanSwallow":
+      return 35;
+    case "AfricanSwallow":
+      return 40 - 2 * bird.numberOfCoconuts;
+    case "NorwegianBlueParrot":
+      return bird.isNailed ? 0 : 10 + bird.voltage / 10;
+    default:
+      return null;
+  }
+}
+```
+
+<br>
+
+## 10.5
+
+<br>
+
+## 10.6
+
+<br>
+
+## 10.7 제어 플래그를 탈출문으로 바꾸기
+
+<br>
+
+## 10.8 어설션 추가하기
