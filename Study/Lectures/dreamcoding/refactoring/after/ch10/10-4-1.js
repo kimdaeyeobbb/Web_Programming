@@ -7,6 +7,7 @@ export function speeds(birds) {
     return new Map(birds.map((b) => [b.name, b.airSpeedVelocity]));
 }
 
+// 새를 나타내는 부모 클래스
 class Bird {
     #name; // private field
     constructor(name) {
@@ -17,7 +18,7 @@ class Bird {
         return this.#name;
     }
 
-    get plumage() {
+    get plumage() {   // 깃털상태
         return 'unknown';
     }
 
@@ -26,7 +27,7 @@ class Bird {
     }
 }
 
-// 새를 나타내는 부모 클래스
+
 // 세부적인 새 클래스
 class EuropeanSwallow extends Bird {
     constructor() {
@@ -36,7 +37,6 @@ class EuropeanSwallow extends Bird {
     get plumage() {
         return "average";
     }
-
 
     get airSpeedVelocity() {
         return 35;
