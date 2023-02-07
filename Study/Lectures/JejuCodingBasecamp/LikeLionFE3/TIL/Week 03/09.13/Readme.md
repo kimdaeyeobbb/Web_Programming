@@ -170,7 +170,9 @@
 
 <br>
 
-<br>
+## 8. CSS declarations
+
+### 8.1. 단위(Units)
 
 - h1의 기본픽셀: 32px;
 
@@ -199,7 +201,54 @@
 - 기본적으로 rem을 많이 쓰고
   ex) 버튼(large, medium, small) 등에 텍스트의 비율에 따라 달라져야 할 경우 em을 씁니다!
 
+#### vw
+
+```html
+<style>
+  body {
+    margin: 0;
+  }
+  .five {
+    width: 50vw;
+    height: 100px;
+    background-color: aqua;
+  }
+</style>
+
+<div class="five">hello</div>
+```
+
+#### vh
+
+- 사용자가 보고 있는 화면의 높이의 설정값만큼 점유함
+
+```html
+<style>
+  body {
+    margin: 0;
+  }
+  .five {
+    width: 100px;
+    height: 50vh;
+    background-color: aqua;
+  }
+</style>
+
+<div class="five">hello</div>
+```
+
+- `heigth: 50vh`
+  - 사람이 보고 있는 웹페이지 영역 높이의 50%를 차지함
+
+#### vmin
+
+#### vmax
+
+### 8.2. overflow
+
 - overflow: hidden
+
+### 8.3. background
 
 - background-image
   -> html 태그 뒤에 이미지를 배치할 때 사용
