@@ -1,37 +1,51 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>웹 게임</title>
-</head>
-<body>
-<div id="root"></div>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-<!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>-->
-<!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>-->
-<script>
-    'use strict';
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>-->
+    <!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>-->
 
-    const e = React.createElement;
+    <!-- 바벨 추가하는 가장 쉬운 방법 -->
+    <script>
+      "use strict";
 
-    class LikeButton extends React.Component {
+      const e = React.createElement;
+
+      class LikeButton extends React.Component {
         constructor(props) {
-            super(props);
-            this.state = {liked: false};
+          super(props);
+          this.state = { liked: false };
         }
 
         render() {
-            if (this.state.liked) {
-                return 'You liked this.';
-            }
+          if (this.state.liked) {
+            return "You liked this.";
+          }
 
-            return e('button', {onClick: () => this.setState({liked: true})}, 'Like');
+          return e(
+            "button",
+            { onClick: () => this.setState({ liked: true }) },
+            "Like"
+          );
         }
-    }
-</script>
-<script>
-    ReactDOM.createRoot(document.querySelector('#root')).render(e(LikeButton));
-</script>
-</body>
+      }
+    </script>
+    <script>
+      ReactDOM.createRoot(document.querySelector("#root")).render(
+        e(LikeButton)
+      );
+    </script>
+  </body>
 </html>
