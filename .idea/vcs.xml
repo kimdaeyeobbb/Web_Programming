@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Study/Lectures/JejuCodingBasecamp/LikeLionFE3/TIL/Week 15/12.05/webpackTest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Study/Lectures/JejuCodingBasecamp/LikeLionFE3/TIL/Week18/12.26/searchimg" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Study/Lectures/JejuCodingBasecamp/LikeLionFE3/recoil-example" vcs="Git" />
   </component>
 </project>
