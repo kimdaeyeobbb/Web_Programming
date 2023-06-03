@@ -1,0 +1,20 @@
+{
+  "name": "vuegame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "vue-loader": "^17.1.1",
+    "vue-template-compiler": "^2.7.14",
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1"
+  }
+}
