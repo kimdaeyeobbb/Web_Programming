@@ -1,0 +1,404 @@
+<main>
+
+  <!-- 뉴스 게시판 글 목록 -->
+  <table id="newsTable" class="min-w-[80%] mx-auto my-10 divide-y divide-gray-200">
+    <thead>
+      <tr>
+        <th
+          class="py-3 px-6 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          번호
+        </th>
+        <th
+          class="py-3 px-6 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          제목
+        </th>
+        <th
+          class="py-3 px-6 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          작성자
+        </th>
+        <th
+          class="py-3 px-6 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          작성일
+        </th>
+        <th
+          class="py-3 px-6 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          조회수
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 테이블에 내용 뿌려주기 -->
+        <tr th:if="${newsList}" th:each="vo: ${newsList}">
+          <td class="py-4 px-6 border-b border-gray-200">[[${vo.id}]]</td>
+          <td class="py-4 px-6 border-b border-gray-200" th:onclick='|location.href="@{/listOne/(id=${vo.id})}"|'>[[${vo.title}]]</td>
+          <td class="py-4 px-6 border-b border-gray-200" th:onclick='|location.href="@{/writer(writer=${vo.writer})}"|'>[[${vo.writer}]]</td>
+          <td class="py-4 px-6 border-b border-gray-200">
+            <span th:text="${#temporals.format(vo.writedate, 'yyyy년 MM월 dd일 HH시mm분')}"></span>
+          </td>
+          <td class="py-4 px-6 border-b border-gray-200">[[${vo.cnt}]]</td>
+        </tr>
+    </tbody>
+  </table>
+
+<!--      <div id="UpdateNewsFormContainer" class="bg-blue-200" th:if="${news}">-->
+<!--        <form id="UpdateForm" method="post" th:action="@{/update(id=${news.id})}" class="w-full max-w-sm">-->
+<!--          <div class="md:flex md:items-center mb-6">-->
+<!--            <div class="md:w-1/3">-->
+<!--              <label for="writer">작성자:</label>-->
+<!--              <input-->
+<!--                type="text"-->
+<!--                id="writer"-->
+<!--                name="writer"-->
+<!--                placeholder="작성자명을 입력해주세요"-->
+<!--                th:value="${news.writer}"-->
+<!--                required-->
+<!--              /><br /><br />-->
+<!--              <label for="title">제목:</label>-->
+<!--              <input-->
+<!--                type="text"-->
+<!--                id="title"-->
+<!--                name="title"-->
+<!--                placeholder="제목을 입력해주세요"-->
+<!--                th:value="${news.title}"-->
+<!--                required-->
+<!--              /><br /><br />-->
+<!--              <label for="content">내용:</label>-->
+<!--              <textarea-->
+<!--                id="content"-->
+<!--                rows="6"-->
+<!--                cols="60"-->
+<!--                name="content"-->
+<!--                placeholder="내용을 입력해주세요"-->
+<!--                th:text="${news.content}"-->
+<!--                required-->
+<!--              >[[${news.content}]]</textarea-->
+<!--              ><br /><br />-->
+<!--              <div class="flex flex-row">-->
+<!--                <button-->
+<!--                  type="button"-->
+<!--                  class="text-white bg-gradient-to-br from-yellow-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"-->
+<!--                  onclick="confirmUpdateForm(); document.getElementById('UpdateNewsFormContainer').style.display='none'; return false"-->
+<!--                >-->
+<!--                  확인-->
+<!--                </button>-->
+<!--                <button-->
+<!--                  type="submit"-->
+<!--                  class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"-->
+<!--                >-->
+<!--                  수정-->
+<!--                </button>-->
+<!--                <button-->
+<!--                  type="button"-->
+<!--                  class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"-->
+<!--                  th:data-id="${news.id}"-->
+<!--                  th:onclick="'window.location.href=\'' + @{/delete(id=${news.id})} + '\''">-->
+<!--&lt;!&ndash;                  thymeleaf의 url 표현식을 사용하여 동적인 url을 생성함.  ${news.id} 값을 동적으로 삽입하여 클릭 시 올바른 형태의 URL이 생성되도록함&ndash;&gt;-->
+<!--                  삭제-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+
+
+
+
+  <!-- 데이터가 입력되지 않았을 경우 입력 폼-->
+  <!-- <div id="InsertNewsFormContainer" class="bg-blue-200" th:unless="${news}">
+    <form method="post" action="/insert" class="w-full max-w-sm">
+      <div class="md:flex md:items-center mb-6">
+        <div class="md:w-1/3">
+          <label for="writer2">작성자:</label>
+          <input
+                  type="text"
+                  id="writer2"
+                  name="writer"
+                  placeholder="작성자명을 입력해주세요"
+                  required
+          /><br /><br />
+          <label for="title2">제목:</label>
+          <input
+                  type="text"
+                  id="title2"
+                  name="title"
+                  placeholder="제목을 입력해주세요"
+                  required
+          /><br /><br />
+          <label for="content2">내용:</label>
+          <textarea
+                  id="content2"
+                  rows="6"
+                  cols="60"
+                  name="content"
+                  placeholder="내용을 입력해주세요"
+                  required
+          ></textarea
+          ><br /><br />
+          <div class="flex flex-row">
+            <button
+                    type="submit"
+                    class="text-white bg-gradient-to-br from-yellow-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+            >
+              저장
+            </button>
+            <button
+                    type="reset"
+                    class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                    onclick="resetForm()"
+            >
+              재작성
+            </button>
+            <button
+                    type="button"
+                    class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                    onclick="document.getElementById('InsertNewsFormContainer').style.display='none'; return false"
+            >
+              취소
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div> -->
+
+  <!-- 뉴스 입력 -->
+  <div id="InsertNewsFormContainer" class="flex justify-center" th:unless="${news}">
+    <div class="bg-blue-300 max-w-md w-full space-y-8 p-10 bg-white rounded-xl shadow-lg z-10">
+      <div class="flex flex-col">
+        <div class="flex flex-col sm:flex-row items-center">
+          <h2 class="font-semibold text-lg mr-auto">Fact Checking News</h2>
+        </div>
+        <form method="post" action="/insert">
+
+          <div class="md:flex md:flex-col w-full text-xs">
+            <div class="w-full flex flex-col mb-3">
+              <label for="insertwriter" class="font-semibold text-gray-600 py-2">작성자</label>
+              <input
+                      type="text"
+                      id="insertwriter"
+                      name="writer"
+                      required
+                      placeholder="작성자명을 입력하세요"
+                      class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+              />
+            </div>
+            <div class="w-full flex flex-col mb-3">
+              <label for="inserttitle" class="font-semibold text-gray-600 py-2"
+              >글 제목</label
+              >
+              <input
+                      type="text"
+                      id="inserttitle"
+                      name="title"
+                      placeholder="뉴스 제목을 입력하세요"
+                      required
+                      class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+              />
+            </div>
+          </div>
+          <div class="flex-auto w-full mb-1 text-xs space-y-2">
+            <label for="insertcontent" class="font-semibold text-gray-600 py-2"
+            >글 내용</label
+            >
+            <textarea
+                    id="insertcontent"
+                    name="content"
+                    placeholder="뉴스글 내용을 입력하세요"
+                    required
+                    class="w-full min-h-[100px] max-h-[300px] h-28 appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg py-4 px-4"
+            ></textarea>
+
+          </div>
+
+          <!-- 버튼 영역 -->
+          <div
+                  class="mt-5 text-right md:space-x-3 md:block flex flex-col"
+          >
+            <button
+                    type="submit"
+                    class="text-white bg-gradient-to-br from-yellow-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+            >
+              저장
+            </button>
+            <button
+                    type="reset"
+                    class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                    onclick="resetForm()"
+            >
+              재작성
+            </button>
+            <button
+                    type="button"
+                    class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                    onclick="document.getElementById('InsertNewsFormContainer').style.display='none'; return false"
+            >
+              취소
+            </button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- 뉴스 업데이트 -->
+  <div id="UpdateNewsFormContainer" th:if="${news}" class="flex justify-center">
+    <div
+            class="bg-blue-300 max-w-md w-full space-y-8 p-10 bg-white rounded-xl shadow-lg z-10"
+    >
+      <div class="flex flex-col">
+        <div class="flex flex-col sm:flex-row items-center">
+          <h2 class="font-semibold text-lg mr-auto">Fact Checking News</h2>
+        </div>
+        <form id="UpdateForm" method="post" th:action="@{/update(id=${news.id})}" >
+
+          <div class="md:flex md:flex-col w-full text-xs">
+            <div class="w-full flex flex-col mb-3">
+              <label for="updatewriter" class="font-semibold text-gray-600 py-2"
+              >작성자</label
+              >
+              <input
+                      type="text"
+                      id="updatewriter"
+                      name="writer"
+                      placeholder="작성자명을 입력하세요"
+                      th:value="${news.writer}"
+                      required
+                      class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+              />
+            </div>
+            <div class="w-full flex flex-col mb-3">
+              <label for="updatetitle" class="font-semibold text-gray-600 py-2"
+              >글 제목</label
+              >
+              <input
+                      type="text"
+                      id="updatetitle"
+                      name="title"
+                      placeholder="뉴스 제목을 입력하세요"
+                      th:value="${news.title}"
+                      required
+                      class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+              />
+            </div>
+
+            <div class="flex-auto w-full mb-1 text-xs space-y-2">
+              <label for="updatecontent" class="font-semibold text-gray-600 py-2"
+              >글 내용</label
+              >
+              <textarea
+                      id="updatecontent"
+                      name="content"
+                      placeholder="뉴스글 내용을 입력하세요"
+                      th:text="${news.content}"
+                      required
+                      class="w-full min-h-[100px] max-h-[300px] h-28 appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg py-4 px-4"
+              >[[${news.content}]]</textarea>
+            </div>
+
+            <!-- 버튼 영역 -->
+            <div
+                    class="mt-5 text-right md:space-x-3 md:block flex flex-col"
+            >
+              <button
+                      type="button"
+                      onclick="confirmUpdateForm(); document.getElementById('UpdateNewsFormContainer').style.display='none'; return false"
+                      class="text-white bg-gradient-to-br from-yellow-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              >
+                확인
+              </button>
+              <button
+                      type="submit"
+                      class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                      onclick="resetForm()"
+              >
+                수정
+              </button>
+              <button
+                      type="button"
+                      th:data-id="${news.id}"
+                      th:onclick="'window.location.href=\'' + @{/delete(id=${news.id})} + '\''"
+                      class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              >
+                삭제
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+  
+  
+  
+  
+  
+
+
+    <!-- 검색 영역 -->
+  <div class="flex justify-center">
+    <div id="newsSearch" class="w-2/5 m-10">
+      <form action="/search"  class="flex items-center">
+        <label for="simple-search" class="sr-only">Search</label>
+        <div class="relative w-full">
+          <div
+            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-5 h-5 text-gray-500 dark:text-gray-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="simple-search"
+            name="keyword"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="검색할 뉴스의 내용을 입력하세요"
+            required
+          />
+<!--              name: 컨트롤러의 매개변수와 이름을 맞춰야함-->
+        </div>
+        <button
+          type="submit"
+          class="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+          <span class="sr-only">Search</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+</main>
