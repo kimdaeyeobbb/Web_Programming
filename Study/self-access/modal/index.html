@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button
+      id="myModal"
+      onclick="openModal()"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
+      Open Modal
+    </button>
+
+    <!-- 모달 내용을 포함한 HTML 파일을 가져옴 -->
+    <div id="modalContainer"></div>
+    <script>
+      // 모달 내용을 포함한 HTML 파일을 가져와서 modalContainer에 삽입
+      window.addEventListener("click", function () {
+        fetch("modal.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("modalContainer").innerHTML = data;
+          });
+      });
+    </script>
+  </body>
+</html>

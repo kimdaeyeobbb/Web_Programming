@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal Example</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body>
+    <div id="myModal" class="modal">
+      <div
+        class="modal-content bg-gray-100 mx-auto w-2/3 p-4 rounded-lg border border-gray-300"
+      >
+        <span
+          class="close text-gray-500 text-3xl font-bold cursor-pointer"
+          onclick="closeModal()"
+          >&times;</span
+        >
+        <p>This is a modal window.</p>
+      </div>
+    </div>
+
+    <script>
+      function openModal() {
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      window.addEventListener("click", function (event) {
+        if (event.target == document.getElementById("myModal")) {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
+</html>
