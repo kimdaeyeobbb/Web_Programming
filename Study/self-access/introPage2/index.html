@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <title>Split Landing</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        height: 100vh;
+        font-family: Calibri, sans-serif;
+        overflow-x: hidden;
+        overflow-y: hidden;
+      }
+
+      .title {
+        width: max-content;
+        letter-spacing: 0.1em;
+        position: relative;
+        font-size: 40px;
+        transition: all 0.4s;
+      }
+
+      .title:hover {
+        color: gray;
+      }
+
+      .title:before {
+        content: " ";
+        background-color: currentColor;
+        position: absolute;
+        left: 0;
+        right: 0;
+        transition: margin 0.4s;
+        margin-right: 8.8em;
+        bottom: -0.2em;
+        height: 0.2em;
+      }
+
+      .title:hover::before {
+        margin-right: 0.1em;
+      }
+
+      .title-wrapper {
+        margin-top: 2em;
+        margin-bottom: 3em;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+      }
+
+      .heading {
+        font-size: 4rem;
+        color: white;
+        text-shadow: 0 0 5px black;
+      }
+      .btn {
+        background: transparent;
+        border: 2px solid white;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 25px;
+        cursor: pointer;
+      }
+      .container {
+        display: flex;
+      }
+      .left {
+        background: white url("img/watch-1.jpg") no-repeat scroll center;
+        background-size: cover;
+        width: 50%;
+        height: 100vh;
+        transition: width 0.5s ease-in-out;
+      }
+      .right {
+        background: white url("img/watch-2.jpg") no-repeat scroll center;
+        background-size: cover;
+        width: 50%;
+        height: 100vh;
+        transition: width 0.5s ease-in-out;
+      }
+      .left-wrapper {
+        background-color: rgba(242, 207, 165, 0.6);
+        height: 100%;
+      }
+      .right-wrapper {
+        background-color: rgba(122, 115, 115, 0.6);
+        height: 100%;
+      }
+      .left-content,
+      .right-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+      }
+      .left:hover,
+      .right:hover {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="title-wrapper">
+      <h1 class="title">T-KO 팀 프로젝트 - 연차 관리 시스템</h1>
+    </header>
+    <main>
+      <div class="container">
+        <div class="left">
+          <div class="left-wrapper">
+            <div class="left-content">
+              <h3 class="heading">1차 프로젝트</h3>
+              <button class="btn" onclick="expandProject(this)">Read me</button>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="right-wrapper">
+            <div class="right-content">
+              <h3 class="heading">2차 프로젝트</h3>
+              <button class="btn" onclick="expandProject(this)">Read me</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      function expandProject(button) {
+        const left = document.querySelector(".left");
+        const right = document.querySelector(".right");
+
+        if (button.parentNode.parentNode.parentNode === left) {
+          left.style.width = "100%";
+          right.style.width = "0%";
+        } else if (button.parentNode.parentNode.parentNode === right) {
+          left.style.width = "0%";
+          right.style.width = "100%";
+        }
+      }
+    </script>
+  </body>
+</html>

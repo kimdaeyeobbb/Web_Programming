@@ -33,6 +33,11 @@ const routes = [
     name: "DataBindingHtml",
     component: () => import("../views/DataBindingHtml.vue"),
   },
+  {
+    path: "/methodex1",
+    name: "methodex1",
+    component: () => import("../views/MethodEx1.vue"),
+  },
 ];
 
 const router = createRouter({

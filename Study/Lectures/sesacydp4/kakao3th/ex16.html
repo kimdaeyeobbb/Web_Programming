@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> level 1 </h1>
+    <div id = "container" />
+    <script>
+        const container = document.createElement('container');
+        for (i=0; i<4; i+=1){
+            const btn = document.createElement("button");
+            btn.innerText = `button${i+1}`;
+            container.appendChild(btn);
+            btn.addEventListener('click', () => console.log(i))
+        }
+    </script>
+</body>
+</html>

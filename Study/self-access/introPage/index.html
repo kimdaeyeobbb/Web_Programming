@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>팀 프로젝트 소개</title>
+    <style>
+      body,
+      ul,
+      h2,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        list-style-type: none;
+      }
+
+      body {
+        height: 90vh;
+        background-color: #111;
+        color: #999;
+      }
+
+      .title {
+        width: max-content;
+        letter-spacing: 0.1em;
+        position: relative;
+        /* border-bottom: 5px solid; */
+        font-size: 40px;
+        transition: all 0.4s;
+      }
+
+      .title:hover {
+        color: white;
+      }
+
+      .title:before {
+        content: " ";
+        background-color: currentColor;
+        position: absolute;
+        left: 0;
+        right: 0;
+        transition: margin 0.4s;
+        margin-right: 8.8em;
+        bottom: -0.2em;
+        height: 0.2em;
+      }
+
+      .title:hover::before {
+        margin-right: 0.1em;
+      }
+
+      .title-wrapper {
+        margin-top: 3em;
+        margin-bottom: 3em;
+        display: flex;
+        justify-content: center;
+      }
+
+      .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .team {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .team-item {
+        flex-basis: 200px;
+        flex-shrink: 0;
+        margin: 0 4px;
+        opacity: 0.6;
+        transition: all 0.4s;
+      }
+
+      .team-item:hover {
+        opacity: 1;
+        flex-basis: 300px;
+        margin: 0 20px;
+      }
+
+      .team-item img {
+        width: 100%;
+      }
+
+      .profile {
+        background-color: #222;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .profile:before {
+        content: " ";
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.95+100 */
+        background: -moz-linear-gradient(
+          top,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.95) 100%
+        ); /* FF3.6-15 */
+        background: -webkit-linear-gradient(
+          top,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.95) 100%
+        ); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.95) 100%
+        ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#f2000000',GradientType=0 ); /* IE6-9 */
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100px;
+      }
+
+      .profile_beige {
+        color: beige;
+      }
+
+      .profile_skyblue {
+        color: skyblue;
+      }
+
+      .profile-contents {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 10px;
+      }
+
+      .profile-contents h2 {
+        font-size: 40px;
+      }
+
+      .profile-contents h2 span {
+        display: block;
+        font-size: 20px;
+      }
+
+      .profile-contents p {
+        color: white;
+        font-size: 20px;
+        min-width: 140px;
+        max-height: 0;
+        overflow: hidden;
+        line-height: 1.2;
+        transition: all 1s;
+        opacity: 0;
+      }
+
+      .team-item:hover .profile-contents p {
+        opacity: 1;
+        transition-delay: 0.4s;
+        max-height: 6em;
+        margin-top: 0.4em;
+      }
+
+      .project-link {
+        padding: 5%;
+        text-decoration: none;
+        font-size: 1em;
+        background-color: #4c51bf;
+        color: #fff;
+        border-radius: 10px;
+      }
+
+      /* 버튼 */
+      @import url("https://fonts.googleapis.com/css?family=Raleway");
+
+      :root {
+        --glow-color: hsl(186 100% 69%);
+      }
+
+      .glowing-btn {
+        position: relative;
+        color: var(--glow-color);
+        cursor: pointer;
+        padding: 0.35em 1em;
+        border: 0.15em solid var(--glow-color);
+        border-radius: 0.45em;
+        background: none;
+        perspective: 2em;
+        font-family: "Raleway", sans-serif;
+        font-size: 1em;
+        font-weight: 900;
+        letter-spacing: 1em;
+
+        -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+          0px 0px 0.5em 0px var(--glow-color);
+        -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+          0px 0px 0.5em 0px var(--glow-color);
+        box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+          0px 0px 0.5em 0px var(--glow-color);
+        animation: border-flicker 2s linear infinite;
+      }
+
+      .glowing-txt {
+        float: left;
+        margin-right: -0.8em;
+        -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+          0 0 0.45em var(--glow-color);
+        -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+          0 0 0.45em var(--glow-color);
+        text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+          0 0 0.45em var(--glow-color);
+        animation: text-flicker 3s linear infinite;
+      }
+
+      .faulty-letter {
+        opacity: 0.5;
+        animation: faulty-flicker 2s linear infinite;
+      }
+
+      .glowing-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0.7;
+        filter: blur(1em);
+        transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+        background: var(--glow-color);
+        pointer-events: none;
+      }
+
+      .glowing-btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        z-index: -1;
+        background-color: var(--glow-color);
+        box-shadow: 0 0 2em 0.2em var(--glow-color);
+        transition: opacity 100ms linear;
+      }
+
+      .glowing-btn:hover {
+        color: rgba(0, 0, 0, 0.8);
+        text-shadow: none;
+        animation: none;
+      }
+
+      .glowing-btn:hover .glowing-txt {
+        animation: none;
+      }
+
+      .glowing-btn:hover .faulty-letter {
+        animation: none;
+        text-shadow: none;
+        opacity: 1;
+      }
+
+      .glowing-btn:hover:before {
+        filter: blur(1.5em);
+        opacity: 1;
+      }
+
+      .glowing-btn:hover:after {
+        opacity: 1;
+      }
+
+      @keyframes faulty-flicker {
+        0% {
+          opacity: 0.1;
+        }
+        2% {
+          opacity: 0.1;
+        }
+        4% {
+          opacity: 0.5;
+        }
+        19% {
+          opacity: 0.5;
+        }
+        21% {
+          opacity: 0.1;
+        }
+        23% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 0.5;
+        }
+        83% {
+          opacity: 0.4;
+        }
+
+        87% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes text-flicker {
+        0% {
+          opacity: 0.1;
+        }
+
+        2% {
+          opacity: 1;
+        }
+
+        8% {
+          opacity: 0.1;
+        }
+
+        9% {
+          opacity: 1;
+        }
+
+        12% {
+          opacity: 0.1;
+        }
+        20% {
+          opacity: 1;
+        }
+        25% {
+          opacity: 0.3;
+        }
+        30% {
+          opacity: 1;
+        }
+
+        70% {
+          opacity: 0.7;
+        }
+        72% {
+          opacity: 0.2;
+        }
+
+        77% {
+          opacity: 0.9;
+        }
+        100% {
+          opacity: 0.9;
+        }
+      }
+
+      @keyframes border-flicker {
+        0% {
+          opacity: 0.1;
+        }
+        2% {
+          opacity: 1;
+        }
+        4% {
+          opacity: 0.1;
+        }
+
+        8% {
+          opacity: 1;
+        }
+        70% {
+          opacity: 0.7;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @media only screen and (max-width: 600px) {
+        .glowing-btn {
+          font-size: 1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="title-wrapper">
+      <h1 class="title">T-KO 팀 프로젝트 - 연차 관리 시스템</h1>
+    </header>
+    <main>
+      <div class="wrapper">
+        <ul class="team">
+          <li class="team-item">
+            <div class="profile profile_skyblue">
+              <img src="images/refresh3.jpg" />
+              <div class="profile-contents">
+                <h2>1차<span>미니프로젝트</span></h2>
+                <p>
+                  사용기술<br />Spring<br />MyBatis<br />Thymeleaf<br />HTML/CSS<br />Tailwind<br />AJAX<br />MySQL
+                </p>
+                <p>
+                  <button class="glowing-btn">
+                    <span class="glowing-txt"
+                      >L<span class="faulty-letter">I</span>NK</span
+                    >
+                  </button>
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="team-item">
+            <div class="profile profile_beige">
+              <img src="images/refresh2.jpg" />
+              <div class="profile-contents">
+                <h2>2차 <span>미니프로젝트</span></h2>
+                <p>사용기술</p>
+                <p>Vue.js</p>
+                <p>Tailwind</p>
+                <p>Spring Boot</p>
+                <p>JPA</p>
+                <p>MySQL</p>
+                <p>Docker</p>
+                <p>NGiNX</p>
+                <br />
+                <p>
+                  <button class="glowing-btn">
+                    <span class="glowing-txt"
+                      >L<span class="faulty-letter">I</span>NK</span
+                    >
+                  </button>
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>
