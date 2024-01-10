@@ -24,3 +24,9 @@ Study/Lectures/.DS_Store
 Study/Lectures/Udemy/vue/.idea/
 
 Study/Lectures/zerocho/.idea/
+
+Study/self-access/.idea/
+
+*.xml
+
+*.iml
