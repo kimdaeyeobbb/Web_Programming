@@ -1,13 +1,13 @@
-import Todo from "./pages/Todo.tsx";
-import Immutability from "./pages/Immutability.tsx";
+import LifeCycle from "./pages/LifeCycle.tsx";
+import CustomHook from "./pages/CustomHook.tsx";
 
 function App() {
-  return(
-      <>
-        <Todo/>
-        <Immutability/>
-      </>
-  )
+  return (
+    <>
+      <LifeCycle />
+      <CustomHook />
+    </>
+  );
 }
 
-export default App
+export default App;
