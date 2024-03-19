@@ -2,7 +2,7 @@ import './App.css';
 import Header from './components/Header.jsx';
 import TodoEditor from './components/TodoEditor.jsx';
 import TodoList from './components/TodoList.jsx';
-import { useReducer, useRef } from 'react';
+import { useCallback, useReducer, useRef } from 'react';
 function App() {
   const mockData = [
     {
@@ -56,19 +56,21 @@ function App() {
   };
 
   // update
-  const onUpdate = (targetId) => {
+  // useCallback -> 리액트 컴포넌트 내에서 불필요하게 컴포넌트가 다시 생성되지 않게 막음
+  const onUpdate = useCallback((targetId) => {
     dispatch({
       type: 'UPDATE',
       data: targetId,
     });
-  };
+  }, []);
+  // deps -> 빈 배열 -> 컴포넌트가 처음 마운트 될 때 한번만 함수 생성
 
-  const onDelete = (targetId) => {
+  const onDelete = useCallback((targetId) => {
     dispatch({
       type: 'DELETE',
       data: targetId,
     });
-  };
+  }, []);
 
   return (
     <div className="App">
