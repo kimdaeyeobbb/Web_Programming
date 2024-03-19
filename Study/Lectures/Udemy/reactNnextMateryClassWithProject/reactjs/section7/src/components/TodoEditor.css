@@ -1,0 +1,21 @@
+.TodoEditor {
+    display: flex;
+    gap: 10px;
+}
+
+.TodoEditor input {
+    /* flex:1 -> 요소의 크기가 부모 요소를 벗어나지 않는 선에서 늘어남 */
+    flex: 1;
+    padding: 15px;
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 5px;
+}
+
+.TodoEditor button {
+    cursor: pointer;
+    width: 80px;
+    border: none;
+    background-color: #1f93ff;
+    color: white;
+    border-radius: 5px;
+}
