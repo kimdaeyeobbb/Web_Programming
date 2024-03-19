@@ -2,7 +2,7 @@ import './App.css';
 import Header from './components/Header.jsx';
 import TodoEditor from './components/TodoEditor.jsx';
 import TodoList from './components/TodoList.jsx';
-import { useRef, useState } from 'react';
+import { useReducer, useRef } from 'react';
 function App() {
   const mockData = [
     {
@@ -24,8 +24,20 @@ function App() {
       isDone: true,
     },
   ];
-  const [todos, setTodos] = useState(mockData);
+  function reducer(state, action) {
+    switch (action.type) {
+      case 'CREATE':
+        return [...state, action.data];
+      case 'UPDATE':
+        return state.map((todo) => {
+          return todo.id === action.data ? { ...todo, isDone: !todo.isDone } : todo;
+        });
+      case 'DELETE':
+        return state.filter((todo) => todo.id !== action.data);
+    }
+  }
 
+  const [todos, dispatch] = useReducer(reducer, mockData);
   const idRef = useRef(3);
 
   // create
@@ -36,20 +48,26 @@ function App() {
       content,
       createdDate: new Date().getTime(),
     };
-    setTodos([...todos, newTodo]);
+    dispatch({
+      // action객체 -> 어떻게 state를 전달할것인지에 대한 정보
+      type: 'CREATE',
+      data: newTodo,
+    });
   };
 
   // update
   const onUpdate = (targetId) => {
-    setTodos(
-      todos.map((todo) => {
-        return todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo;
-      }),
-    );
+    dispatch({
+      type: 'UPDATE',
+      data: targetId,
+    });
   };
 
   const onDelete = (targetId) => {
-    setTodos(todos.filter((todo) => todo.id !== targetId));
+    dispatch({
+      type: 'DELETE',
+      data: targetId,
+    });
   };
 
   return (
