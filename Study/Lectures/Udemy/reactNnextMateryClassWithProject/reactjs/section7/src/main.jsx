@@ -4,6 +4,6 @@ import App from './App.jsx';
 import A from './exam/A.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <App />
-  <A />,
+  <App />,
+  // <A />,
 );
