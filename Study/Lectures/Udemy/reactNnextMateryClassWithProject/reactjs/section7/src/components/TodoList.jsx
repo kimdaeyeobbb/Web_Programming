@@ -1,8 +1,11 @@
 import './TodoList.css';
 import TodoItem from './TodoItem.jsx';
-import { useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
+import { TodoContext } from '../TodoContext.jsx';
 
-export default function TodoList({ todos, onUpdate, onDelete }) {
+export default function TodoList() {
+  const { todos, onUpdate, onDelete } = useContext(TodoContext);
+
   // 입력한 메시지 보관
   const [search, setSearch] = useState('');
   const onChangeSearch = (e) => {
