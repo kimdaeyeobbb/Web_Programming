@@ -2,8 +2,8 @@ import './App.css';
 import Header from './components/Header.jsx';
 import TodoEditor from './components/TodoEditor.jsx';
 import TodoList from './components/TodoList.jsx';
-import { useCallback, useReducer, useRef } from 'react';
-import { TodoContext } from './TodoContext.jsx';
+import { useCallback, useMemo, useReducer, useRef } from 'react';
+import { TodoDispatchContext, TodoStateContext } from './TodoContext.jsx';
 
 function App() {
   const mockData = [
@@ -74,14 +74,23 @@ function App() {
     });
   }, []);
 
+  // 부모 컴포넌트가 리렌더링될 때 객체를 다시 생성하지 않도록 함
+  const memoizedDispatch = useMemo(() => {
+    return {
+      onCreate,
+      onUpdate,
+      onDelete,
+    };
+  }, []);
   return (
     <div className="App">
       <Header />
-
-      <TodoContext.Provider value={{ todos, onCreate, onUpdate, onDelete }}>
-        <TodoEditor />
-        <TodoList />
-      </TodoContext.Provider>
+      <TodoStateContext.Provider value={todos}>
+        <TodoDispatchContext.Provider value={memoizedDispatch}>
+          <TodoEditor />
+          <TodoList />
+        </TodoDispatchContext.Provider>
+      </TodoStateContext.Provider>
     </div>
   );
 }
