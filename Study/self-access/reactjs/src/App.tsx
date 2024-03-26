@@ -1,13 +1,13 @@
-import LifeCycle from "./pages/LifeCycle.tsx";
-import CustomHook from "./pages/CustomHook.tsx";
 import ReactHook from "./pages/ReactHook.tsx";
+import JsxTest from "./pages/JsxTest.tsx";
+import PropsTestPage from "./pages/PropsTestPage.tsx";
 
 function App() {
   return (
     <>
-      <LifeCycle />
-      <CustomHook />
+      <JsxTest />
       <ReactHook />
+      <PropsTestPage />
     </>
   );
 }
