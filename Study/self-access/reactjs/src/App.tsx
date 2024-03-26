@@ -1,6 +1,7 @@
 import ReactHook from "./pages/ReactHook.tsx";
 import JsxTest from "./pages/JsxTest.tsx";
 import PropsTestPage from "./pages/PropsTestPage.tsx";
+import EventTestPage from "./pages/EventTestPage.tsx";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <JsxTest />
       <ReactHook />
       <PropsTestPage />
+      <EventTestPage />
     </>
   );
 }
