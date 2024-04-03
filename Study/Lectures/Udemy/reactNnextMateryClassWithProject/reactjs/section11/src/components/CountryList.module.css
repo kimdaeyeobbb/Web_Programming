@@ -1,0 +1,7 @@
+.container {
+    display: flex;
+
+    /*공간이 부족할 경우 삐져나간 아이템들에 대한 줄바꿈 처리 (float이나 inline-block으로 배치한 요소들과 비슷하게 동작)*/
+    flex-wrap: wrap;
+    gap:20px;
+}

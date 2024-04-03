@@ -9,11 +9,12 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .main {
     max-width: 700px;
     margin: 0 auto;
     padding: 80px 10px;
-    background-color: red;
+    /*background-color: red;*/
 }
