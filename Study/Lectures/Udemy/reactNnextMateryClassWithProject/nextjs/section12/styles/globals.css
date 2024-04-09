@@ -1,0 +1,6 @@
+/*전체 스타일 규칙 설정*/
+html,
+body {
+    margin: 0px;
+    background-color: rgb(245, 245, 245);
+}
