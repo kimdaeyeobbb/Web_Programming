@@ -5,6 +5,7 @@ import EventTestPage from "./pages/EventTestPage.tsx";
 import StatePage from "./pages/StatePage.tsx";
 import PropsParentPage from "./pages/PropsParentPage.tsx";
 import RefPage from "./pages/ref/RefPage.tsx";
+import StateTestParent1 from "./pages/stateTest/StateTestParent1.tsx";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
       <StatePage />
       <PropsParentPage />
       <RefPage />
+      <hr />
+      <StateTestParent1 />
     </>
   );
 }
