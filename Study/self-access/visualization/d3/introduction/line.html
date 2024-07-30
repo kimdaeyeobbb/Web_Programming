@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3 실습</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="canvas"></div>
+    <script>
+      const canvas = d3.select(".canvas");
+
+      const svg = canvas.append("svg").attr("width", 500).attr("height", 500);
+      svg
+        .append("line")
+        .attr("x1", 100) // x축 시작
+        .attr("y1", 100) // y축 시작
+        .attr("x2", 300) // x축 끝
+        .attr("y2", 300) // y축 끝
+        .attr("stroke", "blue"); // 선 색상
+    </script>
+  </body>
+</html>
