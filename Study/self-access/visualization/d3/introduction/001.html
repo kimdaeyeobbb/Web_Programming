@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3 실습</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <svg width="500px" height="500px">
+      <g>
+        <circle cy="50" cx="50" r="30"></circle>
+        <!-- 한붓그리기와 유사 -->
+        <path d="M 100 100 L 200 200 L 300 100 Z"></path>
+      </g>
+      <text x="400" y="400">Hello, D3.js</text>
+    </svg>
+    <div class="canvas"></div>
+    <script>
+      const canvas = d3.select(".canvas");
+      canvas
+        .append("svg")
+        .attr("width", 500)
+        .attr("height", 500)
+        .append("circle")
+        .attr("cx", 50)
+        .attr("cy", 50)
+        .attr("r", 30)
+        .attr("fill", "red");
+
+      const svg = canvas.append("svg").attr("width", 500).attr("height", 500);
+
+      svg
+        .append("text")
+        .attr("x", 20)
+        .attr("y", 20)
+        .text("hello, d3.js")
+        .style("font-weight", "bold")
+        .style("font-size", "24px")
+        .style("font-family", "Gaegu"); // 폰트적용
+    </script>
+  </body>
+</html>
