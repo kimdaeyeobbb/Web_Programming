@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <svg width="1000" height="1000">
+    <script>
+      const sampleData = [100,10,30,50,10,70,200,90]
+      const svg = d3.select('svg')
+      const barWidth = 50
+
+      sampleData.forEach((data, index) => {
+        svg.append('rect')
+          .attr('height', data)
+          .attr('fill', 'blue')
+          .attr('width', barWidth)
+          .attr('x',60*index+100)  // 막대 생성좌표 x막대의 좌측
+          .attr('y', 500 - data+100)  // 막대 생성좌표 y막대의 상단
+
+        svg.append('text')
+          .attr('x', 60*index+113)
+          .attr('y', 500-data+90)
+          .text('수치')
+          .style('font-size', '0.8rem')
+          .style('color', 'red')
+      })
+    </script>
+  </svg>
+</body>
+</html>
