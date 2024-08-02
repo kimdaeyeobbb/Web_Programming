@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D3</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<svg id='sample2'>
+  <circle></circle>
+  <circle></circle>
+  <circle></circle>
+  <circle></circle>
+  <circle></circle>
+  <circle></circle>
+  <circle></circle>
+  <circle></circle>
+</svg>
+<hr>
+
+<script>
+  const sampleData = [
+    [5, 20, 30, '#ff0000'],
+    [5, 320, 90, '#ff0000'],
+    [5, 150, 50, '#ff0000'],
+    [7, 120, 70, '#ff0000'],
+    [7, 530, 110, '#ff0000'],
+    [7, 410, 20, '#ff0000'],
+    [12, 720, 60, '#ff0000'],
+    [12, 30, 110, '#ff0000'],
+    [12, 90, 130, '#ff0000'],
+    [19, 510, 180, '#ff0000'],
+    [19, 310, 120, '#ff0000'],
+    [8, 50, 150, '#ff0000'],
+    [7, 50, 350, '#ff0000'],
+  ];
+  // exit() : data가 기존 html 요소의 수보다 적을 때는, exit을 사용해서 남은 요소를 선택 후 remove를 사용해 제거
+
+  const sampleData2 = [
+    [5, 20, 30, '#ff0000'],
+    [15, 320, 90, '#ff0000'],
+    [25, 150, 50, '#ff0000'],
+  ];
+
+  const scatter2 = d3.select('#sample2')
+    .attr('width', 1000)
+    .attr('height', 300)
+
+  scatter2.selectAll('circle')
+    .data(sampleData2)
+    .attr('r', d => d[0])
+    .attr('cx', d => d[1])
+    .attr('cy', d => d[2])
+    .attr('fill', d => d[3])
+    .exit()
+
+</script>
+</body>
+</html>
