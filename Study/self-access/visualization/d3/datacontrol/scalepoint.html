@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D3</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<script>
+  // range는 전체 width
+  // domain의 전체 count를 range 값으로 '동일하게' 분할하여 분배
+  // 실제 데이터 간격은 아래의 숫자 값 간격과는 무관 (개수에 따라 데이터의 간격이 좌우됨)
+  const f1 = d3.scalePoint().range([0, 100]).domain([10, 12, 20, 30, 40])
+  console.log(f1(12)) // 100
+  console.log(f1(40))  // 25
+
+  const f2 = d3.scalePoint().range([0, 100]).domain(['a', 'b', 'c', 'd'])
+  console.log(f2('c'))
+
+  // padding이 붙었을 경우 각 요소의 간격에 padding을 곱하여 양쪽 여백으로 줌
+  const f3 = d3.scalePoint().range([0, 100]).domain(['a', 'b', 'c', 'd']).padding(0.3)
+  console.log(f3('a'))  // 8.3
+  console.log(f3('d')) // 양쪽에 8.3만큼의 여백이 생김
+
+  const f4 = d3.scalePoint().range([100, 200]).domain(['a', 'b', 'c', 'd'])
+  console.log(f4('a')) // a는 100부터  시작
+  console.log(f4('b'))
+</script>
+</body>
+</html>
