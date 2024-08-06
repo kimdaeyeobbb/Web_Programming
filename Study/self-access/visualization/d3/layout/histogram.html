@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+  <script>
+    data = [10,10,20,20,30,30,30,30,30,40,40,50,50,60,60,60,60,60,60,60]
+
+    const hist = d3.histogram()
+    console.log(hist(data))
+
+    for (const i of hist(data)[2]) {
+      console.log(i)
+    }
+
+    console.log(hist(data)[2].length)
+
+    const bin = d3.bin()
+    console.log(bin(data))
+  </script>
+</body>
+</html>
