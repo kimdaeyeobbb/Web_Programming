@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <h1>확진자수 현황</h1>
+  <div class="canvas">
+    <svg>
+      <path></path>
+      <path></path>
+      <path></path>
+      <path></path>
+      <path></path>
+      <path></path>
+      <path></path>
+      <path></path>
+      <path></path>
+      <path></path>
+      <path></path>
+    </svg>
+  </div>
+  <script>
+    // https://github.com/d3/d3-shape
+    // const f = d3.line().x().y().curve()의 형태로 선언
+    // d3.line -> line을 그릴수 있는 함수를 만드는 것
+    // curve -> 직선/ 곡선/ 휜 상태 / 각진 상태 등을 설정
+    // 이것들을 f(data)의 형태로 사용
+
+    data = [5, 15, 10, 20, 5, 10, 25, 15]
+    xfunction = (data, index) => index * 10 // x축의 위치를 설정
+    yfunction = (data, index) => 100 - data // y축의 위치를 설정
+
+    const f = d3.line()
+      .x(xfunction)
+      .y(yfunction)
+      // .curve(d3.curveStep) // curve를 설정
+
+    console.log(f(data))
+    const svg = d3.select('svg')
+      .attr('width', 500)
+      .attr('height', 500)
+
+    svg.selectAll('path')
+      // .attr('fill', 'red')  // 주석처리 및 None설정시 검은색으로 채워짐
+      .attr('stroke', 'blue')
+      .attr('stroke-width', '2px')
+      .attr('d', f(data))
+
+  </script>
+</body>
+</html>
