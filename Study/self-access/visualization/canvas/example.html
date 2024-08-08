@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas API</title>
+  <style>
+    canvas {
+        background-color: #0c4128;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="1000" height="1000"></canvas>
+  <canvas id="canvas2" width="1000" height="1000"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d'); // canvas에서 어떻게 그릴지를 결정
+
+    function drawRect() {
+      let x = 100, y= 100, w = 200, h = 100;
+      // 스타일 결정
+      ctx.fillStyle = 'rgb(200, 0, 0)';
+      // 칠하기
+      ctx.fill();
+      ctx.fillRect(x,y,w,h);
+      // 선 그리기
+      ctx.stroke();
+    }
+
+    drawRect()
+
+    // 원을 그려줍니다.
+    function drawArc() {
+      // context.arc(x,y,r,sAngle,eAngle,counterclockwise); // counterclockwise: 시계/반시계 방향 결정
+      ctx.beginPath() // 선시작
+      let x = 200,
+        y = 200,
+        r = 30, // 반지름
+        s = 0, // 시작 앵글
+        e = Math.PI * 2 // 종료 앵글, 1이면 반원
+      ctx.arc(x, y, r, s, e)
+      ctx.fillStyle = 'blue' // 색을 선택하고
+      ctx.fill() // 칠해야 합니다.
+      ctx.stroke()
+    }
+    drawArc()
+
+
+
+    // 그래프 start
+    const canvas2 = document.getElementById('canvas2')
+    const ctx2 = canvas2.getContext('2d')
+    function 그래프() {
+      ctx2.beginPath()
+
+      // ctx.fillStyle = 'green' // 색을 선택하고
+      // ctx.fill() // 칠해야 합니다.
+      // ctx.fillRect(x, y, w, h)
+      // ctx.stroke()
+
+      let y = 50,
+        w = 100,
+        h = 100;
+      ctx2.fillRect(xx, y, w, h)
+      ctx2.fillStyle = 'red'
+      ctx2.fill()
+      ctx2.stroke()
+    }
+    // 그래프 end
+
+    ctx.strokeRect(150, 150, 100, 100);
+
+
+
+
+
+    let xx = 200;
+    function 움직이는공() {
+      ctx.clearRect(0, 0, 1000, 1000)
+      ctx.beginPath() // 선시작, 주석처리해보세요.
+      let y = 300,
+        r = 30, // 반지름
+        s = 0, // 끝나는 앵글
+        e = Math.PI * 2 // 시작 앵글, 1이면 반원
+      ctx.arc(xx, y, r, s, e)
+      ctx.fillStyle = 'blue' // 색을 선택하고
+      ctx.fill() // 칠해야 합니다.
+      ctx.stroke()
+      그래프()
+      xx += 1
+      if (xx >= 970) {
+        // 벽에 부딪히면 멈춤
+        return
+      }
+      // 그릴 준비되면 그림
+      requestAnimationFrame(움직이는공)
+    }
+    움직이는공()
+
+  </script>
+</body>
+</html>
