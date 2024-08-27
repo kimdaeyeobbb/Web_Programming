@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🇰🇷 이슈 유형 선택
+    url: https://github.com/username/repo-name/issues/new/choose
+    about: 적절한 이슈 유형이 아니라면 다른 유형을 선택해주세요.
