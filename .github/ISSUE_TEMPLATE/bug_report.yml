@@ -1,0 +1,50 @@
+name: 버그 리포트 🐞
+description: >-
+  발견한 버그에 대한 정보를 입력해주세요.
+title: '[bug]: '
+labels:
+  - 수정
+  - 버그
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 버그 설명
+      description: 버그에 대해 명확하게 설명하여 주세요
+    validations:
+      required: true
+  - type: input
+    id: repro-link
+    attributes:
+      label: 링크
+      description: >-
+        문제가 발생한 지점에 대하여 링크를 삽입해주세요.
+        
+        중요: 만약 제공된 URL이 잘못되었을 경우 (예: 404 오류 또는 비공개 저장소), 우리는 이슈를 닫을 수 있습니다.
+    validations:
+      required: true
+  - type: textarea
+    id: repro-steps
+    attributes:
+      label: 문제 묘사
+      description: >-
+        삽입한 링크를 이용해서 이슈에 대해 묘사하여주세요. 또한 당신이 발생할 것이라 예상되는 부분에 대해서도 서술해주세요.
+      placeholder: >-
+        1. Go to above link
+        
+        2. Click on '....'
+        
+        3. ...
+  - type: textarea
+    id: system
+    attributes:
+      label: System
+      description: Please paste the results of `npx storybook@latest info` here.
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
