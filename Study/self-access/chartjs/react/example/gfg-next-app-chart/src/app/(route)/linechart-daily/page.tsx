@@ -50,8 +50,14 @@ const options: ChartOptions<"line"> = {
       grid: {
         display: true, // 수평축
       },
+      border: {
+        display: false,
+      },
       min: 0,
       max: 200,
+      ticks: {
+        stepSize: 50,
+      },
     },
   },
   elements: {
