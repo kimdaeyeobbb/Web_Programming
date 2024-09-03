@@ -1,10 +1,12 @@
 name: Update docs ✍️
 description: >-
- 문서 업데이트가 필요한 경우 본 이슈를 사용하세요 (.md 파일 수정 등)
+  문서 업데이트가 필요한 경우 본 이슈를 사용하세요 (.md 파일 수정 등)
 
 title: "[docs]: "
 labels:
   - docs
+  - view
+  - 🔍 analysis engine
 body:
   - type: textarea
     id: description
