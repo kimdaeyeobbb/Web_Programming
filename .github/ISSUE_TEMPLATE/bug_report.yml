@@ -6,7 +6,7 @@ labels:
   - fix
 body:
   - type: textarea
-    id: related issue
+    id: related-issue
     attributes:
         label: 관련 이슈
         description: 관련 있는 이슈 번호 기재 (#이슈번호)
