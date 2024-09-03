@@ -25,8 +25,7 @@ body:
       label: 기능 목록
       description: 기능 목록을 기재해주세요. 각 항목별로 새로운 줄에 입력하세요. (체크박스를 이용하면 좋아요)
       placeholder: >-
-        - [ ] feature1
-        - [ ] feature2
+        - [ ] 기능 1
   - type: textarea
     id: reference
     attributes:
