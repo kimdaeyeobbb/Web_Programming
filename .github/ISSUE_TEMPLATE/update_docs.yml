@@ -1,7 +1,6 @@
 name: Update docs ✍️
 description: >-
-  - Use this issue if you need to update your document (.md file, etc.)
-  - 문서 업데이트가 필요한 경우 본 이슈를 사용하세요 (.md 파일 수정 등)
+ 문서 업데이트가 필요한 경우 본 이슈를 사용하세요 (.md 파일 수정 등)
 
 title: "[docs]: "
 labels:
