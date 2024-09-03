@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: 참고문서
+    url: https://github.com/kimdaeyeobbb/Web_Programming/blob/main/README.md
+    about: 해당 프로젝트에 대한 참고 문서를 확인해주세요.
+  - name: Disucssions
+    url: https://github.com/kimdaeyeobbb/Web_Programming/discussions/new
+    about: 이곳에서 질문과 논의를 진행해주세요.
