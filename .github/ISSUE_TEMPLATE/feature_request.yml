@@ -25,10 +25,8 @@ body:
       label: 기능 목록
       description: 기능 목록을 기재해주세요.
       options:
-        - label: 기능1
-          value: feature1
-        - label: 기능2
-          value: feature2
+        - 기능1
+        - 기능2
   - type: textarea
     id: reference
     attributes:
