@@ -1,0 +1,36 @@
+name: feature request 🐞
+description: >-
+  추가하고 싶은 신규 기능에 대해 알려주세요.
+title: '[new feature]: '
+labels:
+  - new feature
+body:
+  - type: textarea
+    id: related-issue
+    attributes:
+      label: 관련 이슈
+      description: 관련 있는 이슈 번호 기재 (#이슈번호)
+      placeholder: >-
+        #77
+  - type: textarea
+    id: description
+    attributes:
+      label: 기능 설명
+      description: 기능에 대해 명확하게 설명하여 주세요
+    validations:
+      required: true
+  - type: checkboxes
+    id: task
+    attributes:
+      label: 기능 목록
+      description: 기능 목록을 기재해주세요.
+      options:
+        - label: 기능1
+          value: feature1
+        - label: 기능2
+          value: feature2
+  - type: textarea
+    id: reference
+    attributes:
+      label: 참고
+      description: 추가 논의사항 혹은 참고사항에 대해 기재해주세요
