@@ -6,6 +6,7 @@ import StatePage from "./pages/StatePage.tsx";
 import PropsParentPage from "./pages/PropsParentPage.tsx";
 import RefPage from "./pages/ref/RefPage.tsx";
 import StateTestParent1 from "./pages/stateTest/StateTestParent1.tsx";
+import ForwardRef from "./pages/forwardref/ForwardRef.tsx";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
       <RefPage />
       <hr />
       <StateTestParent1 />
+      <hr />
+      <ForwardRef />
     </>
   );
 }
